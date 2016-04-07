@@ -18,8 +18,14 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
-
   s.dependency 'Analytics', '~> 3.0.0'
-  s.dependency 'CleverTap-iOS-SDK', '~> 2.0.10'
+
+  s.frameworks = 'SystemConfiguration', 'CoreTelephony', 'UIKit', 'Security', 'CoreLocation'
+  s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(inherited)' }  
+  s.ios.vendored_frameworks = 'CleverTapSDK.framework'
+  s.preserve_paths = 'CleverTapSDK.framework'  
+
+  s.source_files = ['Pod/Classes/**/*', 'CleverTapSDK.framework/Versions/A/Headers/*.h']
+
+
 end
