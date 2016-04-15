@@ -7,7 +7,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [CleverTap setDebugLevel:1277182231];
+    [CleverTap setDebugLevel:1];
     
     [SEGAnalytics debug:YES];
     
@@ -79,8 +79,8 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
-  [[SEGAnalytics sharedAnalytics] receivedRemoteNotification:userInfo];
-  completionHandler(UIBackgroundFetchResultNoData);
+    [[SEGAnalytics sharedAnalytics] receivedRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNoData);
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken

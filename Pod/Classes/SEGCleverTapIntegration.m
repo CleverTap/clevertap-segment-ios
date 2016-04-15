@@ -13,8 +13,8 @@
     if (self = [super init]) {
         self.settings = settings;
         
-        NSString *accountID = [settings objectForKey:@"CleverTapAccountID"];
-        NSString *accountToken = [settings objectForKey:@"CleverTapToken"];
+        NSString *accountID = [settings objectForKey:@"clevertap_account_id"];
+        NSString *accountToken = [settings objectForKey:@"clevertap_account_token"];
         
         if (![accountID isKindOfClass:[NSString class]] || [accountID length] == 0 || ![accountToken isKindOfClass:[NSString class]] || [accountToken length] == 0) {
             return nil;
