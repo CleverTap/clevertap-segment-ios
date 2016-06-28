@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 1.0.4 *(28 June, 2016)*
+-------------------------------------------
+*(Supports analytics-ios 3.0.+ and CleverTap 2.1.2)*
+
 Version 1.0.3 *(23 June, 2016)*
 -------------------------------------------
 *(Supports analytics-ios 3.0.+ and CleverTap 2.1.1)*
