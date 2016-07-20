@@ -2,11 +2,11 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
 
-target 'Segment-CleverTap_Example', :exclusive => true do
+target 'Segment-CleverTap_Example' do
   pod "Segment-CleverTap", :path => "../"
 end
 
-target 'Segment-CleverTap_Tests', :exclusive => true do
+target 'Segment-CleverTap_Tests' do
   pod "Segment-CleverTap", :path => "../"
 
   pod 'Specta'
