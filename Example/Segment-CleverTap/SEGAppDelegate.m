@@ -11,7 +11,7 @@
     
     [SEGAnalytics debug:YES];
     
-    SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz"];
+    SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_SEGMENT_WRITE_KEY"];
     
     [config use:[SEGCleverTapIntegrationFactory instance]];
     
