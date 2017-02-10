@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.0.11 *(30 January, 2017)*
+-------------------------------------------
+*(Supports analytics-ios 3.0.+ and CleverTap 3.1.2)*
+
+*fix podspec to pick up Segment minor version updates*
+
 Version 1.0.10 *(30 January, 2017)*
 -------------------------------------------
 *(Supports analytics-ios 3.0.+ and CleverTap 3.1.2)*

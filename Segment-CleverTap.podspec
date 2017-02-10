@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-CleverTap"
-  s.version          = "1.0.10"
+  s.version          = "1.0.11"
   s.summary          = "CleverTap Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.dependency 'Analytics', '~> 3.0.0'
+  s.dependency 'Analytics', '~> 3.0'
 
   s.frameworks = 'SystemConfiguration', 'CoreTelephony', 'UIKit', 'CoreLocation'
   s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(inherited)' }  
