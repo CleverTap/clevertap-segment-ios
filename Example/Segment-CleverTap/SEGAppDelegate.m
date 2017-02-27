@@ -1,21 +1,40 @@
 #import "SEGAppDelegate.h"
 #import "SEGAnalytics.h"
+#import "SEGCleverTapIntegration.h"
 #import "SEGCleverTapIntegrationFactory.h"
-#import <CleverTapSDK/CleverTap.h>
+
+#import <UserNotifications/UserNotifications.h>
 
 @implementation SEGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [CleverTap setDebugLevel:1];
+    
+    // NOTE:  if you are using CleverTap for push notifications with deep links, to have a launch deep link automatically called
+    // please add your CleverTap account id and token to your plist
+    // as described here:  https://support.clevertap.com/docs/ios/getting-started.html#add-clevertap-credentials
+    
     
     [SEGAnalytics debug:YES];
-    
-    SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_SEGMENT_WRITE_KEY"];
-    
+    SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz"];
     [config use:[SEGCleverTapIntegrationFactory instance]];
-    
     [SEGAnalytics setupWithConfiguration:config];
+    
+    
+    // register for push
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
+        UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge)
+                              completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                              }];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound) categories:nil];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
+
     
     return YES;
 }
@@ -48,12 +67,6 @@
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
-{
-    //register to receive notifications
-    [application registerForRemoteNotifications];
-}
-
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     
@@ -65,7 +78,8 @@
             options:(NSDictionary<NSString *,
                      id> *)options {
     NSLog(@"open url %@", [url absoluteString]);
-    return  YES;
+    [self handleUrl:url];
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -74,7 +88,16 @@
          annotation:(id)annotation
 {
     NSLog(@"open url %@", [url absoluteString]);
-    return  YES;
+    [self handleUrl:url];
+    return YES;
+}
+
+- (void)handleUrl:(NSURL *)url {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Deep Link" message:[url absoluteString] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:nil];
+    [alert addAction:cancelAction];
+    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {

@@ -1,0 +1,6 @@
+framework module Segment_CleverTap {
+  umbrella header "Segment-CleverTap-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,15 @@
+PODS:
+  - Analytics (3.5.7)
+  - Segment-CleverTap (1.0.11):
+    - Analytics (~> 3.0)
+
+DEPENDENCIES:
+  - Segment-CleverTap
+
+SPEC CHECKSUMS:
+  Analytics: f00fcfd37d8b4dbe765021e22a497d6c2d3de39b
+  Segment-CleverTap: eb11271338aee634f09fe207ced1695a65b5bef8
+
+PODFILE CHECKSUM: 880f715886b0d25e0242c9adac1ed8246336d20f
+
+COCOAPODS: 1.1.1
