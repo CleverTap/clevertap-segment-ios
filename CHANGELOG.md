@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.0.12 *(30 June, 2017)*
+-------------------------------------------
+*(Supports analytics-ios 3.0.+ and CleverTap 3.1.4)*
+
+*adds support for Screen events (screen name only)*
+
 Version 1.0.11 *(30 January, 2017)*
 -------------------------------------------
 *(Supports analytics-ios 3.0.+ and CleverTap 3.1.2)*

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SEGAnalytics.debug(true)
         let config = SEGAnalyticsConfiguration(writeKey: "qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz")
-        config?.use(SEGCleverTapIntegrationFactory())
+        config.use(SEGCleverTapIntegrationFactory())
         SEGAnalytics.setup(with: config)
         
         

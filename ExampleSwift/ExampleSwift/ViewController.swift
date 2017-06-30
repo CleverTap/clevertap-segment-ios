@@ -14,6 +14,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func screenButtonPressed(_ sender: Any) {
+        SEGAnalytics.shared().screen("TestScreen")
+    }
     
     @IBAction func identifyButtonDidPress(_ sender: Any) {
         let floatAttribute = 12.3

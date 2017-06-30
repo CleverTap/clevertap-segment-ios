@@ -1,5 +1,13 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
 #endif
 
 #import "SEGCleverTapIntegration.h"
@@ -9,6 +17,7 @@
 #import "CleverTapEventDetail.h"
 #import "CleverTapInAppNotificationDelegate.h"
 #import "CleverTapSyncDelegate.h"
+#import "CleverTapTrackedViewController.h"
 #import "CleverTapUTMDetail.h"
 
 FOUNDATION_EXPORT double Segment_CleverTapVersionNumber;

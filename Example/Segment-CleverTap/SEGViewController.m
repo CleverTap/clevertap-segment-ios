@@ -18,6 +18,10 @@
   [super didReceiveMemoryWarning];
 }
 
+- (IBAction)screenButtonPress:(id)sender {
+    [[SEGAnalytics sharedAnalytics] screen:@"TestScreen"];
+}
+
 - (IBAction)identifyButtonPress:(id)sender {
   NSInteger integerAttribute = 200;
   float floatAttribute = 12.3f;

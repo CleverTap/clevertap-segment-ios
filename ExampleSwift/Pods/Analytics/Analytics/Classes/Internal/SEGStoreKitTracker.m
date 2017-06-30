@@ -70,19 +70,26 @@
 #pragma mark - Track
 - (void)trackTransaction:(SKPaymentTransaction *)transaction forProduct:(SKProduct *)product
 {
+    // it seems the identifier is nil for renewable subscriptions
+    // see http://stackoverflow.com/questions/14827059/skpaymenttransactions-originaltransaction-transactionreceipt-nil-for-restore-on
+    // there isn't a spec'd event for this case ( https://segment.com/docs/spec/ecommerce/v2/ ) so ignoring it for now
+    if (transaction.transactionIdentifier == nil) {
+        return;
+    }
+
     NSString *currency = [product.priceLocale objectForKey:NSLocaleCurrencyCode];
 
     [self.analytics track:@"Order Completed" properties:@{
         @"orderId" : transaction.transactionIdentifier,
         @"affiliation" : @"App Store",
-        @"currency" : currency,
+        @"currency" : currency ?: [NSNull null],
         @"products" : @[
             @{
-               @"productId" : product.productIdentifier,
-               @"quantity" : @(transaction.payment.quantity),
                @"sku" : transaction.transactionIdentifier,
-               @"price" : product.price,
-               @"name" : product.localizedTitle
+               @"quantity" : @(transaction.payment.quantity),
+               @"productId" : product.productIdentifier ?: [NSNull null],
+               @"price" : product.price ?: [NSNull null],
+               @"name" : product.localizedTitle ?: [NSNull null],
             }
         ]
     }];
