@@ -96,6 +96,18 @@
     [self profilePush:profile];
 }
 
+
+- (void)screen:(SEGScreenPayload *)payload {
+    
+    NSString *screenName = payload.name;
+    
+    if (!screenName) {
+        return;
+    }
+    
+    [[CleverTap sharedInstance] recordScreenView:screenName];
+}
+
 - (void)track:(SEGTrackPayload *)payload {
     
     [self recordEvent:payload.event withProps:payload.properties];

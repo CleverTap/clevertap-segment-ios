@@ -4,16 +4,12 @@ PODS:
     - Analytics (~> 3.0)
 
 DEPENDENCIES:
-  - Segment-CleverTap (from `../`)
-
-EXTERNAL SOURCES:
-  Segment-CleverTap:
-    :path: "../"
+  - Segment-CleverTap
 
 SPEC CHECKSUMS:
   Analytics: 32f2d1e0e5499c493450192726b0b42d43606b82
   Segment-CleverTap: 3eecd9605ac69392af58dfd2a4bfff7fb2565f5f
 
-PODFILE CHECKSUM: 61fe82bcee9d150638ce5119fd0e1ca165fd9b26
+PODFILE CHECKSUM: 880f715886b0d25e0242c9adac1ed8246336d20f
 
 COCOAPODS: 1.2.1
