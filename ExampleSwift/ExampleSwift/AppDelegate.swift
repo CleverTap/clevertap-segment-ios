@@ -18,16 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // as described here:  https://support.clevertap.com/docs/ios/getting-started.html#add-clevertap-credentials
         
         SEGAnalytics.debug(true)
+        CleverTap.setDebugLevel(CleverTapLogLevel.debug.rawValue);
         let config = SEGAnalyticsConfiguration(writeKey: "qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz")
         config.use(SEGCleverTapIntegrationFactory())
         SEGAnalytics.setup(with: config)
-        
         
         // push notifications
         UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .alert, .badge]) {
             (granted, error) in
             if (granted) {
-                UIApplication.shared.registerForRemoteNotifications()
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
             }
         }
         

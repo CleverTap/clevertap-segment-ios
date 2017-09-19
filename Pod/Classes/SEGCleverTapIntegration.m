@@ -15,16 +15,18 @@
         
         NSString *accountID = [settings objectForKey:@"clevertap_account_id"];
         NSString *accountToken = [settings objectForKey:@"clevertap_account_token"];
+        NSString *region = [settings objectForKey:@"region"];
+        region = [region stringByReplacingOccurrencesOfString:@"." withString:@""];
         
         if (![accountID isKindOfClass:[NSString class]] || [accountID length] == 0 || ![accountToken isKindOfClass:[NSString class]] || [accountToken length] == 0) {
             return nil;
         }
         
         if ([NSThread isMainThread]) {
-            [self launchWithAccountId:accountID andToken:accountToken];
+            [self launchWithAccountId:accountID token:accountToken region: region];
         } else {
             dispatch_sync(dispatch_get_main_queue(), ^{
-                [self launchWithAccountId:accountID andToken:accountToken];
+                [self launchWithAccountId:accountID token:accountToken region: region];
             });
         }
     }
@@ -85,10 +87,10 @@
         profile[@"DOB"] = payload.traits[@"birthday"];
     }
     
-    // values must be a primitive (String, Boolean, Long, Integer, Float, Double) or Date
+    // values must be a primitive (String, Boolean, Long, Integer, Float, Double) or String Array or Date
     for (NSString *key in profile.allKeys) {
         id val = profile[key];
-        if ([val isKindOfClass:[NSDictionary class]] || [val isKindOfClass:[NSArray class]]) {
+        if ([val isKindOfClass:[NSDictionary class]]) {
             [profile removeObjectForKey:key];
         }
     }
@@ -109,6 +111,9 @@
 }
 
 - (void)track:(SEGTrackPayload *)payload {
+    if ([payload.event isEqualToString:@"Order Completed"]) {
+        return [self handleOrderCompleted:payload];
+    }
     
     [self recordEvent:payload.event withProps:payload.properties];
 }
@@ -139,8 +144,8 @@
 
 # pragma mark private
 
-- (void)launchWithAccountId:(NSString *)accountID andToken:(NSString *)accountToken {
-    [CleverTap changeCredentialsWithAccountID:accountID andToken:accountToken];
+- (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region {
+    [CleverTap changeCredentialsWithAccountID:accountID token:accountToken region:region];
     [[CleverTap sharedInstance] notifyApplicationLaunchedWithOptions:nil];
 }
 
@@ -168,6 +173,38 @@
 
 - (void)handleNotificationWithData:(NSDictionary *)userInfo {
     [[CleverTap sharedInstance] handleNotificationWithData:userInfo];
+}
+
+- (void)handleOrderCompleted:(SEGTrackPayload *)payload {
+    if (![payload.event isEqualToString:@"Order Completed"]) {
+        return;
+    }
+    NSMutableDictionary *details = [NSMutableDictionary new];
+    NSArray *items = [NSArray new];
+    
+    NSDictionary *segmentProps = payload.properties;
+    for (NSString *key in segmentProps.allKeys) {
+        id value = segmentProps[key];
+        if ([key isEqualToString:@"products"]) {
+            if (value != nil && [value isKindOfClass:[NSArray class]]) {
+                NSArray *_value = (NSArray*) value;
+                if ([_value count] > 0) {
+                    items = (NSArray *)value;
+                }
+            }
+        } else if ([value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSArray class]]) {
+            continue;
+        } else if ([key isEqualToString:@"order_id"]) {
+            details[@"Charged ID"] = value;
+            details[key] = value;
+        } else if ([key isEqualToString:@"total"]) {
+            details[@"Amount"] = value;
+            details[key] = value;
+        } else {
+            details[key] = value;
+        }
+    }
+    [[CleverTap sharedInstance] recordChargedEventWithDetails:details andItems:items];
 }
 
 

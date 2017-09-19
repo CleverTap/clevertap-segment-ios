@@ -4,6 +4,7 @@
 #import "SEGCleverTapIntegrationFactory.h"
 
 #import <UserNotifications/UserNotifications.h>
+#import <CleverTapSDK/CleverTap.h>
 
 @implementation SEGAppDelegate
 
@@ -16,6 +17,7 @@
     
     
     [SEGAnalytics debug:YES];
+    [CleverTap setDebugLevel:CleverTapLogDebug];
     SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz"];
     [config use:[SEGCleverTapIntegrationFactory instance]];
     [SEGAnalytics setupWithConfiguration:config];
@@ -26,8 +28,13 @@
         UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
         [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge)
                               completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                  if (granted) {
+                                      dispatch_async(dispatch_get_main_queue(), ^(void) {
+                                          [[UIApplication sharedApplication] registerForRemoteNotifications];
+                                      });
+                                  }
                               }];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
+       
     }
     else {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound) categories:nil];

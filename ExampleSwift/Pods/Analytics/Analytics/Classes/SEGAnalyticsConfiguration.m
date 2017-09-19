@@ -10,6 +10,19 @@
 #import "SEGCrypto.h"
 
 
+@implementation UIApplication (SEGApplicationProtocol)
+
+- (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void(^ __nullable)(void))handler {
+    return [self beginBackgroundTaskWithName:taskName expirationHandler:handler];
+}
+
+- (void)seg_endBackgroundTask:(UIBackgroundTaskIdentifier)identifier {
+    [self endBackgroundTask:identifier];
+}
+
+@end
+
+
 @interface SEGAnalyticsConfiguration ()
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;
@@ -41,6 +54,13 @@
         self.shouldUseBluetooth = NO;
         self.flushAt = 20;
         _factories = [NSMutableArray array];
+        Class applicationClass = NSClassFromString(@"UIApplication");
+        if (applicationClass) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            _application = [applicationClass performSelector:NSSelectorFromString(@"sharedApplication")];
+#pragma clang diagnostic pop
+        }
     }
     return self;
 }
