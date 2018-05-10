@@ -207,6 +207,35 @@ elsewhere in your code, you can use this singleton or call sharedInstance.
  */
 - (void)onUserLogin:(NSDictionary *)properties;
 
+/*!
+ @method
+ 
+ @abstract
+ Enables tracking opt out for the currently active user.
+ 
+ @discussion
+ Use this method to opt the current user out of all event/profile tracking.
+ You must call this method separately for each active user profile (e.g. when switching user profiles using onUserLogin).
+ Once enabled, no events will be saved remotely or locally for the current user. To re-enable tracking call this method with enabled set to NO.
+ 
+ @param enabled         BOOL Whether tracking opt out should be enabled/disabled.
+ */
+- (void)setOptOut:(BOOL)enabled;
+
+/*!
+ @method
+ 
+ @abstract
+ Enables the reporting of device network-related information, including IP address.  This reporting is disabled by default.
+ 
+ @discussion
+ Use this method to enable device network-related information tracking, including IP address.
+ This reporting is disabled by default.  To re-disable tracking call this method with enabled set to NO.
+ 
+ @param enabled         BOOL Whether device network info reporting should be enabled/disabled.
+ */
+- (void)enableDeviceNetworkInfoReporting:(BOOL)enabled;
+
 #pragma mark Profile API
 
 /*!
