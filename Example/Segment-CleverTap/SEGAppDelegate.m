@@ -22,7 +22,6 @@
     [config use:[SEGCleverTapIntegrationFactory instance]];
     [SEGAnalytics setupWithConfiguration:config];
     
-    
     // register for push
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
         UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
