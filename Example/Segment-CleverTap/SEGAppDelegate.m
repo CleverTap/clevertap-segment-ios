@@ -2,9 +2,11 @@
 #import "SEGAnalytics.h"
 #import "SEGCleverTapIntegration.h"
 #import "SEGCleverTapIntegrationFactory.h"
-
 #import <UserNotifications/UserNotifications.h>
 #import <CleverTapSDK/CleverTap.h>
+
+@interface SEGAppDelegate() <UNUserNotificationCenterDelegate>
+@end
 
 @implementation SEGAppDelegate
 
@@ -15,33 +17,23 @@
     // please add your CleverTap account id and token to your plist
     // as described here:  https://support.clevertap.com/docs/ios/getting-started.html#add-clevertap-credentials
     
-    
     [SEGAnalytics debug:YES];
     [CleverTap setDebugLevel:CleverTapLogDebug];
     SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz"];
     [config use:[SEGCleverTapIntegrationFactory instance]];
     [SEGAnalytics setupWithConfiguration:config];
     
-    // register for push
-    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
-        UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
-        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge)
-                              completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                                  if (granted) {
-                                      dispatch_async(dispatch_get_main_queue(), ^(void) {
-                                          [[UIApplication sharedApplication] registerForRemoteNotifications];
-                                      });
-                                  }
-                              }];
-       
-    }
-    else {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound) categories:nil];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    }
-
-    
+    // register for push notifications
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge)
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                              if (granted) {
+                                  dispatch_async(dispatch_get_main_queue(), ^(void) {
+                                      [[UIApplication sharedApplication] registerForRemoteNotifications];
+                                  });
+                              }
+                          }];
     return YES;
 }
 
@@ -73,29 +65,12 @@
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     
-    [[SEGAnalytics sharedAnalytics] receivedRemoteNotification:userInfo];
-}
-
-- (BOOL)application:(UIApplication *)app
-            openURL:(NSURL *)url
-            options:(NSDictionary<NSString *,
-                     id> *)options {
     NSLog(@"open url %@", [url absoluteString]);
     [self handleUrl:url];
     return YES;
-}
-
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
-{
-    NSLog(@"open url %@", [url absoluteString]);
-    [self handleUrl:url];
-    return YES;
+ 
 }
 
 - (void)handleUrl:(NSURL *)url {
@@ -106,22 +81,26 @@
     [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [[SEGAnalytics sharedAnalytics] registeredForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
     [[SEGAnalytics sharedAnalytics] receivedRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNoData);
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-  [[SEGAnalytics sharedAnalytics] registeredForRemoteNotificationsWithDeviceToken:deviceToken];
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    
+    completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
 }
 
-- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler
-{
- 
-  [[SEGAnalytics sharedAnalytics] handleActionWithIdentifier:identifier forRemoteNotification:userInfo];
-  completionHandler();
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    
+    [[SEGAnalytics sharedAnalytics] receivedRemoteNotification:response.notification.request.content.userInfo];
+    
 }
 
 @end
