@@ -1,19 +1,27 @@
 PODS:
   - Analytics (3.6.9)
-  - Segment-CleverTap (1.0.15):
+  - CleverTap-iOS-SDK (3.2.0)
+  - Segment-CleverTap (1.0.16):
     - Analytics (~> 3.0)
+    - CleverTap-iOS-SDK (~> 3.2.0)
 
 DEPENDENCIES:
   - Segment-CleverTap (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Analytics
+    - CleverTap-iOS-SDK
+
 EXTERNAL SOURCES:
   Segment-CleverTap:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   Analytics: 6541ce337e99d9f7a2240a8b3953940a7be5f998
-  Segment-CleverTap: ed8d81c4ffea5a940932d8b07036bfe77d717add
+  CleverTap-iOS-SDK: cc5772921696dfacb1b42f89660cccadcab1523c
+  Segment-CleverTap: 6e13c00794e53e3be2a792fc868598639a84adb7
 
 PODFILE CHECKSUM: d8411586a6e40cf7b62e0ecc2595a94fb896a6c0
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

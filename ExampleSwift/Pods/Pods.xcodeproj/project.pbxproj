@@ -7,101 +7,172 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		028DB23DC95D9761C35D506D17762DBF /* SEGStoreKitTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29E8A6505F2EB3B47CA9DAFE566C4F /* SEGStoreKitTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		035A9C2D1F0C9157A1CE1CD6954DB38C /* SEGCleverTapIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 11D614E1BCFCD6153944690AE0D945CE /* SEGCleverTapIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		04AF3833868461758786B13AF1250348 /* SEGIdentifyPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DEEBAAB80048BA94B52E3165D5D4647 /* SEGIdentifyPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05B02FB04AC7960097979A27838A329F /* SEGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B769A18D58EE39A0D199F733B1B34CC /* SEGUtils.m */; };
-		06A8F4E929B0116A5DC922C29AAE5B19 /* SEGAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 38977D869E95D43240246EDD06BF3405 /* SEGAnalyticsUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		08FDCD99391AE1F2A90EA076969B413B /* SEGAliasPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3118E3AC5662B1BAA0A612E8A462AB /* SEGAliasPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0F6AF59322F017CAA40511F03CFC57DF /* Pods-ExampleSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01AD996B18661705836191C6B9FCC5 /* Pods-ExampleSwift-dummy.m */; };
-		15B805BD8450F92206B74428FDD31E62 /* SEGAliasPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = DE56AC170E3EC47C0EE5AC8EC26ECBC8 /* SEGAliasPayload.m */; };
-		166505FCEB3327D81DFC46DE7429C691 /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CA4869B2F53D2A17050EED786F07A62 /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1841430F4BC49E03B9B9EEB085AE5D39 /* SEGSegmentIntegrationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBD0B3C402A4808F2F923AFBE4238A /* SEGSegmentIntegrationFactory.m */; };
-		1BEF3D427DE8DBE6857FDF9C63BDF3D6 /* SEGIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 972611E160C45B384D40464A181F392C /* SEGIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CE668DD58FB6350A39DBB3F877986BD /* SEGSegmentIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7399E7A6F373D25CB08C81CCB42A87E2 /* SEGSegmentIntegration.m */; };
-		23932548EEABFD6F28848B7BC558013C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A43668286988D5D4606779929EF0B31 /* SystemConfiguration.framework */; };
-		2FEDE2CC943F71B810A39F71557395CF /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 7298F63B2E8D83C21FF18703CC609B18 /* SEGReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		387AE6347C7F2EFD2956C28066F682A5 /* SEGMiddleware.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C50BFA2EC1D281248A7D865E3B83DBA /* SEGMiddleware.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		40360117F63A80DFAFDC4C8B732E7EE3 /* NSData+SEGGZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = AE133467B486C2E84BDCE059019EF513 /* NSData+SEGGZIP.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42760845F765FEF1FE757EF196075FFD /* SEGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FF831A9B279A73943DA21D5D6C4A74D /* SEGUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49C8B0ECFA050A9D5D24EBC35AE40281 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B103225AA52B1C716EFD02E8FA31B8E7 /* Foundation.framework */; };
-		4B70A68308B642AC124170601B66C783 /* SEGStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = DF8DB7097520EF71E872DC0FAD4B36BD /* SEGStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4C4C757E33CF6015D4EE32E7F1DF8EB3 /* SEGCleverTapIntegrationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E144A13CEE0418776E34032E5910D883 /* SEGCleverTapIntegrationFactory.m */; };
-		4C5BB62E74B45F20BE431C503132229B /* SEGTrackPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = C9740DDBE4E4C72EB2E9FABC2E9F58CC /* SEGTrackPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		573BF8B967C178C0876754998210A844 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0A19E7CF2AB8A980559D62B353DF67 /* CoreLocation.framework */; };
-		58925FE48AE63C76B3F279A184F577E9 /* SEGAES256Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = D44E390338D98D343E9B5F0E2AD64139 /* SEGAES256Crypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5CA406B4E9CEB4D22169B915068AAD35 /* SEGContext.m in Sources */ = {isa = PBXBuildFile; fileRef = AA484877C4BCB2AA52741090BD60B98E /* SEGContext.m */; };
-		62C50D0ABDA436994489AE5EABD1393E /* SEGFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9C0B436A84B9CE1185E186759B974 /* SEGFileStorage.m */; };
-		6514CA05EB5015FC48643AF40C78D5F1 /* CleverTapBuildInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 299AD69994CA76A079BED64F1A04174B /* CleverTapBuildInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BC6F301359A276CCA70640533CE2690 /* SEGFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 471DAA115C451FE91DDF09FBBAFB27A2 /* SEGFileStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6CFBA3D0DD5FCE4660B93921152CDCE4 /* SEGGroupPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA208161ED150CB9DAE52A44EBC8696 /* SEGGroupPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6D1AD971C6E6A5401008690325EF0525 /* SEGCleverTapIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F748A66F3158F21049023CC52BC237A8 /* SEGCleverTapIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		774A7A3EB1A94E53CBFD905326BDCB64 /* SEGScreenPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = CD3B80A8A94E42742F684BDCC58CC9DF /* SEGScreenPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78FB32E5AC45218FB83A8001A8E68808 /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 43160F5CD514C21875295C517F867764 /* NSData+SEGGZIP.m */; };
-		79645A6B8975B08D4AAF1CD5247708EB /* CleverTapEventDetail.h in Headers */ = {isa = PBXBuildFile; fileRef = A64586DEE51E8FF3FBA2AEBB64368482 /* CleverTapEventDetail.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A3EE2643B6DB42887E11B49463CFA50 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909199B96D10EB90A0759DEC919556B7 /* Security.framework */; };
-		7D7CD63EF51C78CF900E3BB4E481CBC2 /* Analytics-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C47B4FFDFF6625307C69ADC025264FE /* Analytics-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7E5823E95ED0A21BA74F3A7A93006C72 /* SEGAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 6005686118884759A0D2891251EF5DB1 /* SEGAnalytics.m */; };
-		803112CD13B0CC1D661F8B07DB4BD22A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A207384A07B6E20685502AA9FA65670 /* SEGReachability.m */; };
-		85E291E249B5A06363F2AFF0D67CB33B /* SEGSegmentIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EB49B1DE0C11F1707DCC37BDAD4ECE49 /* SEGSegmentIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8865126AF273BBB85FCCAFE8A5AE8661 /* Segment-CleverTap-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D56683A65F87B1DE47478FAED6AA017E /* Segment-CleverTap-dummy.m */; };
-		8A737A3F76BBC5C04BB0B8B30CC07360 /* SEGIntegrationsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CB31914788D4FB0C7873723730067D75 /* SEGIntegrationsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8E80CBE6FC2FB3AE7C605BB22F37D6E9 /* CleverTapTrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 17A56930F4B5E2C8CA0895B025882DB3 /* CleverTapTrackedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		908EA2C3B9EC1431AA003E41E181E3F5 /* SEGAnalyticsConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C03ED98555D51E51619E763711A14201 /* SEGAnalyticsConfiguration.m */; };
-		94EF76B0F52F21FE53AE5BE1050C8D91 /* SEGAES256Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 31540E328B7FD6B3D691ECA758879859 /* SEGAES256Crypto.m */; };
-		9C7BBDC18CFDAF7D85983FF4218BC87D /* Analytics-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5719A5F5273E30BDA65262BCAFDDA6A4 /* Analytics-dummy.m */; };
-		9CF43A688B0538D33AAB9967CEC4E300 /* CleverTapSyncDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 265282EC15B92DBCDD5AB342232942CD /* CleverTapSyncDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A1CAE32EFFB4E5E56C85693B54D393B6 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474CDC033A282BD1C6ABFE4832A66AB1 /* CoreTelephony.framework */; };
-		A2089EBFC7B28AFF45CC17C929CFE5D6 /* SEGIntegrationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 771CB3085863186E8D7C33CE8951D55C /* SEGIntegrationsManager.m */; };
-		A5038E8FF91BB5D3E3F1C6128CE903AB /* SEGMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA1EC30C87D0A79FFB41D2FF48C144C /* SEGMiddleware.m */; };
-		AFF318F4A8F9250D612ED258BF519021 /* SEGUserDefaultsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 135F4CBF8D9552C0217F875E0BD967C0 /* SEGUserDefaultsStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4D3398A3200D0BC3A72CC8523F87AF2 /* SEGHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F6E687B25FE6E2DB707D461EF37A592E /* SEGHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B71593B4ED615DEA0A73E2630DF920BE /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD4A52BBD293A7E87D07025E5C9362DB /* Analytics.framework */; };
-		BBA96EBF9E524228BB44D12CA71EA6C5 /* UIViewController+SEGScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFE6B1C4A8A2F0F8C5ABDD29A66154A /* UIViewController+SEGScreen.m */; };
-		BC034C728449D99D5C1E92DD0A0990F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1727F36E71E9255D89052CD8258193 /* UIKit.framework */; };
-		BF62BCAABA37505565D65D30416DA4B1 /* SEGIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = B0926F96C56E77D7FB141662335C0742 /* SEGIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C160D255864ED2572A2B3CC3A6526A3E /* SEGStoreKitTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D90C87A389C3A407A713592D9C5D07 /* SEGStoreKitTracker.m */; };
-		C85639E5302775DBD153D56BF07D39E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B103225AA52B1C716EFD02E8FA31B8E7 /* Foundation.framework */; };
-		CC65368DDA77E8947FECA61F8D034D43 /* SEGScreenPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = D971ED0E5C1C46576FFFC54C3BFA1C9B /* SEGScreenPayload.m */; };
-		CDE812FAF697B3105529AA0FE52D1D25 /* Pods-ExampleSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9414E48EBB91C4D0CCC3C7ED1364C692 /* Pods-ExampleSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2927724D26109809E245E63804CEEFF /* SEGSegmentIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = AB76C7A628F47D1417DF8E143F859346 /* SEGSegmentIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3E414E317AEAC77D8C12AE1F85A45A6 /* CleverTap.h in Headers */ = {isa = PBXBuildFile; fileRef = 97A826694BD6EFA38234FA84BF5CD41A /* CleverTap.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3E5DA1D81D27439E8F8B69F4B74CFA7 /* SEGContext.h in Headers */ = {isa = PBXBuildFile; fileRef = AE05F6DB73100EF44081B99219F8A3FB /* SEGContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D5718EF59FF3535D151556FC06235296 /* SEGHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B925F48F8EA8CC4B0B3E6136425F7EFF /* SEGHTTPClient.m */; };
-		D809C7071CD2FF4C3F9284798F6B6812 /* SEGCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 580A948B9E60F9DB019BE57008511D56 /* SEGCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DB0E00150A529706271BF66B40A5BE27 /* CleverTapInAppNotificationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D03B9450417D3FB587E54E121B1DE33C /* CleverTapInAppNotificationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E18341A0210C32B8EB64E284FE4C3756 /* SEGIdentifyPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = A36377BE3FB381BEA3ED8C71969EDC98 /* SEGIdentifyPayload.m */; };
-		E3817A695ABE7F1FC8F8F9C118F98C98 /* SEGAnalyticsConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 41DCA6C2A15D7808A53B7DEAD00FC084 /* SEGAnalyticsConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E38843D08DF4E369BC174BAB4D405149 /* CleverTapUTMDetail.h in Headers */ = {isa = PBXBuildFile; fileRef = 73BC0C68EECBAFC627FF0C4B423A4E0A /* CleverTapUTMDetail.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E57869B210DBE54A80F57E7F9D9B4B7F /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F75343216D1377C7078C32EACFCAEA21 /* SEGAnalyticsUtils.m */; };
-		EB4515B30F3E98EDCBF713EF7734961A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B103225AA52B1C716EFD02E8FA31B8E7 /* Foundation.framework */; };
-		EC2CA82CA2BAC6DEC85EB128692C542B /* SEGPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = A9331FD1FC2459CC9E4626710B4850A6 /* SEGPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE0A873F71115EC79394B14B05513D33 /* SEGUserDefaultsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDCF52A0AA107763447BD0F3EF9E339 /* SEGUserDefaultsStorage.m */; };
-		EE0F80901C88E2459A26A10AE30A4153 /* SEGAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DEC37AD2F3C40597F47C08ED7619940 /* SEGAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE7501F14EB40A3CB38CBB4E8CDEA4E3 /* SEGTrackPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E6AF2B9BC1A560DD4C5222D9331B7D /* SEGTrackPayload.m */; };
-		F2DFD900CE7629EAA35A0171AD98FD00 /* UIViewController+SEGScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8D0248966CA5769FA7558425743B0A /* UIViewController+SEGScreen.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F519CB6FE3E97BC60841CB146ADEE603 /* SEGCleverTapIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8D569E660810A992145934523DAC5B /* SEGCleverTapIntegration.m */; };
-		FAF1ACEFAB9B56DCF0434FA723A03D60 /* SEGGroupPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FE4655414642F817AF987FB55546E5 /* SEGGroupPayload.m */; };
-		FC2940FA5AE129520A20C6D7F182B397 /* Segment-CleverTap-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 921326A04C5395E9D06E189A26FDEA54 /* Segment-CleverTap-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FEC0DE602460F59BBB6C3A4A57015362 /* SEGPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = D7DB3F4B84F6B1FFAED8A4A77FC2B623 /* SEGPayload.m */; };
+		028DB23DC95D9761C35D506D17762DBF /* SEGStoreKitTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 64DE0D1DCC3A5EDB9009986E2BBB7693 /* SEGStoreKitTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02BDD5C850BB3D6892AE5CF25627685D /* CleverTapInAppNotificationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = B023BD364BE33B267295857A3F81DFC2 /* CleverTapInAppNotificationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04AF3833868461758786B13AF1250348 /* SEGIdentifyPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A911920116E6C8F61BBC0C8A8D1F28D /* SEGIdentifyPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05B02FB04AC7960097979A27838A329F /* SEGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C1098C6EF56954AC85BB359FA4899D /* SEGUtils.m */; };
+		06A8F4E929B0116A5DC922C29AAE5B19 /* SEGAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = FE3B70EF57EC44BA587782981DFCD407 /* SEGAnalyticsUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		085988857912E76841FEA0156F48DFA8 /* CleverTap.h in Headers */ = {isa = PBXBuildFile; fileRef = B32D6809D38FBB22B69EB657BDEC6AEE /* CleverTap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		08FDCD99391AE1F2A90EA076969B413B /* SEGAliasPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = C35C9DAD827A47995A3947AD754A16A0 /* SEGAliasPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C240E97C2FDD751CFCFE1F520B8B200 /* CTValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D1FE778471B1704F9E2714CAA0D98BA /* CTValidator.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0D1525CD6663C2B03F542CA8EF484D8F /* CTSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 30559131C4627293E4EBAA565333EF62 /* CTSwizzle.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0E8053C4C81051BC8E109CF551875725 /* CTEventBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8121F34AEAEAE5403C57DA6359733EC5 /* CTEventBuilder.m */; };
+		1380EB58127E4CFC6DF87D8B0777EFA0 /* CTDismissButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 43BC14A98A73361AE3E7332769CAAD3F /* CTDismissButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		15B805BD8450F92206B74428FDD31E62 /* SEGAliasPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = DABE4FB2611C25DDDE6B034199C109A7 /* SEGAliasPayload.m */; };
+		15C50188714AA5B306002052FC5CF72B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE347B064D73E88283A79CB2E1F5BB8E /* Foundation.framework */; };
+		166505FCEB3327D81DFC46DE7429C691 /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DFF95F5890C3B2AF07850A97813A0CB /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1729C7810E9FE42F762376BF2DD9D419 /* CTValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 29CAC45FD1A625EAA240A8B47A8B78A3 /* CTValidator.m */; };
+		1841430F4BC49E03B9B9EEB085AE5D39 /* SEGSegmentIntegrationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC01ED4EF119FFF843FF34B53D1387C /* SEGSegmentIntegrationFactory.m */; };
+		1BEF3D427DE8DBE6857FDF9C63BDF3D6 /* SEGIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F14E7D95FE0054D1987C4BA7660D3918 /* SEGIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CE668DD58FB6350A39DBB3F877986BD /* SEGSegmentIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D343B6F67D278A73BCCA24E0EF3973 /* SEGSegmentIntegration.m */; };
+		22083F54C1916EAB135A92BC42F4A026 /* CTInAppHTMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F507293712B48C227A26D28C580B6E41 /* CTInAppHTMLViewController.m */; };
+		2879E45D055BBDD4A8E2333D3DAC8F08 /* CTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ABFB87363B2015D8351CAED722331 /* CTConstants.m */; };
+		2BB0AC882DA873A93D336C82F2F8710D /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46534F3ED4C5AF589DCF6B95F84826C /* Analytics.framework */; };
+		2D9A96BE746C51D20AD00E6E42D18D69 /* CTInAppNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = B6354902AFF1C32D23A2B5C7D76A3B61 /* CTInAppNotification.m */; };
+		2E4D2902805FF8107CAE081AA5E64F17 /* CTInAppDisplayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C5DF72716E1F7E3BF41CD9947164A4F2 /* CTInAppDisplayViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2FEDE2CC943F71B810A39F71557395CF /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E9B0A2039FE0781DA125640B736B27 /* SEGReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		310C1500C3CB80E33037DD035E8EED19 /* Pods-ExampleSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01AD996B18661705836191C6B9FCC5 /* Pods-ExampleSwift-dummy.m */; };
+		32094C8CA0637CD725A0BFAF1CE67E60 /* CleverTapEventDetail.h in Headers */ = {isa = PBXBuildFile; fileRef = E138F50A2216A857A3CF4ABBD73E3990 /* CleverTapEventDetail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		387AE6347C7F2EFD2956C28066F682A5 /* SEGMiddleware.h in Headers */ = {isa = PBXBuildFile; fileRef = 80C0F32AADA9AA5C0D7F76D18EFD7CBE /* SEGMiddleware.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EBCA60A012209A3F853341BEFC44C2 /* SEGCleverTapIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2D19BF4B3C247ECE7C11D6E0A24170 /* SEGCleverTapIntegration.m */; };
+		3C2E8B8706F5B2BCCE5B3BB26336C1ED /* CTDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 661FF567E7388C25C6093D7FF7A08763 /* CTDeviceInfo.m */; };
+		40360117F63A80DFAFDC4C8B732E7EE3 /* NSData+SEGGZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E7316E9C4BC71CE8FF79C9948D3134B /* NSData+SEGGZIP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42760845F765FEF1FE757EF196075FFD /* SEGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = FB1DAC422EB840FF47624991DC31A7A1 /* SEGUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4419B3A6AF52DF0A4E38282574959022 /* CleverTapBuildInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = F8D2DCD59B412C8233391E462442755E /* CleverTapBuildInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4568F178AB0BBD6CCB1E76AA79CBA9F8 /* CTUriHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F5112F89F6F2774FF8D831E0D09FD4 /* CTUriHelper.m */; };
+		47D18E0AD18242A0746DC318209563CB /* CTDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D499C2E6D8A1A50D1F01EF84C7FE6 /* CTDismissButton.m */; };
+		49C8B0ECFA050A9D5D24EBC35AE40281 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE347B064D73E88283A79CB2E1F5BB8E /* Foundation.framework */; };
+		4A4C98D626AF5AC98CE66C2410ECFEEA /* CleverTapEventDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE773FB2D549DB3EC77E0F2B3DDEAA5 /* CleverTapEventDetail.m */; };
+		4B70A68308B642AC124170601B66C783 /* SEGStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A06424A38D9B9FEEC03D68CC5FCD116 /* SEGStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4C5BB62E74B45F20BE431C503132229B /* SEGTrackPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = 403C7652AE3B4B75BDFCBAC8CA9D07B2 /* SEGTrackPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D3159B3F11E2DD5C895D5D62573BFCA /* CTConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = C89117CFA461F82E60A05CA57EDA8C1B /* CTConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4FDCAB6D28398A1C47A317C894869DC4 /* CTProfileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 43173F9ACA930D98E75FDBE11763A213 /* CTProfileBuilder.m */; };
+		500BAF9EE30ABA8F91AE89A764626292 /* CTLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DBE5BADE1D6A833A9B033CAEF37E340 /* CTLocationManager.m */; };
+		58925FE48AE63C76B3F279A184F577E9 /* SEGAES256Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FE3998F4E0E179452022167A921019F /* SEGAES256Crypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58A72D9236E059CFC55625CF09B35E3B /* Segment-CleverTap-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDDCEE894340E9FC2E7EDA3FDA615A0 /* Segment-CleverTap-dummy.m */; };
+		5A063C09ABC8CBF2F7D5A5F7778123B3 /* CleverTap+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 046E7F6F559017E11C8483C9BB6B3F79 /* CleverTap+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5CA406B4E9CEB4D22169B915068AAD35 /* SEGContext.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBC03C8389B77AAC62B54FF30170083 /* SEGContext.m */; };
+		5E6CAC1187F086F71C623BC609B3B6F0 /* CTEventBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BA917A8E4E4B9B0FE04E2BFCABD8D8 /* CTEventBuilder.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		605A675EAC850F3EA6098FCD705CD965 /* CTLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A91B93104B89A29A64A964012EB1971D /* CTLocationManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6192A4747A4B6C39E22CDC045C403297 /* CleverTapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDCC6882B4CADC9ED0A25BC040636E7 /* CleverTapSDK.framework */; };
+		62C50D0ABDA436994489AE5EABD1393E /* SEGFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BDBC3A71FF49F6767F368C290F7965 /* SEGFileStorage.m */; };
+		64FC2D2878B4ED1B2F08A1137C3C4011 /* CleverTapUTMDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 223FCDE477E3FFE733B4D7629B96BAA1 /* CleverTapUTMDetail.m */; };
+		6805FF0E1FC3C2AE623E84287B23C9BB /* CTPlistInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 16430C32A6F809617E5BFC3418A97B20 /* CTPlistInfo.m */; };
+		681153CF2BD5D7130F62E81DFD1F0A0B /* CleverTapInstanceConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = ABC9E8DE9F7498263D339D4065E6D640 /* CleverTapInstanceConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		688C9D194522B60609BB2936644F3E59 /* CleverTapUTMDetail.h in Headers */ = {isa = PBXBuildFile; fileRef = 1757C59CE970D9282FF233AEDF05DED3 /* CleverTapUTMDetail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A54051841C5D901E4E67BFE20E92421 /* CTPinnedNSURLSessionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = C8E331FFDDD1BCCDECE4EED1CDBBF244 /* CTPinnedNSURLSessionDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6A9693101A8EB69973AE034D64B27AC3 /* CleverTap-iOS-SDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F7BFA93D8DFF5A68168A720C39AE86 /* CleverTap-iOS-SDK-dummy.m */; };
+		6BC6F301359A276CCA70640533CE2690 /* SEGFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D04F117D444D3486A04391C40B55072 /* SEGFileStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CFBA3D0DD5FCE4660B93921152CDCE4 /* SEGGroupPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EFCE51811690B20DEB3F6206D6C93518 /* SEGGroupPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D636AF742679B7A654F18A7BC1A8A0B /* Segment-CleverTap-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA47089E4BBE2BC83F749C40F7ED3C9 /* Segment-CleverTap-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6EA95DCD32E2C8B38A933BB898C5C96F /* CTPinnedNSURLSessionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 02037B9338114040EE14963F06E58CDD /* CTPinnedNSURLSessionDelegate.m */; };
+		6F026F008C11E7FC32CF0B6BCA356141 /* CTInAppHTMLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C57DFB3F9EB2C18803878F23F9D3EBB7 /* CTInAppHTMLViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		71627D4FC543F3ABDA237634D3B4A330 /* CleverTap-iOS-SDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 09AFB9597541D44F1F18FAD79D975D53 /* CleverTap-iOS-SDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		774A7A3EB1A94E53CBFD905326BDCB64 /* SEGScreenPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = D90394255D1291388D4CE352DB86D112 /* SEGScreenPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78FB32E5AC45218FB83A8001A8E68808 /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F0ECB1F8FE1480AE129B05B32CEB2D52 /* NSData+SEGGZIP.m */; };
+		7A34173B98D438E650462223D90AEFEF /* CTLocalDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = D90A7F0EEF845F44D0FE546F0CB8065B /* CTLocalDataStore.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7A3EE2643B6DB42887E11B49463CFA50 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080E04B04B3A4D15BF76602239565FFF /* Security.framework */; };
+		7D7CD63EF51C78CF900E3BB4E481CBC2 /* Analytics-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BEDA09F3D193DADA1E668EA3631665B /* Analytics-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E5823E95ED0A21BA74F3A7A93006C72 /* SEGAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FD54B0DB2C66235323045CE944DA0F /* SEGAnalytics.m */; };
+		8027AE8CB0D0546ACBB5734B71D3ABCD /* CTPlistInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 80C1211C213EA2306CC2409836D4FA7D /* CTPlistInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		803112CD13B0CC1D661F8B07DB4BD22A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBD1E6BC7F1836F4B92F7BB5C335F6B /* SEGReachability.m */; };
+		85E291E249B5A06363F2AFF0D67CB33B /* SEGSegmentIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B85E060597EEE4A570D8D169FB7744C /* SEGSegmentIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		86384D343858AB48839FBECBA6D2B5D8 /* CTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35CC91C91B5B2A8C0525CBEA03FE98 /* CTUtils.m */; };
+		88BDF1523E46E2FC9AD111DA9C8D782D /* CTInAppDisplayViewControllerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2408371E970D021D1188D1FE8C6D8827 /* CTInAppDisplayViewControllerPrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8A737A3F76BBC5C04BB0B8B30CC07360 /* SEGIntegrationsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 020D2591309FD80B6AF4DDE5799FA576 /* SEGIntegrationsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C72B752ED32EE92FB155321C47EBDF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE347B064D73E88283A79CB2E1F5BB8E /* Foundation.framework */; };
+		8CBFD56B1B4623AA4E450C8160F7B317 /* SEGCleverTapIntegrationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F478F8C0A94AE642F15F463F8F2B49ED /* SEGCleverTapIntegrationFactory.m */; };
+		90025DB1577303A786C23D349E08BEE1 /* CleverTap.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC8A2521BCB97BA68B6A740643A25B5 /* CleverTap.m */; };
+		908EA2C3B9EC1431AA003E41E181E3F5 /* SEGAnalyticsConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 060C3EA884ECE29F891BAD9D90D65201 /* SEGAnalyticsConfiguration.m */; };
+		946376D36D2B988F0084A0B74C6FD6AE /* CTSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = B014823005E24821B9371C64046290D7 /* CTSwizzle.m */; };
+		94EF76B0F52F21FE53AE5BE1050C8D91 /* SEGAES256Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5491F1A9B3F0D1D5ED29B11B71916 /* SEGAES256Crypto.m */; };
+		9C7BBDC18CFDAF7D85983FF4218BC87D /* Analytics-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEA7D7E52CC928249622B6768AAAFB0 /* Analytics-dummy.m */; };
+		9F4F53F15480B96573AF1A1244F913B0 /* CTValidationResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 5248A59E960CDEA9313ED432FD0FA39F /* CTValidationResult.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9FAD57B3E7EEBC3D9C11460B15D2FA98 /* CTInAppFCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E73FC7DF68C4622D5EF17E7B7EBEEF0 /* CTInAppFCManager.m */; };
+		A11850C91F4D9421150F7BD4B87EB7A1 /* CTProfileBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = AFB4D9F873AE517ABAFB0B4B1BCFB3A5 /* CTProfileBuilder.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A14FD179AD2FB479FB37D5FE8B31AC08 /* CTInAppNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 977889A0732481C82E50AFA1AD5AA04A /* CTInAppNotification.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A2089EBFC7B28AFF45CC17C929CFE5D6 /* SEGIntegrationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E87253C16358EE2FC8B406118B899DD /* SEGIntegrationsManager.m */; };
+		A5038E8FF91BB5D3E3F1C6128CE903AB /* SEGMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D812502EB8C446C2DE79285BB3F5FF7 /* SEGMiddleware.m */; };
+		A65E5BD7D0D40B49F92BE12BE41C8C9A /* CleverTapTrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C71750A429A4F5264F86D92547AE88C /* CleverTapTrackedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7AC02306B4ADD068370475B7DB8723A /* CTInAppUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F4AD5A3C2B4B2463F87EF9CE97DD73A /* CTInAppUtils.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A7BBD26ABB6C16491E31D9D0F9FB84D9 /* CleverTapInstanceConfigPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = C235D5341263B5ED4834E3A9B174F44C /* CleverTapInstanceConfigPrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A9C95817F19EC29796F65265CEAA94B1 /* SEGCleverTapIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D986BA34B594D397DC225C2A66EBA9BD /* SEGCleverTapIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADDE15BB1E6F4DF96A8FA129DC1CFD14 /* CTValidationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 755F884BC6F31A28C3A8FB469C85F4E6 /* CTValidationResult.m */; };
+		AEDBF4743F575D74FD8F5253AFDB57D7 /* CTPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 96ED8CA7E1C1EBCDE50103F1B6DD3F53 /* CTPreferences.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AFF318F4A8F9250D612ED258BF519021 /* SEGUserDefaultsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 38998E9432954608AEA6BE8AB9749D41 /* SEGUserDefaultsStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B4D3398A3200D0BC3A72CC8523F87AF2 /* SEGHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = C379085B77B60403FD9BFFC6D0A99264 /* SEGHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BBA96EBF9E524228BB44D12CA71EA6C5 /* UIViewController+SEGScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1104266DBC810D16799F63EA6425FCBD /* UIViewController+SEGScreen.m */; };
+		BDC91852AED2B5BE1BE080F321E15DD6 /* CTPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B64D689AD20E2221DE0ECE188E40BDB /* CTPreferences.m */; };
+		BF62BCAABA37505565D65D30416DA4B1 /* SEGIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E7E79E5D3553F8342736F6104B2EECB /* SEGIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C160D255864ED2572A2B3CC3A6526A3E /* SEGStoreKitTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = D4430B3A5AF04D1280D37B7E15ABE170 /* SEGStoreKitTracker.m */; };
+		C635D447C284638FA7A29C2C5AF81959 /* CTDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 360EAB17C1E737109CB1724696328FD1 /* CTDeviceInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C6B250D24FA6CF5FD2995389E0C62C83 /* CTCertificatePinning.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6CC873245DF2BF50B622823E499AFE /* CTCertificatePinning.m */; };
+		C77512AEB82AD783D3372EDACF8E63AF /* CTUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5555564C3E207309E5C6337BBBBB66 /* CTUtils.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CB29A2AC75F89EA7775ED7308BC66B40 /* CTInAppDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE22FC8D0BAE2CECC9806088A279671 /* CTInAppDisplayViewController.m */; };
+		CC65368DDA77E8947FECA61F8D034D43 /* SEGScreenPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 8705066D079C45ECF47A453293390BE0 /* SEGScreenPayload.m */; };
+		D2927724D26109809E245E63804CEEFF /* SEGSegmentIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = DB4C1F96967762D7E36E8878F2DC3443 /* SEGSegmentIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3E5DA1D81D27439E8F8B69F4B74CFA7 /* SEGContext.h in Headers */ = {isa = PBXBuildFile; fileRef = FFA6D197625CC1D49165EFCBBEAAF323 /* SEGContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D5718EF59FF3535D151556FC06235296 /* SEGHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F913BBF637DD8887E4864CC5059AB558 /* SEGHTTPClient.m */; };
+		D809C7071CD2FF4C3F9284798F6B6812 /* SEGCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = A8248689E296EC6C30F9A356E279AEB7 /* SEGCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8D0801FD160614C8C055BB5B630764A /* DigiCertSHA2SecureServerCA.crt in Resources */ = {isa = PBXBuildFile; fileRef = 76EFE836B912FCE849E41A6FFDD4360F /* DigiCertSHA2SecureServerCA.crt */; };
+		D982E7CE4087DB3304AFDB433860CD61 /* CTLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EBB77EECE176E38ED200F15CDB5F66 /* CTLogger.m */; };
+		DDAAC84B90819C3FF1546D2D625D8DB7 /* CleverTapSyncDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B6F82B4B3E0E0AA10D66FE38A658DEA /* CleverTapSyncDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E18341A0210C32B8EB64E284FE4C3756 /* SEGIdentifyPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 9656B5884F2954AA1A5AE8C659937108 /* SEGIdentifyPayload.m */; };
+		E3817A695ABE7F1FC8F8F9C118F98C98 /* SEGAnalyticsConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = BF097678B8C3B9704C6233A04DEAFE4D /* SEGAnalyticsConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E57869B210DBE54A80F57E7F9D9B4B7F /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A29E3CD542E6D76A062A40BA51EAC4AC /* SEGAnalyticsUtils.m */; };
+		E5A8447C3DBA4691A7A6F970D1055DAF /* CTInAppFCManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FC95DFC50A2FD3C3AEBE069599C3FF5A /* CTInAppFCManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E6BDD39508DC2A19B425FA933BEAC4EA /* CTKnownProfileFields.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6F3DB672F83E0848E98E7CA1B959AA /* CTKnownProfileFields.m */; };
+		EC2CA82CA2BAC6DEC85EB128692C542B /* SEGPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = 100B7078E08221E748D62CB4487B5687 /* SEGPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD64179B990BBD3C707BEA73683FD63 /* CleverTapTrackedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB64A099C9C8B829731E6EFC8EC6A4D /* CleverTapTrackedViewController.m */; };
+		EDEE4456056EBE9DAF535F197942535D /* SEGCleverTapIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = A2F3FBECBA431E3AFBB883F60A1344FB /* SEGCleverTapIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE0A873F71115EC79394B14B05513D33 /* SEGUserDefaultsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A385F8E022EB1165D4960C9D11018E1 /* SEGUserDefaultsStorage.m */; };
+		EE0F80901C88E2459A26A10AE30A4153 /* SEGAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 08CB8174BBC8D1E8023065C07464C12C /* SEGAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE7501F14EB40A3CB38CBB4E8CDEA4E3 /* SEGTrackPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5F47E708B753D8A66B1B9CEED4237B /* SEGTrackPayload.m */; };
+		EEC8977A31B74AA6930D3F9115905154 /* CTLocalDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E295E4BB774F977E1F1794294598562A /* CTLocalDataStore.m */; };
+		F1F965A73C583E8EB3B8109C76F8B0B0 /* CTInAppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F900A844EE5679F755EFCB696C0200AB /* CTInAppUtils.m */; };
+		F2DFD900CE7629EAA35A0171AD98FD00 /* UIViewController+SEGScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = F7FE6DEB1508D0C340A90BA9B94F0EA1 /* UIViewController+SEGScreen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F31F807018849BF833B3D78C2CE047E5 /* DigiCertGlobalRootCA.crt in Resources */ = {isa = PBXBuildFile; fileRef = 3187887F0EFFAD2D80F26E12C8FD62A7 /* DigiCertGlobalRootCA.crt */; };
+		F5F4FEBAA17542F0F0B7FE4C807E8A96 /* CTKnownProfileFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 08BE58E48C4C54B60A63B35A5528E66E /* CTKnownProfileFields.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F853F9AA281B59341AF088800051381B /* CTLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = E755D6D02C46BA08626DB402C15EB3BF /* CTLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FA828013DC9A91931A9874877D2E480B /* CTCertificatePinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 11DE515C39C9427DEA632ED239A12589 /* CTCertificatePinning.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FA86057F02DC929A3D952654EBDF3428 /* CleverTapInstanceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BACB2DA4374EDA169C8D25549ED2C2A /* CleverTapInstanceConfig.m */; };
+		FAF1ACEFAB9B56DCF0434FA723A03D60 /* SEGGroupPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC24ABF04A7E32793AC864602D89393 /* SEGGroupPayload.m */; };
+		FC1BBA0EE8E6F0523860A5947EB7B3B3 /* Pods-ExampleSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9414E48EBB91C4D0CCC3C7ED1364C692 /* Pods-ExampleSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD0EEC27C650FD848EB96CF848CF6122 /* CTUriHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 258FDB73CE78D1F6D4177382630CFF30 /* CTUriHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FD38C7DCA115CFB7FA1AE7AC223E9E5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE347B064D73E88283A79CB2E1F5BB8E /* Foundation.framework */; };
+		FEC0DE602460F59BBB6C3A4A57015362 /* SEGPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2D79755E907725CF4FE410CD890F95 /* SEGPayload.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5A255091EC9C82A9EB08EB533BBF22F5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1436C9B61E99F78EC53F39F169FD862;
-			remoteInfo = "Segment-CleverTap";
-		};
-		95A00CF50360F98D632824BE8AEDC05F /* PBXContainerItemProxy */ = {
+		33C76020ACB6D159EF2540CC5D81F128 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = AE1DD9B213B2436139A27922A687BBC4;
 			remoteInfo = Analytics;
 		};
-		D7C4ECAEF245907B7D7FBD4D39B671A0 /* PBXContainerItemProxy */ = {
+		BDA5994B75C33BA0C11A6A0AF03574ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A90EFFE762D163361E157088949BDE72;
+			remoteInfo = "CleverTap-iOS-SDK";
+		};
+		DF9AC413C866433FBFD03238CD677D26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A90EFFE762D163361E157088949BDE72;
+			remoteInfo = "CleverTap-iOS-SDK";
+		};
+		E95083521256AD53E581F8FD62AC3C91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D939C9699ACA4B78BEACE5270914D925;
+			remoteInfo = "Segment-CleverTap";
+		};
+		F938D53359CA879C4E18035E15E0BE01 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -111,126 +182,175 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0C0A19E7CF2AB8A980559D62B353DF67 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
-		0CA4869B2F53D2A17050EED786F07A62 /* SEGSerializableValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGSerializableValue.h; path = Analytics/Classes/SEGSerializableValue.h; sourceTree = "<group>"; };
+		02037B9338114040EE14963F06E58CDD /* CTPinnedNSURLSessionDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTPinnedNSURLSessionDelegate.m; path = CleverTapSDK/CTPinnedNSURLSessionDelegate.m; sourceTree = "<group>"; };
+		020D2591309FD80B6AF4DDE5799FA576 /* SEGIntegrationsManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGIntegrationsManager.h; path = Analytics/Classes/Integrations/SEGIntegrationsManager.h; sourceTree = "<group>"; };
+		046E7F6F559017E11C8483C9BB6B3F79 /* CleverTap+SSLPinning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CleverTap+SSLPinning.h"; path = "CleverTapSDK/CleverTap+SSLPinning.h"; sourceTree = "<group>"; };
+		060C3EA884ECE29F891BAD9D90D65201 /* SEGAnalyticsConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAnalyticsConfiguration.m; path = Analytics/Classes/SEGAnalyticsConfiguration.m; sourceTree = "<group>"; };
+		080E04B04B3A4D15BF76602239565FFF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		08BE58E48C4C54B60A63B35A5528E66E /* CTKnownProfileFields.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTKnownProfileFields.h; path = CleverTapSDK/CTKnownProfileFields.h; sourceTree = "<group>"; };
+		08CB8174BBC8D1E8023065C07464C12C /* SEGAnalytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAnalytics.h; path = Analytics/Classes/SEGAnalytics.h; sourceTree = "<group>"; };
+		09AFB9597541D44F1F18FAD79D975D53 /* CleverTap-iOS-SDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CleverTap-iOS-SDK-umbrella.h"; sourceTree = "<group>"; };
+		0B6F82B4B3E0E0AA10D66FE38A658DEA /* CleverTapSyncDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CleverTapSyncDelegate.h; path = CleverTapSDK/CleverTapSyncDelegate.h; sourceTree = "<group>"; };
+		0BF2C579B4035498486E855431949D80 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		0C6F3DB672F83E0848E98E7CA1B959AA /* CTKnownProfileFields.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTKnownProfileFields.m; path = CleverTapSDK/CTKnownProfileFields.m; sourceTree = "<group>"; };
 		0E01AD996B18661705836191C6B9FCC5 /* Pods-ExampleSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ExampleSwift-dummy.m"; sourceTree = "<group>"; };
-		11D614E1BCFCD6153944690AE0D945CE /* SEGCleverTapIntegration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SEGCleverTapIntegration.h; sourceTree = "<group>"; };
-		135F4CBF8D9552C0217F875E0BD967C0 /* SEGUserDefaultsStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGUserDefaultsStorage.h; path = Analytics/Classes/Internal/SEGUserDefaultsStorage.h; sourceTree = "<group>"; };
-		14FE4655414642F817AF987FB55546E5 /* SEGGroupPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGGroupPayload.m; path = Analytics/Classes/Integrations/SEGGroupPayload.m; sourceTree = "<group>"; };
-		17A56930F4B5E2C8CA0895B025882DB3 /* CleverTapTrackedViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CleverTapTrackedViewController.h; sourceTree = "<group>"; };
-		1B44CEB40FAE6D71318F687D0AB14294 /* Analytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Analytics.framework; path = Analytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		25E6AF2B9BC1A560DD4C5222D9331B7D /* SEGTrackPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGTrackPayload.m; path = Analytics/Classes/Integrations/SEGTrackPayload.m; sourceTree = "<group>"; };
-		265282EC15B92DBCDD5AB342232942CD /* CleverTapSyncDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CleverTapSyncDelegate.h; sourceTree = "<group>"; };
-		299AD69994CA76A079BED64F1A04174B /* CleverTapBuildInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CleverTapBuildInfo.h; sourceTree = "<group>"; };
-		2DA1EC30C87D0A79FFB41D2FF48C144C /* SEGMiddleware.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGMiddleware.m; path = Analytics/Classes/Middlewares/SEGMiddleware.m; sourceTree = "<group>"; };
-		2DEC37AD2F3C40597F47C08ED7619940 /* SEGAnalytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAnalytics.h; path = Analytics/Classes/SEGAnalytics.h; sourceTree = "<group>"; };
-		2FF831A9B279A73943DA21D5D6C4A74D /* SEGUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGUtils.h; path = Analytics/Classes/Internal/SEGUtils.h; sourceTree = "<group>"; };
-		2FFE6B1C4A8A2F0F8C5ABDD29A66154A /* UIViewController+SEGScreen.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+SEGScreen.m"; path = "Analytics/Classes/Internal/UIViewController+SEGScreen.m"; sourceTree = "<group>"; };
-		31540E328B7FD6B3D691ECA758879859 /* SEGAES256Crypto.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAES256Crypto.m; path = Analytics/Classes/Crypto/SEGAES256Crypto.m; sourceTree = "<group>"; };
-		38977D869E95D43240246EDD06BF3405 /* SEGAnalyticsUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAnalyticsUtils.h; path = Analytics/Classes/Internal/SEGAnalyticsUtils.h; sourceTree = "<group>"; };
-		38EBD0B3C402A4808F2F923AFBE4238A /* SEGSegmentIntegrationFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGSegmentIntegrationFactory.m; path = Analytics/Classes/Internal/SEGSegmentIntegrationFactory.m; sourceTree = "<group>"; };
-		3DEEBAAB80048BA94B52E3165D5D4647 /* SEGIdentifyPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGIdentifyPayload.h; path = Analytics/Classes/Integrations/SEGIdentifyPayload.h; sourceTree = "<group>"; };
-		41DCA6C2A15D7808A53B7DEAD00FC084 /* SEGAnalyticsConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAnalyticsConfiguration.h; path = Analytics/Classes/SEGAnalyticsConfiguration.h; sourceTree = "<group>"; };
-		43160F5CD514C21875295C517F867764 /* NSData+SEGGZIP.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+SEGGZIP.m"; path = "Analytics/Classes/Internal/NSData+SEGGZIP.m"; sourceTree = "<group>"; };
-		471DAA115C451FE91DDF09FBBAFB27A2 /* SEGFileStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGFileStorage.h; path = Analytics/Classes/Internal/SEGFileStorage.h; sourceTree = "<group>"; };
-		474CDC033A282BD1C6ABFE4832A66AB1 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
+		0E87253C16358EE2FC8B406118B899DD /* SEGIntegrationsManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGIntegrationsManager.m; path = Analytics/Classes/Integrations/SEGIntegrationsManager.m; sourceTree = "<group>"; };
+		0EE22FC8D0BAE2CECC9806088A279671 /* CTInAppDisplayViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTInAppDisplayViewController.m; path = CleverTapSDK/CTInAppDisplayViewController.m; sourceTree = "<group>"; };
+		0F6CC873245DF2BF50B622823E499AFE /* CTCertificatePinning.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTCertificatePinning.m; path = CleverTapSDK/CTCertificatePinning.m; sourceTree = "<group>"; };
+		100B7078E08221E748D62CB4487B5687 /* SEGPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGPayload.h; path = Analytics/Classes/Integrations/SEGPayload.h; sourceTree = "<group>"; };
+		1104266DBC810D16799F63EA6425FCBD /* UIViewController+SEGScreen.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+SEGScreen.m"; path = "Analytics/Classes/Internal/UIViewController+SEGScreen.m"; sourceTree = "<group>"; };
+		11D343B6F67D278A73BCCA24E0EF3973 /* SEGSegmentIntegration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGSegmentIntegration.m; path = Analytics/Classes/Internal/SEGSegmentIntegration.m; sourceTree = "<group>"; };
+		11DE515C39C9427DEA632ED239A12589 /* CTCertificatePinning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTCertificatePinning.h; path = CleverTapSDK/CTCertificatePinning.h; sourceTree = "<group>"; };
+		12A5FC1DAD954CF421C4DBC8F6F04D6D /* CleverTap-iOS-SDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "CleverTap-iOS-SDK.modulemap"; sourceTree = "<group>"; };
+		16430C32A6F809617E5BFC3418A97B20 /* CTPlistInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTPlistInfo.m; path = CleverTapSDK/CTPlistInfo.m; sourceTree = "<group>"; };
+		16FD54B0DB2C66235323045CE944DA0F /* SEGAnalytics.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAnalytics.m; path = Analytics/Classes/SEGAnalytics.m; sourceTree = "<group>"; };
+		1757C59CE970D9282FF233AEDF05DED3 /* CleverTapUTMDetail.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CleverTapUTMDetail.h; path = CleverTapSDK/CleverTapUTMDetail.h; sourceTree = "<group>"; };
+		1EE773FB2D549DB3EC77E0F2B3DDEAA5 /* CleverTapEventDetail.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CleverTapEventDetail.m; path = CleverTapSDK/CleverTapEventDetail.m; sourceTree = "<group>"; };
+		1F4AD5A3C2B4B2463F87EF9CE97DD73A /* CTInAppUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTInAppUtils.h; path = CleverTapSDK/CTInAppUtils.h; sourceTree = "<group>"; };
+		223FCDE477E3FFE733B4D7629B96BAA1 /* CleverTapUTMDetail.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CleverTapUTMDetail.m; path = CleverTapSDK/CleverTapUTMDetail.m; sourceTree = "<group>"; };
+		2408371E970D021D1188D1FE8C6D8827 /* CTInAppDisplayViewControllerPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTInAppDisplayViewControllerPrivate.h; path = CleverTapSDK/CTInAppDisplayViewControllerPrivate.h; sourceTree = "<group>"; };
+		258FDB73CE78D1F6D4177382630CFF30 /* CTUriHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTUriHelper.h; path = CleverTapSDK/CTUriHelper.h; sourceTree = "<group>"; };
+		29CAC45FD1A625EAA240A8B47A8B78A3 /* CTValidator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTValidator.m; path = CleverTapSDK/CTValidator.m; sourceTree = "<group>"; };
+		2D812502EB8C446C2DE79285BB3F5FF7 /* SEGMiddleware.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGMiddleware.m; path = Analytics/Classes/Middlewares/SEGMiddleware.m; sourceTree = "<group>"; };
+		2DC01ED4EF119FFF843FF34B53D1387C /* SEGSegmentIntegrationFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGSegmentIntegrationFactory.m; path = Analytics/Classes/Internal/SEGSegmentIntegrationFactory.m; sourceTree = "<group>"; };
+		2DC24ABF04A7E32793AC864602D89393 /* SEGGroupPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGGroupPayload.m; path = Analytics/Classes/Integrations/SEGGroupPayload.m; sourceTree = "<group>"; };
+		2E7316E9C4BC71CE8FF79C9948D3134B /* NSData+SEGGZIP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+SEGGZIP.h"; path = "Analytics/Classes/Internal/NSData+SEGGZIP.h"; sourceTree = "<group>"; };
+		30559131C4627293E4EBAA565333EF62 /* CTSwizzle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTSwizzle.h; path = CleverTapSDK/CTSwizzle.h; sourceTree = "<group>"; };
+		30F7BFA93D8DFF5A68168A720C39AE86 /* CleverTap-iOS-SDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CleverTap-iOS-SDK-dummy.m"; sourceTree = "<group>"; };
+		3187887F0EFFAD2D80F26E12C8FD62A7 /* DigiCertGlobalRootCA.crt */ = {isa = PBXFileReference; includeInIndex = 1; name = DigiCertGlobalRootCA.crt; path = CleverTapSDK/DigiCertGlobalRootCA.crt; sourceTree = "<group>"; };
+		33F5112F89F6F2774FF8D831E0D09FD4 /* CTUriHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTUriHelper.m; path = CleverTapSDK/CTUriHelper.m; sourceTree = "<group>"; };
+		346F604E7460D51AB10CB3D9309AE4B0 /* Analytics.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Analytics.modulemap; sourceTree = "<group>"; };
+		360EAB17C1E737109CB1724696328FD1 /* CTDeviceInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTDeviceInfo.h; path = CleverTapSDK/CTDeviceInfo.h; sourceTree = "<group>"; };
+		364F4E5939ECF7BB1FC85923F9E1CE64 /* Analytics-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Analytics-prefix.pch"; sourceTree = "<group>"; };
+		38998E9432954608AEA6BE8AB9749D41 /* SEGUserDefaultsStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGUserDefaultsStorage.h; path = Analytics/Classes/Internal/SEGUserDefaultsStorage.h; sourceTree = "<group>"; };
+		3BA47089E4BBE2BC83F749C40F7ED3C9 /* Segment-CleverTap-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Segment-CleverTap-umbrella.h"; sourceTree = "<group>"; };
+		3F96E1922A658FEFE73B7E7EEF583ED7 /* Pods_ExampleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ExampleSwift.framework; path = "Pods-ExampleSwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FE3998F4E0E179452022167A921019F /* SEGAES256Crypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAES256Crypto.h; path = Analytics/Classes/Crypto/SEGAES256Crypto.h; sourceTree = "<group>"; };
+		403C7652AE3B4B75BDFCBAC8CA9D07B2 /* SEGTrackPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGTrackPayload.h; path = Analytics/Classes/Integrations/SEGTrackPayload.h; sourceTree = "<group>"; };
+		43173F9ACA930D98E75FDBE11763A213 /* CTProfileBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTProfileBuilder.m; path = CleverTapSDK/CTProfileBuilder.m; sourceTree = "<group>"; };
+		43BC14A98A73361AE3E7332769CAAD3F /* CTDismissButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTDismissButton.h; path = CleverTapSDK/CTDismissButton.h; sourceTree = "<group>"; };
+		48E9B0A2039FE0781DA125640B736B27 /* SEGReachability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGReachability.h; path = Analytics/Vendor/SEGReachability.h; sourceTree = "<group>"; };
 		49230D3952BB9A9CD086A64D3A18A67F /* Pods-ExampleSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExampleSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		4B64D689AD20E2221DE0ECE188E40BDB /* CTPreferences.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTPreferences.m; path = CleverTapSDK/CTPreferences.m; sourceTree = "<group>"; };
+		4BACB2DA4374EDA169C8D25549ED2C2A /* CleverTapInstanceConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CleverTapInstanceConfig.m; path = CleverTapSDK/CleverTapInstanceConfig.m; sourceTree = "<group>"; };
 		4C048CBAA2C595A18DBE32CC4DCF31D7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C077CA0DA3C080088505853C9325FCE /* Pods-ExampleSwift-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ExampleSwift-resources.sh"; sourceTree = "<group>"; };
-		4DB1DE66E1D11503F83FBD8170E1A819 /* Analytics-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Analytics-prefix.pch"; sourceTree = "<group>"; };
-		4E8D569E660810A992145934523DAC5B /* SEGCleverTapIntegration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGCleverTapIntegration.m; sourceTree = "<group>"; };
-		5719A5F5273E30BDA65262BCAFDDA6A4 /* Analytics-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Analytics-dummy.m"; sourceTree = "<group>"; };
-		580A948B9E60F9DB019BE57008511D56 /* SEGCrypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGCrypto.h; path = Analytics/Classes/Crypto/SEGCrypto.h; sourceTree = "<group>"; };
-		5B769A18D58EE39A0D199F733B1B34CC /* SEGUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGUtils.m; path = Analytics/Classes/Internal/SEGUtils.m; sourceTree = "<group>"; };
-		5CB9C0B436A84B9CE1185E186759B974 /* SEGFileStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGFileStorage.m; path = Analytics/Classes/Internal/SEGFileStorage.m; sourceTree = "<group>"; };
-		6005686118884759A0D2891251EF5DB1 /* SEGAnalytics.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAnalytics.m; path = Analytics/Classes/SEGAnalytics.m; sourceTree = "<group>"; };
-		6A43668286988D5D4606779929EF0B31 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		6C47B4FFDFF6625307C69ADC025264FE /* Analytics-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Analytics-umbrella.h"; sourceTree = "<group>"; };
-		6C50BFA2EC1D281248A7D865E3B83DBA /* SEGMiddleware.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGMiddleware.h; path = Analytics/Classes/Middlewares/SEGMiddleware.h; sourceTree = "<group>"; };
-		6E6771F9C8CCEFCEC44BA7C74A10C7A9 /* Segment-CleverTap.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Segment-CleverTap.modulemap"; sourceTree = "<group>"; };
-		70996D1B8532B648AB0916099C9A5E8E /* Analytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Analytics.xcconfig; sourceTree = "<group>"; };
-		7298F63B2E8D83C21FF18703CC609B18 /* SEGReachability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGReachability.h; path = Analytics/Vendor/SEGReachability.h; sourceTree = "<group>"; };
-		7399E7A6F373D25CB08C81CCB42A87E2 /* SEGSegmentIntegration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGSegmentIntegration.m; path = Analytics/Classes/Internal/SEGSegmentIntegration.m; sourceTree = "<group>"; };
-		73BC0C68EECBAFC627FF0C4B423A4E0A /* CleverTapUTMDetail.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CleverTapUTMDetail.h; sourceTree = "<group>"; };
-		76DB533595DDD7FDF62901AF5F9002AD /* Segment-CleverTap-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Segment-CleverTap-prefix.pch"; sourceTree = "<group>"; };
-		771CB3085863186E8D7C33CE8951D55C /* SEGIntegrationsManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGIntegrationsManager.m; path = Analytics/Classes/Integrations/SEGIntegrationsManager.m; sourceTree = "<group>"; };
-		776F62E41ACF2537DB1DB7EC42CA5889 /* Pods_ExampleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ExampleSwift.framework; path = "Pods-ExampleSwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F3118E3AC5662B1BAA0A612E8A462AB /* SEGAliasPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAliasPayload.h; path = Analytics/Classes/Integrations/SEGAliasPayload.h; sourceTree = "<group>"; };
-		8A207384A07B6E20685502AA9FA65670 /* SEGReachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGReachability.m; path = Analytics/Vendor/SEGReachability.m; sourceTree = "<group>"; };
-		8C1727F36E71E9255D89052CD8258193 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		909199B96D10EB90A0759DEC919556B7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		4CDCC6882B4CADC9ED0A25BC040636E7 /* CleverTapSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CleverTapSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E7E79E5D3553F8342736F6104B2EECB /* SEGIntegration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGIntegration.h; path = Analytics/Classes/Integrations/SEGIntegration.h; sourceTree = "<group>"; };
+		50C5491F1A9B3F0D1D5ED29B11B71916 /* SEGAES256Crypto.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAES256Crypto.m; path = Analytics/Classes/Crypto/SEGAES256Crypto.m; sourceTree = "<group>"; };
+		515376044C3101D01D15B3D11FCF6ED2 /* Segment-CleverTap.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Segment-CleverTap.xcconfig"; sourceTree = "<group>"; };
+		5248A59E960CDEA9313ED432FD0FA39F /* CTValidationResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTValidationResult.h; path = CleverTapSDK/CTValidationResult.h; sourceTree = "<group>"; };
+		5A385F8E022EB1165D4960C9D11018E1 /* SEGUserDefaultsStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGUserDefaultsStorage.m; path = Analytics/Classes/Internal/SEGUserDefaultsStorage.m; sourceTree = "<group>"; };
+		5DFF95F5890C3B2AF07850A97813A0CB /* SEGSerializableValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGSerializableValue.h; path = Analytics/Classes/SEGSerializableValue.h; sourceTree = "<group>"; };
+		5E73FC7DF68C4622D5EF17E7B7EBEEF0 /* CTInAppFCManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTInAppFCManager.m; path = CleverTapSDK/CTInAppFCManager.m; sourceTree = "<group>"; };
+		64DE0D1DCC3A5EDB9009986E2BBB7693 /* SEGStoreKitTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGStoreKitTracker.h; path = Analytics/Classes/Internal/SEGStoreKitTracker.h; sourceTree = "<group>"; };
+		661FF567E7388C25C6093D7FF7A08763 /* CTDeviceInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTDeviceInfo.m; path = CleverTapSDK/CTDeviceInfo.m; sourceTree = "<group>"; };
+		66EBB77EECE176E38ED200F15CDB5F66 /* CTLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTLogger.m; path = CleverTapSDK/CTLogger.m; sourceTree = "<group>"; };
+		6A911920116E6C8F61BBC0C8A8D1F28D /* SEGIdentifyPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGIdentifyPayload.h; path = Analytics/Classes/Integrations/SEGIdentifyPayload.h; sourceTree = "<group>"; };
+		6AA913C7E986AB28503291BCE787A554 /* Analytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Analytics.xcconfig; sourceTree = "<group>"; };
+		6D1FE778471B1704F9E2714CAA0D98BA /* CTValidator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTValidator.h; path = CleverTapSDK/CTValidator.h; sourceTree = "<group>"; };
+		6DC9AF51648F407AE9BDADDD7F441D78 /* Segment_CleverTap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Segment_CleverTap.framework; path = "Segment-CleverTap.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		726144F6BC4577207198F9991B563070 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		755F884BC6F31A28C3A8FB469C85F4E6 /* CTValidationResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTValidationResult.m; path = CleverTapSDK/CTValidationResult.m; sourceTree = "<group>"; };
+		76EFE836B912FCE849E41A6FFDD4360F /* DigiCertSHA2SecureServerCA.crt */ = {isa = PBXFileReference; includeInIndex = 1; name = DigiCertSHA2SecureServerCA.crt; path = CleverTapSDK/DigiCertSHA2SecureServerCA.crt; sourceTree = "<group>"; };
+		78C51A2B50AF06FD031ADB61D00C51DD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79328C8A9116AAB1B8B160645442441A /* CleverTap-iOS-SDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "CleverTap-iOS-SDK.xcconfig"; sourceTree = "<group>"; };
+		7C81A29114B7106FED4EB4B0B1E9D6AD /* Segment-CleverTap.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = "Segment-CleverTap.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7F2D19BF4B3C247ECE7C11D6E0A24170 /* SEGCleverTapIntegration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGCleverTapIntegration.m; path = Pod/Classes/SEGCleverTapIntegration.m; sourceTree = "<group>"; };
+		80C0F32AADA9AA5C0D7F76D18EFD7CBE /* SEGMiddleware.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGMiddleware.h; path = Analytics/Classes/Middlewares/SEGMiddleware.h; sourceTree = "<group>"; };
+		80C1211C213EA2306CC2409836D4FA7D /* CTPlistInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTPlistInfo.h; path = CleverTapSDK/CTPlistInfo.h; sourceTree = "<group>"; };
+		8121F34AEAEAE5403C57DA6359733EC5 /* CTEventBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTEventBuilder.m; path = CleverTapSDK/CTEventBuilder.m; sourceTree = "<group>"; };
+		8705066D079C45ECF47A453293390BE0 /* SEGScreenPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGScreenPayload.m; path = Analytics/Classes/Integrations/SEGScreenPayload.m; sourceTree = "<group>"; };
+		8A06424A38D9B9FEEC03D68CC5FCD116 /* SEGStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGStorage.h; path = Analytics/Classes/Internal/SEGStorage.h; sourceTree = "<group>"; };
+		8B85E060597EEE4A570D8D169FB7744C /* SEGSegmentIntegration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGSegmentIntegration.h; path = Analytics/Classes/Internal/SEGSegmentIntegration.h; sourceTree = "<group>"; };
+		8D04F117D444D3486A04391C40B55072 /* SEGFileStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGFileStorage.h; path = Analytics/Classes/Internal/SEGFileStorage.h; sourceTree = "<group>"; };
+		8FB64A099C9C8B829731E6EFC8EC6A4D /* CleverTapTrackedViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CleverTapTrackedViewController.m; path = CleverTapSDK/CleverTapTrackedViewController.m; sourceTree = "<group>"; };
+		907ABFB87363B2015D8351CAED722331 /* CTConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTConstants.m; path = CleverTapSDK/CTConstants.m; sourceTree = "<group>"; };
 		917A64F91F678E637C1478CB4F1526DF /* Pods-ExampleSwift-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ExampleSwift-frameworks.sh"; sourceTree = "<group>"; };
-		921326A04C5395E9D06E189A26FDEA54 /* Segment-CleverTap-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Segment-CleverTap-umbrella.h"; sourceTree = "<group>"; };
 		928C1517B0D7E686F90091375ABAEE46 /* Pods-ExampleSwift-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ExampleSwift-acknowledgements.markdown"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9414E48EBB91C4D0CCC3C7ED1364C692 /* Pods-ExampleSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ExampleSwift-umbrella.h"; sourceTree = "<group>"; };
 		9548BFC8643C3362764C774F364A2A1B /* Pods-ExampleSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExampleSwift.release.xcconfig"; sourceTree = "<group>"; };
-		972611E160C45B384D40464A181F392C /* SEGIntegrationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGIntegrationFactory.h; path = Analytics/Classes/Integrations/SEGIntegrationFactory.h; sourceTree = "<group>"; };
-		97A826694BD6EFA38234FA84BF5CD41A /* CleverTap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CleverTap.h; sourceTree = "<group>"; };
-		9AA208161ED150CB9DAE52A44EBC8696 /* SEGGroupPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGGroupPayload.h; path = Analytics/Classes/Integrations/SEGGroupPayload.h; sourceTree = "<group>"; };
-		9C6DEDEC4AF12897F281E6234E3CCFF9 /* Analytics.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Analytics.modulemap; sourceTree = "<group>"; };
-		A00C8AD944F37BC7606EE6680B0ACD36 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		A36377BE3FB381BEA3ED8C71969EDC98 /* SEGIdentifyPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGIdentifyPayload.m; path = Analytics/Classes/Integrations/SEGIdentifyPayload.m; sourceTree = "<group>"; };
-		A64586DEE51E8FF3FBA2AEBB64368482 /* CleverTapEventDetail.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CleverTapEventDetail.h; sourceTree = "<group>"; };
-		A7D90C87A389C3A407A713592D9C5D07 /* SEGStoreKitTracker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGStoreKitTracker.m; path = Analytics/Classes/Internal/SEGStoreKitTracker.m; sourceTree = "<group>"; };
-		A9331FD1FC2459CC9E4626710B4850A6 /* SEGPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGPayload.h; path = Analytics/Classes/Integrations/SEGPayload.h; sourceTree = "<group>"; };
+		9656B5884F2954AA1A5AE8C659937108 /* SEGIdentifyPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGIdentifyPayload.m; path = Analytics/Classes/Integrations/SEGIdentifyPayload.m; sourceTree = "<group>"; };
+		96ED8CA7E1C1EBCDE50103F1B6DD3F53 /* CTPreferences.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTPreferences.h; path = CleverTapSDK/CTPreferences.h; sourceTree = "<group>"; };
+		977889A0732481C82E50AFA1AD5AA04A /* CTInAppNotification.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTInAppNotification.h; path = CleverTapSDK/CTInAppNotification.h; sourceTree = "<group>"; };
+		9BEDA09F3D193DADA1E668EA3631665B /* Analytics-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Analytics-umbrella.h"; sourceTree = "<group>"; };
+		9C71750A429A4F5264F86D92547AE88C /* CleverTapTrackedViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CleverTapTrackedViewController.h; path = CleverTapSDK/CleverTapTrackedViewController.h; sourceTree = "<group>"; };
+		9DBE5BADE1D6A833A9B033CAEF37E340 /* CTLocationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTLocationManager.m; path = CleverTapSDK/CTLocationManager.m; sourceTree = "<group>"; };
+		9DDDCEE894340E9FC2E7EDA3FDA615A0 /* Segment-CleverTap-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Segment-CleverTap-dummy.m"; sourceTree = "<group>"; };
+		A29E3CD542E6D76A062A40BA51EAC4AC /* SEGAnalyticsUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAnalyticsUtils.m; path = Analytics/Classes/Internal/SEGAnalyticsUtils.m; sourceTree = "<group>"; };
+		A2F3FBECBA431E3AFBB883F60A1344FB /* SEGCleverTapIntegrationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGCleverTapIntegrationFactory.h; path = Pod/Classes/SEGCleverTapIntegrationFactory.h; sourceTree = "<group>"; };
+		A8248689E296EC6C30F9A356E279AEB7 /* SEGCrypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGCrypto.h; path = Analytics/Classes/Crypto/SEGCrypto.h; sourceTree = "<group>"; };
+		A91B93104B89A29A64A964012EB1971D /* CTLocationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTLocationManager.h; path = CleverTapSDK/CTLocationManager.h; sourceTree = "<group>"; };
 		A9B677EBC60B574892E1BF1CF38D36BB /* Pods-ExampleSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ExampleSwift.modulemap"; sourceTree = "<group>"; };
-		AA484877C4BCB2AA52741090BD60B98E /* SEGContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGContext.m; path = Analytics/Classes/Middlewares/SEGContext.m; sourceTree = "<group>"; };
-		AB76C7A628F47D1417DF8E143F859346 /* SEGSegmentIntegrationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGSegmentIntegrationFactory.h; path = Analytics/Classes/Internal/SEGSegmentIntegrationFactory.h; sourceTree = "<group>"; };
-		AE05F6DB73100EF44081B99219F8A3FB /* SEGContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGContext.h; path = Analytics/Classes/Middlewares/SEGContext.h; sourceTree = "<group>"; };
-		AE133467B486C2E84BDCE059019EF513 /* NSData+SEGGZIP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+SEGGZIP.h"; path = "Analytics/Classes/Internal/NSData+SEGGZIP.h"; sourceTree = "<group>"; };
-		B0926F96C56E77D7FB141662335C0742 /* SEGIntegration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGIntegration.h; path = Analytics/Classes/Integrations/SEGIntegration.h; sourceTree = "<group>"; };
-		B103225AA52B1C716EFD02E8FA31B8E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		B833D8FE0CEC5787C92DD88955FDC2F5 /* Segment-CleverTap.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = "Segment-CleverTap.podspec"; path = "../Segment-CleverTap.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B925F48F8EA8CC4B0B3E6136425F7EFF /* SEGHTTPClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGHTTPClient.m; path = Analytics/Classes/Internal/SEGHTTPClient.m; sourceTree = "<group>"; };
-		BD4A52BBD293A7E87D07025E5C9362DB /* Analytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Analytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF73CD33168346441A0736A119FFEDA0 /* CleverTapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CleverTapSDK.framework; sourceTree = "<group>"; };
-		C03ED98555D51E51619E763711A14201 /* SEGAnalyticsConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAnalyticsConfiguration.m; path = Analytics/Classes/SEGAnalyticsConfiguration.m; sourceTree = "<group>"; };
-		C9740DDBE4E4C72EB2E9FABC2E9F58CC /* SEGTrackPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGTrackPayload.h; path = Analytics/Classes/Integrations/SEGTrackPayload.h; sourceTree = "<group>"; };
-		CABB0C48BE891AD2EBF4D3E54B250EB7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		CB31914788D4FB0C7873723730067D75 /* SEGIntegrationsManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGIntegrationsManager.h; path = Analytics/Classes/Integrations/SEGIntegrationsManager.h; sourceTree = "<group>"; };
-		CD3B80A8A94E42742F684BDCC58CC9DF /* SEGScreenPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGScreenPayload.h; path = Analytics/Classes/Integrations/SEGScreenPayload.h; sourceTree = "<group>"; };
-		D03B9450417D3FB587E54E121B1DE33C /* CleverTapInAppNotificationDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CleverTapInAppNotificationDelegate.h; sourceTree = "<group>"; };
-		D3DCB4A9D00458B1EE4FD5E879EF7455 /* Segment-CleverTap.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Segment-CleverTap.xcconfig"; sourceTree = "<group>"; };
-		D44E390338D98D343E9B5F0E2AD64139 /* SEGAES256Crypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAES256Crypto.h; path = Analytics/Classes/Crypto/SEGAES256Crypto.h; sourceTree = "<group>"; };
-		D56683A65F87B1DE47478FAED6AA017E /* Segment-CleverTap-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Segment-CleverTap-dummy.m"; sourceTree = "<group>"; };
-		D7DB3F4B84F6B1FFAED8A4A77FC2B623 /* SEGPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGPayload.m; path = Analytics/Classes/Integrations/SEGPayload.m; sourceTree = "<group>"; };
-		D971ED0E5C1C46576FFFC54C3BFA1C9B /* SEGScreenPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGScreenPayload.m; path = Analytics/Classes/Integrations/SEGScreenPayload.m; sourceTree = "<group>"; };
+		ABC9E8DE9F7498263D339D4065E6D640 /* CleverTapInstanceConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CleverTapInstanceConfig.h; path = CleverTapSDK/CleverTapInstanceConfig.h; sourceTree = "<group>"; };
+		ADF7E4952DA9AC1153B5497A7BF57786 /* CleverTapSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CleverTapSDK.framework; path = "CleverTap-iOS-SDK.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFB4D9F873AE517ABAFB0B4B1BCFB3A5 /* CTProfileBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTProfileBuilder.h; path = CleverTapSDK/CTProfileBuilder.h; sourceTree = "<group>"; };
+		B014823005E24821B9371C64046290D7 /* CTSwizzle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTSwizzle.m; path = CleverTapSDK/CTSwizzle.m; sourceTree = "<group>"; };
+		B023BD364BE33B267295857A3F81DFC2 /* CleverTapInAppNotificationDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CleverTapInAppNotificationDelegate.h; path = CleverTapSDK/CleverTapInAppNotificationDelegate.h; sourceTree = "<group>"; };
+		B0BDBC3A71FF49F6767F368C290F7965 /* SEGFileStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGFileStorage.m; path = Analytics/Classes/Internal/SEGFileStorage.m; sourceTree = "<group>"; };
+		B2BA917A8E4E4B9B0FE04E2BFCABD8D8 /* CTEventBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTEventBuilder.h; path = CleverTapSDK/CTEventBuilder.h; sourceTree = "<group>"; };
+		B32D6809D38FBB22B69EB657BDEC6AEE /* CleverTap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CleverTap.h; path = CleverTapSDK/CleverTap.h; sourceTree = "<group>"; };
+		B46534F3ED4C5AF589DCF6B95F84826C /* Analytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Analytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6354902AFF1C32D23A2B5C7D76A3B61 /* CTInAppNotification.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTInAppNotification.m; path = CleverTapSDK/CTInAppNotification.m; sourceTree = "<group>"; };
+		B95D499C2E6D8A1A50D1F01EF84C7FE6 /* CTDismissButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTDismissButton.m; path = CleverTapSDK/CTDismissButton.m; sourceTree = "<group>"; };
+		BB2D79755E907725CF4FE410CD890F95 /* SEGPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGPayload.m; path = Analytics/Classes/Integrations/SEGPayload.m; sourceTree = "<group>"; };
+		BB5555564C3E207309E5C6337BBBBB66 /* CTUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTUtils.h; path = CleverTapSDK/CTUtils.h; sourceTree = "<group>"; };
+		BB92AC6CFF286DA799B9004F03DDE8FE /* CleverTap-iOS-SDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CleverTap-iOS-SDK-prefix.pch"; sourceTree = "<group>"; };
+		BBBC03C8389B77AAC62B54FF30170083 /* SEGContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGContext.m; path = Analytics/Classes/Middlewares/SEGContext.m; sourceTree = "<group>"; };
+		BE347B064D73E88283A79CB2E1F5BB8E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		BF097678B8C3B9704C6233A04DEAFE4D /* SEGAnalyticsConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAnalyticsConfiguration.h; path = Analytics/Classes/SEGAnalyticsConfiguration.h; sourceTree = "<group>"; };
+		C235D5341263B5ED4834E3A9B174F44C /* CleverTapInstanceConfigPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CleverTapInstanceConfigPrivate.h; path = CleverTapSDK/CleverTapInstanceConfigPrivate.h; sourceTree = "<group>"; };
+		C35C9DAD827A47995A3947AD754A16A0 /* SEGAliasPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAliasPayload.h; path = Analytics/Classes/Integrations/SEGAliasPayload.h; sourceTree = "<group>"; };
+		C379085B77B60403FD9BFFC6D0A99264 /* SEGHTTPClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGHTTPClient.h; path = Analytics/Classes/Internal/SEGHTTPClient.h; sourceTree = "<group>"; };
+		C57DFB3F9EB2C18803878F23F9D3EBB7 /* CTInAppHTMLViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTInAppHTMLViewController.h; path = CleverTapSDK/CTInAppHTMLViewController.h; sourceTree = "<group>"; };
+		C5DF72716E1F7E3BF41CD9947164A4F2 /* CTInAppDisplayViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTInAppDisplayViewController.h; path = CleverTapSDK/CTInAppDisplayViewController.h; sourceTree = "<group>"; };
+		C89117CFA461F82E60A05CA57EDA8C1B /* CTConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTConstants.h; path = CleverTapSDK/CTConstants.h; sourceTree = "<group>"; };
+		C8E331FFDDD1BCCDECE4EED1CDBBF244 /* CTPinnedNSURLSessionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTPinnedNSURLSessionDelegate.h; path = CleverTapSDK/CTPinnedNSURLSessionDelegate.h; sourceTree = "<group>"; };
+		CBC8A2521BCB97BA68B6A740643A25B5 /* CleverTap.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CleverTap.m; path = CleverTapSDK/CleverTap.m; sourceTree = "<group>"; };
+		CE409F5E671005EA9A14BB4510BC5A27 /* Segment-CleverTap-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Segment-CleverTap-prefix.pch"; sourceTree = "<group>"; };
+		D4430B3A5AF04D1280D37B7E15ABE170 /* SEGStoreKitTracker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGStoreKitTracker.m; path = Analytics/Classes/Internal/SEGStoreKitTracker.m; sourceTree = "<group>"; };
+		D5C1098C6EF56954AC85BB359FA4899D /* SEGUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGUtils.m; path = Analytics/Classes/Internal/SEGUtils.m; sourceTree = "<group>"; };
+		D90394255D1291388D4CE352DB86D112 /* SEGScreenPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGScreenPayload.h; path = Analytics/Classes/Integrations/SEGScreenPayload.h; sourceTree = "<group>"; };
+		D90A7F0EEF845F44D0FE546F0CB8065B /* CTLocalDataStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTLocalDataStore.h; path = CleverTapSDK/CTLocalDataStore.h; sourceTree = "<group>"; };
+		D986BA34B594D397DC225C2A66EBA9BD /* SEGCleverTapIntegration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGCleverTapIntegration.h; path = Pod/Classes/SEGCleverTapIntegration.h; sourceTree = "<group>"; };
+		DABE4FB2611C25DDDE6B034199C109A7 /* SEGAliasPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAliasPayload.m; path = Analytics/Classes/Integrations/SEGAliasPayload.m; sourceTree = "<group>"; };
+		DB4C1F96967762D7E36E8878F2DC3443 /* SEGSegmentIntegrationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGSegmentIntegrationFactory.h; path = Analytics/Classes/Internal/SEGSegmentIntegrationFactory.h; sourceTree = "<group>"; };
 		DB825DAF38E15A27FC416CAC0E174934 /* Pods-ExampleSwift-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ExampleSwift-acknowledgements.plist"; sourceTree = "<group>"; };
-		DE56AC170E3EC47C0EE5AC8EC26ECBC8 /* SEGAliasPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAliasPayload.m; path = Analytics/Classes/Integrations/SEGAliasPayload.m; sourceTree = "<group>"; };
-		DEDCF52A0AA107763447BD0F3EF9E339 /* SEGUserDefaultsStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGUserDefaultsStorage.m; path = Analytics/Classes/Internal/SEGUserDefaultsStorage.m; sourceTree = "<group>"; };
-		DF8DB7097520EF71E872DC0FAD4B36BD /* SEGStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGStorage.h; path = Analytics/Classes/Internal/SEGStorage.h; sourceTree = "<group>"; };
-		E144A13CEE0418776E34032E5910D883 /* SEGCleverTapIntegrationFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGCleverTapIntegrationFactory.m; sourceTree = "<group>"; };
-		E6B8066A10B7F6EE02EDAFAFE7747C6D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA29E8A6505F2EB3B47CA9DAFE566C4F /* SEGStoreKitTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGStoreKitTracker.h; path = Analytics/Classes/Internal/SEGStoreKitTracker.h; sourceTree = "<group>"; };
-		EB49B1DE0C11F1707DCC37BDAD4ECE49 /* SEGSegmentIntegration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGSegmentIntegration.h; path = Analytics/Classes/Internal/SEGSegmentIntegration.h; sourceTree = "<group>"; };
-		ED8D0248966CA5769FA7558425743B0A /* UIViewController+SEGScreen.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+SEGScreen.h"; path = "Analytics/Classes/Internal/UIViewController+SEGScreen.h"; sourceTree = "<group>"; };
-		F059E2FCDA47D65CB4A574348996D893 /* Segment_CleverTap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Segment_CleverTap.framework; path = "Segment-CleverTap.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6E687B25FE6E2DB707D461EF37A592E /* SEGHTTPClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGHTTPClient.h; path = Analytics/Classes/Internal/SEGHTTPClient.h; sourceTree = "<group>"; };
-		F748A66F3158F21049023CC52BC237A8 /* SEGCleverTapIntegrationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SEGCleverTapIntegrationFactory.h; sourceTree = "<group>"; };
-		F75343216D1377C7078C32EACFCAEA21 /* SEGAnalyticsUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGAnalyticsUtils.m; path = Analytics/Classes/Internal/SEGAnalyticsUtils.m; sourceTree = "<group>"; };
-		FE31BFE5D88C73E8AF4A74AA70E9E1AA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC5F47E708B753D8A66B1B9CEED4237B /* SEGTrackPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGTrackPayload.m; path = Analytics/Classes/Integrations/SEGTrackPayload.m; sourceTree = "<group>"; };
+		DF35CC91C91B5B2A8C0525CBEA03FE98 /* CTUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTUtils.m; path = CleverTapSDK/CTUtils.m; sourceTree = "<group>"; };
+		DFEA7D7E52CC928249622B6768AAAFB0 /* Analytics-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Analytics-dummy.m"; sourceTree = "<group>"; };
+		E138F50A2216A857A3CF4ABBD73E3990 /* CleverTapEventDetail.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CleverTapEventDetail.h; path = CleverTapSDK/CleverTapEventDetail.h; sourceTree = "<group>"; };
+		E295E4BB774F977E1F1794294598562A /* CTLocalDataStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTLocalDataStore.m; path = CleverTapSDK/CTLocalDataStore.m; sourceTree = "<group>"; };
+		E4EF26C9E39ABE7F9A861F7F5982B55F /* Segment-CleverTap.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Segment-CleverTap.modulemap"; sourceTree = "<group>"; };
+		E755D6D02C46BA08626DB402C15EB3BF /* CTLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTLogger.h; path = CleverTapSDK/CTLogger.h; sourceTree = "<group>"; };
+		ECBD1E6BC7F1836F4B92F7BB5C335F6B /* SEGReachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGReachability.m; path = Analytics/Vendor/SEGReachability.m; sourceTree = "<group>"; };
+		EFCE51811690B20DEB3F6206D6C93518 /* SEGGroupPayload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGGroupPayload.h; path = Analytics/Classes/Integrations/SEGGroupPayload.h; sourceTree = "<group>"; };
+		F02C312425BF2AF3DE8BF9284EC52A6B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0ECB1F8FE1480AE129B05B32CEB2D52 /* NSData+SEGGZIP.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+SEGGZIP.m"; path = "Analytics/Classes/Internal/NSData+SEGGZIP.m"; sourceTree = "<group>"; };
+		F14E7D95FE0054D1987C4BA7660D3918 /* SEGIntegrationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGIntegrationFactory.h; path = Analytics/Classes/Integrations/SEGIntegrationFactory.h; sourceTree = "<group>"; };
+		F3467F7E4FCE06681549E947AF414414 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F478F8C0A94AE642F15F463F8F2B49ED /* SEGCleverTapIntegrationFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGCleverTapIntegrationFactory.m; path = Pod/Classes/SEGCleverTapIntegrationFactory.m; sourceTree = "<group>"; };
+		F507293712B48C227A26D28C580B6E41 /* CTInAppHTMLViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTInAppHTMLViewController.m; path = CleverTapSDK/CTInAppHTMLViewController.m; sourceTree = "<group>"; };
+		F7FE6DEB1508D0C340A90BA9B94F0EA1 /* UIViewController+SEGScreen.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+SEGScreen.h"; path = "Analytics/Classes/Internal/UIViewController+SEGScreen.h"; sourceTree = "<group>"; };
+		F8D2DCD59B412C8233391E462442755E /* CleverTapBuildInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CleverTapBuildInfo.h; path = CleverTapSDK/CleverTapBuildInfo.h; sourceTree = "<group>"; };
+		F900A844EE5679F755EFCB696C0200AB /* CTInAppUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CTInAppUtils.m; path = CleverTapSDK/CTInAppUtils.m; sourceTree = "<group>"; };
+		F913BBF637DD8887E4864CC5059AB558 /* SEGHTTPClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SEGHTTPClient.m; path = Analytics/Classes/Internal/SEGHTTPClient.m; sourceTree = "<group>"; };
+		FA42CF88122565A1B5607B70CB8BD3BD /* Analytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Analytics.framework; path = Analytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB1DAC422EB840FF47624991DC31A7A1 /* SEGUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGUtils.h; path = Analytics/Classes/Internal/SEGUtils.h; sourceTree = "<group>"; };
+		FC95DFC50A2FD3C3AEBE069599C3FF5A /* CTInAppFCManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTInAppFCManager.h; path = CleverTapSDK/CTInAppFCManager.h; sourceTree = "<group>"; };
+		FE3B70EF57EC44BA587782981DFCD407 /* SEGAnalyticsUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGAnalyticsUtils.h; path = Analytics/Classes/Internal/SEGAnalyticsUtils.h; sourceTree = "<group>"; };
+		FFA6D197625CC1D49165EFCBBEAAF323 /* SEGContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SEGContext.h; path = Analytics/Classes/Middlewares/SEGContext.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		63624C230AA97BC913D34D7372C84217 /* Frameworks */ = {
+		8AF9D8D65BA2292BE10B309654392124 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C85639E5302775DBD153D56BF07D39E7 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A9103AA0D3B01E87AAA41FB59602327 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B71593B4ED615DEA0A73E2630DF920BE /* Analytics.framework in Frameworks */,
-				573BF8B967C178C0876754998210A844 /* CoreLocation.framework in Frameworks */,
-				A1CAE32EFFB4E5E56C85693B54D393B6 /* CoreTelephony.framework in Frameworks */,
-				EB4515B30F3E98EDCBF713EF7734961A /* Foundation.framework in Frameworks */,
-				23932548EEABFD6F28848B7BC558013C /* SystemConfiguration.framework in Frameworks */,
-				BC034C728449D99D5C1E92DD0A0990F9 /* UIKit.framework in Frameworks */,
+				2BB0AC882DA873A93D336C82F2F8710D /* Analytics.framework in Frameworks */,
+				6192A4747A4B6C39E22CDC045C403297 /* CleverTapSDK.framework in Frameworks */,
+				15C50188714AA5B306002052FC5CF72B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,155 +363,275 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BC916488B6249C952D1B30EB58CD8504 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD38C7DCA115CFB7FA1AE7AC223E9E5C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F61E75A5A9A4F6C7834254DC1E8811F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C72B752ED32EE92FB155321C47EBDF8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		065177C178F80A070CFA3489B957081C /* Development Pods */ = {
+		016F455B671E1F39FB059C5CAA17058D /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				73C000A2E8A92CA6B98C9524C12D0DAB /* Segment-CleverTap */,
+				0BF2C579B4035498486E855431949D80 /* LICENSE */,
+				726144F6BC4577207198F9991B563070 /* README.md */,
+				7C81A29114B7106FED4EB4B0B1E9D6AD /* Segment-CleverTap.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		03D5179E50EA5777E5AD58ECBFD98E11 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A36679057E12DC1DBF71254D6D1566AC /* Analytics */,
+				09E2324DC2C557DB95EB702B5DD98434 /* CleverTap-iOS-SDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		09E2324DC2C557DB95EB702B5DD98434 /* CleverTap-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				B32D6809D38FBB22B69EB657BDEC6AEE /* CleverTap.h */,
+				CBC8A2521BCB97BA68B6A740643A25B5 /* CleverTap.m */,
+				046E7F6F559017E11C8483C9BB6B3F79 /* CleverTap+SSLPinning.h */,
+				F8D2DCD59B412C8233391E462442755E /* CleverTapBuildInfo.h */,
+				E138F50A2216A857A3CF4ABBD73E3990 /* CleverTapEventDetail.h */,
+				1EE773FB2D549DB3EC77E0F2B3DDEAA5 /* CleverTapEventDetail.m */,
+				B023BD364BE33B267295857A3F81DFC2 /* CleverTapInAppNotificationDelegate.h */,
+				ABC9E8DE9F7498263D339D4065E6D640 /* CleverTapInstanceConfig.h */,
+				4BACB2DA4374EDA169C8D25549ED2C2A /* CleverTapInstanceConfig.m */,
+				C235D5341263B5ED4834E3A9B174F44C /* CleverTapInstanceConfigPrivate.h */,
+				0B6F82B4B3E0E0AA10D66FE38A658DEA /* CleverTapSyncDelegate.h */,
+				9C71750A429A4F5264F86D92547AE88C /* CleverTapTrackedViewController.h */,
+				8FB64A099C9C8B829731E6EFC8EC6A4D /* CleverTapTrackedViewController.m */,
+				1757C59CE970D9282FF233AEDF05DED3 /* CleverTapUTMDetail.h */,
+				223FCDE477E3FFE733B4D7629B96BAA1 /* CleverTapUTMDetail.m */,
+				11DE515C39C9427DEA632ED239A12589 /* CTCertificatePinning.h */,
+				0F6CC873245DF2BF50B622823E499AFE /* CTCertificatePinning.m */,
+				C89117CFA461F82E60A05CA57EDA8C1B /* CTConstants.h */,
+				907ABFB87363B2015D8351CAED722331 /* CTConstants.m */,
+				360EAB17C1E737109CB1724696328FD1 /* CTDeviceInfo.h */,
+				661FF567E7388C25C6093D7FF7A08763 /* CTDeviceInfo.m */,
+				43BC14A98A73361AE3E7332769CAAD3F /* CTDismissButton.h */,
+				B95D499C2E6D8A1A50D1F01EF84C7FE6 /* CTDismissButton.m */,
+				B2BA917A8E4E4B9B0FE04E2BFCABD8D8 /* CTEventBuilder.h */,
+				8121F34AEAEAE5403C57DA6359733EC5 /* CTEventBuilder.m */,
+				C5DF72716E1F7E3BF41CD9947164A4F2 /* CTInAppDisplayViewController.h */,
+				0EE22FC8D0BAE2CECC9806088A279671 /* CTInAppDisplayViewController.m */,
+				2408371E970D021D1188D1FE8C6D8827 /* CTInAppDisplayViewControllerPrivate.h */,
+				FC95DFC50A2FD3C3AEBE069599C3FF5A /* CTInAppFCManager.h */,
+				5E73FC7DF68C4622D5EF17E7B7EBEEF0 /* CTInAppFCManager.m */,
+				C57DFB3F9EB2C18803878F23F9D3EBB7 /* CTInAppHTMLViewController.h */,
+				F507293712B48C227A26D28C580B6E41 /* CTInAppHTMLViewController.m */,
+				977889A0732481C82E50AFA1AD5AA04A /* CTInAppNotification.h */,
+				B6354902AFF1C32D23A2B5C7D76A3B61 /* CTInAppNotification.m */,
+				1F4AD5A3C2B4B2463F87EF9CE97DD73A /* CTInAppUtils.h */,
+				F900A844EE5679F755EFCB696C0200AB /* CTInAppUtils.m */,
+				08BE58E48C4C54B60A63B35A5528E66E /* CTKnownProfileFields.h */,
+				0C6F3DB672F83E0848E98E7CA1B959AA /* CTKnownProfileFields.m */,
+				D90A7F0EEF845F44D0FE546F0CB8065B /* CTLocalDataStore.h */,
+				E295E4BB774F977E1F1794294598562A /* CTLocalDataStore.m */,
+				A91B93104B89A29A64A964012EB1971D /* CTLocationManager.h */,
+				9DBE5BADE1D6A833A9B033CAEF37E340 /* CTLocationManager.m */,
+				E755D6D02C46BA08626DB402C15EB3BF /* CTLogger.h */,
+				66EBB77EECE176E38ED200F15CDB5F66 /* CTLogger.m */,
+				C8E331FFDDD1BCCDECE4EED1CDBBF244 /* CTPinnedNSURLSessionDelegate.h */,
+				02037B9338114040EE14963F06E58CDD /* CTPinnedNSURLSessionDelegate.m */,
+				80C1211C213EA2306CC2409836D4FA7D /* CTPlistInfo.h */,
+				16430C32A6F809617E5BFC3418A97B20 /* CTPlistInfo.m */,
+				96ED8CA7E1C1EBCDE50103F1B6DD3F53 /* CTPreferences.h */,
+				4B64D689AD20E2221DE0ECE188E40BDB /* CTPreferences.m */,
+				AFB4D9F873AE517ABAFB0B4B1BCFB3A5 /* CTProfileBuilder.h */,
+				43173F9ACA930D98E75FDBE11763A213 /* CTProfileBuilder.m */,
+				30559131C4627293E4EBAA565333EF62 /* CTSwizzle.h */,
+				B014823005E24821B9371C64046290D7 /* CTSwizzle.m */,
+				258FDB73CE78D1F6D4177382630CFF30 /* CTUriHelper.h */,
+				33F5112F89F6F2774FF8D831E0D09FD4 /* CTUriHelper.m */,
+				BB5555564C3E207309E5C6337BBBBB66 /* CTUtils.h */,
+				DF35CC91C91B5B2A8C0525CBEA03FE98 /* CTUtils.m */,
+				5248A59E960CDEA9313ED432FD0FA39F /* CTValidationResult.h */,
+				755F884BC6F31A28C3A8FB469C85F4E6 /* CTValidationResult.m */,
+				6D1FE778471B1704F9E2714CAA0D98BA /* CTValidator.h */,
+				29CAC45FD1A625EAA240A8B47A8B78A3 /* CTValidator.m */,
+				43AFE4C33C2C8DAEB6EE63EA9CF7331D /* Resources */,
+				E3D273C31E076C004799AAD9A58A1758 /* Support Files */,
+			);
+			name = "CleverTap-iOS-SDK";
+			path = "CleverTap-iOS-SDK";
+			sourceTree = "<group>";
+		};
+		103ED969A9CB9E27E1105C27ED5A2972 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				346F604E7460D51AB10CB3D9309AE4B0 /* Analytics.modulemap */,
+				6AA913C7E986AB28503291BCE787A554 /* Analytics.xcconfig */,
+				DFEA7D7E52CC928249622B6768AAAFB0 /* Analytics-dummy.m */,
+				364F4E5939ECF7BB1FC85923F9E1CE64 /* Analytics-prefix.pch */,
+				9BEDA09F3D193DADA1E668EA3631665B /* Analytics-umbrella.h */,
+				78C51A2B50AF06FD031ADB61D00C51DD /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Analytics";
+			sourceTree = "<group>";
+		};
+		22CE2ED8EC5202C2A82393950788BE99 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6DB8298EDF181C09B65FE6A765E98293 /* Segment-CleverTap */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		137BBCB705169CE00AB0C26E04FECD76 /* A */ = {
+		2E67AFBFE27AFB85E363B42DFA643D72 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				5930FC00DEC30D33C03B939D51C9B68B /* Headers */,
-			);
-			name = A;
-			path = A;
-			sourceTree = "<group>";
-		};
-		1C0F129E0A63D3140C64F2081B335FB2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BF73CD33168346441A0736A119FFEDA0 /* CleverTapSDK.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2388C116F32E2A6A0E44FF1A8E32ABE0 /* Versions */ = {
-			isa = PBXGroup;
-			children = (
-				137BBCB705169CE00AB0C26E04FECD76 /* A */,
-			);
-			name = Versions;
-			path = Versions;
-			sourceTree = "<group>";
-		};
-		243BB9DB289ACCF665C51877541BDDCD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1B44CEB40FAE6D71318F687D0AB14294 /* Analytics.framework */,
-				776F62E41ACF2537DB1DB7EC42CA5889 /* Pods_ExampleSwift.framework */,
-				F059E2FCDA47D65CB4A574348996D893 /* Segment_CleverTap.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		345AB284D6C5E7096BB1F1024FAB1C15 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				A00C8AD944F37BC7606EE6680B0ACD36 /* LICENSE */,
-				CABB0C48BE891AD2EBF4D3E54B250EB7 /* README.md */,
-				B833D8FE0CEC5787C92DD88955FDC2F5 /* Segment-CleverTap.podspec */,
-				DEC4D390631CAA4B64276768DCF8C4D6 /* Classes */,
-			);
-			name = Pod;
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		4DC7C075F0924D79F527D9C75586A0F1 /* CleverTapSDK.framework */ = {
-			isa = PBXGroup;
-			children = (
-				2388C116F32E2A6A0E44FF1A8E32ABE0 /* Versions */,
-			);
-			name = CleverTapSDK.framework;
-			path = CleverTapSDK.framework;
-			sourceTree = "<group>";
-		};
-		51652751541888283179BCB91C2D8583 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				0C0A19E7CF2AB8A980559D62B353DF67 /* CoreLocation.framework */,
-				474CDC033A282BD1C6ABFE4832A66AB1 /* CoreTelephony.framework */,
-				B103225AA52B1C716EFD02E8FA31B8E7 /* Foundation.framework */,
-				909199B96D10EB90A0759DEC919556B7 /* Security.framework */,
-				6A43668286988D5D4606779929EF0B31 /* SystemConfiguration.framework */,
-				8C1727F36E71E9255D89052CD8258193 /* UIKit.framework */,
+				BE347B064D73E88283A79CB2E1F5BB8E /* Foundation.framework */,
+				080E04B04B3A4D15BF76602239565FFF /* Security.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		5930FC00DEC30D33C03B939D51C9B68B /* Headers */ = {
+		2F2C9A6E973E10ECD3CF2BE1F64F2D8A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				97A826694BD6EFA38234FA84BF5CD41A /* CleverTap.h */,
-				299AD69994CA76A079BED64F1A04174B /* CleverTapBuildInfo.h */,
-				A64586DEE51E8FF3FBA2AEBB64368482 /* CleverTapEventDetail.h */,
-				D03B9450417D3FB587E54E121B1DE33C /* CleverTapInAppNotificationDelegate.h */,
-				265282EC15B92DBCDD5AB342232942CD /* CleverTapSyncDelegate.h */,
-				17A56930F4B5E2C8CA0895B025882DB3 /* CleverTapTrackedViewController.h */,
-				73BC0C68EECBAFC627FF0C4B423A4E0A /* CleverTapUTMDetail.h */,
+				FA42CF88122565A1B5607B70CB8BD3BD /* Analytics.framework */,
+				ADF7E4952DA9AC1153B5497A7BF57786 /* CleverTapSDK.framework */,
+				3F96E1922A658FEFE73B7E7EEF583ED7 /* Pods_ExampleSwift.framework */,
+				6DC9AF51648F407AE9BDADDD7F441D78 /* Segment_CleverTap.framework */,
 			);
-			name = Headers;
-			path = Headers;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		5E499D4668234BB7B6D795899492307A /* Support Files */ = {
+		43AFE4C33C2C8DAEB6EE63EA9CF7331D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E6B8066A10B7F6EE02EDAFAFE7747C6D /* Info.plist */,
-				6E6771F9C8CCEFCEC44BA7C74A10C7A9 /* Segment-CleverTap.modulemap */,
-				D3DCB4A9D00458B1EE4FD5E879EF7455 /* Segment-CleverTap.xcconfig */,
-				D56683A65F87B1DE47478FAED6AA017E /* Segment-CleverTap-dummy.m */,
-				76DB533595DDD7FDF62901AF5F9002AD /* Segment-CleverTap-prefix.pch */,
-				921326A04C5395E9D06E189A26FDEA54 /* Segment-CleverTap-umbrella.h */,
+				3187887F0EFFAD2D80F26E12C8FD62A7 /* DigiCertGlobalRootCA.crt */,
+				76EFE836B912FCE849E41A6FFDD4360F /* DigiCertSHA2SecureServerCA.crt */,
 			);
-			name = "Support Files";
-			path = "ExampleSwift/Pods/Target Support Files/Segment-CleverTap";
+			name = Resources;
 			sourceTree = "<group>";
 		};
-		73C000A2E8A92CA6B98C9524C12D0DAB /* Segment-CleverTap */ = {
+		6DB8298EDF181C09B65FE6A765E98293 /* Segment-CleverTap */ = {
 			isa = PBXGroup;
 			children = (
-				4DC7C075F0924D79F527D9C75586A0F1 /* CleverTapSDK.framework */,
-				1C0F129E0A63D3140C64F2081B335FB2 /* Frameworks */,
-				345AB284D6C5E7096BB1F1024FAB1C15 /* Pod */,
-				5E499D4668234BB7B6D795899492307A /* Support Files */,
+				D986BA34B594D397DC225C2A66EBA9BD /* SEGCleverTapIntegration.h */,
+				7F2D19BF4B3C247ECE7C11D6E0A24170 /* SEGCleverTapIntegration.m */,
+				A2F3FBECBA431E3AFBB883F60A1344FB /* SEGCleverTapIntegrationFactory.h */,
+				F478F8C0A94AE642F15F463F8F2B49ED /* SEGCleverTapIntegrationFactory.m */,
+				016F455B671E1F39FB059C5CAA17058D /* Pod */,
+				8800610DF20C8596BD21AEFC8A02A078 /* Support Files */,
 			);
 			name = "Segment-CleverTap";
 			path = ../..;
+			sourceTree = "<group>";
+		};
+		777AEAF5920537C862E3422C8B9D26AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B46534F3ED4C5AF589DCF6B95F84826C /* Analytics.framework */,
+				4CDCC6882B4CADC9ED0A25BC040636E7 /* CleverTapSDK.framework */,
+				2E67AFBFE27AFB85E363B42DFA643D72 /* iOS */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				065177C178F80A070CFA3489B957081C /* Development Pods */,
-				9BD3BADEC5EEF352D6AEEFF998704F69 /* Frameworks */,
-				9FD4245C996099C35864F4C42CD1809B /* Pods */,
-				243BB9DB289ACCF665C51877541BDDCD /* Products */,
+				22CE2ED8EC5202C2A82393950788BE99 /* Development Pods */,
+				777AEAF5920537C862E3422C8B9D26AC /* Frameworks */,
+				03D5179E50EA5777E5AD58ECBFD98E11 /* Pods */,
+				2F2C9A6E973E10ECD3CF2BE1F64F2D8A /* Products */,
 				F4056262926ABE1B59812BFB8265A52E /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		9BD3BADEC5EEF352D6AEEFF998704F69 /* Frameworks */ = {
+		8800610DF20C8596BD21AEFC8A02A078 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BD4A52BBD293A7E87D07025E5C9362DB /* Analytics.framework */,
-				51652751541888283179BCB91C2D8583 /* iOS */,
+				F02C312425BF2AF3DE8BF9284EC52A6B /* Info.plist */,
+				E4EF26C9E39ABE7F9A861F7F5982B55F /* Segment-CleverTap.modulemap */,
+				515376044C3101D01D15B3D11FCF6ED2 /* Segment-CleverTap.xcconfig */,
+				9DDDCEE894340E9FC2E7EDA3FDA615A0 /* Segment-CleverTap-dummy.m */,
+				CE409F5E671005EA9A14BB4510BC5A27 /* Segment-CleverTap-prefix.pch */,
+				3BA47089E4BBE2BC83F749C40F7ED3C9 /* Segment-CleverTap-umbrella.h */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "ExampleSwift/Pods/Target Support Files/Segment-CleverTap";
 			sourceTree = "<group>";
 		};
-		9FD4245C996099C35864F4C42CD1809B /* Pods */ = {
+		A36679057E12DC1DBF71254D6D1566AC /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				E6D1BD2FA9A2DADE36A58F6D5BBD7263 /* Analytics */,
+				2E7316E9C4BC71CE8FF79C9948D3134B /* NSData+SEGGZIP.h */,
+				F0ECB1F8FE1480AE129B05B32CEB2D52 /* NSData+SEGGZIP.m */,
+				3FE3998F4E0E179452022167A921019F /* SEGAES256Crypto.h */,
+				50C5491F1A9B3F0D1D5ED29B11B71916 /* SEGAES256Crypto.m */,
+				C35C9DAD827A47995A3947AD754A16A0 /* SEGAliasPayload.h */,
+				DABE4FB2611C25DDDE6B034199C109A7 /* SEGAliasPayload.m */,
+				08CB8174BBC8D1E8023065C07464C12C /* SEGAnalytics.h */,
+				16FD54B0DB2C66235323045CE944DA0F /* SEGAnalytics.m */,
+				BF097678B8C3B9704C6233A04DEAFE4D /* SEGAnalyticsConfiguration.h */,
+				060C3EA884ECE29F891BAD9D90D65201 /* SEGAnalyticsConfiguration.m */,
+				FE3B70EF57EC44BA587782981DFCD407 /* SEGAnalyticsUtils.h */,
+				A29E3CD542E6D76A062A40BA51EAC4AC /* SEGAnalyticsUtils.m */,
+				FFA6D197625CC1D49165EFCBBEAAF323 /* SEGContext.h */,
+				BBBC03C8389B77AAC62B54FF30170083 /* SEGContext.m */,
+				A8248689E296EC6C30F9A356E279AEB7 /* SEGCrypto.h */,
+				8D04F117D444D3486A04391C40B55072 /* SEGFileStorage.h */,
+				B0BDBC3A71FF49F6767F368C290F7965 /* SEGFileStorage.m */,
+				EFCE51811690B20DEB3F6206D6C93518 /* SEGGroupPayload.h */,
+				2DC24ABF04A7E32793AC864602D89393 /* SEGGroupPayload.m */,
+				C379085B77B60403FD9BFFC6D0A99264 /* SEGHTTPClient.h */,
+				F913BBF637DD8887E4864CC5059AB558 /* SEGHTTPClient.m */,
+				6A911920116E6C8F61BBC0C8A8D1F28D /* SEGIdentifyPayload.h */,
+				9656B5884F2954AA1A5AE8C659937108 /* SEGIdentifyPayload.m */,
+				4E7E79E5D3553F8342736F6104B2EECB /* SEGIntegration.h */,
+				F14E7D95FE0054D1987C4BA7660D3918 /* SEGIntegrationFactory.h */,
+				020D2591309FD80B6AF4DDE5799FA576 /* SEGIntegrationsManager.h */,
+				0E87253C16358EE2FC8B406118B899DD /* SEGIntegrationsManager.m */,
+				80C0F32AADA9AA5C0D7F76D18EFD7CBE /* SEGMiddleware.h */,
+				2D812502EB8C446C2DE79285BB3F5FF7 /* SEGMiddleware.m */,
+				100B7078E08221E748D62CB4487B5687 /* SEGPayload.h */,
+				BB2D79755E907725CF4FE410CD890F95 /* SEGPayload.m */,
+				48E9B0A2039FE0781DA125640B736B27 /* SEGReachability.h */,
+				ECBD1E6BC7F1836F4B92F7BB5C335F6B /* SEGReachability.m */,
+				D90394255D1291388D4CE352DB86D112 /* SEGScreenPayload.h */,
+				8705066D079C45ECF47A453293390BE0 /* SEGScreenPayload.m */,
+				8B85E060597EEE4A570D8D169FB7744C /* SEGSegmentIntegration.h */,
+				11D343B6F67D278A73BCCA24E0EF3973 /* SEGSegmentIntegration.m */,
+				DB4C1F96967762D7E36E8878F2DC3443 /* SEGSegmentIntegrationFactory.h */,
+				2DC01ED4EF119FFF843FF34B53D1387C /* SEGSegmentIntegrationFactory.m */,
+				5DFF95F5890C3B2AF07850A97813A0CB /* SEGSerializableValue.h */,
+				8A06424A38D9B9FEEC03D68CC5FCD116 /* SEGStorage.h */,
+				64DE0D1DCC3A5EDB9009986E2BBB7693 /* SEGStoreKitTracker.h */,
+				D4430B3A5AF04D1280D37B7E15ABE170 /* SEGStoreKitTracker.m */,
+				403C7652AE3B4B75BDFCBAC8CA9D07B2 /* SEGTrackPayload.h */,
+				DC5F47E708B753D8A66B1B9CEED4237B /* SEGTrackPayload.m */,
+				38998E9432954608AEA6BE8AB9749D41 /* SEGUserDefaultsStorage.h */,
+				5A385F8E022EB1165D4960C9D11018E1 /* SEGUserDefaultsStorage.m */,
+				FB1DAC422EB840FF47624991DC31A7A1 /* SEGUtils.h */,
+				D5C1098C6EF56954AC85BB359FA4899D /* SEGUtils.m */,
+				F7FE6DEB1508D0C340A90BA9B94F0EA1 /* UIViewController+SEGScreen.h */,
+				1104266DBC810D16799F63EA6425FCBD /* UIViewController+SEGScreen.m */,
+				103ED969A9CB9E27E1105C27ED5A2972 /* Support Files */,
 			);
-			name = Pods;
+			name = Analytics;
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		C4DAC4CF8D3D1145A16EA9BE2C453ACD /* Pods-ExampleSwift */ = {
@@ -412,90 +652,18 @@
 			path = "Target Support Files/Pods-ExampleSwift";
 			sourceTree = "<group>";
 		};
-		CFAFBB974CAFEE0B6C4119EA4CF0A9BD /* Support Files */ = {
+		E3D273C31E076C004799AAD9A58A1758 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9C6DEDEC4AF12897F281E6234E3CCFF9 /* Analytics.modulemap */,
-				70996D1B8532B648AB0916099C9A5E8E /* Analytics.xcconfig */,
-				5719A5F5273E30BDA65262BCAFDDA6A4 /* Analytics-dummy.m */,
-				4DB1DE66E1D11503F83FBD8170E1A819 /* Analytics-prefix.pch */,
-				6C47B4FFDFF6625307C69ADC025264FE /* Analytics-umbrella.h */,
-				FE31BFE5D88C73E8AF4A74AA70E9E1AA /* Info.plist */,
+				12A5FC1DAD954CF421C4DBC8F6F04D6D /* CleverTap-iOS-SDK.modulemap */,
+				79328C8A9116AAB1B8B160645442441A /* CleverTap-iOS-SDK.xcconfig */,
+				30F7BFA93D8DFF5A68168A720C39AE86 /* CleverTap-iOS-SDK-dummy.m */,
+				BB92AC6CFF286DA799B9004F03DDE8FE /* CleverTap-iOS-SDK-prefix.pch */,
+				09AFB9597541D44F1F18FAD79D975D53 /* CleverTap-iOS-SDK-umbrella.h */,
+				F3467F7E4FCE06681549E947AF414414 /* Info.plist */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/Analytics";
-			sourceTree = "<group>";
-		};
-		DEC4D390631CAA4B64276768DCF8C4D6 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				11D614E1BCFCD6153944690AE0D945CE /* SEGCleverTapIntegration.h */,
-				4E8D569E660810A992145934523DAC5B /* SEGCleverTapIntegration.m */,
-				F748A66F3158F21049023CC52BC237A8 /* SEGCleverTapIntegrationFactory.h */,
-				E144A13CEE0418776E34032E5910D883 /* SEGCleverTapIntegrationFactory.m */,
-			);
-			name = Classes;
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		E6D1BD2FA9A2DADE36A58F6D5BBD7263 /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				AE133467B486C2E84BDCE059019EF513 /* NSData+SEGGZIP.h */,
-				43160F5CD514C21875295C517F867764 /* NSData+SEGGZIP.m */,
-				D44E390338D98D343E9B5F0E2AD64139 /* SEGAES256Crypto.h */,
-				31540E328B7FD6B3D691ECA758879859 /* SEGAES256Crypto.m */,
-				7F3118E3AC5662B1BAA0A612E8A462AB /* SEGAliasPayload.h */,
-				DE56AC170E3EC47C0EE5AC8EC26ECBC8 /* SEGAliasPayload.m */,
-				2DEC37AD2F3C40597F47C08ED7619940 /* SEGAnalytics.h */,
-				6005686118884759A0D2891251EF5DB1 /* SEGAnalytics.m */,
-				41DCA6C2A15D7808A53B7DEAD00FC084 /* SEGAnalyticsConfiguration.h */,
-				C03ED98555D51E51619E763711A14201 /* SEGAnalyticsConfiguration.m */,
-				38977D869E95D43240246EDD06BF3405 /* SEGAnalyticsUtils.h */,
-				F75343216D1377C7078C32EACFCAEA21 /* SEGAnalyticsUtils.m */,
-				AE05F6DB73100EF44081B99219F8A3FB /* SEGContext.h */,
-				AA484877C4BCB2AA52741090BD60B98E /* SEGContext.m */,
-				580A948B9E60F9DB019BE57008511D56 /* SEGCrypto.h */,
-				471DAA115C451FE91DDF09FBBAFB27A2 /* SEGFileStorage.h */,
-				5CB9C0B436A84B9CE1185E186759B974 /* SEGFileStorage.m */,
-				9AA208161ED150CB9DAE52A44EBC8696 /* SEGGroupPayload.h */,
-				14FE4655414642F817AF987FB55546E5 /* SEGGroupPayload.m */,
-				F6E687B25FE6E2DB707D461EF37A592E /* SEGHTTPClient.h */,
-				B925F48F8EA8CC4B0B3E6136425F7EFF /* SEGHTTPClient.m */,
-				3DEEBAAB80048BA94B52E3165D5D4647 /* SEGIdentifyPayload.h */,
-				A36377BE3FB381BEA3ED8C71969EDC98 /* SEGIdentifyPayload.m */,
-				B0926F96C56E77D7FB141662335C0742 /* SEGIntegration.h */,
-				972611E160C45B384D40464A181F392C /* SEGIntegrationFactory.h */,
-				CB31914788D4FB0C7873723730067D75 /* SEGIntegrationsManager.h */,
-				771CB3085863186E8D7C33CE8951D55C /* SEGIntegrationsManager.m */,
-				6C50BFA2EC1D281248A7D865E3B83DBA /* SEGMiddleware.h */,
-				2DA1EC30C87D0A79FFB41D2FF48C144C /* SEGMiddleware.m */,
-				A9331FD1FC2459CC9E4626710B4850A6 /* SEGPayload.h */,
-				D7DB3F4B84F6B1FFAED8A4A77FC2B623 /* SEGPayload.m */,
-				7298F63B2E8D83C21FF18703CC609B18 /* SEGReachability.h */,
-				8A207384A07B6E20685502AA9FA65670 /* SEGReachability.m */,
-				CD3B80A8A94E42742F684BDCC58CC9DF /* SEGScreenPayload.h */,
-				D971ED0E5C1C46576FFFC54C3BFA1C9B /* SEGScreenPayload.m */,
-				EB49B1DE0C11F1707DCC37BDAD4ECE49 /* SEGSegmentIntegration.h */,
-				7399E7A6F373D25CB08C81CCB42A87E2 /* SEGSegmentIntegration.m */,
-				AB76C7A628F47D1417DF8E143F859346 /* SEGSegmentIntegrationFactory.h */,
-				38EBD0B3C402A4808F2F923AFBE4238A /* SEGSegmentIntegrationFactory.m */,
-				0CA4869B2F53D2A17050EED786F07A62 /* SEGSerializableValue.h */,
-				DF8DB7097520EF71E872DC0FAD4B36BD /* SEGStorage.h */,
-				EA29E8A6505F2EB3B47CA9DAFE566C4F /* SEGStoreKitTracker.h */,
-				A7D90C87A389C3A407A713592D9C5D07 /* SEGStoreKitTracker.m */,
-				C9740DDBE4E4C72EB2E9FABC2E9F58CC /* SEGTrackPayload.h */,
-				25E6AF2B9BC1A560DD4C5222D9331B7D /* SEGTrackPayload.m */,
-				135F4CBF8D9552C0217F875E0BD967C0 /* SEGUserDefaultsStorage.h */,
-				DEDCF52A0AA107763447BD0F3EF9E339 /* SEGUserDefaultsStorage.m */,
-				2FF831A9B279A73943DA21D5D6C4A74D /* SEGUtils.h */,
-				5B769A18D58EE39A0D199F733B1B34CC /* SEGUtils.m */,
-				ED8D0248966CA5769FA7558425743B0A /* UIViewController+SEGScreen.h */,
-				2FFE6B1C4A8A2F0F8C5ABDD29A66154A /* UIViewController+SEGScreen.m */,
-				CFAFBB974CAFEE0B6C4119EA4CF0A9BD /* Support Files */,
-			);
-			name = Analytics;
-			path = Analytics;
+			path = "../Target Support Files/CleverTap-iOS-SDK";
 			sourceTree = "<group>";
 		};
 		F4056262926ABE1B59812BFB8265A52E /* Targets Support Files */ = {
@@ -509,28 +677,63 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C3C00D78183308429A6B3A35FEB0718F /* Headers */ = {
+		4964D9B240187AE2CB71078FDA3F7219 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3E414E317AEAC77D8C12AE1F85A45A6 /* CleverTap.h in Headers */,
-				6514CA05EB5015FC48643AF40C78D5F1 /* CleverTapBuildInfo.h in Headers */,
-				79645A6B8975B08D4AAF1CD5247708EB /* CleverTapEventDetail.h in Headers */,
-				DB0E00150A529706271BF66B40A5BE27 /* CleverTapInAppNotificationDelegate.h in Headers */,
-				9CF43A688B0538D33AAB9967CEC4E300 /* CleverTapSyncDelegate.h in Headers */,
-				8E80CBE6FC2FB3AE7C605BB22F37D6E9 /* CleverTapTrackedViewController.h in Headers */,
-				E38843D08DF4E369BC174BAB4D405149 /* CleverTapUTMDetail.h in Headers */,
-				035A9C2D1F0C9157A1CE1CD6954DB38C /* SEGCleverTapIntegration.h in Headers */,
-				6D1AD971C6E6A5401008690325EF0525 /* SEGCleverTapIntegrationFactory.h in Headers */,
-				FC2940FA5AE129520A20C6D7F182B397 /* Segment-CleverTap-umbrella.h in Headers */,
+				A9C95817F19EC29796F65265CEAA94B1 /* SEGCleverTapIntegration.h in Headers */,
+				EDEE4456056EBE9DAF535F197942535D /* SEGCleverTapIntegrationFactory.h in Headers */,
+				6D636AF742679B7A654F18A7BC1A8A0B /* Segment-CleverTap-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E75118A62B501603B4B8EF143DE81D5D /* Headers */ = {
+		6D81ADC5C5B9BAAE4B842D04133DC859 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDE812FAF697B3105529AA0FE52D1D25 /* Pods-ExampleSwift-umbrella.h in Headers */,
+				5A063C09ABC8CBF2F7D5A5F7778123B3 /* CleverTap+SSLPinning.h in Headers */,
+				71627D4FC543F3ABDA237634D3B4A330 /* CleverTap-iOS-SDK-umbrella.h in Headers */,
+				085988857912E76841FEA0156F48DFA8 /* CleverTap.h in Headers */,
+				4419B3A6AF52DF0A4E38282574959022 /* CleverTapBuildInfo.h in Headers */,
+				32094C8CA0637CD725A0BFAF1CE67E60 /* CleverTapEventDetail.h in Headers */,
+				02BDD5C850BB3D6892AE5CF25627685D /* CleverTapInAppNotificationDelegate.h in Headers */,
+				681153CF2BD5D7130F62E81DFD1F0A0B /* CleverTapInstanceConfig.h in Headers */,
+				A7BBD26ABB6C16491E31D9D0F9FB84D9 /* CleverTapInstanceConfigPrivate.h in Headers */,
+				DDAAC84B90819C3FF1546D2D625D8DB7 /* CleverTapSyncDelegate.h in Headers */,
+				A65E5BD7D0D40B49F92BE12BE41C8C9A /* CleverTapTrackedViewController.h in Headers */,
+				688C9D194522B60609BB2936644F3E59 /* CleverTapUTMDetail.h in Headers */,
+				FA828013DC9A91931A9874877D2E480B /* CTCertificatePinning.h in Headers */,
+				4D3159B3F11E2DD5C895D5D62573BFCA /* CTConstants.h in Headers */,
+				C635D447C284638FA7A29C2C5AF81959 /* CTDeviceInfo.h in Headers */,
+				1380EB58127E4CFC6DF87D8B0777EFA0 /* CTDismissButton.h in Headers */,
+				5E6CAC1187F086F71C623BC609B3B6F0 /* CTEventBuilder.h in Headers */,
+				2E4D2902805FF8107CAE081AA5E64F17 /* CTInAppDisplayViewController.h in Headers */,
+				88BDF1523E46E2FC9AD111DA9C8D782D /* CTInAppDisplayViewControllerPrivate.h in Headers */,
+				E5A8447C3DBA4691A7A6F970D1055DAF /* CTInAppFCManager.h in Headers */,
+				6F026F008C11E7FC32CF0B6BCA356141 /* CTInAppHTMLViewController.h in Headers */,
+				A14FD179AD2FB479FB37D5FE8B31AC08 /* CTInAppNotification.h in Headers */,
+				A7AC02306B4ADD068370475B7DB8723A /* CTInAppUtils.h in Headers */,
+				F5F4FEBAA17542F0F0B7FE4C807E8A96 /* CTKnownProfileFields.h in Headers */,
+				7A34173B98D438E650462223D90AEFEF /* CTLocalDataStore.h in Headers */,
+				605A675EAC850F3EA6098FCD705CD965 /* CTLocationManager.h in Headers */,
+				F853F9AA281B59341AF088800051381B /* CTLogger.h in Headers */,
+				6A54051841C5D901E4E67BFE20E92421 /* CTPinnedNSURLSessionDelegate.h in Headers */,
+				8027AE8CB0D0546ACBB5734B71D3ABCD /* CTPlistInfo.h in Headers */,
+				AEDBF4743F575D74FD8F5253AFDB57D7 /* CTPreferences.h in Headers */,
+				A11850C91F4D9421150F7BD4B87EB7A1 /* CTProfileBuilder.h in Headers */,
+				0D1525CD6663C2B03F542CA8EF484D8F /* CTSwizzle.h in Headers */,
+				FD0EEC27C650FD848EB96CF848CF6122 /* CTUriHelper.h in Headers */,
+				C77512AEB82AD783D3372EDACF8E63AF /* CTUtils.h in Headers */,
+				9F4F53F15480B96573AF1A1244F913B0 /* CTValidationResult.h in Headers */,
+				0C240E97C2FDD751CFCFE1F520B8B200 /* CTValidator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9E7F8691290B8F2B67707F718984F97 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC1BBA0EE8E6F0523860A5947EB7B3B3 /* Pods-ExampleSwift-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,22 +776,22 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		A1436C9B61E99F78EC53F39F169FD862 /* Segment-CleverTap */ = {
+		A90EFFE762D163361E157088949BDE72 /* CleverTap-iOS-SDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 400FE89782088D24B25E2DC6F337004F /* Build configuration list for PBXNativeTarget "Segment-CleverTap" */;
+			buildConfigurationList = 53129F6CB9317CC46001C6EFF2D964CA /* Build configuration list for PBXNativeTarget "CleverTap-iOS-SDK" */;
 			buildPhases = (
-				E5E23803A131B438B3B03FCD9DA939F0 /* Sources */,
-				7A9103AA0D3B01E87AAA41FB59602327 /* Frameworks */,
-				C3C00D78183308429A6B3A35FEB0718F /* Headers */,
+				6509E09E79CBDB06CD49196FDF522009 /* Sources */,
+				BC916488B6249C952D1B30EB58CD8504 /* Frameworks */,
+				6D81ADC5C5B9BAAE4B842D04133DC859 /* Headers */,
+				85A322DADDC76BABE90A0C02E88F0A85 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8CC66D4C70FC28DBC5A05ECECA43B6C4 /* PBXTargetDependency */,
 			);
-			name = "Segment-CleverTap";
-			productName = "Segment-CleverTap";
-			productReference = F059E2FCDA47D65CB4A574348996D893 /* Segment_CleverTap.framework */;
+			name = "CleverTap-iOS-SDK";
+			productName = "CleverTap-iOS-SDK";
+			productReference = ADF7E4952DA9AC1153B5497A7BF57786 /* CleverTapSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AE1DD9B213B2436139A27922A687BBC4 /* Analytics */ = {
@@ -605,26 +808,46 @@
 			);
 			name = Analytics;
 			productName = Analytics;
-			productReference = 1B44CEB40FAE6D71318F687D0AB14294 /* Analytics.framework */;
+			productReference = FA42CF88122565A1B5607B70CB8BD3BD /* Analytics.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EACA5077A535DCD90D428F57853D2E97 /* Pods-ExampleSwift */ = {
+		B192089562E90070C5094CFDB3043ABE /* Pods-ExampleSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 50007C142DF36ADF617B1C325B661BCE /* Build configuration list for PBXNativeTarget "Pods-ExampleSwift" */;
+			buildConfigurationList = C5B38701F6B3FF0D583D30C381D137E5 /* Build configuration list for PBXNativeTarget "Pods-ExampleSwift" */;
 			buildPhases = (
-				E9B2A5189845A6B3B2AA49D4F2D610C9 /* Sources */,
-				63624C230AA97BC913D34D7372C84217 /* Frameworks */,
-				E75118A62B501603B4B8EF143DE81D5D /* Headers */,
+				42CAF6981CE3CA545A0B75649F652FE4 /* Sources */,
+				F61E75A5A9A4F6C7834254DC1E8811F8 /* Frameworks */,
+				E9E7F8691290B8F2B67707F718984F97 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				05F20F844015365F9B6C8DF1D029AF77 /* PBXTargetDependency */,
-				8654558D96D2C1CAE12B79A1C3988392 /* PBXTargetDependency */,
+				CD58DE9A7D5246E922B0FB1DB08F878B /* PBXTargetDependency */,
+				ED8C572A3CC80652A08878AE75D55EAA /* PBXTargetDependency */,
+				D81247EAA3C2FB014A3CB98381635AF2 /* PBXTargetDependency */,
 			);
 			name = "Pods-ExampleSwift";
 			productName = "Pods-ExampleSwift";
-			productReference = 776F62E41ACF2537DB1DB7EC42CA5889 /* Pods_ExampleSwift.framework */;
+			productReference = 3F96E1922A658FEFE73B7E7EEF583ED7 /* Pods_ExampleSwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D939C9699ACA4B78BEACE5270914D925 /* Segment-CleverTap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0A5656587529A56BD1B40767EE21F1F /* Build configuration list for PBXNativeTarget "Segment-CleverTap" */;
+			buildPhases = (
+				19B3AFD5175B050EB9B5B1E438E84F5B /* Sources */,
+				8AF9D8D65BA2292BE10B309654392124 /* Frameworks */,
+				4964D9B240187AE2CB71078FDA3F7219 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				12A7F9E612B01801CC09B6E24A8F8E88 /* PBXTargetDependency */,
+				7143845F576BF403B0BF4D5675E19140 /* PBXTargetDependency */,
+			);
+			name = "Segment-CleverTap";
+			productName = "Segment-CleverTap";
+			productReference = 6DC9AF51648F407AE9BDADDD7F441D78 /* Segment_CleverTap.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -644,18 +867,85 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 243BB9DB289ACCF665C51877541BDDCD /* Products */;
+			productRefGroup = 2F2C9A6E973E10ECD3CF2BE1F64F2D8A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				AE1DD9B213B2436139A27922A687BBC4 /* Analytics */,
-				EACA5077A535DCD90D428F57853D2E97 /* Pods-ExampleSwift */,
-				A1436C9B61E99F78EC53F39F169FD862 /* Segment-CleverTap */,
+				A90EFFE762D163361E157088949BDE72 /* CleverTap-iOS-SDK */,
+				B192089562E90070C5094CFDB3043ABE /* Pods-ExampleSwift */,
+				D939C9699ACA4B78BEACE5270914D925 /* Segment-CleverTap */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		85A322DADDC76BABE90A0C02E88F0A85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F31F807018849BF833B3D78C2CE047E5 /* DigiCertGlobalRootCA.crt in Resources */,
+				D8D0801FD160614C8C055BB5B630764A /* DigiCertSHA2SecureServerCA.crt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		19B3AFD5175B050EB9B5B1E438E84F5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38EBCA60A012209A3F853341BEFC44C2 /* SEGCleverTapIntegration.m in Sources */,
+				8CBFD56B1B4623AA4E450C8160F7B317 /* SEGCleverTapIntegrationFactory.m in Sources */,
+				58A72D9236E059CFC55625CF09B35E3B /* Segment-CleverTap-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42CAF6981CE3CA545A0B75649F652FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				310C1500C3CB80E33037DD035E8EED19 /* Pods-ExampleSwift-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6509E09E79CBDB06CD49196FDF522009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A9693101A8EB69973AE034D64B27AC3 /* CleverTap-iOS-SDK-dummy.m in Sources */,
+				90025DB1577303A786C23D349E08BEE1 /* CleverTap.m in Sources */,
+				4A4C98D626AF5AC98CE66C2410ECFEEA /* CleverTapEventDetail.m in Sources */,
+				FA86057F02DC929A3D952654EBDF3428 /* CleverTapInstanceConfig.m in Sources */,
+				ECD64179B990BBD3C707BEA73683FD63 /* CleverTapTrackedViewController.m in Sources */,
+				64FC2D2878B4ED1B2F08A1137C3C4011 /* CleverTapUTMDetail.m in Sources */,
+				C6B250D24FA6CF5FD2995389E0C62C83 /* CTCertificatePinning.m in Sources */,
+				2879E45D055BBDD4A8E2333D3DAC8F08 /* CTConstants.m in Sources */,
+				3C2E8B8706F5B2BCCE5B3BB26336C1ED /* CTDeviceInfo.m in Sources */,
+				47D18E0AD18242A0746DC318209563CB /* CTDismissButton.m in Sources */,
+				0E8053C4C81051BC8E109CF551875725 /* CTEventBuilder.m in Sources */,
+				CB29A2AC75F89EA7775ED7308BC66B40 /* CTInAppDisplayViewController.m in Sources */,
+				9FAD57B3E7EEBC3D9C11460B15D2FA98 /* CTInAppFCManager.m in Sources */,
+				22083F54C1916EAB135A92BC42F4A026 /* CTInAppHTMLViewController.m in Sources */,
+				2D9A96BE746C51D20AD00E6E42D18D69 /* CTInAppNotification.m in Sources */,
+				F1F965A73C583E8EB3B8109C76F8B0B0 /* CTInAppUtils.m in Sources */,
+				E6BDD39508DC2A19B425FA933BEAC4EA /* CTKnownProfileFields.m in Sources */,
+				EEC8977A31B74AA6930D3F9115905154 /* CTLocalDataStore.m in Sources */,
+				500BAF9EE30ABA8F91AE89A764626292 /* CTLocationManager.m in Sources */,
+				D982E7CE4087DB3304AFDB433860CD61 /* CTLogger.m in Sources */,
+				6EA95DCD32E2C8B38A933BB898C5C96F /* CTPinnedNSURLSessionDelegate.m in Sources */,
+				6805FF0E1FC3C2AE623E84287B23C9BB /* CTPlistInfo.m in Sources */,
+				BDC91852AED2B5BE1BE080F321E15DD6 /* CTPreferences.m in Sources */,
+				4FDCAB6D28398A1C47A317C894869DC4 /* CTProfileBuilder.m in Sources */,
+				946376D36D2B988F0084A0B74C6FD6AE /* CTSwizzle.m in Sources */,
+				4568F178AB0BBD6CCB1E76AA79CBA9F8 /* CTUriHelper.m in Sources */,
+				86384D343858AB48839FBECBA6D2B5D8 /* CTUtils.m in Sources */,
+				ADDE15BB1E6F4DF96A8FA129DC1CFD14 /* CTValidationResult.m in Sources */,
+				1729C7810E9FE42F762376BF2DD9D419 /* CTValidator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		69A376F26C0EFC3040D4E955974433DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -687,205 +977,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E5E23803A131B438B3B03FCD9DA939F0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F519CB6FE3E97BC60841CB146ADEE603 /* SEGCleverTapIntegration.m in Sources */,
-				4C4C757E33CF6015D4EE32E7F1DF8EB3 /* SEGCleverTapIntegrationFactory.m in Sources */,
-				8865126AF273BBB85FCCAFE8A5AE8661 /* Segment-CleverTap-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E9B2A5189845A6B3B2AA49D4F2D610C9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0F6AF59322F017CAA40511F03CFC57DF /* Pods-ExampleSwift-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		05F20F844015365F9B6C8DF1D029AF77 /* PBXTargetDependency */ = {
+		12A7F9E612B01801CC09B6E24A8F8E88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Analytics;
 			target = AE1DD9B213B2436139A27922A687BBC4 /* Analytics */;
-			targetProxy = 95A00CF50360F98D632824BE8AEDC05F /* PBXContainerItemProxy */;
+			targetProxy = F938D53359CA879C4E18035E15E0BE01 /* PBXContainerItemProxy */;
 		};
-		8654558D96D2C1CAE12B79A1C3988392 /* PBXTargetDependency */ = {
+		7143845F576BF403B0BF4D5675E19140 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CleverTap-iOS-SDK";
+			target = A90EFFE762D163361E157088949BDE72 /* CleverTap-iOS-SDK */;
+			targetProxy = BDA5994B75C33BA0C11A6A0AF03574ED /* PBXContainerItemProxy */;
+		};
+		CD58DE9A7D5246E922B0FB1DB08F878B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Analytics;
+			target = AE1DD9B213B2436139A27922A687BBC4 /* Analytics */;
+			targetProxy = 33C76020ACB6D159EF2540CC5D81F128 /* PBXContainerItemProxy */;
+		};
+		D81247EAA3C2FB014A3CB98381635AF2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Segment-CleverTap";
-			target = A1436C9B61E99F78EC53F39F169FD862 /* Segment-CleverTap */;
-			targetProxy = 5A255091EC9C82A9EB08EB533BBF22F5 /* PBXContainerItemProxy */;
+			target = D939C9699ACA4B78BEACE5270914D925 /* Segment-CleverTap */;
+			targetProxy = E95083521256AD53E581F8FD62AC3C91 /* PBXContainerItemProxy */;
 		};
-		8CC66D4C70FC28DBC5A05ECECA43B6C4 /* PBXTargetDependency */ = {
+		ED8C572A3CC80652A08878AE75D55EAA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Analytics;
-			target = AE1DD9B213B2436139A27922A687BBC4 /* Analytics */;
-			targetProxy = D7C4ECAEF245907B7D7FBD4D39B671A0 /* PBXContainerItemProxy */;
+			name = "CleverTap-iOS-SDK";
+			target = A90EFFE762D163361E157088949BDE72 /* CleverTap-iOS-SDK */;
+			targetProxy = DF9AC413C866433FBFD03238CD677D26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0E3F1B460013F88DA40CD10A5E2012BF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70996D1B8532B648AB0916099C9A5E8E /* Analytics.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Analytics/Analytics-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Analytics/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Analytics/Analytics.modulemap";
-				PRODUCT_NAME = Analytics;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		19C0D3FDD7EC29FC6DC2210550628D8B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49230D3952BB9A9CD086A64D3A18A67F /* Pods-ExampleSwift.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-ExampleSwift/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ExampleSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		1E12A0D86BDC767936DD8FD7BC52704E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3DCB4A9D00458B1EE4FD5E879EF7455 /* Segment-CleverTap.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Segment-CleverTap/Segment-CleverTap-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Segment-CleverTap/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Segment-CleverTap/Segment-CleverTap.modulemap";
-				PRODUCT_NAME = Segment_CleverTap;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3EE11558565A96CEF864140BC26552A7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9548BFC8643C3362764C774F364A2A1B /* Pods-ExampleSwift.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-ExampleSwift/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ExampleSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		B0139AA97276719322288F471DC79BEC /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3DCB4A9D00458B1EE4FD5E879EF7455 /* Segment-CleverTap.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Segment-CleverTap/Segment-CleverTap-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Segment-CleverTap/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Segment-CleverTap/Segment-CleverTap.modulemap";
-				PRODUCT_NAME = Segment_CleverTap;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C3E37FB098AE76440E29106ADBF00CEB /* Debug */ = {
+		1EE19F5DD95931924296F637BF18BD8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -917,6 +1045,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -941,14 +1070,206 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		DA03565BE765DB55C6448FB363A44481 /* Release */ = {
+		7AE596CCDF082C4DC72FC8763FFD8DA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79328C8A9116AAB1B8B160645442441A /* CleverTap-iOS-SDK.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CleverTap-iOS-SDK/CleverTap-iOS-SDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CleverTap-iOS-SDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CleverTap-iOS-SDK/CleverTap-iOS-SDK.modulemap";
+				PRODUCT_MODULE_NAME = CleverTapSDK;
+				PRODUCT_NAME = CleverTapSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		802D5490C7921DA081BC98E8F6C98D74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49230D3952BB9A9CD086A64D3A18A67F /* Pods-ExampleSwift.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ExampleSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8A2FA4CA9D6E7162BDB42CF9B803F3AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AA913C7E986AB28503291BCE787A554 /* Analytics.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Analytics/Analytics-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Analytics/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Analytics/Analytics.modulemap";
+				PRODUCT_MODULE_NAME = Analytics;
+				PRODUCT_NAME = Analytics;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		932155E1FFBCB4DA97131401EBF0B29C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 515376044C3101D01D15B3D11FCF6ED2 /* Segment-CleverTap.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Segment-CleverTap/Segment-CleverTap-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Segment-CleverTap/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Segment-CleverTap/Segment-CleverTap.modulemap";
+				PRODUCT_MODULE_NAME = Segment_CleverTap;
+				PRODUCT_NAME = Segment_CleverTap;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A2AAC7D0069DC5E2EB41855540BA6554 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9548BFC8643C3362764C774F364A2A1B /* Pods-ExampleSwift.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ExampleSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DE3F0C78A44BCCFA5A14896881B98C3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79328C8A9116AAB1B8B160645442441A /* CleverTap-iOS-SDK.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CleverTap-iOS-SDK/CleverTap-iOS-SDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CleverTap-iOS-SDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CleverTap-iOS-SDK/CleverTap-iOS-SDK.modulemap";
+				PRODUCT_MODULE_NAME = CleverTapSDK;
+				PRODUCT_NAME = CleverTapSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F4568DEE257655D290C2B9CEAB37C934 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -980,6 +1301,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1000,15 +1322,46 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		F703B1D4C77290BE9DA61EE1FA4325A3 /* Release */ = {
+		FE591B3017DA6D19FB755AE529369D9D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70996D1B8532B648AB0916099C9A5E8E /* Analytics.xcconfig */;
+			baseConfigurationReference = 515376044C3101D01D15B3D11FCF6ED2 /* Segment-CleverTap.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Segment-CleverTap/Segment-CleverTap-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Segment-CleverTap/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Segment-CleverTap/Segment-CleverTap.modulemap";
+				PRODUCT_MODULE_NAME = Segment_CleverTap;
+				PRODUCT_NAME = Segment_CleverTap;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FEC852892D80148FA9AC8C1CC91841A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AA913C7E986AB28503291BCE787A554 /* Analytics.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1025,17 +1378,17 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Analytics/Analytics.modulemap";
+				PRODUCT_MODULE_NAME = Analytics;
 				PRODUCT_NAME = Analytics;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1043,26 +1396,26 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C3E37FB098AE76440E29106ADBF00CEB /* Debug */,
-				DA03565BE765DB55C6448FB363A44481 /* Release */,
+				1EE19F5DD95931924296F637BF18BD8F /* Debug */,
+				F4568DEE257655D290C2B9CEAB37C934 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		400FE89782088D24B25E2DC6F337004F /* Build configuration list for PBXNativeTarget "Segment-CleverTap" */ = {
+		53129F6CB9317CC46001C6EFF2D964CA /* Build configuration list for PBXNativeTarget "CleverTap-iOS-SDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1E12A0D86BDC767936DD8FD7BC52704E /* Debug */,
-				B0139AA97276719322288F471DC79BEC /* Release */,
+				7AE596CCDF082C4DC72FC8763FFD8DA0 /* Debug */,
+				DE3F0C78A44BCCFA5A14896881B98C3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		50007C142DF36ADF617B1C325B661BCE /* Build configuration list for PBXNativeTarget "Pods-ExampleSwift" */ = {
+		B0A5656587529A56BD1B40767EE21F1F /* Build configuration list for PBXNativeTarget "Segment-CleverTap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				19C0D3FDD7EC29FC6DC2210550628D8B /* Debug */,
-				3EE11558565A96CEF864140BC26552A7 /* Release */,
+				932155E1FFBCB4DA97131401EBF0B29C /* Debug */,
+				FE591B3017DA6D19FB755AE529369D9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1070,8 +1423,17 @@
 		C23D659BFD5F1571DAB26212EB6D5BCE /* Build configuration list for PBXNativeTarget "Analytics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0E3F1B460013F88DA40CD10A5E2012BF /* Debug */,
-				F703B1D4C77290BE9DA61EE1FA4325A3 /* Release */,
+				FEC852892D80148FA9AC8C1CC91841A3 /* Debug */,
+				8A2FA4CA9D6E7162BDB42CF9B803F3AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5B38701F6B3FF0D583D30C381D137E5 /* Build configuration list for PBXNativeTarget "Pods-ExampleSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				802D5490C7921DA081BC98E8F6C98D74 /* Debug */,
+				A2AAC7D0069DC5E2EB41855540BA6554 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

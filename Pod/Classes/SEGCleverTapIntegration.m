@@ -145,7 +145,7 @@
 # pragma mark private
 
 - (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region {
-    [CleverTap changeCredentialsWithAccountID:accountID token:accountToken region:region];
+    [CleverTap setCredentialsWithAccountID:accountID token:accountToken region:region];
     [[CleverTap sharedInstance] notifyApplicationLaunchedWithOptions:nil];
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "Segment-CleverTap",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "summary": "CleverTap Integration for Segment's analytics-ios library.",
   "description": "Analytics for iOS provides a single API that lets you\nintegrate with over 100s of tools.\nThis is the CleverTap integration for the iOS library.",
   "homepage": "https://github.com/CleverTap/clevertap-segment-ios",
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/CleverTap/clevertap-segment-ios.git",
-    "tag": "1.0.15"
+    "tag": "1.0.16"
   },
   "social_media_url": "https://twitter.com/clevertap",
   "platforms": {
@@ -22,23 +22,10 @@
   "dependencies": {
     "Analytics": [
       "~> 3.0"
+    ],
+    "CleverTap-iOS-SDK": [
+      "~> 3.2.0"
     ]
   },
-  "frameworks": [
-    "SystemConfiguration",
-    "CoreTelephony",
-    "UIKit",
-    "CoreLocation"
-  ],
-  "xcconfig": {
-    "FRAMEWORK_SEARCH_PATHS": "$(inherited)"
-  },
-  "ios": {
-    "vendored_frameworks": "CleverTapSDK.framework"
-  },
-  "preserve_paths": "CleverTapSDK.framework",
-  "source_files": [
-    "Pod/Classes/**/*",
-    "CleverTapSDK.framework/Versions/A/Headers/*.h"
-  ]
+  "source_files": "Pod/Classes/**/*"
 }
