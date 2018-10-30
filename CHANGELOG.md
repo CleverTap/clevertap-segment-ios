@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 1.0.18 *(30 October, 2018)*
+-------------------------------------------
+*(Supports analytics-ios 3.0.+ and CleverTap 3.3.0)*
+
 Version 1.0.17 *(26 September, 2018)*
 -------------------------------------------
 *(Supports analytics-ios 3.0.+ and CleverTap 3.2.2)*
@@ -15,7 +19,7 @@ Version 1.0.15 *(11 May, 2018)*
 
 *New APIs for GDPR compliance*
 
-Version 1.0.14 *(13 Octover, 2017)*
+Version 1.0.14 *(13 October, 2017)*
 -------------------------------------------
 *(Supports analytics-ios 3.0.+ and CleverTap 3.1.6)*
 

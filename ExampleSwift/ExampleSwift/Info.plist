@@ -27,6 +27,12 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CleverTapAccountID</key>
+	<string></string>
+	<key>CleverTapRegion</key>
+	<string></string>
+	<key>CleverTapToken</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIBackgroundModes</key>
@@ -54,11 +60,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CleverTapAccountID</key>
-	<string></string>
-	<key>CleverTapToken</key>
-	<string></string>
-	<key>CleverTapRegion</key>
-	<string></string>
 </dict>
 </plist>
