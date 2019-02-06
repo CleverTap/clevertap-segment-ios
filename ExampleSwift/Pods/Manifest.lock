@@ -1,9 +1,15 @@
 PODS:
-  - Analytics (3.6.9)
-  - CleverTap-iOS-SDK (3.3.0)
-  - Segment-CleverTap (1.0.18):
+  - Analytics (3.6.10)
+  - CleverTap-iOS-SDK (3.4.1):
+    - SDWebImage/GIF (~> 4.0)
+  - FLAnimatedImage (1.0.12)
+  - SDWebImage/Core (4.4.5)
+  - SDWebImage/GIF (4.4.5):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
+  - Segment-CleverTap (1.0.19):
     - Analytics (~> 3.0)
-    - CleverTap-iOS-SDK (~> 3.3.0)
+    - CleverTap-iOS-SDK (~> 3.4.1)
 
 DEPENDENCIES:
   - Segment-CleverTap (from `../`)
@@ -12,15 +18,19 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Analytics
     - CleverTap-iOS-SDK
+    - FLAnimatedImage
+    - SDWebImage
 
 EXTERNAL SOURCES:
   Segment-CleverTap:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Analytics: 6541ce337e99d9f7a2240a8b3953940a7be5f998
-  CleverTap-iOS-SDK: a005f68e26113a89d023c217048011526224e7f6
-  Segment-CleverTap: af6699e52e7106c501be1efc0a2f99a457891bc7
+  Analytics: 63744ad4afa65c3bcdcdb7a94b62515bde5b3900
+  CleverTap-iOS-SDK: 8ebdb30830a2311bbd39a613d85b8c9e209f57ca
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
+  Segment-CleverTap: 2222f5eff8d31c253b581c70ff86ffa55c1af8c7
 
 PODFILE CHECKSUM: d8411586a6e40cf7b62e0ecc2595a94fb896a6c0
 

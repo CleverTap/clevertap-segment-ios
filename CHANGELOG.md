@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.0.19 *(6 February, 2019)*
+-------------------------------------------
+*(Supports analytics-ios 3.0.+ and CleverTap 3.4.1)*
+
+*Adds support for App Inbox*
+
 Version 1.0.18 *(30 October, 2018)*
 -------------------------------------------
 *(Supports analytics-ios 3.0.+ and CleverTap 3.3.0)*

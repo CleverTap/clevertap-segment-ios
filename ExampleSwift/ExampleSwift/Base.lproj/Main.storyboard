@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="whP-gf-Uak">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,54 +13,85 @@
         <scene sceneID="wQg-tq-qST">
             <objects>
                 <viewController id="whP-gf-Uak" customClass="ViewController" customModule="ExampleSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="spp-F5-Jlr"/>
+                        <viewControllerLayoutGuide type="bottom" id="HqB-TD-Jy4"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1" customClass="UIButton">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BDX-p0-UnV">
-                                <rect key="frame" x="134" y="81" width="52" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDX-p0-UnV">
+                                <rect key="frame" x="20" y="224" width="280" height="30"/>
                                 <state key="normal" title="Identify"/>
                                 <connections>
                                     <action selector="identifyButtonDidPress:" destination="whP-gf-Uak" eventType="touchUpInside" id="43D-fC-0cg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SDT-vM-g7V">
-                                <rect key="frame" x="141" y="177" width="39" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDT-vM-g7V">
+                                <rect key="frame" x="20" y="284" width="280" height="30"/>
                                 <state key="normal" title="Track"/>
                                 <connections>
                                     <action selector="trackButtonDidPress:" destination="whP-gf-Uak" eventType="touchUpInside" id="i51-2v-4c2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9as-97-yzL">
-                                <rect key="frame" x="141" y="269" width="33" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9as-97-yzL">
+                                <rect key="frame" x="20" y="344" width="280" height="30"/>
                                 <state key="normal" title="Alias"/>
                                 <connections>
                                     <action selector="aliasButtonDidPress:" destination="whP-gf-Uak" eventType="touchUpInside" id="jub-zq-Tth"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uRg-Fx-ln5">
-                                <rect key="frame" x="124" y="366" width="72" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRg-Fx-ln5">
+                                <rect key="frame" x="20" y="404" width="280" height="30"/>
                                 <state key="normal" title="Screen"/>
                                 <connections>
                                     <action selector="screenButtonPressed:" destination="whP-gf-Uak" eventType="touchUpInside" id="Z0C-Tq-jn2"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvz-54-mFF">
+                                <rect key="frame" x="20" y="464" width="280" height="30"/>
+                                <state key="normal" title="Show App Inbox"/>
+                                <connections>
+                                    <action selector="showAppInbox" destination="whP-gf-Uak" eventType="touchUpInside" id="ZSE-Ix-TZ8"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="BZU-YY-ceF">
+                                <rect key="frame" x="60" y="44" width="200" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="j1s-Dh-F3M"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9as-97-yzL" secondAttribute="trailing" constant="20" id="4C7-PE-SKe"/>
+                            <constraint firstItem="gvz-54-mFF" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="6iq-N8-cD1"/>
+                            <constraint firstItem="SDT-vM-g7V" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="8TF-a9-Of6"/>
+                            <constraint firstItem="BDX-p0-UnV" firstAttribute="top" secondItem="BZU-YY-ceF" secondAttribute="bottom" constant="60" id="9XD-K9-Lp8"/>
+                            <constraint firstAttribute="trailing" secondItem="SDT-vM-g7V" secondAttribute="trailing" constant="20" id="Dk7-me-4PR"/>
+                            <constraint firstAttribute="trailing" secondItem="BZU-YY-ceF" secondAttribute="trailing" constant="60" id="L7d-lD-nuC"/>
+                            <constraint firstItem="uRg-Fx-ln5" firstAttribute="top" secondItem="9as-97-yzL" secondAttribute="bottom" constant="30" id="LI3-rY-mGb"/>
+                            <constraint firstItem="9as-97-yzL" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="MP0-B7-IYX"/>
+                            <constraint firstAttribute="trailing" secondItem="uRg-Fx-ln5" secondAttribute="trailing" constant="20" id="RWK-VP-XVd"/>
+                            <constraint firstAttribute="trailing" secondItem="BDX-p0-UnV" secondAttribute="trailing" constant="20" id="Zv2-kL-fTo"/>
+                            <constraint firstAttribute="trailing" secondItem="gvz-54-mFF" secondAttribute="trailing" constant="20" id="aDB-1f-9LO"/>
+                            <constraint firstItem="BZU-YY-ceF" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="60" id="dP6-Ak-gCg"/>
+                            <constraint firstItem="uRg-Fx-ln5" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="dj5-mI-SY3"/>
+                            <constraint firstItem="SDT-vM-g7V" firstAttribute="top" secondItem="BDX-p0-UnV" secondAttribute="bottom" constant="30" id="lCW-91-vpA"/>
+                            <constraint firstItem="BDX-p0-UnV" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="mvf-xZ-Rro"/>
+                            <constraint firstItem="BZU-YY-ceF" firstAttribute="top" secondItem="spp-F5-Jlr" secondAttribute="bottom" constant="24" id="oMy-Zb-Trq"/>
+                            <constraint firstItem="gvz-54-mFF" firstAttribute="top" secondItem="uRg-Fx-ln5" secondAttribute="bottom" constant="30" id="pg8-RN-w28"/>
+                            <constraint firstItem="9as-97-yzL" firstAttribute="top" secondItem="SDT-vM-g7V" secondAttribute="bottom" constant="30" id="usZ-QR-iyw"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162.5" y="409.5"/>
+            <point key="canvasLocation" x="260" y="368.36581709145429"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
-    </simulatedMetricsContainer>
+    <resources>
+        <image name="logo" width="1000" height="283"/>
+    </resources>
 </document>

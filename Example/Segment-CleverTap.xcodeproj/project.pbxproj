@@ -321,12 +321,16 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Segment-CleverTap_Example/Pods-Segment-CleverTap_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Analytics-framework/Analytics.framework",
 				"${BUILT_PRODUCTS_DIR}/CleverTap-iOS-SDK-framework/CleverTapSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage-framework/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Segment-CleverTap-framework/Segment_CleverTap.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CleverTapSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Segment_CleverTap.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +378,18 @@
 				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_shrink@3x.png",
 				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_thumb.png",
 				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/sound-wave-headphones.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/cells/CTCarouselImageMessageCell.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/cells/CTCarouselMessageCell.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/cells/CTInboxIconMessageCell.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/cells/CTInboxSimpleMessageCell.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/controllers/CleverTapInboxViewController.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/ct_default_landscape_image.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/ct_default_portrait_image.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/ct_default_video.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/placeholder.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/volume_off.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/volume_on.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/models/Inbox.xcdatamodeld",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -410,6 +426,18 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_shrink@3x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_thumb.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/sound-wave-headphones.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselImageMessageCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselMessageCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxIconMessageCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxSimpleMessageCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CleverTapInboxViewController.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_landscape_image.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_portrait_image.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_video.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/placeholder.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/volume_off.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/volume_on.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Inbox.momd",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

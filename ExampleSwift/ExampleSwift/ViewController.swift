@@ -1,17 +1,36 @@
 
 import UIKit
+import CleverTapSDK
 import Analytics
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        registerAppInbox()
+        initializeAppInbox()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func registerAppInbox() {
+        CleverTap.sharedInstance()?.registerInboxUpdatedBlock({
+            let messageCount = CleverTap.sharedInstance()?.getInboxMessageCount()
+            let unreadCount = CleverTap.sharedInstance()?.getInboxMessageUnreadCount()
+            print("Inbox Message updated:\(String(describing: messageCount))/\(String(describing: unreadCount)) unread")
+        })
+    }
+    
+    func initializeAppInbox() {
+        CleverTap.sharedInstance()?.initializeInbox(callback: ({ (success) in
+            let messageCount = CleverTap.sharedInstance()?.getInboxMessageCount()
+            let unreadCount = CleverTap.sharedInstance()?.getInboxMessageUnreadCount()
+            print("Inbox Message:\(String(describing: messageCount))/\(String(describing: unreadCount)) unread")
+        }))
     }
     
     @IBAction func screenButtonPressed(_ sender: Any) {
@@ -40,6 +59,20 @@ class ViewController: UIViewController {
     
     @IBAction func aliasButtonDidPress(_ sender: Any) {
         SEGAnalytics.shared().alias("654321A")
+    }
+    
+    @IBAction func showAppInbox() {
+        // config the style of App Inbox Controller
+        let style = CleverTapInboxStyleConfig.init()
+        style.title = "App Inbox"
+        if let inboxController = CleverTap.sharedInstance()?.newInboxViewController(with: style, andDelegate: self) {
+            let navigationController = UINavigationController.init(rootViewController: inboxController)
+            self.present(navigationController, animated: true, completion: nil)
+        }
+    }
+    
+    func messageDidSelect(_ message: CleverTapInboxMessage!, at index: Int32, withButtonIndex buttonIndex: Int32) {
+         // This method is called when an inbox message is clicked(tapped or call to action)
     }
 }
 

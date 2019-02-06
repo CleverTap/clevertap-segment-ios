@@ -1,8 +1,9 @@
 #import "SEGViewController.h"
 #import "SEGAnalytics.h"
 #import <CleverTapSDK/CleverTap.h>
+#import <CleverTapSDK/CleverTap+Inbox.h>
 
-@interface SEGViewController ()
+@interface SEGViewController () <CleverTapInboxViewControllerDelegate>
 
 @end
 
@@ -11,11 +12,29 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self initializeAppInbox];
+  [self registerAppInbox];
 }
 
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
+}
+
+- (void)initializeAppInbox {
+    [[CleverTap sharedInstance] initializeInboxWithCallback:^(BOOL success) {
+        int messageCount = (int)[[CleverTap sharedInstance] getInboxMessageCount];
+        int unreadCount = (int)[[CleverTap sharedInstance] getInboxMessageUnreadCount];
+        NSLog(@"Inbox Message: %d/%d", messageCount, unreadCount);
+    }];
+}
+
+- (void)registerAppInbox {
+    [[CleverTap sharedInstance] registerInboxUpdatedBlock:^{
+        int messageCount = (int)[[CleverTap sharedInstance] getInboxMessageCount];
+        int unreadCount = (int)[[CleverTap sharedInstance] getInboxMessageUnreadCount];
+        NSLog(@"Inbox Message updated: %d/%d", messageCount, unreadCount);
+    }];
 }
 
 - (IBAction)screenButtonPress:(id)sender {
@@ -82,6 +101,19 @@
 
 - (IBAction)aliasButtonPress:(id)sender {
     [[SEGAnalytics sharedAnalytics] alias:@"654321"];
+}
+
+- (IBAction)showAppInbox:(id)sender {
+    CleverTapInboxStyleConfig *style = [[CleverTapInboxStyleConfig alloc] init];
+    CleverTapInboxViewController *inboxController = [[CleverTap sharedInstance] newInboxViewControllerWithConfig:style andDelegate:self];
+    if (inboxController) {
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:inboxController];
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
+}
+
+- (void)messageDidSelect:(CleverTapInboxMessage *)message atIndex:(int)index withButtonIndex:(int)buttonIndex {
+   // This method is called when an inbox message is clicked(tapped or call to action)
 }
 
 @end
