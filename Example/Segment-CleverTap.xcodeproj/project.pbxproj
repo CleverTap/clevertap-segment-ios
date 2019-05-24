@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		33221EFF138E9E78634232A8 /* Pods_Segment_CleverTap_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2E226B9EE65CE8793CF4B7 /* Pods_Segment_CleverTap_Example.framework */; };
+		4664A67741C812A25B50749D /* Pods_Segment_CleverTap_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43489EEB3062BAAB70DF180E /* Pods_Segment_CleverTap_Tests.framework */; };
 		522ECC5B1CAC7510006D0E53 /* SEGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522ECC581CAC7510006D0E53 /* SEGViewController.m */; };
 		522ECC5C1CAC7510006D0E53 /* SEGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 522ECC5A1CAC7510006D0E53 /* SEGAppDelegate.m */; };
 		527A230D1CB5D1190040CF73 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ADDE331CAC9CA700BE13CB /* Tests.m */; };
@@ -16,7 +17,6 @@
 		52E62A621CAC6C8600C24CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E62A601CAC6C8600C24CEC /* Main.storyboard */; };
 		52E62A641CAC6C8600C24CEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E62A631CAC6C8600C24CEC /* Assets.xcassets */; };
 		52E62A671CAC6C8600C24CEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E62A651CAC6C8600C24CEC /* LaunchScreen.storyboard */; };
-		D08900941F06E08C002007E6 /* libPods-Segment-CleverTap_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 732B46FA346F478500AFD713 /* libPods-Segment-CleverTap_Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +32,7 @@
 /* Begin PBXFileReference section */
 		3426116C89AF73C9CA2FD1F7 /* Pods-Segment-CleverTap_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-CleverTap_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Segment-CleverTap_Example/Pods-Segment-CleverTap_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3753233866F6DF90367DC9CA /* Pods-Segment-CleverTap_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-CleverTap_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Segment-CleverTap_Example/Pods-Segment-CleverTap_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		43489EEB3062BAAB70DF180E /* Pods_Segment_CleverTap_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Segment_CleverTap_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2E226B9EE65CE8793CF4B7 /* Pods_Segment_CleverTap_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Segment_CleverTap_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		522ECC571CAC7510006D0E53 /* SEGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGViewController.h; sourceTree = "<group>"; };
 		522ECC581CAC7510006D0E53 /* SEGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGViewController.m; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		52E62A631CAC6C8600C24CEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52E62A661CAC6C8600C24CEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52E62A681CAC6C8600C24CEC /* Segment-CleverTap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Segment-CleverTap-Info.plist"; sourceTree = "<group>"; };
-		732B46FA346F478500AFD713 /* libPods-Segment-CleverTap_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segment-CleverTap_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81B5A82BEF64144F7F015371 /* Pods-Segment-CleverTap_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-CleverTap_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Segment-CleverTap_Tests/Pods-Segment-CleverTap_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D08900951F06E234002007E6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		EC034031D2AE592EAE640B61 /* Pods-Segment-CleverTap_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-CleverTap_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Segment-CleverTap_Tests/Pods-Segment-CleverTap_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D08900941F06E08C002007E6 /* libPods-Segment-CleverTap_Tests.a in Frameworks */,
+				4664A67741C812A25B50749D /* Pods_Segment_CleverTap_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +149,8 @@
 				D08900951F06E234002007E6 /* XCTest.framework */,
 				522ECC681CAC93BC006D0E53 /* UIKit.framework */,
 				522ECC661CAC93B5006D0E53 /* Foundation.framework */,
-				732B46FA346F478500AFD713 /* libPods-Segment-CleverTap_Tests.a */,
 				4A2E226B9EE65CE8793CF4B7 /* Pods_Segment_CleverTap_Example.framework */,
+				43489EEB3062BAAB70DF180E /* Pods_Segment_CleverTap_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -177,7 +177,7 @@
 				52ADDE1B1CAC99AE00BE13CB /* Sources */,
 				52ADDE1C1CAC99AE00BE13CB /* Frameworks */,
 				52ADDE1D1CAC99AE00BE13CB /* Resources */,
-				E1C37D3E83EE86F2F6181D52 /* [CP] Copy Pods Resources */,
+				E30C76F892CDCF4A3AFAA383 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,7 +197,7 @@
 				52E62A501CAC6C8600C24CEC /* Sources */,
 				52E62A511CAC6C8600C24CEC /* Frameworks */,
 				52E62A521CAC6C8600C24CEC /* Resources */,
-				C963A20F10924A9767F246C5 /* [CP] Embed Pods Frameworks */,
+				ACC21FDD419EFE4995C68C42 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -312,20 +312,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C963A20F10924A9767F246C5 /* [CP] Embed Pods Frameworks */ = {
+		ACC21FDD419EFE4995C68C42 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Segment-CleverTap_Example/Pods-Segment-CleverTap_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Analytics-framework/Analytics.framework",
-				"${BUILT_PRODUCTS_DIR}/CleverTap-iOS-SDK-framework/CleverTapSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage-framework/FLAnimatedImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/Segment-CleverTap-framework/Segment_CleverTap.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Segment-CleverTap_Example/Pods-Segment-CleverTap_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Analytics/Analytics.framework",
+				"${BUILT_PRODUCTS_DIR}/CleverTap-iOS-SDK/CleverTapSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Segment-CleverTap/Segment_CleverTap.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CleverTapSDK.framework",
@@ -335,113 +339,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Segment-CleverTap_Example/Pods-Segment-CleverTap_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Segment-CleverTap_Example/Pods-Segment-CleverTap_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E1C37D3E83EE86F2F6181D52 /* [CP] Copy Pods Resources */ = {
+		E30C76F892CDCF4A3AFAA383 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Segment-CleverTap_Tests/Pods-Segment-CleverTap_Tests-resources.sh",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/DigiCertGlobalRootCA.crt",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/DigiCertSHA2SecureServerCA.crt",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTAVPlayerControlsViewController.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTCoverImageViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTCoverImageViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTCoverViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTCoverViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTFooterViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTFooterViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTHalfInterstitialImageViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTHalfInterstitialImageViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTHalfInterstitialViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTHalfInterstitialViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTHeaderViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTHeaderViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTInterstitialImageViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTInterstitialImageViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTInterstitialViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/CTInterstitialViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_expand@1x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_expand@2x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_expand@3x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_pause@1x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_pause@2x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_pause@3x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_play@1x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_play@2x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_play@3x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_shrink@1x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_shrink@2x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_shrink@3x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/ic_thumb.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/images/sound-wave-headphones.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/cells/CTCarouselImageMessageCell.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/cells/CTCarouselMessageCell.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/cells/CTInboxIconMessageCell.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/cells/CTInboxSimpleMessageCell.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/controllers/CleverTapInboxViewController.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/ct_default_landscape_image.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/ct_default_portrait_image.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/ct_default_video.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/placeholder.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/volume_off.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/images/volume_on.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/models/Inbox.xcdatamodeld",
+			inputFileListPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Segment-CleverTap_Tests/Pods-Segment-CleverTap_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Analytics/Analytics.framework",
+				"${BUILT_PRODUCTS_DIR}/CleverTap-iOS-SDK/CleverTapSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Segment-CleverTap/Segment_CleverTap.framework",
+				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
+				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
+				"${BUILT_PRODUCTS_DIR}/Specta/Specta.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DigiCertGlobalRootCA.crt",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DigiCertSHA2SecureServerCA.crt",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTAVPlayerControlsViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_expand@1x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_expand@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_expand@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_pause@1x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_pause@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_pause@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@1x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_shrink@1x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_shrink@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_shrink@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_thumb.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/sound-wave-headphones.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselImageMessageCell.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselMessageCell.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxIconMessageCell.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxSimpleMessageCell.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CleverTapInboxViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_landscape_image.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_portrait_image.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_video.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/placeholder.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/volume_off.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/volume_on.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Inbox.momd",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CleverTapSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Segment_CleverTap.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Specta.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Segment-CleverTap_Tests/Pods-Segment-CleverTap_Tests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Segment-CleverTap_Tests/Pods-Segment-CleverTap_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

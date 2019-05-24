@@ -2,8 +2,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
 
+use_frameworks!
+
 target 'Segment-CleverTap_Example' do
-  use_frameworks!
   pod "Segment-CleverTap", :path => '../'
 end
 
