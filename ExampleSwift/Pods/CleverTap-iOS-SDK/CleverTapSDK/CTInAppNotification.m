@@ -1,8 +1,9 @@
 #import "CTInAppNotification.h"
 #import "CTConstants.h"
+#import "CTInAppResources.h"
 #if !(TARGET_OS_TV)
-#import <SDWebImage/FLAnimatedImageView+WebCache.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/SDAnimatedImageView.h>
 #endif
 
 @interface CTInAppNotification() {
@@ -169,6 +170,20 @@
     }
     self.buttons = _buttons;
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+            if (self.hasPortrait && !self.hasLandscape && [self deviceOrientationIsLandscape]) {
+                self.error = [NSString stringWithFormat:@"The in-app in %@, dismissing %@ InApp Notification.", @"portrait", @"landscape"];
+                return;
+            }
+            
+            if (self.hasLandscape && !self.hasPortrait && ![self deviceOrientationIsLandscape]) {
+                self.error = [NSString stringWithFormat:@"The in-app in %@, dismissing %@ InApp Notification.", @"landscape", @"portrait"];
+                return;
+            }
+        }
+    });
+    
     switch (self.inAppType) {
         case CTInAppTypeHeader:
         case CTInAppTypeFooter:
@@ -180,10 +195,10 @@
         case CTInAppTypeCoverImage:
         case CTInAppTypeInterstitialImage:
         case CTInAppTypeHalfInterstitialImage:
-              if  (_mediaIsGif || _mediaIsAudio || _mediaIsVideo || !_mediaIsImage){
-                  self.error = [NSString stringWithFormat:@"wrong media type for template"];
-              }
-           break;
+            if  (_mediaIsGif || _mediaIsAudio || _mediaIsVideo || !_mediaIsImage){
+                self.error = [NSString stringWithFormat:@"wrong media type for template"];
+            }
+            break;
         case CTInAppTypeCover:
         case CTInAppTypeHalfInterstitial:
             if  (_mediaIsGif || _mediaIsAudio || _mediaIsVideo){
@@ -214,7 +229,7 @@
             self.inAppType = [CTInAppUtils inAppTypeFromString:@"custom-html"];
         } else {
             if (url) {
-                self.error = [NSString stringWithFormat:@"Invalid url:,%@",url];
+                self.error = [NSString stringWithFormat:@"Invalid url: %@",url];
                 return;
             }
         }
@@ -252,6 +267,15 @@
     return _mediaIsVideo;
 }
 
+- (BOOL)deviceOrientationIsLandscape {
+    #if (TARGET_OS_TV)
+        return nil;
+    #else
+        UIApplication *sharedApplication = [CTInAppResources getSharedApplication];
+        return UIInterfaceOrientationIsLandscape(sharedApplication.statusBarOrientation);
+    #endif
+}
+
 - (void)prepareWithCompletionHandler: (void (^)(void))completionHandler {
 #if !(TARGET_OS_TV)
     if ([NSThread isMainThread]) {
@@ -267,7 +291,7 @@
             self.error = [NSString stringWithFormat:@"unable to load image from URL: %@", self.imageURL];
         } else {
             if ([self.contentType isEqualToString:@"image/gif"] ) {
-                FLAnimatedImage *gif = [FLAnimatedImage animatedImageWithGIFData:imageData];
+                SDAnimatedImage *gif = [SDAnimatedImage imageWithData:imageData];
                 if (gif == nil) {
                     self.error = [NSString stringWithFormat:@"unable to decode gif for URL: %@", self.imageURL];
                 }
@@ -282,7 +306,7 @@
             self.error = [NSString stringWithFormat:@"unable to load landscape image from URL: %@", self.imageUrlLandscape];
         } else {
             if ([self.landscapeContentType isEqualToString:@"image/gif"] ) {
-                FLAnimatedImage *gif = [FLAnimatedImage animatedImageWithGIFData:imageData];
+                SDAnimatedImage *gif = [SDAnimatedImage imageWithData:imageData];
                 if (gif == nil) {
                     self.error = [NSString stringWithFormat:@"unable to decode landscape gif for URL: %@", self.imageUrlLandscape];
                 }

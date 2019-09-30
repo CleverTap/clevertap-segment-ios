@@ -146,6 +146,7 @@
 
 - (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region {
     [CleverTap setCredentialsWithAccountID:accountID token:accountToken region:region];
+    [[CleverTap sharedInstance] setLibrary:@"Segment-iOS"];
     [[CleverTap sharedInstance] notifyApplicationLaunchedWithOptions:nil];
 }
 

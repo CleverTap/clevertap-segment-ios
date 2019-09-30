@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        SEGAnalytics.shared().registeredForRemoteNotifications(withDeviceToken: deviceToken)
+        SEGAnalytics.shared()?.registeredForRemoteNotifications(withDeviceToken: deviceToken)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -62,12 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         print("did receive remote notification \(userInfo)")
         
-        SEGAnalytics.shared().receivedRemoteNotification(userInfo)
+        SEGAnalytics.shared()?.receivedRemoteNotification(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("did receive remote notification completionHandler \(userInfo)")
-        SEGAnalytics.shared().receivedRemoteNotification(userInfo)
+        SEGAnalytics.shared()?.receivedRemoteNotification(userInfo)
     }
     
     func showAlert(message:String) {
