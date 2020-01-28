@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // as described here:  https://support.clevertap.com/docs/ios/getting-started.html#add-clevertap-credentials
         
         SEGAnalytics.debug(true)
-        CleverTap.setDebugLevel(CleverTapLogLevel.debug.rawValue);
+        CleverTap.setDebugLevel(CleverTapLogLevel.debug.rawValue+1);
         let config = SEGAnalyticsConfiguration(writeKey: "qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz")
         config.use(SEGCleverTapIntegrationFactory())
         SEGAnalytics.setup(with: config)

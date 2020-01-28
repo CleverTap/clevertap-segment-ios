@@ -95,7 +95,7 @@
         }
     }
     
-    [self profilePush:profile];
+    [self onUserLogin:profile];
 }
 
 
@@ -153,6 +153,15 @@
 - (void)profilePush:(NSDictionary *)profile {
     @try {
         [[CleverTap sharedInstance] profilePush:profile];
+    }
+    @catch (NSException *e) {
+        [[CleverTap sharedInstance] recordErrorWithMessage:e.description andErrorCode:512];
+    }
+}
+
+- (void)onUserLogin:(NSDictionary *)profile {
+    @try {
+        [[CleverTap sharedInstance] onUserLogin:profile];
     }
     @catch (NSException *e) {
         [[CleverTap sharedInstance] recordErrorWithMessage:e.description andErrorCode:512];
