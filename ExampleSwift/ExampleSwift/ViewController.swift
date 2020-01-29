@@ -4,14 +4,14 @@ import CleverTapSDK
 import Analytics
 
 class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         registerAppInbox()
         initializeAppInbox()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,16 +41,16 @@ class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
         let floatAttribute = 12.3
         let intAttribute = 18
         let traits: [String: Any] = [
-            "email": "supportsw@clevertap.com",
+            "email": "support@clevertap.com",
             "bool": true,
             "floatAttribute": floatAttribute,
             "intAttribute" : intAttribute,
             "name": "Segment CleverTap",
             "phone" : "0234567891",
             "gender": "female",
-            ]
+        ]
         
-        SEGAnalytics.shared()?.identify("cleverTapSegementTestUseriOSsw", traits: traits)
+        SEGAnalytics.shared()?.identify("cleverTapSegementTestUseriOS", traits: traits)
     }
     
     @IBAction func trackButtonDidPress(_ sender: Any) {
@@ -72,7 +72,7 @@ class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
     }
     
     func messageDidSelect(_ message: CleverTapInboxMessage!, at index: Int32, withButtonIndex buttonIndex: Int32) {
-         // This method is called when an inbox message is clicked(tapped or call to action)
+        // This method is called when an inbox message is clicked(tapped or call to action)
     }
 }
 

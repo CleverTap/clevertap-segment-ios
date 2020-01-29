@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-CleverTap"
-  s.version          = "1.1.1"
+  s.version          = "1.1.2"
   s.summary          = "CleverTap Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency 'Analytics', '~> 3.0'
-  s.dependency 'CleverTap-iOS-SDK', '~> 3.7.0'
+  s.dependency 'CleverTap-iOS-SDK', '~> 3.7.2'
   s.source_files = 'Pod/Classes/**/*'
 
 end

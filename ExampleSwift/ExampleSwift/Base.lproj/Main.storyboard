@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,42 +20,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDX-p0-UnV">
-                                <rect key="frame" x="20" y="224" width="280" height="30"/>
+                                <rect key="frame" x="20" y="204" width="280" height="30"/>
                                 <state key="normal" title="Identify"/>
                                 <connections>
                                     <action selector="identifyButtonDidPress:" destination="whP-gf-Uak" eventType="touchUpInside" id="43D-fC-0cg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDT-vM-g7V">
-                                <rect key="frame" x="20" y="284" width="280" height="30"/>
+                                <rect key="frame" x="20" y="264" width="280" height="30"/>
                                 <state key="normal" title="Track"/>
                                 <connections>
                                     <action selector="trackButtonDidPress:" destination="whP-gf-Uak" eventType="touchUpInside" id="i51-2v-4c2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9as-97-yzL">
-                                <rect key="frame" x="20" y="344" width="280" height="30"/>
+                                <rect key="frame" x="20" y="324" width="280" height="30"/>
                                 <state key="normal" title="Alias"/>
                                 <connections>
                                     <action selector="aliasButtonDidPress:" destination="whP-gf-Uak" eventType="touchUpInside" id="jub-zq-Tth"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRg-Fx-ln5">
-                                <rect key="frame" x="20" y="404" width="280" height="30"/>
+                                <rect key="frame" x="20" y="384" width="280" height="30"/>
                                 <state key="normal" title="Screen"/>
                                 <connections>
                                     <action selector="screenButtonPressed:" destination="whP-gf-Uak" eventType="touchUpInside" id="Z0C-Tq-jn2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvz-54-mFF">
-                                <rect key="frame" x="20" y="464" width="280" height="30"/>
+                                <rect key="frame" x="20" y="444" width="280" height="30"/>
                                 <state key="normal" title="Show App Inbox"/>
                                 <connections>
                                     <action selector="showAppInbox" destination="whP-gf-Uak" eventType="touchUpInside" id="ZSE-Ix-TZ8"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="BZU-YY-ceF">
-                                <rect key="frame" x="60" y="44" width="200" height="120"/>
+                                <rect key="frame" x="60" y="24" width="200" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="j1s-Dh-F3M"/>
                                 </constraints>
@@ -88,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="368.36581709145429"/>
+            <point key="canvasLocation" x="258.75" y="367.6056338028169"/>
         </scene>
     </scenes>
     <resources>
