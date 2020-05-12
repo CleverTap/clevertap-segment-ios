@@ -71,7 +71,7 @@ class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
         }
     }
     
-    func messageDidSelect(_ message: CleverTapInboxMessage!, at index: Int32, withButtonIndex buttonIndex: Int32) {
+    func messageDidSelect(_ message: CleverTapInboxMessage, at index: Int32, withButtonIndex buttonIndex: Int32) {
         // This method is called when an inbox message is clicked(tapped or call to action)
     }
 }
