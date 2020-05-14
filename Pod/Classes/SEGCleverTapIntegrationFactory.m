@@ -1,10 +1,10 @@
 #import "SEGCleverTapIntegrationFactory.h"
 #import "SEGCleverTapIntegration.h"
 
-
 @implementation SEGCleverTapIntegrationFactory
 
-+ (instancetype)instance {
++ (instancetype)instance
+{
     static dispatch_once_t once;
     static SEGCleverTapIntegrationFactory *sharedInstance;
     dispatch_once(&once, ^{
@@ -13,18 +13,20 @@
     return sharedInstance;
 }
 
-- (id)init {
+- (id)init
+{
     self = [super init];
     return self;
 }
 
-- (id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics {
+- (id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics
+{
     return [[SEGCleverTapIntegration alloc] initWithSettings:settings];
 }
 
-- (NSString *)key {
+- (NSString *)key
+{
     return @"CleverTap";
 }
-
 
 @end

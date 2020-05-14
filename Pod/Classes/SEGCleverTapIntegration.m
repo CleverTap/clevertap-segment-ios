@@ -3,8 +3,8 @@
 #import <Analytics/SEGAnalyticsUtils.h>
 #import "SEGCleverTapIntegrationFactory.h"
 
-
 @implementation SEGCleverTapIntegration
+
 
 #pragma mark - Initialization
 
@@ -34,8 +34,8 @@
     return self;
 }
 
-- (void)identify:(SEGIdentifyPayload *)payload {
-    
+- (void)identify:(SEGIdentifyPayload *)payload
+{
     NSDictionary *traits = payload.traits;
     
     if([traits count] <= 0) {
@@ -98,9 +98,8 @@
     [self onUserLogin:profile];
 }
 
-
-- (void)screen:(SEGScreenPayload *)payload {
-    
+- (void)screen:(SEGScreenPayload *)payload
+{
     NSString *screenName = payload.name;
     
     if (!screenName) {
@@ -110,7 +109,8 @@
     [[CleverTap sharedInstance] recordScreenView:screenName];
 }
 
-- (void)track:(SEGTrackPayload *)payload {
+- (void)track:(SEGTrackPayload *)payload
+{
     if ([payload.event isEqualToString:@"Order Completed"]) {
         return [self handleOrderCompleted:payload];
     }
@@ -118,8 +118,8 @@
     [self recordEvent:payload.event withProps:payload.properties];
 }
 
--(void)alias:(SEGAliasPayload *)payload {
-    
+- (void)alias:(SEGAliasPayload *)payload
+{
     if(!payload.theNewId || payload.theNewId.length <= 0) {
         return;
     }
@@ -127,30 +127,33 @@
     [self profilePush:@{@"Identity":payload.theNewId}];
 }
 
-- (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    
+- (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
     [self setPushToken:deviceToken];
 }
 
-- (void)receivedRemoteNotification:(NSDictionary *)userInfo {
-    
+- (void)receivedRemoteNotification:(NSDictionary *)userInfo
+{
     [self handleNotificationWithData:userInfo];
 }
 
-- (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo {
-    
+- (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo
+{
     [self handleNotificationWithData:userInfo];
 }
 
-# pragma mark private
 
-- (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region {
+# pragma mark - Private
+
+- (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region
+{
     [CleverTap setCredentialsWithAccountID:accountID token:accountToken region:region];
     [[CleverTap sharedInstance] setLibrary:@"Segment-iOS"];
     [[CleverTap sharedInstance] notifyApplicationLaunchedWithOptions:nil];
 }
 
-- (void)profilePush:(NSDictionary *)profile {
+- (void)profilePush:(NSDictionary *)profile
+{
     @try {
         [[CleverTap sharedInstance] profilePush:profile];
     }
@@ -159,7 +162,8 @@
     }
 }
 
-- (void)onUserLogin:(NSDictionary *)profile {
+- (void)onUserLogin:(NSDictionary *)profile
+{
     @try {
         [[CleverTap sharedInstance] onUserLogin:profile];
     }
@@ -168,7 +172,8 @@
     }
 }
 
-- (void)recordEvent:(NSString *)event withProps:(NSDictionary *)props {
+- (void)recordEvent:(NSString *)event withProps:(NSDictionary *)props
+{
     @try {
         [[CleverTap sharedInstance] recordEvent:event withProps:props];
     }
@@ -177,15 +182,18 @@
     }
 }
 
-- (void)setPushToken:(NSData *)deviceToken {
+- (void)setPushToken:(NSData *)deviceToken
+{
     [[CleverTap sharedInstance] setPushToken:deviceToken];
 }
 
-- (void)handleNotificationWithData:(NSDictionary *)userInfo {
+- (void)handleNotificationWithData:(NSDictionary *)userInfo
+{
     [[CleverTap sharedInstance] handleNotificationWithData:userInfo];
 }
 
-- (void)handleOrderCompleted:(SEGTrackPayload *)payload {
+- (void)handleOrderCompleted:(SEGTrackPayload *)payload
+{
     if (![payload.event isEqualToString:@"Order Completed"]) {
         return;
     }
@@ -214,8 +222,8 @@
             details[key] = value;
         }
     }
+    
     [[CleverTap sharedInstance] recordChargedEventWithDetails:details andItems:items];
 }
-
 
 @end
