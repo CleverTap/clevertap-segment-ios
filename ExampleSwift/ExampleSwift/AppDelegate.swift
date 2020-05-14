@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
         // NOTE:  if you are using CleverTap for push notifications with deep links, to have a launch deep link automatically called
         // please add your CleverTap account id and token to your plist
@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SEGAnalytics.shared()?.registeredForRemoteNotifications(withDeviceToken: deviceToken)
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         print("APPDELEGATE: open url \(url)")
         DispatchQueue.main.async {
             self.showAlert(message: "APPDELEGATE: open url \(url)")
