@@ -3,7 +3,11 @@ Change Log
 
 Version 1.1.3 *(14 May, 2020)*
 -------------------------------------------
-*(Supports analytics-ios 3.0.+ and CleverTap 3.8.0)*
+- Adds support for [CleverTap iOS SDK 3.8.0](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/3.8.0)
+- Adds support for Product Config and Feature Flags as part of Product Experiences feature
+- Adds public APIs for raising Notification Clicked and Viewed events for App Inbox
+- Adds public APIS for marking inbox message as read and deleting inbox message per message ID
+- Bug fixes and performance improvements
 
 
 Version 1.1.2 *(28 January, 2020)*
