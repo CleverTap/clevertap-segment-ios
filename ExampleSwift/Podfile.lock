@@ -1,5 +1,5 @@
 PODS:
-  - Analytics (3.8.1)
+  - Analytics (3.8.2)
   - CleverTap-iOS-SDK (3.8.0):
     - SDWebImage (~> 5.1)
   - SDWebImage (5.8.0):
@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Analytics: 45b1faec509367a99c7b788cc5389180c43fe3fc
+  Analytics: 4c482aea5efcecaeb03adfc7fc22e350f5ca575c
   CleverTap-iOS-SDK: 1513db126149ca523b25fdcf3121a4204709c733
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Segment-CleverTap: cfc12e66e79a8b8b51a8e0214894aec8d6caf302
