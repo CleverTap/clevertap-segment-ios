@@ -7,4 +7,6 @@
 
 - (instancetype)initWithSettings:(NSDictionary *)settings;
 
+//- (void)doSomething;
+
 @end

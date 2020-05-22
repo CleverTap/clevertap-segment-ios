@@ -145,6 +145,15 @@
 
 # pragma mark - Private
 
+//- (void)doSomething {
+//    NSLog(@"Hello World");
+//    [self wowow];
+//}
+//
+//- (void)wowow {
+//    NSLog(@"wowow");
+//}
+
 - (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region
 {
     [CleverTap setCredentialsWithAccountID:accountID token:accountToken region:region];

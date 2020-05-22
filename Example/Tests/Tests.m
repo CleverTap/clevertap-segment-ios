@@ -151,15 +151,15 @@ SpecEnd
     [super tearDown];
 }
 
-- (void)testSEGCleverTapIntegrationInitWithSettings {
-    
-    NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                    @"clevertap_account_token": @"001",
-                                    @"region": @"Region" };
-    
-    SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
-    
-    XCTAssertEqual(integration.settings, settingsDict);
-}
+//- (void)testSEGCleverTapIntegrationInitWithSettings {
+//    
+//    NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
+//                                    @"clevertap_account_token": @"001",
+//                                    @"region": @"Region" };
+//    
+//    SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+//    
+//    XCTAssertEqual(integration.settings, settingsDict);
+//}
 
 @end
