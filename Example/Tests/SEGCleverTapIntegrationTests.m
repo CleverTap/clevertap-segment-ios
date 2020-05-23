@@ -8,7 +8,6 @@
 
 @interface SEGCleverTapIntegration (UnitTests)
 - (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region;
-//- (void)wowow;
 - (void)identify:(SEGIdentifyPayload *)payload;
 - (void)onUserLogin:(NSDictionary *)profile;
 @end
@@ -223,80 +222,6 @@ describe(@"a Segment CleverTap integration", ^{
         });
     });
 });
-
-/**
-describe(@"a Segment CleverTap class conforms to SEGIntegration protocol", ^{
-
-    it(@"identifies user profile payload", ^{
-        
-//        id delegate = OCMProtocolMock(@protocol(SEGIntegration));
-        
-//        id mock = OCMClassMock([SEGCleverTapIntegration class]);
-//        OCMExpect([mock identify:[OCMArg any]]);
-
-        
-        SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz"];
-        
-        SEGCleverTapIntegrationFactory *instance = [SEGCleverTapIntegrationFactory instance];
-        
-        
-        NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                               @"clevertap_account_token": @"001",
-                                               @"region": @"Region" };
-        id analytics = OCMClassMock([SEGAnalytics class]);
-        SEGCleverTapIntegration *object = [instance createWithSettings:settingsDict forAnalytics:analytics];
-        id mock = OCMPartialMock(object);
-        OCMExpect([mock identify:[OCMArg any]]);
-        
-        
-        [config use:instance];
-        [SEGAnalytics setupWithConfiguration:config];
-        
-        NSInteger integerAttribute = 200;
-         float floatAttribute = 12.3f;
-         int intAttribute = 18;
-         short shortAttribute = (short)2;
-        
-        
-         [[SEGAnalytics sharedAnalytics] identify:@"cleverTapSegementTestUseriOS"
-                                           traits:@{ @"email": @"support@clevertap.com",
-                                                     @"bool" : @(YES),
-                                                     @"double" : @(3.14159),
-                                                     @"stringInt": @"1",
-                                                     @"intAttribute": @(intAttribute),
-                                                     @"integerAttribute" : @(integerAttribute),
-                                                     @"floatAttribute" : @(floatAttribute),
-                                                     @"shortAttribute" : @(shortAttribute),
-                                                     @"gender" : @"female",
-                                                     @"name" : @"Segment CleverTap",
-                                                     @"phone" : @"+15555555556",
-                                                     @"testArr" : @[@"1", @"2", @"3"],
-                                                     @"address" : @{@"city" : @"New York",
-                                                                    @"country" : @"US"}}];
-        
-        
-        OCMVerifyAll(mock);
-        
-//        OCMVerifyAllWithDelay(delegate, 10);
-//
-//        id mock = OCMPartialMock(integration);
-//
-//        OCMExpect([mock identify:[OCMArg any]]);
-//
-//        OCMStub([]);
-        
-//        id protocolMock = OCMProtocolMock(@protocol(SEGIntegration));
-
-//        id mockPayload = OCMClassMock([SEGIdentifyPayload class]);
-
-//        OCMExpect([integration identify:mockPayload]);
-
-//        OCMStub([integration identify:mockPayload]);
-
-//        OCMVerify([integration identify:mockPayload]);
-    });
-});
-*/
 
 
 QuickSpecEnd
