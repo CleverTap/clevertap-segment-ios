@@ -4,12 +4,14 @@
 @import OCMock;
 @import Segment_CleverTap;
 
+
 @interface SEGCleverTapIntegration (UnitTests)
 - (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region;
 //- (void)wowow;
 - (void)identify:(SEGIdentifyPayload *)payload;
 - (void)onUserLogin:(NSDictionary *)profile;
 @end
+
 
 QuickSpecBegin(SEGCleverTapIntegrationSpec)
 
@@ -113,9 +115,26 @@ describe(@"a Segment CleverTap integration", ^{
             
             OCMExpect([mock onUserLogin:[OCMArg any]]);
             
+             NSDictionary * mockTraits = @{ @"address": @{ @"city": @"Mumbai", @"country": @"India" },
+                                            @"anonymousId": @"C790B642-DC43-4345-AA40-82D6074BEF94",
+                                            @"bool": @(YES),
+                                            @"double": @"3.14159",
+                                            @"email": @"support@clevertap.com",
+                                            @"floatAttribute": @"12.3",
+                                            @"gender": @"female",
+                                            @"intAttributes": @18,
+                                            @"integerAttribute": @200,
+                                            @"name": @"Segment CleverTap",
+                                            @"phone": @"+91981234567",
+                                            @"shortAttribute": @2,
+                                            @"stringInt": @1,
+                                            @"birthday": @"01-Mar-1990",
+                                            @"testArr": @[ @1, @2, @3 ]
+                                          };
+            
             SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
-                                                                         anonymousId:@"anonymousID"
-                                                                              traits:@{ @"key": @"value" }
+                                                                         anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
+                                                                              traits:mockTraits
                                                                              context:@{ @"key": @"value" }
                                                                         integrations:@{ @"key": @"value" }];
             
