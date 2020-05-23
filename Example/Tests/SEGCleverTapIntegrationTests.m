@@ -2,6 +2,7 @@
 @import Quick;
 @import Nimble;
 @import OCMock;
+@import CleverTapSDK;
 @import Segment_CleverTap;
 
 
@@ -109,7 +110,7 @@ describe(@"a Segment CleverTap integration", ^{
             integration = nil;
         });
         
-        it(@"performs user login with  payload", ^{
+        it(@"performs user login with payload", ^{
             
             id mock = OCMPartialMock(integration);
             
@@ -154,6 +155,35 @@ describe(@"a Segment CleverTap integration", ^{
             [mock identify:mockPayload];
             
             OCMVerifyAll(mock);
+        });
+    });
+});
+
+describe(@"a Segment CleverTap integration", ^{
+    context(@"when a screen is tracked", ^{
+        
+        it(@"should fire recordScreenView on CleverTap instance", ^{
+            
+            NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
+                                             @"clevertap_account_token": @"001",
+                                             @"region": @"Region" };
+
+            SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMExpect([mockCleverTap recordScreenView:@"root_screen"]);
+            
+            SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:@"root_screen"
+                                                                    properties:nil
+                                                                       context:@{ @"key": @"value" }
+                                                                  integrations:@{ @"key": @"value" }];
+            
+            [mockIntegration screen:payload];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
         });
     });
 });
