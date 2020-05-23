@@ -6,13 +6,6 @@
 @import Segment_CleverTap;
 
 
-@interface SEGCleverTapIntegration (UnitTests)
-- (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region;
-- (void)identify:(SEGIdentifyPayload *)payload;
-- (void)onUserLogin:(NSDictionary *)profile;
-@end
-
-
 QuickSpecBegin(SEGCleverTapIntegrationSpec)
 
 describe(@"a Segment CleverTap integration class", ^{
