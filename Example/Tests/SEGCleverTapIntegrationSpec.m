@@ -256,6 +256,48 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
             OCMVerifyAll(mockCleverTap);
         });
     });
+    
+    context(@"when callbacks for push notifications invoked", ^{
+        
+        it(@"should register device Token", ^{
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMExpect([mockCleverTap setPushToken:[OCMArg any]]);
+            
+            [mockIntegration registeredForRemoteNotificationsWithDeviceToken:[NSData data]];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+        
+        it(@"should handle push notification data", ^{
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMExpect([mockCleverTap handleNotificationWithData:[OCMArg any]]);
+            
+            [mockIntegration receivedRemoteNotification:[OCMArg any]];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+        
+        it(@"should handle action identifier in push notification", ^{
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMExpect([mockCleverTap handleNotificationWithData:[OCMArg any]]);
+            
+            [mockIntegration handleActionWithIdentifier:[OCMArg any] forRemoteNotification:[OCMArg any]];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+    });
 });
 
 QuickSpecEnd
