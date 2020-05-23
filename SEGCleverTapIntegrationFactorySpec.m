@@ -15,7 +15,7 @@ describe(@"a Segment CleverTap Integration Factory", ^{
         expect(instance).toNot(beNil());
     });
     
-    context(@"conforms to SEGIntegrationFactory protocol", ^{
+    context(@"which conforms to SEGIntegrationFactory protocol", ^{
         
         __block SEGCleverTapIntegrationFactory *instance;
         beforeEach(^{

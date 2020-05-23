@@ -42,7 +42,7 @@ describe(@"a Segment CleverTap integration class", ^{
         expect(integration.settings).to(beNil());
     });
 
-    it(@"initialized from non-main threads", ^{
+    it(@"is initialized from non-main threads", ^{
 
         __block SEGCleverTapIntegration *integration;
 
@@ -55,7 +55,7 @@ describe(@"a Segment CleverTap integration class", ^{
     });
 });
 
-describe(@"a Segment CleverTap integration conforming to SEGIntegration protocol", ^{
+describe(@"a Segment CleverTap integration which conforms to SEGIntegration protocol", ^{
     
     __block SEGCleverTapIntegration *integration;
     beforeEach(^{
@@ -107,7 +107,7 @@ describe(@"a Segment CleverTap integration conforming to SEGIntegration protocol
             OCMVerifyAll(mockCleverTap);
         });
         
-        it(@"performs user login with payload for Females", ^{
+        it(@"performs user login for Females", ^{
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
@@ -143,7 +143,7 @@ describe(@"a Segment CleverTap integration conforming to SEGIntegration protocol
             OCMVerifyAll(mockCleverTap);
         });
         
-        it(@"performs user login with payload for Males", ^{
+        it(@"performs user login for Males", ^{
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
@@ -180,7 +180,7 @@ describe(@"a Segment CleverTap integration conforming to SEGIntegration protocol
         });
 
         
-        it(@"does not performs user login if no traits in payload", ^{
+        it(@"does not performs user login if no traits object in payload", ^{
             
             id mock = OCMPartialMock(integration);
             
@@ -333,7 +333,7 @@ describe(@"a Segment CleverTap integration conforming to SEGIntegration protocol
             OCMVerifyAll(mockCleverTap);
         });
         
-        it(@"for empty newID, should not fire profilePush", ^{
+        it(@"for an empty newID, should not fire profilePush", ^{
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
