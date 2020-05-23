@@ -52,62 +52,24 @@ describe(@"a Segment CleverTap integration class", ^{
 
         expect(integration.settings).toEventually(equal(settingsDict));
     });
-/*
-    it(@"", ^{
-
-        NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                        @"clevertap_account_token": @"001",
-                                        @"region": @"Region" };
-
-        SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
-
-        id mock = OCMPartialMock(integration);
-
-        OCMExpect([mock wowow]);
-
-        [mock doSomething];
-
-        OCMVerifyAll(mock);
-    });
-    
-    
-    it(@"", ^{
-        
-        NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                        @"clevertap_account_token": @"001",
-                                        @"region": @"Region" };
-
-        SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
-        
-        id mock = OCMPartialMock(integration);
-        
-        OCMExpect([mock onUserLogin:[OCMArg any]]);
-        
-        id mockPayload = OCMClassMock([SEGIdentifyPayload class]);
-        
-        [mock identify:mockPayload];
-        
-        OCMVerifyAll(mock);
-    });
-    */
 });
 
-describe(@"a Segment CleverTap integration", ^{
+describe(@"a Segment CleverTap integration  conforming to SEGIntegration protocol", ^{
     
-    context(@"on receiving identify: callback from SEGIntegration", ^{
-        
-        __block  SEGCleverTapIntegration *integration;
-        beforeEach(^{
-            NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                            @"clevertap_account_token": @"001",
-                                            @"region": @"Region" };
+    __block  SEGCleverTapIntegration *integration;
+    beforeEach(^{
+        NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
+                                        @"clevertap_account_token": @"001",
+                                        @"region": @"Region" };
 
-           integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
-        });
-        
-        afterEach(^{
-            integration = nil;
-        });
+       integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+    });
+    
+    afterEach(^{
+        integration = nil;
+    });
+    
+    context(@"when a user is identified", ^{
         
         it(@"performs user login with payload", ^{
             
@@ -156,23 +118,8 @@ describe(@"a Segment CleverTap integration", ^{
             OCMVerifyAll(mock);
         });
     });
-});
-
-describe(@"a Segment CleverTap integration", ^{
+    
     context(@"when a screen is tracked", ^{
-        
-        __block  SEGCleverTapIntegration *integration;
-        beforeEach(^{
-            NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                            @"clevertap_account_token": @"001",
-                                            @"region": @"Region" };
-
-           integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
-        });
-        
-        afterEach(^{
-            integration = nil;
-        });
         
         it(@"should fire recordScreenView on CleverTap instance", ^{
             
@@ -222,6 +169,5 @@ describe(@"a Segment CleverTap integration", ^{
         });
     });
 });
-
 
 QuickSpecEnd
