@@ -16,41 +16,44 @@
 QuickSpecBegin(SEGCleverTapIntegrationSpec)
 
 describe(@"a Segment CleverTap integration class", ^{
+    
+    __block  NSDictionary *niceSettings;
+    beforeEach(^{
+        niceSettings = @{ @"clevertap_account_id": @"ABC",
+                          @"clevertap_account_token": @"001",
+                          @"region": @"Region" };
+    });
+    
+    afterEach(^{
+        niceSettings = nil;
+    });
    
     it(@"is initialized with settings", ^{
 
-        NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                        @"clevertap_account_token": @"001",
-                                        @"region": @"Region" };
+        SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:niceSettings];
 
-        SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
-
-        expect(integration.settings).to(equal(settingsDict));
+        expect(integration.settings).to(equal(niceSettings));
     });
 
     it(@"returns nil for nil settings values", ^{
 
-        NSDictionary *settingsDict = @{ @"key": @"value" };
+        niceSettings = @{ @"key": @"value" };
 
-        SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+        SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:niceSettings];
 
         expect(integration.settings).to(beNil());
     });
 
     it(@"initialized from non-main threads", ^{
 
-        NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                        @"clevertap_account_token": @"001",
-                                        @"region": @"Region" };
-
         __block SEGCleverTapIntegration *integration;
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-            integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+            integration = [[SEGCleverTapIntegration alloc] initWithSettings:niceSettings];
         });
 
-        expect(integration.settings).toEventually(equal(settingsDict));
+        expect(integration.settings).toEventually(equal(niceSettings));
     });
 });
 
@@ -58,11 +61,11 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
     
     __block  SEGCleverTapIntegration *integration;
     beforeEach(^{
-        NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
+        NSDictionary *niceSettings = @{ @"clevertap_account_id": @"ABC",
                                         @"clevertap_account_token": @"001",
                                         @"region": @"Region" };
 
-       integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+       integration = [[SEGCleverTapIntegration alloc] initWithSettings:niceSettings];
     });
     
     afterEach(^{
@@ -73,11 +76,12 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
         
         it(@"performs user login with payload", ^{
             
-            id mock = OCMPartialMock(integration);
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+
+            OCMExpect([mockCleverTap onUserLogin:[OCMArg any]]);
             
-            OCMExpect([mock onUserLogin:[OCMArg any]]);
-            
-             NSDictionary * mockTraits = @{ @"address": @{ @"city": @"Mumbai", @"country": @"India" },
+             NSDictionary *niceTraits = @{  @"address": @{ @"city": @"Mumbai", @"country": @"India" },
                                             @"anonymousId": @"C790B642-DC43-4345-AA40-82D6074BEF94",
                                             @"bool": @(YES),
                                             @"double": @"3.14159",
@@ -94,15 +98,16 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
                                             @"testArr": @[ @1, @2, @3 ]
                                           };
             
-            SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
-                                                                         anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
-                                                                              traits:mockTraits
-                                                                             context:@{ @"key": @"value" }
-                                                                        integrations:@{ @"key": @"value" }];
+            SEGIdentifyPayload *nicePayload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
+                                                                             anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
+                                                                                  traits:niceTraits
+                                                                                 context:@{ @"key": @"value" }
+                                                                            integrations:@{ @"key": @"value" }];
             
-            [mock identify:payload];
+            [mockIntegration identify:nicePayload];
             
-            OCMVerifyAll(mock);
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
         });
         
         it(@"does not performs user login if no traits in payload", ^{
