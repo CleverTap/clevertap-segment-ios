@@ -119,7 +119,7 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
     
     context(@"when a screen is tracked", ^{
         
-        it(@"should fire recordScreenView on CleverTap instance", ^{
+        it(@"should fire recordScreenView on CleverTap SDK", ^{
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
@@ -163,7 +163,7 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
     
     context(@"when an event is tracked", ^{
         
-        it(@"should fire recordEvent on CleverTap instance", ^{
+        it(@"should fire recordEvent on CleverTap SDK", ^{
 
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
@@ -218,6 +218,39 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
                                                                      integrations:@{ @"key": @"value" }];
             
             [mockIntegration track:nicePayload];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+    });
+    
+    context(@"when user identities are merged to fire an alias", ^{
+        
+        it(@"should fire profilePush on CleverTap SDK", ^{
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMExpect([mockCleverTap profilePush:[OCMArg any]]);
+            
+            SEGAliasPayload *nicePayload = [[SEGAliasPayload alloc] initWithNewId:@"507f191e81"
+                                                                          context:@{ @"key": @"value" }
+                                                                     integrations:@{ @"key": @"value" }];
+            [mockIntegration alias:nicePayload];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+        
+        it(@"for empty newID, should not fire profilePush", ^{
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMReject([mockCleverTap profilePush:[OCMArg any]]);
+            
+            id mockPayload = OCMClassMock([SEGAliasPayload class]);
+            [mockIntegration alias:mockPayload];
             
             OCMVerifyAll(mockIntegration);
             OCMVerifyAll(mockCleverTap);
