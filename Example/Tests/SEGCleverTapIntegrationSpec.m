@@ -6,6 +6,11 @@
 @import Segment_CleverTap;
 
 
+@interface SEGCleverTapIntegration (Spec)
+- (void)handleOrderCompleted:(SEGTrackPayload *)payload;
+@end
+
+
 QuickSpecBegin(SEGCleverTapIntegrationSpec)
 
 describe(@"a Segment CleverTap integration class", ^{
@@ -67,7 +72,42 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
     
     context(@"when a user is identified", ^{
         
-        it(@"performs user login with payload", ^{
+        it(@"performs user login", ^{
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+
+            OCMExpect([mockCleverTap onUserLogin:[OCMArg any]]);
+            
+             NSDictionary *niceTraits = @{  @"address": @{ @"city": @"Mumbai", @"country": @"India" },
+                                            @"anonymousId": @"C790B642-DC43-4345-AA40-82D6074BEF94",
+                                            @"bool": @(YES),
+                                            @"double": @"3.14159",
+                                            @"email": @"support@clevertap.com",
+                                            @"floatAttribute": @"12.3",
+                                            @"intAttributes": @18,
+                                            @"integerAttribute": @200,
+                                            @"name": @"Segment CleverTap",
+                                            @"phone": @"+91981234567",
+                                            @"shortAttribute": @2,
+                                            @"stringInt": @1,
+                                            @"birthday": [NSDate date],
+                                            @"testArr": @[ @1, @2, @3 ]
+                                          };
+            
+            SEGIdentifyPayload *nicePayload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
+                                                                             anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
+                                                                                  traits:niceTraits
+                                                                                 context:@{ @"key": @"value" }
+                                                                            integrations:@{ @"key": @"value" }];
+            
+            [mockIntegration identify:nicePayload];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+        
+        it(@"performs user login with payload for Females", ^{
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
@@ -102,6 +142,43 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
             OCMVerifyAll(mockIntegration);
             OCMVerifyAll(mockCleverTap);
         });
+        
+        it(@"performs user login with payload for Males", ^{
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+
+            OCMExpect([mockCleverTap onUserLogin:[OCMArg any]]);
+            
+             NSDictionary *niceTraits = @{  @"address": @{ @"city": @"Mumbai", @"country": @"India" },
+                                            @"anonymousId": @"C790B642-DC43-4345-AA40-82D6074BEF94",
+                                            @"bool": @(YES),
+                                            @"double": @"3.14159",
+                                            @"email": @"support@clevertap.com",
+                                            @"floatAttribute": @"12.3",
+                                            @"gender": @"male",
+                                            @"intAttributes": @18,
+                                            @"integerAttribute": @200,
+                                            @"name": @"Segment CleverTap",
+                                            @"phone": @"+91981234567",
+                                            @"shortAttribute": @2,
+                                            @"stringInt": @1,
+                                            @"birthday": @"01-Mar-1990",
+                                            @"testArr": @[ @1, @2, @3 ]
+                                          };
+            
+            SEGIdentifyPayload *nicePayload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
+                                                                             anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
+                                                                                  traits:niceTraits
+                                                                                 context:@{ @"key": @"value" }
+                                                                            integrations:@{ @"key": @"value" }];
+            
+            [mockIntegration identify:nicePayload];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+
         
         it(@"does not performs user login if no traits in payload", ^{
             
@@ -177,7 +254,7 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
             OCMVerifyAll(mockCleverTap);
         });
         
-        it(@"should fire Charged event for Order Completed events", ^{
+        it(@"should fire Charged event for 'Order Completed' events", ^{
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
@@ -218,6 +295,20 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
                                                                      integrations:@{ @"key": @"value" }];
             
             [mockIntegration track:nicePayload];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+        
+        it(@"should ONLY fire Charged event for 'Order Completed' event", ^{
+           
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMReject([mockCleverTap recordChargedEventWithDetails:[OCMArg any] andItems:[OCMArg any]]);
+            
+            id mockPayload = OCMClassMock([SEGTrackPayload class]);
+            [mockIntegration handleOrderCompleted:mockPayload];
             
             OCMVerifyAll(mockIntegration);
             OCMVerifyAll(mockCleverTap);
