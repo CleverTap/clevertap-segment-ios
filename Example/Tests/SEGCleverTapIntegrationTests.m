@@ -178,6 +178,52 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
             OCMVerifyAll(mockIntegration);
             OCMVerifyAll(mockCleverTap);
         });
+        
+        it(@"should fire Charged event for Order Completed events", ^{
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMExpect([mockCleverTap recordChargedEventWithDetails:[OCMArg any] andItems:[OCMArg any]]);
+            
+            NSDictionary *payloadProperties =  @{
+                                                    @"affiliation": @"Google Store",
+                                                    @"checkout_id": @"fksdjfsdjfisjf9sdfjsd9f",
+                                                    @"currency": @"USD",
+                                                    @"order_id": @"50314b8e9bcf000000000000",
+                                                    @"products": @[
+                                                                @{
+                                                                    @"category": @"Games",
+                                                                    @"name": @"Monopoly: 3rd Edition",
+                                                                    @"price": @19,
+                                                                    @"product_id": @"507f1f77bcf86cd799439011",
+                                                                    @"quantity": @1,
+                                                                    @"sku": @"45790-32"
+                                                                },
+                                                                @{
+                                                                    @"category": @"Games",
+                                                                    @"name": @"Uno Card Game",
+                                                                    @"price": @3,
+                                                                    @"product_id": @"505bd76785ebb509fc183733",
+                                                                    @"quantity": @2,
+                                                                    @"sku": @"46493-32"
+                                                                }
+                                                                ],
+                                                    @"revenue": @25,
+                                                    @"total": @30,
+                                                    @"someKey": @{ @"key": @"value" }
+                                                };
+            
+            SEGTrackPayload *nicePayload = [[SEGTrackPayload alloc] initWithEvent:@"Order Completed"
+                                                                       properties:payloadProperties
+                                                                          context:@{ @"key": @"value" }
+                                                                     integrations:@{ @"key": @"value" }];
+            
+            [mockIntegration track:nicePayload];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
     });
 });
 
