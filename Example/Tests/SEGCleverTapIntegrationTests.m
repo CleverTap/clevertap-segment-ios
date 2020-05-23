@@ -162,6 +162,23 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
             OCMVerifyAll(mockCleverTap);
         });
     });
+    
+    context(@"when an event is tracked", ^{
+        
+        it(@"should fire recordEvent on CleverTap instance", ^{
+
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMExpect([mockCleverTap recordEvent:[OCMArg any] withProps:[OCMArg any]]);
+
+            id mockPayload = OCMClassMock([SEGTrackPayload class]);
+            [mockIntegration track:mockPayload];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+    });
 });
 
 QuickSpecEnd
