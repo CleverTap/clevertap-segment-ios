@@ -11,7 +11,6 @@
 		4664A67741C812A25B50749D /* Pods_Segment_CleverTap_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43489EEB3062BAAB70DF180E /* Pods_Segment_CleverTap_Tests.framework */; };
 		522ECC5B1CAC7510006D0E53 /* SEGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522ECC581CAC7510006D0E53 /* SEGViewController.m */; };
 		522ECC5C1CAC7510006D0E53 /* SEGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 522ECC5A1CAC7510006D0E53 /* SEGAppDelegate.m */; };
-		527A230D1CB5D1190040CF73 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ADDE331CAC9CA700BE13CB /* Tests.m */; };
 		52BAE8921CAC94D2005B953A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522ECC681CAC93BC006D0E53 /* UIKit.framework */; };
 		52E62A591CAC6C8600C24CEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E62A581CAC6C8600C24CEC /* main.m */; };
 		52E62A621CAC6C8600C24CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E62A601CAC6C8600C24CEC /* Main.storyboard */; };
@@ -44,7 +43,6 @@
 		527A23081CB5C24E0040CF73 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		527A23091CB5C24E0040CF73 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		52ADDE1F1CAC99AE00BE13CB /* Segment-CleverTap_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Segment-CleverTap_Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52ADDE331CAC9CA700BE13CB /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		52ADDE351CAC9CA700BE13CB /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		52C6AC0E1E54EF0A00D06BEE /* Segment-CleverTap_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Segment-CleverTap_Example.entitlements"; sourceTree = "<group>"; };
 		52E62A541CAC6C8600C24CEC /* Segment-CleverTap_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Segment-CleverTap_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				F98CCE932477E91D008A0DDC /* SEGCleverTapIntegrationTests.m */,
-				52ADDE331CAC9CA700BE13CB /* Tests.m */,
 				52ADDE351CAC9CA700BE13CB /* Tests-Info.plist */,
 			);
 			path = Tests;
@@ -376,7 +373,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				527A230D1CB5D1190040CF73 /* Tests.m in Sources */,
 				F98CCE942477E91D008A0DDC /* SEGCleverTapIntegrationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
