@@ -33,7 +33,7 @@ describe(@"a Segment CleverTap integration class", ^{
         expect(integration.settings).to(equal(niceSettings));
     });
 
-    it(@"returns nil for nil settings values", ^{
+    it(@"returns nil for invalid settings values", ^{
 
         niceSettings = @{ @"key": @"value" };
 
