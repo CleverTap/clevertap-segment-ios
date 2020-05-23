@@ -162,13 +162,20 @@ describe(@"a Segment CleverTap integration", ^{
 describe(@"a Segment CleverTap integration", ^{
     context(@"when a screen is tracked", ^{
         
-        it(@"should fire recordScreenView on CleverTap instance", ^{
-            
+        __block  SEGCleverTapIntegration *integration;
+        beforeEach(^{
             NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                             @"clevertap_account_token": @"001",
-                                             @"region": @"Region" };
+                                            @"clevertap_account_token": @"001",
+                                            @"region": @"Region" };
 
-            SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+           integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+        });
+        
+        afterEach(^{
+            integration = nil;
+        });
+        
+        it(@"should fire recordScreenView on CleverTap instance", ^{
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
@@ -179,6 +186,35 @@ describe(@"a Segment CleverTap integration", ^{
                                                                     properties:nil
                                                                        context:@{ @"key": @"value" }
                                                                   integrations:@{ @"key": @"value" }];
+            
+            [mockIntegration screen:payload];
+            
+            OCMVerifyAll(mockIntegration);
+            OCMVerifyAll(mockCleverTap);
+        });
+        
+        it(@"if screen name is empty, should not fire recordScreenView", ^{
+            
+            NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
+                                             @"clevertap_account_token": @"001",
+                                             @"region": @"Region" };
+
+            SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+            
+            id mockIntegration = OCMPartialMock(integration);
+            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
+            
+            OCMReject([mockCleverTap recordScreenView:[OCMArg any]]);
+            
+            #pragma clang diagnostic push
+            #pragma clang diagnostic ignored "-Wnonnull"
+            
+            SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:nil
+                                                                    properties:nil
+                                                                       context:@{ @"key": @"value" }
+                                                                  integrations:@{ @"key": @"value" }];
+
+            #pragma clang diagnostic pop
             
             [mockIntegration screen:payload];
             
