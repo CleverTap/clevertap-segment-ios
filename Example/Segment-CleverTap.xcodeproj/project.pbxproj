@@ -17,7 +17,6 @@
 		52E62A641CAC6C8600C24CEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E62A631CAC6C8600C24CEC /* Assets.xcassets */; };
 		52E62A671CAC6C8600C24CEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E62A651CAC6C8600C24CEC /* LaunchScreen.storyboard */; };
 		F90F35D52479721300FD60FD /* SEGCleverTapIntegrationFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F35D42479721300FD60FD /* SEGCleverTapIntegrationFactorySpec.m */; };
-		F90F35D62479722200FD60FD /* Tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52ADDE351CAC9CA700BE13CB /* Tests-Info.plist */; };
 		F98CCE942477E91D008A0DDC /* SEGCleverTapIntegrationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F98CCE932477E91D008A0DDC /* SEGCleverTapIntegrationSpec.m */; };
 /* End PBXBuildFile section */
 
@@ -264,7 +263,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F90F35D62479722200FD60FD /* Tests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
