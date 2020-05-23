@@ -94,13 +94,37 @@ describe(@"a Segment CleverTap integration", ^{
     
     context(@"on receiving identify: callback from SEGIntegration", ^{
         
-        it(@"does not performs user login if no traits in payload", ^{
-            
+        __block  SEGCleverTapIntegration *integration;
+        beforeEach(^{
             NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
                                             @"clevertap_account_token": @"001",
                                             @"region": @"Region" };
 
-            SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+           integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
+        });
+        
+        afterEach(^{
+            integration = nil;
+        });
+        
+        it(@"performs user login with  payload", ^{
+            
+            id mock = OCMPartialMock(integration);
+            
+            OCMExpect([mock onUserLogin:[OCMArg any]]);
+            
+            SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
+                                                                         anonymousId:@"anonymousID"
+                                                                              traits:@{ @"key": @"value" }
+                                                                             context:@{ @"key": @"value" }
+                                                                        integrations:@{ @"key": @"value" }];
+            
+            [mock identify:payload];
+            
+            OCMVerifyAll(mock);
+        });
+        
+        it(@"does not performs user login if no traits in payload", ^{
             
             id mock = OCMPartialMock(integration);
             
