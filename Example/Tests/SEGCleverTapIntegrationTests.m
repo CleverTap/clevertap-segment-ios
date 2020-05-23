@@ -141,12 +141,6 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
         
         it(@"if screen name is empty, should not fire recordScreenView", ^{
             
-            NSDictionary *settingsDict = @{ @"clevertap_account_id": @"ABC",
-                                             @"clevertap_account_token": @"001",
-                                             @"region": @"Region" };
-
-            SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:settingsDict];
-            
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
             
