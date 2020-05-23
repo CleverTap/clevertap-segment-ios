@@ -15,7 +15,7 @@ QuickSpecBegin(SEGCleverTapIntegrationSpec)
 
 describe(@"a Segment CleverTap integration class", ^{
     
-    __block  NSDictionary *niceSettings;
+    __block NSDictionary *niceSettings;
     beforeEach(^{
         niceSettings = @{ @"clevertap_account_id": @"ABC",
                           @"clevertap_account_token": @"001",
@@ -55,9 +55,9 @@ describe(@"a Segment CleverTap integration class", ^{
     });
 });
 
-describe(@"a Segment CleverTap integration  conforming to SEGIntegration protocol", ^{
+describe(@"a Segment CleverTap integration conforming to SEGIntegration protocol", ^{
     
-    __block  SEGCleverTapIntegration *integration;
+    __block SEGCleverTapIntegration *integration;
     beforeEach(^{
         NSDictionary *niceSettings = @{ @"clevertap_account_id": @"ABC",
                                         @"clevertap_account_token": @"001",
@@ -79,7 +79,7 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
 
             OCMExpect([mockCleverTap onUserLogin:[OCMArg any]]);
             
-             NSDictionary *niceTraits = @{  @"address": @{ @"city": @"Mumbai", @"country": @"India" },
+            NSDictionary *niceTraits = @{   @"address": @{ @"city": @"Mumbai", @"country": @"India" },
                                             @"anonymousId": @"C790B642-DC43-4345-AA40-82D6074BEF94",
                                             @"bool": @(YES),
                                             @"double": @"3.14159",
@@ -93,7 +93,7 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
                                             @"stringInt": @1,
                                             @"birthday": [NSDate date],
                                             @"testArr": @[ @1, @2, @3 ]
-                                          };
+                                        };
             
             SEGIdentifyPayload *nicePayload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
                                                                              anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
@@ -114,7 +114,7 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
 
             OCMExpect([mockCleverTap onUserLogin:[OCMArg any]]);
             
-             NSDictionary *niceTraits = @{  @"address": @{ @"city": @"Mumbai", @"country": @"India" },
+            NSDictionary *niceTraits = @{   @"address": @{ @"city": @"Mumbai", @"country": @"India" },
                                             @"anonymousId": @"C790B642-DC43-4345-AA40-82D6074BEF94",
                                             @"bool": @(YES),
                                             @"double": @"3.14159",
@@ -129,7 +129,7 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
                                             @"stringInt": @1,
                                             @"birthday": @"01-Mar-1990",
                                             @"testArr": @[ @1, @2, @3 ]
-                                          };
+                                        };
             
             SEGIdentifyPayload *nicePayload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
                                                                              anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
@@ -150,7 +150,7 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
 
             OCMExpect([mockCleverTap onUserLogin:[OCMArg any]]);
             
-             NSDictionary *niceTraits = @{  @"address": @{ @"city": @"Mumbai", @"country": @"India" },
+            NSDictionary *niceTraits = @{   @"address": @{ @"city": @"Mumbai", @"country": @"India" },
                                             @"anonymousId": @"C790B642-DC43-4345-AA40-82D6074BEF94",
                                             @"bool": @(YES),
                                             @"double": @"3.14159",
@@ -165,7 +165,7 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
                                             @"stringInt": @1,
                                             @"birthday": @"01-Mar-1990",
                                             @"testArr": @[ @1, @2, @3 ]
-                                          };
+                                        };
             
             SEGIdentifyPayload *nicePayload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
                                                                              anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
@@ -267,22 +267,22 @@ describe(@"a Segment CleverTap integration  conforming to SEGIntegration protoco
                                                     @"currency": @"USD",
                                                     @"order_id": @"50314b8e9bcf000000000000",
                                                     @"products": @[
-                                                                @{
-                                                                    @"category": @"Games",
-                                                                    @"name": @"Monopoly: 3rd Edition",
-                                                                    @"price": @19,
-                                                                    @"product_id": @"507f1f77bcf86cd799439011",
-                                                                    @"quantity": @1,
-                                                                    @"sku": @"45790-32"
-                                                                },
-                                                                @{
-                                                                    @"category": @"Games",
-                                                                    @"name": @"Uno Card Game",
-                                                                    @"price": @3,
-                                                                    @"product_id": @"505bd76785ebb509fc183733",
-                                                                    @"quantity": @2,
-                                                                    @"sku": @"46493-32"
-                                                                }
+                                                                    @{
+                                                                        @"category": @"Games",
+                                                                        @"name": @"Monopoly: 3rd Edition",
+                                                                        @"price": @19,
+                                                                        @"product_id": @"507f1f77bcf86cd799439011",
+                                                                        @"quantity": @1,
+                                                                        @"sku": @"45790-32"
+                                                                    },
+                                                                    @{
+                                                                        @"category": @"Games",
+                                                                        @"name": @"Uno Card Game",
+                                                                        @"price": @3,
+                                                                        @"product_id": @"505bd76785ebb509fc183733",
+                                                                        @"quantity": @2,
+                                                                        @"sku": @"46493-32"
+                                                                    }
                                                                 ],
                                                     @"revenue": @25,
                                                     @"total": @30,
