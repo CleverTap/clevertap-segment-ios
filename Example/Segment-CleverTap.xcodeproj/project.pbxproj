@@ -57,6 +57,7 @@
 		EC034031D2AE592EAE640B61 /* Pods-Segment-CleverTap_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-CleverTap_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Segment-CleverTap_Tests/Pods-Segment-CleverTap_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		F90F35D42479721300FD60FD /* SEGCleverTapIntegrationFactorySpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SEGCleverTapIntegrationFactorySpec.m; path = ../../SEGCleverTapIntegrationFactorySpec.m; sourceTree = "<group>"; };
 		F98CCE932477E91D008A0DDC /* SEGCleverTapIntegrationSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGCleverTapIntegrationSpec.m; sourceTree = "<group>"; };
+		F9D2B428247EE38300D62B60 /* Segment-CleverTap.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Segment-CleverTap.xctestplan"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 			children = (
 				F98CCE932477E91D008A0DDC /* SEGCleverTapIntegrationSpec.m */,
 				F90F35D42479721300FD60FD /* SEGCleverTapIntegrationFactorySpec.m */,
+				F9D2B428247EE38300D62B60 /* Segment-CleverTap.xctestplan */,
 				52ADDE351CAC9CA700BE13CB /* Tests-Info.plist */,
 			);
 			path = Tests;
