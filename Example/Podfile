@@ -10,7 +10,7 @@ end
 target 'Segment-CleverTap_Tests' do
   pod "Segment-CleverTap", :path => '../'
 
-  pod 'Specta'
-  pod 'Expecta'
+  pod 'Quick'
+  pod 'Nimble'
   pod 'OCMock'
 end
