@@ -46,7 +46,9 @@ workflows:
     - recreate-user-schemes@1:
         inputs:
         - project_path: "$BITRISE_PROJECT_PATH"
-    - cocoapods-install@1: {}
+    - cocoapods-install@1:
+        inputs:
+        - podfile_path: Example/Podfile
     - xcode-test@2:
         inputs:
         - project_path: "$BITRISE_PROJECT_PATH"
