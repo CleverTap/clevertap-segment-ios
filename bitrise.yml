@@ -54,3 +54,4 @@ workflows:
         - simulator_device: iPhone 11
         - generate_code_coverage_files: 'yes'
         - scheme: "$BITRISE_SCHEME"
+    - deploy-to-bitrise-io@1: {}
