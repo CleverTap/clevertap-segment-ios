@@ -1,4 +1,4 @@
-# Analytics
+# CleverTap iOS Segment SDK
 
 [![Version](https://img.shields.io/cocoapods/v/Segment-CleverTap.svg?style=flat)](http://cocoapods.org/pods/Segment-CleverTap)
 [![License](https://img.shields.io/cocoapods/l/Segment-CleverTap.svg?style=flat)](http://cocoapods.org/pods/Segment-CleverTap)

@@ -1,0 +1,43 @@
+{
+  "configurations" : [
+    {
+      "id" : "4E6B704B-9F7C-444F-A9AD-6D8C41D2EB56",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "E12536816B6C31D7AF55D161F6F97141",
+          "name" : "CleverTap-iOS-SDK"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "AA2FFB199571DD1E92382DCC2C615638",
+          "name" : "Segment-CleverTap"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Segment-CleverTap.xcodeproj",
+      "identifier" : "52E62A531CAC6C8600C24CEC",
+      "name" : "Segment-CleverTap_Example"
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Segment-CleverTap.xcodeproj",
+        "identifier" : "52ADDE1E1CAC99AE00BE13CB",
+        "name" : "Segment-CleverTap_Tests"
+      }
+    }
+  ],
+  "version" : 1
+}
