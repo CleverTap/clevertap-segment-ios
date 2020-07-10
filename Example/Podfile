@@ -1,5 +1,5 @@
 
-platform :ios, '8.0'
+platform :ios, '10.0'
 
 use_frameworks!
 
@@ -9,7 +9,6 @@ end
 
 target 'Segment-CleverTap_Tests' do
   pod "Segment-CleverTap", :path => '../'
-
   pod 'Quick'
   pod 'Nimble'
   pod 'OCMock'
