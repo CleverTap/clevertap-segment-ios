@@ -1,4 +1,3 @@
-
 import UIKit
 import CleverTapSDK
 import Analytics
@@ -34,7 +33,7 @@ class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
     }
     
     @IBAction func screenButtonPressed(_ sender: Any) {
-        SEGAnalytics.shared()?.screen("TestScreen")
+        Analytics.shared().screen("TestScreen")
     }
     
     @IBAction func identifyButtonDidPress(_ sender: Any) {
@@ -50,15 +49,15 @@ class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
             "gender": "female",
         ]
         
-        SEGAnalytics.shared()?.identify("cleverTapSegementTestUseriOS", traits: traits)
+        Analytics.shared().identify("cleverTapSegementTestUseriOS", traits: traits)
     }
     
     @IBAction func trackButtonDidPress(_ sender: Any) {
-        SEGAnalytics.shared()?.track("cleverTapSegmentTrackEvent", properties: ["eventProperty":"eventPropertyValue"])
+        Analytics.shared().track("cleverTapSegmentTrackEvent", properties: ["eventProperty":"eventPropertyValue"])
     }
     
     @IBAction func aliasButtonDidPress(_ sender: Any) {
-        SEGAnalytics.shared()?.alias("654321A")
+        Analytics.shared().alias("654321A")
     }
     
     @IBAction func showAppInbox() {

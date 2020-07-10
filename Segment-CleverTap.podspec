@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency 'Analytics'
-  s.dependency 'CleverTap-iOS-SDK', '~> 3.8.0'
+  s.dependency 'CleverTap-iOS-SDK', '~> 3.8.1'
   s.source_files = 'Pod/Classes/**/*'
 
 end

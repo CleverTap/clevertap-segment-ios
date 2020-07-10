@@ -7,7 +7,9 @@
 //
 
 #import "SEGAnalyticsConfiguration.h"
+#import "SEGAnalytics.h"
 #import "SEGCrypto.h"
+#import <UIKit/UIKit.h>
 
 
 @implementation UIApplication (SEGApplicationProtocol)
@@ -26,7 +28,6 @@
 
 @implementation SEGAnalyticsExperimental
 @end
-
 
 @interface SEGAnalyticsConfiguration ()
 
@@ -66,9 +67,8 @@
             @"(fb\\d+://authorize#access_token=)([^ ]+)": @"$1((redacted/fb-auth-token))"
         };
         _factories = [NSMutableArray array];
-        Class applicationClass = NSClassFromString(@"UIApplication");
-        if (applicationClass) {
-            _application = [applicationClass performSelector:@selector(sharedApplication)];
+        if ([UIApplication respondsToSelector:@selector(sharedApplication)]) {
+            _application = [UIApplication performSelector:@selector(sharedApplication)];
         }
     }
     return self;
@@ -82,6 +82,18 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%p:%@, %@>", self, self.class, [self dictionaryWithValuesForKeys:@[ @"writeKey", @"shouldUseLocationServices", @"flushAt" ]]];
+}
+
+// MARK: remove these when `middlewares` property is removed.
+
+- (void)setMiddlewares:(NSArray<id<SEGMiddleware>> *)middlewares
+{
+    self.sourceMiddleware = middlewares;
+}
+
+- (NSArray<id<SEGMiddleware>> *)middlewares
+{
+    return self.sourceMiddleware;
 }
 
 @end
