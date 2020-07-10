@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,11 +12,11 @@
 		521D8B561E648AD9000BF6B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521D8B541E648AD9000BF6B2 /* Main.storyboard */; };
 		521D8B581E648AD9000BF6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521D8B571E648AD9000BF6B2 /* Assets.xcassets */; };
 		521D8B5B1E648AD9000BF6B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521D8B591E648AD9000BF6B2 /* LaunchScreen.storyboard */; };
-		DE7A8E84D4FC6F3E1750CA5B /* Pods_ExampleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24131097931A22990DC6C4E /* Pods_ExampleSwift.framework */; };
+		E9FB4A8810772A4B0FB31C10 /* Pods_ExampleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D1069B2FB18330E9C265D8D /* Pods_ExampleSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		05A3F1104F3525F28F49FE88 /* Pods-ExampleSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		0D1069B2FB18330E9C265D8D /* Pods_ExampleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		521D8B4D1E648AD9000BF6B2 /* ExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		521D8B501E648AD9000BF6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		521D8B521E648AD9000BF6B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,8 +25,8 @@
 		521D8B5A1E648AD9000BF6B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		521D8B5C1E648AD9000BF6B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52F72BAB1E6490E700663332 /* ExampleSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExampleSwift.entitlements; sourceTree = "<group>"; };
-		A24131097931A22990DC6C4E /* Pods_ExampleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FBC4B08E927C628BA796F749 /* Pods-ExampleSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.release.xcconfig"; sourceTree = "<group>"; };
+		674B0881005E6DA8C801732C /* Pods-ExampleSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleSwift.release.xcconfig"; path = "Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.release.xcconfig"; sourceTree = "<group>"; };
+		71BF29E1FC520E7F38445E7B /* Pods-ExampleSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleSwift.debug.xcconfig"; path = "Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE7A8E84D4FC6F3E1750CA5B /* Pods_ExampleSwift.framework in Frameworks */,
+				E9FB4A8810772A4B0FB31C10 /* Pods_ExampleSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,8 +46,8 @@
 			children = (
 				521D8B4F1E648AD9000BF6B2 /* ExampleSwift */,
 				521D8B4E1E648AD9000BF6B2 /* Products */,
-				CE6C4C99D57D9AF08C5BA8D4 /* Pods */,
-				7C9676251AF4ADA262C83000 /* Frameworks */,
+				EE558CFDAEECECF415BCC4D8 /* Pods */,
+				8A3A4B5C58525CE765F20008 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,21 +73,22 @@
 			path = ExampleSwift;
 			sourceTree = "<group>";
 		};
-		7C9676251AF4ADA262C83000 /* Frameworks */ = {
+		8A3A4B5C58525CE765F20008 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A24131097931A22990DC6C4E /* Pods_ExampleSwift.framework */,
+				0D1069B2FB18330E9C265D8D /* Pods_ExampleSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CE6C4C99D57D9AF08C5BA8D4 /* Pods */ = {
+		EE558CFDAEECECF415BCC4D8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				05A3F1104F3525F28F49FE88 /* Pods-ExampleSwift.debug.xcconfig */,
-				FBC4B08E927C628BA796F749 /* Pods-ExampleSwift.release.xcconfig */,
+				71BF29E1FC520E7F38445E7B /* Pods-ExampleSwift.debug.xcconfig */,
+				674B0881005E6DA8C801732C /* Pods-ExampleSwift.release.xcconfig */,
 			);
 			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,11 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 521D8B5F1E648AD9000BF6B2 /* Build configuration list for PBXNativeTarget "ExampleSwift" */;
 			buildPhases = (
-				E85D8414DD204C2BA162A343 /* [CP] Check Pods Manifest.lock */,
+				764D1D09D1A7CA3BA9141467 /* [CP] Check Pods Manifest.lock */,
 				521D8B491E648AD9000BF6B2 /* Sources */,
 				521D8B4A1E648AD9000BF6B2 /* Frameworks */,
 				521D8B4B1E648AD9000BF6B2 /* Resources */,
-				57111F6DD02156384D499473 /* [CP] Embed Pods Frameworks */,
+				4D9AE6E875A9AA8E8540B8E9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,7 +140,7 @@
 				};
 			};
 			buildConfigurationList = 521D8B481E648AD9000BF6B2 /* Build configuration list for PBXProject "ExampleSwift" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -170,40 +171,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		57111F6DD02156384D499473 /* [CP] Embed Pods Frameworks */ = {
+		4D9AE6E875A9AA8E8540B8E9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Analytics/Analytics.framework",
-				"${BUILT_PRODUCTS_DIR}/CleverTap-iOS-SDK/CleverTapSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/Segment-CleverTap/Segment_CleverTap.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CleverTapSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Segment_CleverTap.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E85D8414DD204C2BA162A343 /* [CP] Check Pods Manifest.lock */ = {
+		764D1D09D1A7CA3BA9141467 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ExampleSwift-checkManifestLockResult.txt",
 			);
@@ -351,7 +349,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -359,14 +358,17 @@
 		};
 		521D8B601E648AD9000BF6B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05A3F1104F3525F28F49FE88 /* Pods-ExampleSwift.debug.xcconfig */;
+			baseConfigurationReference = 71BF29E1FC520E7F38445E7B /* Pods-ExampleSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExampleSwift/ExampleSwift.entitlements;
 				DEVELOPMENT_TEAM = A5J34NR598;
 				INFOPLIST_FILE = ExampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clevertap.Segment-CleverTap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -376,14 +378,17 @@
 		};
 		521D8B611E648AD9000BF6B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FBC4B08E927C628BA796F749 /* Pods-ExampleSwift.release.xcconfig */;
+			baseConfigurationReference = 674B0881005E6DA8C801732C /* Pods-ExampleSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExampleSwift/ExampleSwift.entitlements;
 				DEVELOPMENT_TEAM = A5J34NR598;
 				INFOPLIST_FILE = ExampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clevertap.Segment-CleverTap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;

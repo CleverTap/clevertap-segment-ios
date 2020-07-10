@@ -18,11 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // please add your CleverTap account id and token to your plist
         // as described here:  https://support.clevertap.com/docs/ios/getting-started.html#add-clevertap-credentials
         
-        SEGAnalytics.debug(true)
+        Analytics.debug(true)
         CleverTap.setDebugLevel(CleverTapLogLevel.debug.rawValue+1);
-        let config = SEGAnalyticsConfiguration(writeKey: "qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz")
+        let config = AnalyticsConfiguration(writeKey: "qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz")
         config.use(SEGCleverTapIntegrationFactory())
-        SEGAnalytics.setup(with: config)
+        Analytics.setup(with: config)
         
         // push notifications
         UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .alert, .badge]) {
@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        SEGAnalytics.shared()?.registeredForRemoteNotifications(withDeviceToken: deviceToken)
+        Analytics.shared().registeredForRemoteNotifications(withDeviceToken: deviceToken)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -62,12 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         print("did receive remote notification \(userInfo)")
         
-        SEGAnalytics.shared()?.receivedRemoteNotification(userInfo)
+        Analytics.shared().receivedRemoteNotification(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("did receive remote notification completionHandler \(userInfo)")
-        SEGAnalytics.shared()?.receivedRemoteNotification(userInfo)
+        Analytics.shared().receivedRemoteNotification(userInfo)
     }
     
     func showAlert(message:String) {
