@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/CleverTap/clevertap-segment-ios/blob/1.1.4/clevertap-logo.png" width="300"/>
+  <img src="https://github.com/CleverTap/clevertap-segment-ios/blob/master/clevertap-logo.png" width="300"/>
 </p>
 
 # CleverTap iOS Segment SDK
