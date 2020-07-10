@@ -1,15 +1,12 @@
-
 @import Quick;
 @import Nimble;
 @import OCMock;
 @import CleverTapSDK;
 @import Segment_CleverTap;
 
-
 @interface SEGCleverTapIntegration (Spec)
 - (void)handleOrderCompleted:(SEGTrackPayload *)payload;
 @end
-
 
 QuickSpecBegin(SEGCleverTapIntegrationSpec)
 

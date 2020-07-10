@@ -1,4 +1,3 @@
-
 @import UIKit;
 
 @interface SEGAppDelegate : UIResponder <UIApplicationDelegate>
