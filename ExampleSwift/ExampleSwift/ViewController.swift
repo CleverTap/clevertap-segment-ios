@@ -26,9 +26,11 @@ class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
     
     func initializeAppInbox() {
         CleverTap.sharedInstance()?.initializeInbox(callback: ({ (success) in
-            let messageCount = CleverTap.sharedInstance()?.getInboxMessageCount()
-            let unreadCount = CleverTap.sharedInstance()?.getInboxMessageUnreadCount()
-            print("Inbox Message:\(String(describing: messageCount))/\(String(describing: unreadCount)) unread")
+            if (success) {
+                let messageCount = CleverTap.sharedInstance()?.getInboxMessageCount()
+                let unreadCount = CleverTap.sharedInstance()?.getInboxMessageUnreadCount()
+                print("Inbox Message:\(String(describing: messageCount))/\(String(describing: unreadCount)) unread")
+            }
         }))
     }
     
