@@ -9,6 +9,7 @@ import Segment_CleverTap
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // NOTE:  if you are using CleverTap for push notifications with deep links, to have a launch deep link automatically called
@@ -16,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // as described here:  https://support.clevertap.com/docs/ios/getting-started.html#add-clevertap-credentials
         
         Analytics.debug(true)
-        CleverTap.setDebugLevel(CleverTapLogLevel.debug.rawValue+1)
+        CleverTap.setDebugLevel(CleverTapLogLevel.debug.rawValue+1);
         let config = AnalyticsConfiguration(writeKey: "qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz")
         config.use(SEGCleverTapIntegrationFactory())
         Analytics.setup(with: config)
@@ -56,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         print("did receive remote notification \(userInfo)")
+        
         Analytics.shared().receivedRemoteNotification(userInfo)
     }
     
@@ -94,5 +96,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
 }
 

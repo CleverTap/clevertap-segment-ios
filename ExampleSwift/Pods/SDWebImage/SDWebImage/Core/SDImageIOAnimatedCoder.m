@@ -110,7 +110,7 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
 
 + (NSUInteger)imageLoopCountWithSource:(CGImageSourceRef)source {
     NSUInteger loopCount = self.defaultLoopCount;
-    NSDictionary *imageProperties = (__bridge_transfer NSDictionary *)CGImageSourceCopyProperties(source, NULL);
+    NSDictionary *imageProperties = (__bridge_transfer NSDictionary *)CGImageSourceCopyProperties(source, nil);
     NSDictionary *containerProperties = imageProperties[self.dictionaryProperty];
     if (containerProperties) {
         NSNumber *containerLoopCount = containerProperties[self.loopCountProperty];
@@ -199,7 +199,7 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
             NSUInteger rasterizationDPI = maxPixelSize * DPIPerPixel;
             decodingOptions[kSDCGImageSourceRasterizationDPI] = @(rasterizationDPI);
         }
-        imageRef = CGImageSourceCreateImageAtIndex(source, index, (__bridge CFDictionaryRef)[decodingOptions copy]);
+        imageRef = CGImageSourceCreateImageAtIndex(source, index, (__bridge CFDictionaryRef)decodingOptions);
     } else {
         decodingOptions[(__bridge NSString *)kCGImageSourceCreateThumbnailWithTransform] = @(preserveAspectRatio);
         CGFloat maxPixelSize;
@@ -216,7 +216,7 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
         }
         decodingOptions[(__bridge NSString *)kCGImageSourceThumbnailMaxPixelSize] = @(maxPixelSize);
         decodingOptions[(__bridge NSString *)kCGImageSourceCreateThumbnailFromImageAlways] = @(YES);
-        imageRef = CGImageSourceCreateThumbnailAtIndex(source, index, (__bridge CFDictionaryRef)[decodingOptions copy]);
+        imageRef = CGImageSourceCreateThumbnailAtIndex(source, index, (__bridge CFDictionaryRef)decodingOptions);
     }
     if (!imageRef) {
         return nil;

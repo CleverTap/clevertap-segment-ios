@@ -9,13 +9,9 @@
 #import "SEGAnalyticsConfiguration.h"
 #import "SEGAnalytics.h"
 #import "SEGCrypto.h"
-#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
-#elif TARGET_OS_OSX
-#import <Cocoa/Cocoa.h>
-#endif
 
-#if TARGET_OS_IPHONE
+
 @implementation UIApplication (SEGApplicationProtocol)
 
 - (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler
@@ -29,7 +25,6 @@
 }
 
 @end
-#endif
 
 @implementation SEGAnalyticsExperimental
 @end
@@ -72,15 +67,9 @@
             @"(fb\\d+://authorize#access_token=)([^ ]+)": @"$1((redacted/fb-auth-token))"
         };
         _factories = [NSMutableArray array];
-#if TARGET_OS_IPHONE
         if ([UIApplication respondsToSelector:@selector(sharedApplication)]) {
             _application = [UIApplication performSelector:@selector(sharedApplication)];
         }
-#elif TARGET_OS_OSX
-        if ([NSApplication respondsToSelector:@selector(sharedApplication)]) {
-            _application = [NSApplication performSelector:@selector(sharedApplication)];
-        }
-#endif
     }
     return self;
 }

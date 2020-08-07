@@ -33,7 +33,6 @@
 #import "SEGStorage.h"
 #import "SEGTrackPayload.h"
 #import "NSData+SEGGZIP.h"
-#import "NSViewController+SEGScreen.h"
 #import "SEGAES256Crypto.h"
 #import "SEGFileStorage.h"
 #import "SEGIntegrationsManager.h"

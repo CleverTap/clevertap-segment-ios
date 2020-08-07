@@ -10,13 +10,9 @@
 
 #include <sys/sysctl.h>
 
-#if TARGET_OS_IOS && TARGET_OS_MACCATALYST == 0
+#if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
-
-static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
-#elif TARGET_OS_OSX
-#import <Cocoa/Cocoa.h>
 #endif
 
 // BKS: This doesn't appear to be needed anymore.  Will investigate.
@@ -171,32 +167,15 @@ NSDictionary *getStaticContext(SEGAnalyticsConfiguration *configuration, NSStrin
         };
     }
 
-#if TARGET_OS_IPHONE
-    dict[@"device"] = mobileSpecifications(configuration, deviceToken);
-#elif TARGET_OS_OSX
-    dict[@"device"] = desktopSpecifications(configuration, deviceToken);
-#endif
-
-    return dict;
-}
-
-#if TARGET_OS_IPHONE
-NSDictionary *mobileSpecifications(SEGAnalyticsConfiguration *configuration, NSString *deviceToken)
-{
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     UIDevice *device = [UIDevice currentDevice];
+
     dict[@"device"] = ({
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         dict[@"manufacturer"] = @"Apple";
-#if TARGET_OS_MACCATALYST
-        dict[@"type"] = @"macos";
-        dict[@"name"] = @"Macintosh";
-#else
         dict[@"type"] = @"ios";
-        dict[@"name"] = [device model];
-#endif
         dict[@"model"] = getDeviceModel();
         dict[@"id"] = [[device identifierForVendor] UUIDString];
+        dict[@"name"] = [device model];
         if (getAdTrackingEnabled(configuration)) {
             NSString *idfa = configuration.adSupportBlock();
             // This isn't ideal.  We're doing this because we can't actually check if IDFA is enabled on
@@ -224,91 +203,33 @@ NSDictionary *mobileSpecifications(SEGAnalyticsConfiguration *configuration, NSS
         @"width" : @(screenSize.width),
         @"height" : @(screenSize.height)
     };
-    
-    // BKS: This bit below doesn't seem to be effective anymore.  Will investigate later.
-    /*#if !(TARGET_IPHONE_SIMULATOR)
-        Class adClient = NSClassFromString(SEGADClientClass);
-        if (adClient) {
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            id sharedClient = [adClient performSelector:NSSelectorFromString(@"sharedClient")];
-    #pragma clang diagnostic pop
-            void (^completionHandler)(BOOL iad) = ^(BOOL iad) {
-                if (iad) {
-                    dict[@"referrer"] = @{ @"type" : @"iad" };
-                }
-            };
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [sharedClient performSelector:NSSelectorFromString(@"determineAppInstallationAttributionWithCompletionHandler:")
-                               withObject:completionHandler];
-    #pragma clang diagnostic pop
-        }
-    #endif*/
 
-    return dict;
-}
-#endif
-
-#if TARGET_OS_OSX
-NSString *getMacUUID()
-{
-    char buf[512] = { 0 };
-    int bufSize = sizeof(buf);
-    io_registry_entry_t ioRegistryRoot = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/");
-    CFStringRef uuidCf = (CFStringRef) IORegistryEntryCreateCFProperty(ioRegistryRoot, CFSTR(kIOPlatformUUIDKey), kCFAllocatorDefault, 0);
-    IOObjectRelease(ioRegistryRoot);
-    CFStringGetCString(uuidCf, buf, bufSize, kCFStringEncodingMacRoman);
-    CFRelease(uuidCf);
-    return [NSString stringWithUTF8String:buf];
-}
-
-NSDictionary *desktopSpecifications(SEGAnalyticsConfiguration *configuration, NSString *deviceToken)
-{
-    NSProcessInfo *deviceInfo = [NSProcessInfo processInfo];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[@"device"] = ({
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-        dict[@"manufacturer"] = @"Apple";
-        dict[@"type"] = @"macos";
-        dict[@"model"] = getDeviceModel();
-        dict[@"id"] = getMacUUID();
-        dict[@"name"] = [deviceInfo hostName];
-        
-        if (getAdTrackingEnabled(configuration)) {
-            NSString *idfa = configuration.adSupportBlock();
-            // This isn't ideal.  We're doing this because we can't actually check if IDFA is enabled on
-            // the customer device.  Apple docs and tests show that if it is disabled, one gets back all 0's.
-            BOOL adTrackingEnabled = (![idfa isEqualToString:@"00000000-0000-0000-0000-000000000000"]);
-            dict[@"adTrackingEnabled"] = @(adTrackingEnabled);
-
-            if (adTrackingEnabled) {
-                dict[@"advertisingId"] = idfa;
+// BKS: This bit below doesn't seem to be effective anymore.  Will investigate later.
+/*#if !(TARGET_IPHONE_SIMULATOR)
+    Class adClient = NSClassFromString(SEGADClientClass);
+    if (adClient) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        id sharedClient = [adClient performSelector:NSSelectorFromString(@"sharedClient")];
+#pragma clang diagnostic pop
+        void (^completionHandler)(BOOL iad) = ^(BOOL iad) {
+            if (iad) {
+                dict[@"referrer"] = @{ @"type" : @"iad" };
             }
-        }
-        if (deviceToken && deviceToken.length > 0) {
-            dict[@"token"] = deviceToken;
-        }
-        dict;
-    });
-
-    dict[@"os"] = @{
-        @"name" : deviceInfo.operatingSystemVersionString,
-        @"version" : [NSString stringWithFormat:@"%ld.%ld.%ld",
-                      deviceInfo.operatingSystemVersion.majorVersion,
-                      deviceInfo.operatingSystemVersion.minorVersion,
-                      deviceInfo.operatingSystemVersion.patchVersion]
-    };
-
-    CGSize screenSize = [NSScreen mainScreen].frame.size;
-    dict[@"screen"] = @{
-        @"width" : @(screenSize.width),
-        @"height" : @(screenSize.height)
-    };
+        };
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [sharedClient performSelector:NSSelectorFromString(@"determineAppInstallationAttributionWithCompletionHandler:")
+                           withObject:completionHandler];
+#pragma clang diagnostic pop
+    }
+#endif*/
 
     return dict;
 }
 
+#if TARGET_OS_IOS
+static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #endif
 
 NSDictionary *getLiveContext(SEGReachability *reachability, NSDictionary *referrer, NSDictionary *traits)
@@ -329,7 +250,7 @@ NSDictionary *getLiveContext(SEGReachability *reachability, NSDictionary *referr
             network[@"cellular"] = @(reachability.isReachableViaWWAN);
         }
 
-#if TARGET_OS_IOS && TARGET_OS_MACCATALYST == 0
+#if TARGET_OS_IOS
         static dispatch_once_t networkInfoOnceToken;
         dispatch_once(&networkInfoOnceToken, ^{
             _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
