@@ -1,6 +1,5 @@
 #include <sys/sysctl.h>
 
-#import <UIKit/UIKit.h>
 #import "SEGAnalytics.h"
 #import "SEGUtils.h"
 #import "SEGSegmentIntegration.h"
@@ -9,6 +8,10 @@
 #import "SEGStorage.h"
 #import "SEGMacros.h"
 #import "SEGState.h"
+
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#endif
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
@@ -31,7 +34,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
-@property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGReachability *reachability;
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
@@ -46,6 +48,10 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 @property (nonatomic, strong) id<SEGStorage> fileStorage;
 @property (nonatomic, strong) id<SEGStorage> userDefaultsStorage;
 @property (nonatomic, strong) NSURLSessionDataTask *attributionRequest;
+
+#if TARGET_OS_IPHONE
+@property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
+#endif
 
 @end
 
@@ -62,14 +68,16 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         self.fileStorage = fileStorage;
         self.userDefaultsStorage = userDefaultsStorage;
         self.apiURL = [SEGMENT_API_BASE URLByAppendingPathComponent:@"import"];
-        self.userId = [self getUserId];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.backgroundTaskQueue = seg_dispatch_queue_create_specific("io.segment.analytics.backgroundTask", DISPATCH_QUEUE_SERIAL);
+#if TARGET_OS_IPHONE
         self.flushTaskID = UIBackgroundTaskInvalid;
+#endif
         
-        // load traits from disk.
+        // load traits & user from disk.
+        [self loadUserId];
         [self loadTraits];
 
         [self dispatchBackground:^{
@@ -110,6 +118,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     seg_dispatch_specific_sync(_serialQueue, block);
 }
 
+#if TARGET_OS_IPHONE
 - (void)beginBackgroundTask
 {
     [self endBackgroundTask];
@@ -144,16 +153,21 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         }
     });
 }
+#endif
 
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%p:%@, %@>", self, self.class, self.configuration.writeKey];
 }
 
-- (void)saveUserId:(NSString *)userId
+- (NSString *)userId
+{
+    return [SEGState sharedInstance].userInfo.userId;
+}
+
+- (void)setUserId:(NSString *)userId
 {
     [self dispatchBackground:^{
-        self.userId = userId;
         [SEGState sharedInstance].userInfo.userId = userId;
 #if TARGET_OS_TV
         [self.userDefaultsStorage setString:userId forKey:SEGUserIdKey];
@@ -170,11 +184,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 - (void)setTraits:(NSDictionary *)traits
 {
-    [self saveTraits:traits];
-}
-
-- (void)saveTraits:(NSDictionary *)traits
-{
     [self dispatchBackground:^{
         [SEGState sharedInstance].userInfo.traits = traits;
 #if TARGET_OS_TV
@@ -190,8 +199,8 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 - (void)identify:(SEGIdentifyPayload *)payload
 {
     [self dispatchBackground:^{
-        [self saveUserId:payload.userId];
-        [self saveTraits:payload.traits];
+        self.userId = payload.userId;
+        self.traits = payload.traits;
     }];
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -317,6 +326,17 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 - (void)flushWithMaxSize:(NSUInteger)maxBatchSize
 {
+    void (^startBatch)(void) = ^{
+        NSArray *batch;
+        if ([self.queue count] >= maxBatchSize) {
+            batch = [self.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
+        } else {
+            batch = [NSArray arrayWithArray:self.queue];
+        }
+        [self sendData:batch];
+    };
+    
+#if TARGET_OS_IPHONE
     [self dispatchBackground:^{
         if ([self.queue count] == 0) {
             SEGLog(@"%@ No queued API calls to flush.", self);
@@ -327,16 +347,12 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
             SEGLog(@"%@ API request already in progress, not flushing again.", self);
             return;
         }
-
-        NSArray *batch;
-        if ([self.queue count] >= maxBatchSize) {
-            batch = [self.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
-        } else {
-            batch = [NSArray arrayWithArray:self.queue];
-        }
-
-        [self sendData:batch];
+        // here
+        startBatch();
     }];
+#elif TARGET_OS_OSX
+    startBatch();
+#endif
 }
 
 - (void)flushQueueByLength
@@ -383,7 +399,9 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     SEGLog(@"Flushing batch %@.", payload);
 
     self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
-        [self dispatchBackground:^{
+        
+#if TARGET_OS_IPHONE
+        void (^completion)(void) = ^{
             if (retry) {
                 [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
                 self.batchRequest = nil;
@@ -396,12 +414,29 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
             [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
             self.batchRequest = nil;
             [self endBackgroundTask];
-        }];
+        };
+#elif TARGET_OS_OSX
+        void (^completion)(void) = ^{
+            if (retry) {
+                [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
+                self.batchRequest = nil;
+                return;
+            }
+
+            [self.queue removeObjectsInArray:batch];
+            [self persistQueue];
+            [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
+            self.batchRequest = nil;
+        };
+#endif
+        
+        [self dispatchBackground:completion];
     }];
 
     [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
 }
 
+#if TARGET_OS_IPHONE
 - (void)applicationDidEnterBackground
 {
     [self beginBackgroundTask];
@@ -409,6 +444,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     // since there is a chance that the user will never launch the app again.
     [self flush];
 }
+#endif
 
 - (void)applicationWillTerminate
 {
@@ -447,7 +483,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     return 100;
 }
 
-- (NSString *)getUserId
+- (void)loadUserId
 {
     NSString *result = nil;
 #if TARGET_OS_TV
@@ -456,7 +492,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     result = [self.fileStorage stringForKey:kSEGUserIdFilename];
 #endif
     [SEGState sharedInstance].userInfo.userId = result;
-    return result;
 }
 
 - (void)persistQueue
