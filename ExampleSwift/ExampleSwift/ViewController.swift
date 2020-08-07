@@ -7,6 +7,7 @@ class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
         registerAppInbox()
         initializeAppInbox()
     }
@@ -26,9 +27,11 @@ class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
     
     func initializeAppInbox() {
         CleverTap.sharedInstance()?.initializeInbox(callback: ({ (success) in
-            let messageCount = CleverTap.sharedInstance()?.getInboxMessageCount()
-            let unreadCount = CleverTap.sharedInstance()?.getInboxMessageUnreadCount()
-            print("Inbox Message:\(String(describing: messageCount))/\(String(describing: unreadCount)) unread")
+            if (success) {
+                let messageCount = CleverTap.sharedInstance()?.getInboxMessageCount()
+                let unreadCount = CleverTap.sharedInstance()?.getInboxMessageUnreadCount()
+                print("Inbox Message:\(String(describing: messageCount))/\(String(describing: unreadCount)) unread")
+            }
         }))
     }
     
@@ -46,9 +49,8 @@ class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
             "intAttribute" : intAttribute,
             "name": "Segment CleverTap",
             "phone" : "0234567891",
-            "gender": "female",
+            "gender": "female"
         ]
-        
         Analytics.shared().identify("cleverTapSegementTestUseriOS", traits: traits)
     }
     
