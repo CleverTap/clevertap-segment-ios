@@ -4,5 +4,5 @@ platform :ios, '10.0'
 use_frameworks!
 
 target 'ExampleSwift' do
-  pod "Segment-CleverTap", :path => '../'
+  pod "Segment-CleverTap"
 end
