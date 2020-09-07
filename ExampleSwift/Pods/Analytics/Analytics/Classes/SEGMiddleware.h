@@ -67,3 +67,12 @@ NS_SWIFT_NAME(DestinationMiddleware)
 @property (nonatomic, strong, nullable, readonly) NSArray<id<SEGMiddleware>> *middleware;
 - (instancetype _Nonnull)initWithKey:(NSString * _Nonnull)integrationKey middleware:(NSArray<id<SEGMiddleware>> * _Nonnull)middleware;
 @end
+
+NS_SWIFT_NAME(EdgeFunctionMiddleware)
+@protocol SEGEdgeFunctionMiddleware
+@required
+@property (nonatomic, readonly, nullable) NSArray<id<SEGMiddleware>> *sourceMiddleware;
+@property (nonatomic, readonly, nullable) NSArray<SEGDestinationMiddleware *> *destinationMiddleware;
+- (void)setEdgeFunctionData:(NSDictionary *_Nullable)data;
+@end
+
