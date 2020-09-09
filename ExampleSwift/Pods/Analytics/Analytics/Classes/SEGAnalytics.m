@@ -23,11 +23,10 @@ static SEGAnalytics *__sharedInstance = nil;
 @interface SEGAnalytics ()
 
 @property (nonatomic, assign) BOOL enabled;
-@property (nonatomic, strong) SEGAnalyticsConfiguration *configuration;
+@property (nonatomic, strong) SEGAnalyticsConfiguration *oneTimeConfiguration;
 @property (nonatomic, strong) SEGStoreKitTracker *storeKitTracker;
 @property (nonatomic, strong) SEGIntegrationsManager *integrationsManager;
 @property (nonatomic, strong) SEGMiddlewareRunner *runner;
-
 @end
 
 
@@ -46,12 +45,17 @@ static SEGAnalytics *__sharedInstance = nil;
     NSCParameterAssert(configuration != nil);
 
     if (self = [self init]) {
-        self.configuration = configuration;
+        self.oneTimeConfiguration = configuration;
         self.enabled = YES;
 
         // In swift this would not have been OK... But hey.. It's objc
         // TODO: Figure out if this is really the best way to do things here.
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
+        
+        if (configuration.edgeFunctionMiddleware) {
+            configuration.sourceMiddleware = @[[configuration.edgeFunctionMiddleware sourceMiddleware]];
+            configuration.destinationMiddleware = @[[configuration.edgeFunctionMiddleware destinationMiddleware]];
+        }
 
         self.runner = [[SEGMiddlewareRunner alloc] initWithMiddleware:
                                                        [configuration.sourceMiddleware ?: @[] arrayByAddingObject:self.integrationsManager]];
@@ -161,7 +165,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 - (void)_applicationDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    if (!self.configuration.trackApplicationLifecycleEvents) {
+    if (!self.oneTimeConfiguration.trackApplicationLifecycleEvents) {
         return;
     }
     // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
@@ -218,7 +222,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 - (void)_applicationWillEnterForeground
 {
-    if (!self.configuration.trackApplicationLifecycleEvents) {
+    if (!self.oneTimeConfiguration.trackApplicationLifecycleEvents) {
         return;
     }
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
@@ -234,7 +238,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 - (void)_applicationDidEnterBackground
 {
-  if (!self.configuration.trackApplicationLifecycleEvents) {
+  if (!self.oneTimeConfiguration.trackApplicationLifecycleEvents) {
     return;
   }
   [self track: @"Application Backgrounded"];
@@ -246,6 +250,12 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%p:%@, %@>", self, [self class], [self dictionaryWithValuesForKeys:@[ @"configuration" ]]];
+}
+
+- (nullable SEGAnalyticsConfiguration *)configuration
+{
+    // Remove deprecated configuration on 4.2+
+    return nil;
 }
 
 #pragma mark - Identify
@@ -389,7 +399,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo
 {
-    if (self.configuration.trackPushNotifications) {
+    if (self.oneTimeConfiguration.trackPushNotifications) {
         [self trackPushNotification:userInfo fromLaunch:NO];
     }
     SEGRemoteNotificationPayload *payload = [[SEGRemoteNotificationPayload alloc] init];
@@ -427,7 +437,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     payload.activity = activity;
     [self run:SEGEventTypeContinueUserActivity payload:payload];
 
-    if (!self.configuration.trackDeepLinks) {
+    if (!self.oneTimeConfiguration.trackDeepLinks) {
         return;
     }
 
@@ -442,7 +452,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         properties[@"url"] = urlString;
         properties[@"title"] = activity.title ?: @"";
         properties = [SEGUtils traverseJSON:properties
-                      andReplaceWithFilters:self.configuration.payloadFilters];
+                      andReplaceWithFilters:self.oneTimeConfiguration.payloadFilters];
         [self track:@"Deep Link Opened" properties:[properties copy]];
     }
 }
@@ -451,11 +461,11 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 {
     SEGOpenURLPayload *payload = [[SEGOpenURLPayload alloc] init];
     payload.url = [NSURL URLWithString:[SEGUtils traverseJSON:url.absoluteString
-                                        andReplaceWithFilters:self.configuration.payloadFilters]];
+                                        andReplaceWithFilters:self.oneTimeConfiguration.payloadFilters]];
     payload.options = options;
     [self run:SEGEventTypeOpenURL payload:payload];
 
-    if (!self.configuration.trackDeepLinks) {
+    if (!self.oneTimeConfiguration.trackDeepLinks) {
         return;
     }
     
@@ -468,7 +478,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [properties addEntriesFromDictionary:options];
     properties[@"url"] = urlString;
     properties = [SEGUtils traverseJSON:properties
-                  andReplaceWithFilters:self.configuration.payloadFilters];
+                  andReplaceWithFilters:self.oneTimeConfiguration.payloadFilters];
     [self track:@"Deep Link Opened" properties:[properties copy]];
 }
 
@@ -524,7 +534,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 {
     // this has to match the actual version, NOT what's in info.plist
     // because Apple only accepts X.X.X as versions in the review process.
-    return @"4.0.4";
+    return @"4.0.5";
 }
 
 #pragma mark - Helpers
@@ -535,7 +545,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         return;
     }
     
-    if (self.configuration.experimental.nanosecondTimestamps) {
+    if (self.oneTimeConfiguration.experimental.nanosecondTimestamps) {
         payload.timestamp = iso8601NanoFormattedString([NSDate date]);
     } else {
         payload.timestamp = iso8601FormattedString([NSDate date]);

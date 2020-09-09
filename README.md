@@ -6,6 +6,7 @@
 
 [![Version](https://img.shields.io/cocoapods/v/Segment-CleverTap.svg?style=flat)](http://cocoapods.org/pods/Segment-CleverTap)
 [![License](https://img.shields.io/cocoapods/l/Segment-CleverTap.svg?style=flat)](http://cocoapods.org/pods/Segment-CleverTap)
+[![codebeat badge](https://codebeat.co/badges/033620de-eab7-48f5-8f30-226c354e20b0)](https://codebeat.co/projects/github-com-clevertap-clevertap-segment-ios-master)
 
 CleverTap integration for analytics-ios.
 

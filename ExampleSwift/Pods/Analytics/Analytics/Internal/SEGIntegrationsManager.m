@@ -80,6 +80,10 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 @end
 
+@interface SEGAnalytics ()
+@property (nullable, nonatomic, strong, readonly) SEGAnalyticsConfiguration *oneTimeConfiguration;
+@end
+
 
 @implementation SEGIntegrationsManager
 
@@ -88,7 +92,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 - (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics *_Nonnull)analytics
 {
-    SEGAnalyticsConfiguration *configuration = analytics.configuration;
+    SEGAnalyticsConfiguration *configuration = analytics.oneTimeConfiguration;
     NSCParameterAssert(configuration != nil);
 
     if (self = [super init]) {
@@ -433,6 +437,16 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
     });
 }
 
+- (void)configureEdgeFunctions:(NSDictionary *)settings
+{
+    if (self.configuration.edgeFunctionMiddleware) {
+        NSDictionary *edgeFnSettings = settings[@"edgeFunction"];
+        if (edgeFnSettings != nil && edgeFnSettings.count > 0) {
+            [self.configuration.edgeFunctionMiddleware setEdgeFunctionData:settings[@"edgeFunction"]];
+        }
+    }
+}
+
 - (void)refreshSettings
 {
     seg_dispatch_specific_async(_serialQueue, ^{
@@ -444,16 +458,19 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
             seg_dispatch_specific_async(self -> _serialQueue, ^{
                 if (success) {
                     [self setCachedSettings:settings];
+                    [self configureEdgeFunctions:settings];
                 } else {
                     NSDictionary *previouslyCachedSettings = [self cachedSettings];
                     if (previouslyCachedSettings && [previouslyCachedSettings count] > 0) {
                         [self setCachedSettings:previouslyCachedSettings];
+                        [self configureEdgeFunctions:settings];
                     } else if (self.configuration.defaultSettings != nil) {
                         // If settings request fail, load a user-supplied version if present.
                         // but make sure segment.io is in the integrations
                         NSMutableDictionary *newSettings = [self.configuration.defaultSettings serializableMutableDeepCopy];
                         newSettings[@"integrations"][@"Segment.io"][@"apiKey"] = self.configuration.writeKey;
                         [self setCachedSettings:newSettings];
+                        // don't configure edge functions here.  it'll do the right thing on it's own.
                     } else {
                         // If settings request fail, fall back to using just Segment integration.
                         // Doesn't address situations where this callback never gets called (though we don't expect that to ever happen).
@@ -463,6 +480,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
                             },
                             @"plan" : @{@"track" : @{}}
                         }];
+                        // don't configure edge functions here.  it'll do the right thing on it's own.
                     }
                 }
                 self.settingsRequest = nil;
