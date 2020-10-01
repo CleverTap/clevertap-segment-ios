@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-CleverTap"
-  s.version          = "1.1.6"
+  s.version          = "1.1.7"
   s.summary          = "CleverTap Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -15,11 +15,11 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/CleverTap/clevertap-segment-ios.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/clevertap'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
 
   s.dependency 'Analytics'
-  s.dependency 'CleverTap-iOS-SDK', '~> 3.9.0'
+  s.dependency 'CleverTap-iOS-SDK', '~> 3.9.1'
   s.source_files = 'Pod/Classes/**/*'
 
 end
