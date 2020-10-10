@@ -63,7 +63,9 @@
 
 - (IBAction)trackButtonPress:(id)sender {
     [[SEGAnalytics sharedAnalytics] track:@"cleverTapSegmentTrackEvent"
-                               properties:@{ @"eventproperty": @"eventPropertyValue", @"testDate":[NSDate dateWithTimeIntervalSince1970:1501237800], @"testEvArr": @[@1,@2,@3]}];
+                               properties:@{ @"eventproperty": @"eventPropertyValue",
+                                             @"testPlan": @"Pro",
+                                             @"testEvArr": @[@1,@2,@3]}];
     
     [[SEGAnalytics sharedAnalytics] track:@"Order Completed"
                                properties:@{
