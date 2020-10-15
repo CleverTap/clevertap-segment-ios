@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,7 +47,6 @@
 				6C73DFA8DD114EF96E84770C /* Pods-ExampleSwift.debug.xcconfig */,
 				ED511B94BD154EEE926DA68C /* Pods-ExampleSwift.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -140,7 +139,7 @@
 				};
 			};
 			buildConfigurationList = 521D8B481E648AD9000BF6B2 /* Build configuration list for PBXProject "ExampleSwift" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
