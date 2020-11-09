@@ -1,6 +1,6 @@
 import UIKit
 import CleverTapSDK
-import Analytics
+import Segment
 
 class ViewController: UIViewController, CleverTapInboxViewControllerDelegate {
     

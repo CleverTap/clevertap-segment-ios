@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "Analytics.h"
 #import "SEGAliasPayload.h"
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsConfiguration.h"
@@ -22,6 +21,7 @@
 #import "SEGIdentifyPayload.h"
 #import "SEGIntegration.h"
 #import "SEGIntegrationFactory.h"
+#import "Segment.h"
 #import "SEGMiddleware.h"
 #import "SEGPayload.h"
 #import "SEGReachability.h"
@@ -32,6 +32,7 @@
 #import "SEGSerializableValue.h"
 #import "SEGStorage.h"
 #import "SEGTrackPayload.h"
+#import "SEGWebhookIntegration.h"
 #import "NSData+SEGGZIP.h"
 #import "NSViewController+SEGScreen.h"
 #import "SEGAES256Crypto.h"
@@ -44,6 +45,6 @@
 #import "SEGUtils.h"
 #import "UIViewController+SEGScreen.h"
 
-FOUNDATION_EXPORT double AnalyticsVersionNumber;
-FOUNDATION_EXPORT const unsigned char AnalyticsVersionString[];
+FOUNDATION_EXPORT double SegmentVersionNumber;
+FOUNDATION_EXPORT const unsigned char SegmentVersionString[];
 

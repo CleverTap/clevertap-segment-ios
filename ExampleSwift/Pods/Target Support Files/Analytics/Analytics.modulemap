@@ -1,4 +1,4 @@
-framework module Analytics {
+framework module Segment {
   umbrella header "Analytics-umbrella.h"
 
   export *
