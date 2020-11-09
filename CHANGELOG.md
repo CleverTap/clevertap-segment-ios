@@ -3,8 +3,8 @@ Change Log
 
 Version 1.1.8 *(10 November, 2020)*
 -------------------------------------------
-- *Renamed module from `Analytics` to `Segment`*
-- *Addresses:*
+- *Updates Segment Analytics Header compatibility for version [4.1.0](https://github.com/segmentio/analytics-ios/releases/tag/4.1.0).*
+- *Addresses: https://github.com/CleverTap/clevertap-segment-ios/issues/17*
 
 Version 1.1.7 *(15 October, 2020)*
 -------------------------------------------
