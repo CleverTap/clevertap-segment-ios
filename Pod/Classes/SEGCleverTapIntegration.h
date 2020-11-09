@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <Analytics/SEGIntegration.h>
+#import <Segment/SEGIntegration.h>
 
 @interface SEGCleverTapIntegration : NSObject <SEGIntegration>
 

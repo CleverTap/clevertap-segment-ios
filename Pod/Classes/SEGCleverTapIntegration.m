@@ -6,7 +6,7 @@
 #import <CleverTapSDK/CleverTap.h>
 #endif
 
-#import <Analytics/SEGAnalyticsUtils.h>
+#import <Segment/SEGAnalyticsUtils.h>
 #import "SEGCleverTapIntegrationFactory.h"
 
 @implementation SEGCleverTapIntegration
