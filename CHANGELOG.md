@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.1.8 *(10 November, 2020)*
+-------------------------------------------
+- *Renamed module from `Analytics` to `Segment`*
+- *Addresses:*
+
 Version 1.1.7 *(15 October, 2020)*
 -------------------------------------------
 *(Supports analytics-ios 4.x and [CleverTap 3.9.1](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/3.9.1))*
