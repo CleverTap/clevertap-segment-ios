@@ -6,7 +6,12 @@
 #import <CleverTapSDK/CleverTap.h>
 #endif
 
+#if __has_include(<Segment/SEGIntegration.h>)
 #import <Segment/SEGAnalyticsUtils.h>
+#elif __has_include(<Analytics/SEGIntegration.h>)
+#import <Analytics/SEGAnalyticsUtils.h>
+#endif
+
 #import "SEGCleverTapIntegrationFactory.h"
 
 @implementation SEGCleverTapIntegration
