@@ -1,7 +1,14 @@
+
 @import Quick;
 @import Nimble;
 @import OCMock;
+
+#if defined(__has_include) && __has_include(<Analytics/SEGIntegration.h>)
 @import Analytics;
+#else
+@import Segment;
+#endif
+
 @import Segment_CleverTap;
 
 QuickSpecBegin(SEGCleverTapIntegrationFactorySpec)
