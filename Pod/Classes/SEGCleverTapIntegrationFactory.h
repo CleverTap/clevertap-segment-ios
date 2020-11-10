@@ -1,8 +1,9 @@
 #import <Foundation/Foundation.h>
-#if __has_include(<Segment/SEGIntegration.h>)
-#import <Segment/SEGIntegrationFactory.h>
-#elif __has_include(<Analytics/SEGIntegration.h>)
+
+#if defined(__has_include) && __has_include(<Analytics/SEGIntegration.h>)
 #import <Analytics/SEGIntegrationFactory.h>
+#else
+#import <Segment/SEGIntegrationFactory.h>
 #endif
 
 @interface SEGCleverTapIntegrationFactory : NSObject <SEGIntegrationFactory>
