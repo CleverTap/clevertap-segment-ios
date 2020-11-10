@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-CleverTap"
-  s.version          = "1.1.7"
+  s.version          = "1.1.8"
   s.summary          = "CleverTap Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC

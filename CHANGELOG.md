@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.1.8 *(10 November, 2020)*
+-------------------------------------------
+- *Updates Segment Analytics Header compatibility for version [4.1.0](https://github.com/segmentio/analytics-ios/releases/tag/4.1.0).*
+- *Addresses: https://github.com/CleverTap/clevertap-segment-ios/issues/17*
+
 Version 1.1.7 *(15 October, 2020)*
 -------------------------------------------
 *(Supports analytics-ios 4.x and [CleverTap 3.9.1](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/3.9.1))*

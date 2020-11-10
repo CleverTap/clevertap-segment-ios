@@ -1,7 +1,7 @@
 import UIKit
 import UserNotifications
 
-import Analytics
+import Segment
 import CleverTapSDK
 import Segment_CleverTap
 
