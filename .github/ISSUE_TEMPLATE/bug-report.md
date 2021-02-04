@@ -1,9 +1,6 @@
 ---
 name: "\U0001F41E Bug report"
 about: Create a bug report to help us improve
-title: ''
-labels: ''
-assignees: ''
 
 ---
 
@@ -17,7 +14,7 @@ Steps to reproduce the behaviour:
 3. Scroll down to '....'
 4. See an error
 
-This could be a description, debug logs/console output, etc. You can also share a demo project with us where the crash is reproducible, you will likely receive a faster response on your issue.
+This could be a description, debug logs/console output, etc. You can also share a demo project with us where the issue is reproducible, you will likely receive a faster response on your issue.
 
 **Expected behaviour**
 A clear and concise description of what you expected to happen.
