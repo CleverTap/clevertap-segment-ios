@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/CleverTap/clevertap-ios-sdk/blob/master/docs/images/clevertap-logo.png" width = "40%"/>
+  <img src="https://github.com/CleverTap/clevertap-ios-sdk/blob/master/docs/images/clevertap-logo.png" width = "50%"/>
 </p>
 
 # CleverTap iOS Segment SDK
@@ -36,7 +36,7 @@ pod "Segment-CleverTap"
 ## For more
 
 - Checkout our [Example Usage](https://github.com/CleverTap/clevertap-segment-ios/tree/master/Example) that integrates CleverTap via Segment.
-- Checkout our [CleverTap Segment Integration docs](https://github.com/CleverTap/clevertap-segment-integration-docs "CleverTap Segment Technical Documentation")
+- Checkout our [CleverTap Segment Integration docs](https://github.com/CleverTap/clevertap-segment-integration-docs "CleverTap Segment Technical Documentation").
 
 ## License
 
