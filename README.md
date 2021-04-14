@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/CleverTap/clevertap-ios-sdk/blob/master/docs/images/clevertap-logo.png" height="154"/>
+  <img src="https://github.com/CleverTap/clevertap-ios-sdk/blob/master/docs/images/clevertap-logo.png" width = "50%"/>
 </p>
 
 # CleverTap iOS Segment SDK
@@ -12,12 +12,31 @@ CleverTap integration for analytics-ios.
 
 ## Installation
 
-Analytics is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your `Podfile`:
+Analytics is available through [CocoaPods](http://cocoapods.org). To install CleverTap Segment integration, simply add the following line to your Podfile:
 
 ```ruby
 pod "Segment-CleverTap"
 ```
+
+## Usage
+
+1. After adding the dependency, import the integration:
+
+ ```objc
+ #import "SEGCleverTapIntegrationFactory.h"
+ ```
+ 
+2. Finally, declare CleverTap's integration in your app delegate instance:
+
+  ```objc
+  SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY_HERE"];
+  [config use:[SEGCleverTapIntegrationFactory instance]];
+  [SEGAnalytics setupWithConfiguration:config];
+  ```
+## For more
+
+- Checkout our [Example Usage](https://github.com/CleverTap/clevertap-segment-ios/tree/master/Example) that integrates CleverTap via Segment.
+- Checkout our [CleverTap Segment Integration docs](https://github.com/CleverTap/clevertap-segment-integration-docs "CleverTap Segment Technical Documentation").
 
 ## License
 
