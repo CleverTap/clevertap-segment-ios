@@ -4,6 +4,7 @@
 #import "CTConstants.h"
 #import "CTUserMO.h"
 #import "CTMessageMO.h"
+#import "CTInboxUtils.h"
 
 static NSManagedObjectContext *mainContext;
 static NSManagedObjectContext *privateContext;
@@ -49,7 +50,7 @@ static NSManagedObjectContext *privateContext;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @try {
-            NSURL *modelURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"Inbox" withExtension:@"momd"];
+            NSURL *modelURL = [[CTInboxUtils bundle:self.class] URLForResource:@"Inbox" withExtension:@"momd"];
             NSManagedObjectModel *mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
             NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom];
             
@@ -87,8 +88,8 @@ static NSManagedObjectContext *privateContext;
         CleverTapLogStaticInternal(@"%@: updating messages: %@", self.user, messages);
         BOOL haveUpdates = [self.user updateMessages:messages forContext:privateContext];
         if (haveUpdates) {
-            [self notifyUpdate];
             [self _save];
+            [self notifyUpdate];
         }
     }];
 }
@@ -104,8 +105,8 @@ static NSManagedObjectContext *privateContext;
         CTMessageMO *message = [self _messageForId:messageId];
         if (message) {
             [message setValue:@YES forKey:@"isRead"];
-            [self notifyUpdate];
             [self _save];
+            [self notifyUpdate];
         }
     }];
 }
@@ -119,12 +120,12 @@ static NSManagedObjectContext *privateContext;
     return [msg toJSON];
 }
 
-- (NSUInteger)count {
+- (NSInteger)count {
     if (!self.isInitialized) return -1;
     return [self.messages count];
 }
 
-- (NSUInteger)unreadCount {
+- (NSInteger)unreadCount {
     if (!self.isInitialized) return -1;
     return [self.unreadMessages count];
 }
@@ -191,8 +192,8 @@ static NSManagedObjectContext *privateContext;
         for (CTMessageMO *msg in messages) {
             [privateContext deleteObject:msg];
         }
-        [self notifyUpdate];
         [self _save];
+        [self notifyUpdate];
     }];
 }
 
