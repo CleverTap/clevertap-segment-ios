@@ -106,6 +106,7 @@
 
 - (IBAction)showAppInbox:(id)sender {
     CleverTapInboxStyleConfig *style = [[CleverTapInboxStyleConfig alloc] init];
+    style.navigationTintColor = [UIColor blackColor];
     CleverTapInboxViewController *inboxController = [[CleverTap sharedInstance] newInboxViewControllerWithConfig:style andDelegate:self];
     if (inboxController) {
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:inboxController];

@@ -21,7 +21,6 @@
 #import "CleverTapTrackedViewController.h"
 #import "CleverTapUTMDetail.h"
 #import "CleverTapJSInterface.h"
-#import "CleverTap+ABTesting.h"
 #import "CleverTap+DisplayUnit.h"
 #import "CleverTap+FeatureFlags.h"
 #import "CleverTap+ProductConfig.h"
