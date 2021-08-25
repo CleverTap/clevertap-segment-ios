@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Analytics.debug(true)
         CleverTap.setDebugLevel(CleverTapLogLevel.debug.rawValue+1)
         
+        CleverTap.setCredentialsWithAccountID("RKW-R77-KW6Z", andToken: "aa2-032")
+        CleverTap.autoIntegrate()
+        
         let config = AnalyticsConfiguration(writeKey: "qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz")
         config.use(SEGCleverTapIntegrationFactory())
         Analytics.setup(with: config)
