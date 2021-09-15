@@ -5,6 +5,9 @@
 # CleverTap iOS Segment SDK
 
 [![Version](https://img.shields.io/cocoapods/v/Segment-CleverTap.svg?style=flat)](http://cocoapods.org/pods/Segment-CleverTap)
+<a href="https://github.com/CleverTap/clevertap-segment-ios/releases">
+    <img src="https://img.shields.io/github/release/CleverTap/clevertap-segment-ios.svg" />
+</a>
 [![License](https://img.shields.io/cocoapods/l/Segment-CleverTap.svg?style=flat)](http://cocoapods.org/pods/Segment-CleverTap)
 [![codebeat badge](https://codebeat.co/badges/033620de-eab7-48f5-8f30-226c354e20b0)](https://codebeat.co/projects/github-com-clevertap-clevertap-segment-ios-master)
 
@@ -36,7 +39,7 @@ pod "Segment-CleverTap"
 ## For more
 
 - Checkout our [Example Usage](https://github.com/CleverTap/clevertap-segment-ios/tree/master/Example) that integrates CleverTap via Segment.
-- Checkout our [CleverTap Segment Integration docs](https://github.com/CleverTap/clevertap-segment-integration-docs "CleverTap Segment Technical Documentation").
+- Checkout our [CleverTap Segment Integration Documentation](https://github.com/CleverTap/clevertap-segment-integration-docs "CleverTap Segment Technical Documentation").
 
 ## License
 
