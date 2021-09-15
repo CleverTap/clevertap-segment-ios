@@ -25,6 +25,8 @@
 #import "CleverTap+FeatureFlags.h"
 #import "CleverTap+ProductConfig.h"
 #import "CleverTapPushNotificationDelegate.h"
+#import "CleverTapURLDelegate.h"
+#import "CleverTap+InAppNotifications.h"
 
 FOUNDATION_EXPORT double CleverTapSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char CleverTapSDKVersionString[];

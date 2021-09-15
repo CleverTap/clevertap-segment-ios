@@ -17,7 +17,7 @@
     
     [SEGAnalytics debug:YES];
     [CleverTap setDebugLevel:CleverTapLogDebug];
-
+    
     SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"qp2acCBE3Ph9v4EhOPpXeJtUXa2xepQz"];
     [config use:[SEGCleverTapIntegrationFactory instance]];
     [SEGAnalytics setupWithConfiguration:config];

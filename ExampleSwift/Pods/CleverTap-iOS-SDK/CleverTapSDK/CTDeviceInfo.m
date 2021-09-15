@@ -39,7 +39,6 @@ static NSString *_timeZone;
 static NSString *_radio;
 static NSString *_deviceWidth;
 static NSString *_deviceHeight;
-static NSString *_deviceName;
 
 #if !CLEVERTAP_NO_REACHABILITY_SUPPORT
 SCNetworkReachabilityRef _reachability;
@@ -75,7 +74,7 @@ static const char *backgroundQueueLabel = "com.clevertap.deviceInfo.backgroundQu
 #if !CLEVERTAP_NO_REACHABILITY_SUPPORT
         backgroundQueue = dispatch_queue_create(backgroundQueueLabel, DISPATCH_QUEUE_SERIAL);
         // reachability callback
-        if ((_reachability = SCNetworkReachabilityCreateWithName(NULL, "wzrkt.com")) != NULL) {
+        if ((_reachability = SCNetworkReachabilityCreateWithName(NULL, "eu1.clevertap-prod.com")) != NULL) {
             SCNetworkReachabilityContext context = {0, (__bridge void*)self, NULL, NULL, NULL};
             if (SCNetworkReachabilitySetCallback(_reachability, CleverTapReachabilityHandler, &context)) {
                 if (!SCNetworkReachabilitySetDispatchQueue(_reachability, backgroundQueue)) {
@@ -141,8 +140,7 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
 + (NSString *)getPlatformName {
     struct utsname systemInfo;
     uname(&systemInfo);
-    
-    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    return @(systemInfo.machine);
 }
 
 - (void)initDeviceID:(NSString *)cleverTapID {
@@ -150,9 +148,10 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
         [deviceIDLock lock];
         
         _idfv = _idfv ? _idfv : [[self class] getIDFV];
-        if (_idfv && [_idfv length] > 5) {
+        if (!self.config.disableIDFV && _idfv && [_idfv length] > 5) {
             self.vendorIdentifier = _idfv;
         }
+        CleverTapLogInfo(self.config.logLevel, @"%s", !self.config.disableIDFV ? "CleverTap IDFV usage enabled" : "CleverTap IDFV usage disabled");
         
         // set the fallbackdeviceId on launch, in the event this instance had a fallbackid on last close
         self.fallbackDeviceId = [self getStoredFallbackDeviceID];
@@ -370,8 +369,10 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
 }
 
 - (NSString *)model {
-    if (!_model) {
-        _model = [[self class] getPlatformName];
+    @synchronized (self) {
+        if (!_model) {
+            _model = [[self class] getPlatformName];
+        }
     }
     return _model;
 }
@@ -396,13 +397,6 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
         _deviceHeight = [NSString stringWithFormat:@"%.2f", [CTUtils toTwoPlaces:rHeight]];
     }
     return _deviceHeight;
-}
-
-- (NSString *)deviceName {
-    if (!_deviceName) {
-        _deviceName = [UIDevice currentDevice].name;
-    }
-    return _deviceName;
 }
 
 - (NSString *)carrier {
