@@ -1,8 +1,19 @@
 
-#import "SEGAnalyticsUtils.h"
 #import "SEGCleverTapIntegration.h"
+
+#if defined(__has_include) && __has_include(<CleverTap-iOS-SDK/CleverTap.h>)
+#import <CleverTap-iOS-SDK/CleverTap.h>
+#else
+#import <CleverTapSDK/CleverTap.h>
+#endif
+
+#if defined(__has_include) && __has_include(<Analytics/SEGIntegration.h>)
+#import <Analytics/SEGAnalyticsUtils.h>
+#else
+#import <Segment/SEGAnalyticsUtils.h>
+#endif
+
 #import "SEGCleverTapIntegrationFactory.h"
-#import "CleverTap.h"
 
 @implementation SEGCleverTapIntegration
 
