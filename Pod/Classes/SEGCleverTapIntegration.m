@@ -3,14 +3,18 @@
 
 #if defined(__has_include) && __has_include(<CleverTap-iOS-SDK/CleverTap.h>)
 #import <CleverTap-iOS-SDK/CleverTap.h>
+#elif SWIFT_PACKAGE
+#import "CleverTap.h"
 #else
 #import <CleverTapSDK/CleverTap.h>
 #endif
 
-#if defined(__has_include) && __has_include(<Analytics/SEGIntegration.h>)
+#if defined(__has_include) && __has_include(<Analytics/SEGAnalyticsUtils.h>)
 #import <Analytics/SEGAnalyticsUtils.h>
-#else
+#elif defined(__has_include) && __has_include(<Segment/SEGAnalyticsUtils.h>)
 #import <Segment/SEGAnalyticsUtils.h>
+#else
+#import "SEGAnalyticsUtils.h"
 #endif
 
 #import "SEGCleverTapIntegrationFactory.h"
