@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Segment",
+        "repositoryURL": "https://github.com/segmentio/analytics-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "6e5dc12663a96081f375f11441f8d1a4def62aec",
+          "version": "4.1.5"
+        }
+      },
+      {
+        "package": "CleverTapSDK",
+        "repositoryURL": "https://github.com/CleverTap/clevertap-ios-sdk.git",
+        "state": {
+          "branch": null,
+          "revision": "189f51732f304a8e5747f301c49f26bc25aeb6b4",
+          "version": "3.10.0"
+        }
+      },
+      {
+        "package": "Segment-CleverTap",
+        "repositoryURL": "https://github.com/CleverTap/clevertap-segment-ios.git",
+        "state": {
+          "branch": "support-spm",
+          "revision": "0d51f7a1afc2a91e155037c806b81713ea3d05a1",
+          "version": null
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "76dd4b49110b8624317fc128e7fa0d8a252018bc",
+          "version": "5.11.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
