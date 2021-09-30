@@ -23,8 +23,8 @@
         "package": "Segment-CleverTap",
         "repositoryURL": "https://github.com/CleverTap/clevertap-segment-ios.git",
         "state": {
-          "branch": "support-spm",
-          "revision": "0d51f7a1afc2a91e155037c806b81713ea3d05a1",
+          "branch": null,
+          "revision": "92c6e2e4c0187573c5c1eebc034648e0500ead9b",
           "version": null
         }
       },
