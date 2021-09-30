@@ -24,8 +24,9 @@ let package = Package(
                 .product(name: "CleverTapSDK", package: "CleverTapSDK"),
             ],
             path: "Pod",
+            publicHeadersPath: ".",
             cSettings: [
-                .headerSearchPath("Classes")
+                .headerSearchPath(".")
             ]
         )
     ]
