@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Segment
+import Segment_CleverTap
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
