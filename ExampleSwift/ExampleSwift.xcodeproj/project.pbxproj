@@ -12,11 +12,10 @@
 		521D8B561E648AD9000BF6B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521D8B541E648AD9000BF6B2 /* Main.storyboard */; };
 		521D8B581E648AD9000BF6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521D8B571E648AD9000BF6B2 /* Assets.xcassets */; };
 		521D8B5B1E648AD9000BF6B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521D8B591E648AD9000BF6B2 /* LaunchScreen.storyboard */; };
-		A8BA91F71E92E4344B2D801B /* libPods-ExampleSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6D773F575451680829DD8D /* libPods-ExampleSwift.a */; };
+		83AEEF2EEBEEDA5A538C640E /* Pods_ExampleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEB2103C87A5EC55AEBA5BE /* Pods_ExampleSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4D6D773F575451680829DD8D /* libPods-ExampleSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		521D8B4D1E648AD9000BF6B2 /* ExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		521D8B501E648AD9000BF6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		521D8B521E648AD9000BF6B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,6 +24,7 @@
 		521D8B5A1E648AD9000BF6B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		521D8B5C1E648AD9000BF6B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52F72BAB1E6490E700663332 /* ExampleSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExampleSwift.entitlements; sourceTree = "<group>"; };
+		5AEB2103C87A5EC55AEBA5BE /* Pods_ExampleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9134C9282D02EA51A085A429 /* Pods-ExampleSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleSwift.release.xcconfig"; path = "Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.release.xcconfig"; sourceTree = "<group>"; };
 		B0CED0CA239576F0A4B44246 /* Pods-ExampleSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleSwift.debug.xcconfig"; path = "Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -34,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8BA91F71E92E4344B2D801B /* libPods-ExampleSwift.a in Frameworks */,
+				83AEEF2EEBEEDA5A538C640E /* Pods_ExampleSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,7 +44,7 @@
 		08B49D6CC834EEBB7DBEC8BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4D6D773F575451680829DD8D /* libPods-ExampleSwift.a */,
+				5AEB2103C87A5EC55AEBA5BE /* Pods_ExampleSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -101,7 +101,7 @@
 				521D8B491E648AD9000BF6B2 /* Sources */,
 				521D8B4A1E648AD9000BF6B2 /* Frameworks */,
 				521D8B4B1E648AD9000BF6B2 /* Resources */,
-				B6FE059FD74AED3764C6B252 /* [CP] Copy Pods Resources */,
+				F39AC8026BEF111A33393177 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,23 +170,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B6FE059FD74AED3764C6B252 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BC3B8D4179D422655AD6E677 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +190,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F39AC8026BEF111A33393177 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExampleSwift/Pods-ExampleSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
