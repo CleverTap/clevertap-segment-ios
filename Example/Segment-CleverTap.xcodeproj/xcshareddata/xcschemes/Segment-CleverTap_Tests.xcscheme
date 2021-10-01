@@ -17,14 +17,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA2FFB199571DD1E92382DCC2C615638"
-            BuildableName = "libSegment-CleverTap.a"
+            BuildableName = "Segment_CleverTap.framework"
             BlueprintName = "Segment-CleverTap"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E12536816B6C31D7AF55D161F6F97141"
-            BuildableName = "libCleverTap-iOS-SDK.a"
+            BuildableName = "CleverTapSDK.framework"
             BlueprintName = "CleverTap-iOS-SDK"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
          </BuildableReference>
