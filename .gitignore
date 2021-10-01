@@ -32,3 +32,6 @@ Carthage
 #
 Example/Pods/
 ExampleSwift/Pods/
+
+# Swift Package Manager
+Package.resolved
