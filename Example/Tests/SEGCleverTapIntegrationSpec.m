@@ -192,50 +192,6 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
         });
     });
     
-    context(@"when a screen is tracked", ^{
-        
-        it(@"should fire recordScreenView on CleverTap SDK", ^{
-            
-            id mockIntegration = OCMPartialMock(integration);
-            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
-            
-            OCMExpect([mockCleverTap recordScreenView:@"root_screen"]);
-            
-            SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:nil category:nil
-                                                                    properties:nil
-                                                                       context:@{ @"key": @"value" }
-                                                                  integrations:@{ @"key": @"value" }];
-            
-            [mockIntegration screen:payload];
-            
-            OCMVerifyAll(mockIntegration);
-            OCMVerifyAll(mockCleverTap);
-        });
-        
-        it(@"if screen name is empty, should not fire recordScreenView", ^{
-            
-            id mockIntegration = OCMPartialMock(integration);
-            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
-            
-            OCMReject([mockCleverTap recordScreenView:[OCMArg any]]);
-            
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wnonnull"
-            
-            SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:nil category:nil
-                                                                    properties:nil
-                                                                       context:@{ @"key": @"value" }
-                                                                  integrations:@{ @"key": @"value" }];
-            
-#pragma clang diagnostic pop
-            
-            [mockIntegration screen:payload];
-            
-            OCMVerifyAll(mockIntegration);
-            OCMVerifyAll(mockCleverTap);
-        });
-    });
-    
     context(@"when an event is tracked", ^{
         
         it(@"should fire recordEvent on CleverTap SDK", ^{
