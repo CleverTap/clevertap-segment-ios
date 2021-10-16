@@ -39,6 +39,7 @@ pod "Segment-CleverTap"
 ## For more
 
 - Checkout our [Example Usage](https://github.com/CleverTap/clevertap-segment-ios/tree/master/Example) that integrates CleverTap via Segment.
+- Checkout our [ExampleSwiftPM](/ExampleSPM) that integrates CleverTap via Segment using Swift Package Manager.
 - Checkout our [CleverTap Segment Integration Documentation](https://github.com/CleverTap/clevertap-segment-integration-docs "CleverTap Segment Technical Documentation").
 
 ## License
