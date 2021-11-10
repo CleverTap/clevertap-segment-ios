@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.2.1 *(14th October, 2021)*
+Version 1.2.1 *(16th November, 2021)*
 -------------------------------------------
 *Adds support for installation via Swift Package Manager*
 
