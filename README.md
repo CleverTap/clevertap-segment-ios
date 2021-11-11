@@ -54,7 +54,7 @@ To install the CleverTap Segment integration through Swift Package Manager, foll
 - Checkout our [Example Swift project](/ExampleSwift) that integrates CleverTap via Segment using CocoaPods.
 - Checkout our [Example Objective-C project](/Example) that integrates CleverTap via Segment using CocoaPods.
 - Checkout our [ExampleSwiftPM project](/ExampleSwiftPM) that integrates CleverTap via Segment using Swift Package Manager.
-- Checkout our [CleverTap Segment Integration Documentation](https://github.com/CleverTap/clevertap-segment-integration-docs "CleverTap Segment Technical Documentation").
+- Checkout our [CleverTap iOS Segment Integration Documentation](https://github.com/CleverTap/clevertap-segment-integration-docs#ios "CleverTap Segment Technical Documentation").
 
 ## License
 
