@@ -41,11 +41,11 @@
 		4999277A273CF1FE000DE33B /* ExampleSwiftPM */ = {
 			isa = PBXGroup;
 			children = (
-				4999277B273CF1FE000DE33B /* ViewController.swift */,
-				4999277C273CF1FE000DE33B /* Assets.xcassets */,
-				4999277D273CF1FE000DE33B /* LaunchScreen.storyboard */,
-				4999277F273CF1FE000DE33B /* Main.storyboard */,
 				49992781273CF1FE000DE33B /* AppDelegate.swift */,
+				4999277B273CF1FE000DE33B /* ViewController.swift */,
+				4999277F273CF1FE000DE33B /* Main.storyboard */,
+				4999277D273CF1FE000DE33B /* LaunchScreen.storyboard */,
+				4999277C273CF1FE000DE33B /* Assets.xcassets */,
 				49992782273CF1FE000DE33B /* Info.plist */,
 			);
 			path = ExampleSwiftPM;
@@ -98,6 +98,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
+				ORGANIZATIONNAME = CleverTap;
 				TargetAttributes = {
 					49ADF4F82705709400532307 = {
 						CreatedOnToolsVersion = 12.5;
@@ -105,7 +106,7 @@
 				};
 			};
 			buildConfigurationList = 49ADF4F42705709400532307 /* Build configuration list for PBXProject "ExampleSwiftPM" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -222,7 +223,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -277,7 +278,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -294,12 +295,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ExampleSwiftPM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aditi.ExampleSPM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevertap.ExampleSwiftPM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -313,12 +314,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ExampleSwiftPM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aditi.ExampleSPM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevertap.ExampleSwiftPM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,8 +354,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CleverTap/clevertap-segment-ios.git";
 			requirement = {
-				kind = revision;
-				revision = caaf8aa1408b744bf4522661c9a8ea727cb14569;
+				branch = "support-spm";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
