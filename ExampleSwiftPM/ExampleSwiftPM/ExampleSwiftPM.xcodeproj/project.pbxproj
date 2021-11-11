@@ -59,8 +59,8 @@
 				49326027273CFB0200AD023E /* AppDelegate.swift */,
 				4932602B273CFB0200AD023E /* ViewController.swift */,
 				4932602D273CFB0200AD023E /* Main.storyboard */,
-				49326030273CFB0400AD023E /* Assets.xcassets */,
 				49326032273CFB0400AD023E /* LaunchScreen.storyboard */,
+				49326030273CFB0400AD023E /* Assets.xcassets */,
 				49326035273CFB0400AD023E /* Info.plist */,
 			);
 			path = ExampleSwiftPM;
@@ -307,7 +307,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aditi.ExampleSwiftPM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevertap.ExampleSwiftPM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -335,7 +335,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aditi.ExampleSwiftPM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevertap.ExampleSwiftPM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
