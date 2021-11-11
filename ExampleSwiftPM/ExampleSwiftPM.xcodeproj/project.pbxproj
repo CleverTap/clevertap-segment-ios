@@ -8,21 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		49992779273CE384000DE33B /* Segment-CleverTap in Frameworks */ = {isa = PBXBuildFile; productRef = 49992778273CE384000DE33B /* Segment-CleverTap */; };
-		49ADF4FD2705709400532307 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ADF4FC2705709400532307 /* AppDelegate.swift */; };
-		49ADF5012705709400532307 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ADF5002705709400532307 /* ViewController.swift */; };
-		49ADF5042705709400532307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49ADF5022705709400532307 /* Main.storyboard */; };
-		49ADF5062705709600532307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49ADF5052705709600532307 /* Assets.xcassets */; };
-		49ADF5092705709600532307 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49ADF5072705709600532307 /* LaunchScreen.storyboard */; };
+		49992783273CF1FE000DE33B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4999277B273CF1FE000DE33B /* ViewController.swift */; };
+		49992784273CF1FE000DE33B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4999277C273CF1FE000DE33B /* Assets.xcassets */; };
+		49992785273CF1FE000DE33B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4999277D273CF1FE000DE33B /* LaunchScreen.storyboard */; };
+		49992786273CF1FE000DE33B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4999277F273CF1FE000DE33B /* Main.storyboard */; };
+		49992787273CF1FE000DE33B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49992781273CF1FE000DE33B /* AppDelegate.swift */; };
+		49992788273CF1FE000DE33B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49992782273CF1FE000DE33B /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		49ADF4F92705709400532307 /* ExampleSPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleSPM.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		49ADF4FC2705709400532307 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		49ADF5002705709400532307 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		49ADF5032705709400532307 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		49ADF5052705709600532307 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		49ADF5082705709600532307 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		49ADF50A2705709600532307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4999277B273CF1FE000DE33B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4999277C273CF1FE000DE33B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4999277E273CF1FE000DE33B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		49992780273CF1FE000DE33B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		49992781273CF1FE000DE33B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		49992782273CF1FE000DE33B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49ADF4F92705709400532307 /* ExampleSwiftPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleSwiftPM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,10 +38,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4999277A273CF1FE000DE33B /* ExampleSwiftPM */ = {
+			isa = PBXGroup;
+			children = (
+				4999277B273CF1FE000DE33B /* ViewController.swift */,
+				4999277C273CF1FE000DE33B /* Assets.xcassets */,
+				4999277D273CF1FE000DE33B /* LaunchScreen.storyboard */,
+				4999277F273CF1FE000DE33B /* Main.storyboard */,
+				49992781273CF1FE000DE33B /* AppDelegate.swift */,
+				49992782273CF1FE000DE33B /* Info.plist */,
+			);
+			path = ExampleSwiftPM;
+			sourceTree = "<group>";
+		};
 		49ADF4F02705709400532307 = {
 			isa = PBXGroup;
 			children = (
-				49ADF4FB2705709400532307 /* ExampleSPM */,
+				4999277A273CF1FE000DE33B /* ExampleSwiftPM */,
 				49ADF4FA2705709400532307 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,30 +62,17 @@
 		49ADF4FA2705709400532307 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				49ADF4F92705709400532307 /* ExampleSPM.app */,
+				49ADF4F92705709400532307 /* ExampleSwiftPM.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		49ADF4FB2705709400532307 /* ExampleSPM */ = {
-			isa = PBXGroup;
-			children = (
-				49ADF4FC2705709400532307 /* AppDelegate.swift */,
-				49ADF5002705709400532307 /* ViewController.swift */,
-				49ADF5022705709400532307 /* Main.storyboard */,
-				49ADF5052705709600532307 /* Assets.xcassets */,
-				49ADF5072705709600532307 /* LaunchScreen.storyboard */,
-				49ADF50A2705709600532307 /* Info.plist */,
-			);
-			path = ExampleSPM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		49ADF4F82705709400532307 /* ExampleSPM */ = {
+		49ADF4F82705709400532307 /* ExampleSwiftPM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 49ADF50D2705709600532307 /* Build configuration list for PBXNativeTarget "ExampleSPM" */;
+			buildConfigurationList = 49ADF50D2705709600532307 /* Build configuration list for PBXNativeTarget "ExampleSwiftPM" */;
 			buildPhases = (
 				49ADF4F52705709400532307 /* Sources */,
 				49ADF4F62705709400532307 /* Frameworks */,
@@ -81,12 +82,12 @@
 			);
 			dependencies = (
 			);
-			name = ExampleSPM;
+			name = ExampleSwiftPM;
 			packageProductDependencies = (
 				49992778273CE384000DE33B /* Segment-CleverTap */,
 			);
 			productName = ExampleSPM;
-			productReference = 49ADF4F92705709400532307 /* ExampleSPM.app */;
+			productReference = 49ADF4F92705709400532307 /* ExampleSwiftPM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -103,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 49ADF4F42705709400532307 /* Build configuration list for PBXProject "ExampleSPM" */;
+			buildConfigurationList = 49ADF4F42705709400532307 /* Build configuration list for PBXProject "ExampleSwiftPM" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -119,7 +120,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				49ADF4F82705709400532307 /* ExampleSPM */,
+				49ADF4F82705709400532307 /* ExampleSwiftPM */,
 			);
 		};
 /* End PBXProject section */
@@ -129,9 +130,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49ADF5092705709600532307 /* LaunchScreen.storyboard in Resources */,
-				49ADF5062705709600532307 /* Assets.xcassets in Resources */,
-				49ADF5042705709400532307 /* Main.storyboard in Resources */,
+				49992788273CF1FE000DE33B /* Info.plist in Resources */,
+				49992786273CF1FE000DE33B /* Main.storyboard in Resources */,
+				49992784273CF1FE000DE33B /* Assets.xcassets in Resources */,
+				49992785273CF1FE000DE33B /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,28 +144,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49ADF5012705709400532307 /* ViewController.swift in Sources */,
-				49ADF4FD2705709400532307 /* AppDelegate.swift in Sources */,
+				49992787273CF1FE000DE33B /* AppDelegate.swift in Sources */,
+				49992783273CF1FE000DE33B /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		49ADF5022705709400532307 /* Main.storyboard */ = {
+		4999277D273CF1FE000DE33B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				49ADF5032705709400532307 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		49ADF5072705709600532307 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				49ADF5082705709600532307 /* Base */,
+				4999277E273CF1FE000DE33B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4999277F273CF1FE000DE33B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49992780273CF1FE000DE33B /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -291,7 +293,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ExampleSPM/Info.plist;
+				INFOPLIST_FILE = ExampleSwiftPM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -310,7 +312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ExampleSPM/Info.plist;
+				INFOPLIST_FILE = ExampleSwiftPM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -326,7 +328,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		49ADF4F42705709400532307 /* Build configuration list for PBXProject "ExampleSPM" */ = {
+		49ADF4F42705709400532307 /* Build configuration list for PBXProject "ExampleSwiftPM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49ADF50B2705709600532307 /* Debug */,
@@ -335,7 +337,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49ADF50D2705709600532307 /* Build configuration list for PBXNativeTarget "ExampleSPM" */ = {
+		49ADF50D2705709600532307 /* Build configuration list for PBXNativeTarget "ExampleSwiftPM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49ADF50E2705709600532307 /* Debug */,
