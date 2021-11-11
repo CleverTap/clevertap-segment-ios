@@ -3,80 +3,79 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		49992779273CE384000DE33B /* Segment-CleverTap in Frameworks */ = {isa = PBXBuildFile; productRef = 49992778273CE384000DE33B /* Segment-CleverTap */; };
-		49992783273CF1FE000DE33B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4999277B273CF1FE000DE33B /* ViewController.swift */; };
-		49992784273CF1FE000DE33B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4999277C273CF1FE000DE33B /* Assets.xcassets */; };
-		49992785273CF1FE000DE33B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4999277D273CF1FE000DE33B /* LaunchScreen.storyboard */; };
-		49992786273CF1FE000DE33B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4999277F273CF1FE000DE33B /* Main.storyboard */; };
-		49992787273CF1FE000DE33B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49992781273CF1FE000DE33B /* AppDelegate.swift */; };
-		49992788273CF1FE000DE33B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49992782273CF1FE000DE33B /* Info.plist */; };
+		49326028273CFB0200AD023E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49326027273CFB0200AD023E /* AppDelegate.swift */; };
+		4932602C273CFB0200AD023E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932602B273CFB0200AD023E /* ViewController.swift */; };
+		4932602F273CFB0200AD023E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4932602D273CFB0200AD023E /* Main.storyboard */; };
+		49326031273CFB0400AD023E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49326030273CFB0400AD023E /* Assets.xcassets */; };
+		49326034273CFB0400AD023E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49326032273CFB0400AD023E /* LaunchScreen.storyboard */; };
+		4932603D273CFBAE00AD023E /* Segment-CleverTap in Frameworks */ = {isa = PBXBuildFile; productRef = 4932603C273CFBAE00AD023E /* Segment-CleverTap */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4999277B273CF1FE000DE33B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4999277C273CF1FE000DE33B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4999277E273CF1FE000DE33B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		49992780273CF1FE000DE33B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		49992781273CF1FE000DE33B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		49992782273CF1FE000DE33B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49ADF4F92705709400532307 /* ExampleSwiftPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleSwiftPM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49326024273CFB0200AD023E /* ExampleSwiftPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleSwiftPM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49326027273CFB0200AD023E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4932602B273CFB0200AD023E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4932602E273CFB0200AD023E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		49326030273CFB0400AD023E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		49326033273CFB0400AD023E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		49326035273CFB0400AD023E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		49ADF4F62705709400532307 /* Frameworks */ = {
+		49326021273CFB0200AD023E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49992779273CE384000DE33B /* Segment-CleverTap in Frameworks */,
+				4932603D273CFBAE00AD023E /* Segment-CleverTap in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4999277A273CF1FE000DE33B /* ExampleSwiftPM */ = {
+		4932601B273CFB0200AD023E = {
 			isa = PBXGroup;
 			children = (
-				49992781273CF1FE000DE33B /* AppDelegate.swift */,
-				4999277B273CF1FE000DE33B /* ViewController.swift */,
-				4999277F273CF1FE000DE33B /* Main.storyboard */,
-				4999277D273CF1FE000DE33B /* LaunchScreen.storyboard */,
-				4999277C273CF1FE000DE33B /* Assets.xcassets */,
-				49992782273CF1FE000DE33B /* Info.plist */,
-			);
-			path = ExampleSwiftPM;
-			sourceTree = "<group>";
-		};
-		49ADF4F02705709400532307 = {
-			isa = PBXGroup;
-			children = (
-				4999277A273CF1FE000DE33B /* ExampleSwiftPM */,
-				49ADF4FA2705709400532307 /* Products */,
+				49326026273CFB0200AD023E /* ExampleSwiftPM */,
+				49326025273CFB0200AD023E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		49ADF4FA2705709400532307 /* Products */ = {
+		49326025273CFB0200AD023E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				49ADF4F92705709400532307 /* ExampleSwiftPM.app */,
+				49326024273CFB0200AD023E /* ExampleSwiftPM.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		49326026273CFB0200AD023E /* ExampleSwiftPM */ = {
+			isa = PBXGroup;
+			children = (
+				49326027273CFB0200AD023E /* AppDelegate.swift */,
+				4932602B273CFB0200AD023E /* ViewController.swift */,
+				4932602D273CFB0200AD023E /* Main.storyboard */,
+				49326030273CFB0400AD023E /* Assets.xcassets */,
+				49326032273CFB0400AD023E /* LaunchScreen.storyboard */,
+				49326035273CFB0400AD023E /* Info.plist */,
+			);
+			path = ExampleSwiftPM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		49ADF4F82705709400532307 /* ExampleSwiftPM */ = {
+		49326023273CFB0200AD023E /* ExampleSwiftPM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 49ADF50D2705709600532307 /* Build configuration list for PBXNativeTarget "ExampleSwiftPM" */;
+			buildConfigurationList = 49326038273CFB0400AD023E /* Build configuration list for PBXNativeTarget "ExampleSwiftPM" */;
 			buildPhases = (
-				49ADF4F52705709400532307 /* Sources */,
-				49ADF4F62705709400532307 /* Frameworks */,
-				49ADF4F72705709400532307 /* Resources */,
+				49326020273CFB0200AD023E /* Sources */,
+				49326021273CFB0200AD023E /* Frameworks */,
+				49326022273CFB0200AD023E /* Resources */,
 			);
 			buildRules = (
 			);
@@ -84,101 +83,100 @@
 			);
 			name = ExampleSwiftPM;
 			packageProductDependencies = (
-				49992778273CE384000DE33B /* Segment-CleverTap */,
+				4932603C273CFBAE00AD023E /* Segment-CleverTap */,
 			);
-			productName = ExampleSPM;
-			productReference = 49ADF4F92705709400532307 /* ExampleSwiftPM.app */;
+			productName = ExampleSwiftPM;
+			productReference = 49326024273CFB0200AD023E /* ExampleSwiftPM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		49ADF4F12705709400532307 /* Project object */ = {
+		4932601C273CFB0200AD023E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
-				ORGANIZATIONNAME = CleverTap;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					49ADF4F82705709400532307 = {
-						CreatedOnToolsVersion = 12.5;
+					49326023273CFB0200AD023E = {
+						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
-			buildConfigurationList = 49ADF4F42705709400532307 /* Build configuration list for PBXProject "ExampleSwiftPM" */;
-			compatibilityVersion = "Xcode 10.0";
+			buildConfigurationList = 4932601F273CFB0200AD023E /* Build configuration list for PBXProject "ExampleSwiftPM" */;
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 49ADF4F02705709400532307;
+			mainGroup = 4932601B273CFB0200AD023E;
 			packageReferences = (
-				49992777273CE384000DE33B /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */,
+				4932603B273CFBAE00AD023E /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */,
 			);
-			productRefGroup = 49ADF4FA2705709400532307 /* Products */;
+			productRefGroup = 49326025273CFB0200AD023E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				49ADF4F82705709400532307 /* ExampleSwiftPM */,
+				49326023273CFB0200AD023E /* ExampleSwiftPM */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		49ADF4F72705709400532307 /* Resources */ = {
+		49326022273CFB0200AD023E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49992788273CF1FE000DE33B /* Info.plist in Resources */,
-				49992786273CF1FE000DE33B /* Main.storyboard in Resources */,
-				49992784273CF1FE000DE33B /* Assets.xcassets in Resources */,
-				49992785273CF1FE000DE33B /* LaunchScreen.storyboard in Resources */,
+				49326034273CFB0400AD023E /* LaunchScreen.storyboard in Resources */,
+				49326031273CFB0400AD023E /* Assets.xcassets in Resources */,
+				4932602F273CFB0200AD023E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		49ADF4F52705709400532307 /* Sources */ = {
+		49326020273CFB0200AD023E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49992787273CF1FE000DE33B /* AppDelegate.swift in Sources */,
-				49992783273CF1FE000DE33B /* ViewController.swift in Sources */,
+				4932602C273CFB0200AD023E /* ViewController.swift in Sources */,
+				49326028273CFB0200AD023E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4999277D273CF1FE000DE33B /* LaunchScreen.storyboard */ = {
+		4932602D273CFB0200AD023E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4999277E273CF1FE000DE33B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		4999277F273CF1FE000DE33B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				49992780273CF1FE000DE33B /* Base */,
+				4932602E273CFB0200AD023E /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		49326032273CFB0400AD023E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49326033273CFB0400AD023E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		49ADF50B2705709600532307 /* Debug */ = {
+		49326036273CFB0400AD023E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -223,7 +221,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -233,13 +231,13 @@
 			};
 			name = Debug;
 		};
-		49ADF50C2705709600532307 /* Release */ = {
+		49326037273CFB0400AD023E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -278,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -288,39 +286,55 @@
 			};
 			name = Release;
 		};
-		49ADF50E2705709600532307 /* Debug */ = {
+		49326039273CFB0400AD023E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExampleSwiftPM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clevertap.ExampleSwiftPM;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aditi.ExampleSwiftPM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		49ADF50F2705709600532307 /* Release */ = {
+		4932603A273CFB0400AD023E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExampleSwiftPM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clevertap.ExampleSwiftPM;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aditi.ExampleSwiftPM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -329,20 +343,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		49ADF4F42705709400532307 /* Build configuration list for PBXProject "ExampleSwiftPM" */ = {
+		4932601F273CFB0200AD023E /* Build configuration list for PBXProject "ExampleSwiftPM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				49ADF50B2705709600532307 /* Debug */,
-				49ADF50C2705709600532307 /* Release */,
+				49326036273CFB0400AD023E /* Debug */,
+				49326037273CFB0400AD023E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49ADF50D2705709600532307 /* Build configuration list for PBXNativeTarget "ExampleSwiftPM" */ = {
+		49326038273CFB0400AD023E /* Build configuration list for PBXNativeTarget "ExampleSwiftPM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				49ADF50E2705709600532307 /* Debug */,
-				49ADF50F2705709600532307 /* Release */,
+				49326039273CFB0400AD023E /* Debug */,
+				4932603A273CFB0400AD023E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -350,7 +364,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		49992777273CE384000DE33B /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */ = {
+		4932603B273CFBAE00AD023E /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CleverTap/clevertap-segment-ios.git";
 			requirement = {
@@ -361,12 +375,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		49992778273CE384000DE33B /* Segment-CleverTap */ = {
+		4932603C273CFBAE00AD023E /* Segment-CleverTap */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 49992777273CE384000DE33B /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */;
+			package = 4932603B273CFBAE00AD023E /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */;
 			productName = "Segment-CleverTap";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 49ADF4F12705709400532307 /* Project object */;
+	rootObject = 4932601C273CFB0200AD023E /* Project object */;
 }
