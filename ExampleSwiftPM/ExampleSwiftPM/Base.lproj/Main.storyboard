@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,41 +18,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ct-logo" translatesAutoresizingMaskIntoConstraints="NO" id="cHy-nx-Ms5">
-                                <rect key="frame" x="121.5" y="108" width="171" height="120"/>
+                                <rect key="frame" x="121.5" y="98" width="171" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="b59-p6-6E3"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Kq-O1-dvI">
-                                <rect key="frame" x="188" y="348" width="38" height="30"/>
+                                <rect key="frame" x="188" y="338" width="38" height="30"/>
                                 <state key="normal" title="Track"/>
                                 <connections>
                                     <action selector="trackButtonDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YPn-6c-1ZM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqG-uf-ujc">
-                                <rect key="frame" x="151.5" y="528" width="111" height="30"/>
+                                <rect key="frame" x="151.5" y="518" width="111" height="30"/>
                                 <state key="normal" title="Show App Inbox"/>
                                 <connections>
                                     <action selector="showAppInbox" destination="BYZ-38-t0r" eventType="touchUpInside" id="zGu-SA-RXq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qlr-Yq-3ia">
-                                <rect key="frame" x="183" y="468" width="48" height="30"/>
+                                <rect key="frame" x="183" y="458" width="48" height="30"/>
                                 <state key="normal" title="Screen"/>
                                 <connections>
                                     <action selector="screenButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sCK-lK-cBX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARF-G2-rM0">
-                                <rect key="frame" x="181" y="288" width="52" height="30"/>
+                                <rect key="frame" x="181" y="278" width="52" height="30"/>
                                 <state key="normal" title="Identify"/>
                                 <connections>
                                     <action selector="identifyButtonDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ee8-Jx-4eR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMP-Ow-xCV">
-                                <rect key="frame" x="190.5" y="408" width="33" height="30"/>
+                                <rect key="frame" x="190.5" y="398" width="33" height="30"/>
                                 <state key="normal" title="Alias"/>
                                 <connections>
                                     <action selector="aliasButtonDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="okj-5b-BLN"/>
@@ -65,8 +65,8 @@
                             <constraint firstItem="vMP-Ow-xCV" firstAttribute="top" secondItem="5Kq-O1-dvI" secondAttribute="bottom" constant="30" id="2FU-qP-6UX"/>
                             <constraint firstItem="vMP-Ow-xCV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3l3-KJ-9bS"/>
                             <constraint firstItem="Qlr-Yq-3ia" firstAttribute="top" secondItem="vMP-Ow-xCV" secondAttribute="bottom" constant="30" id="98I-3M-d1X"/>
-                            <constraint firstItem="cHy-nx-Ms5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="64" id="ECl-dc-gwQ"/>
                             <constraint firstItem="Qlr-Yq-3ia" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KCF-M8-QPS"/>
+                            <constraint firstItem="cHy-nx-Ms5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="54" id="P1f-nK-cUr"/>
                             <constraint firstItem="cHy-nx-Ms5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pb3-XK-ypx"/>
                             <constraint firstItem="hqG-uf-ujc" firstAttribute="top" secondItem="Qlr-Yq-3ia" secondAttribute="bottom" constant="30" id="fsx-yo-ZOg"/>
                             <constraint firstItem="ARF-G2-rM0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gqe-aA-Ki7"/>
