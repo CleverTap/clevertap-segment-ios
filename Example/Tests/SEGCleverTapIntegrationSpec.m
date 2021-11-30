@@ -23,32 +23,32 @@ describe(@"a Segment CleverTap integration class", ^{
     afterEach(^{
         niceSettings = nil;
     });
-   
+    
     it(@"is initialized with settings", ^{
-
+        
         SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:niceSettings];
-
+        
         expect(integration.settings).to(equal(niceSettings));
     });
-
+    
     it(@"returns nil for invalid settings values", ^{
-
+        
         niceSettings = @{ @"key": @"value" };
-
+        
         SEGCleverTapIntegration *integration = [[SEGCleverTapIntegration alloc] initWithSettings:niceSettings];
-
+        
         expect(integration.settings).to(beNil());
     });
-
+    
     it(@"is initialized from non-main threads", ^{
-
+        
         __block SEGCleverTapIntegration *integration;
-
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-
+            
             integration = [[SEGCleverTapIntegration alloc] initWithSettings:niceSettings];
         });
-
+        
         expect(integration.settings).toEventually(equal(niceSettings));
     });
 });
@@ -60,8 +60,8 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
         NSDictionary *niceSettings = @{ @"clevertap_account_id": @"ABC",
                                         @"clevertap_account_token": @"001",
                                         @"region": @"Region" };
-
-       integration = [[SEGCleverTapIntegration alloc] initWithSettings:niceSettings];
+        
+        integration = [[SEGCleverTapIntegration alloc] initWithSettings:niceSettings];
     });
     
     afterEach(^{
@@ -74,7 +74,7 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
-
+            
             OCMExpect([mockCleverTap onUserLogin:[OCMArg any]]);
             
             NSDictionary *niceTraits = @{   @"address": @{ @"city": @"Mumbai", @"country": @"India" },
@@ -91,7 +91,7 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
                                             @"stringInt": @1,
                                             @"birthday": [NSDate date],
                                             @"testArr": @[ @1, @2, @3 ]
-                                        };
+            };
             
             SEGIdentifyPayload *nicePayload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
                                                                              anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
@@ -109,7 +109,7 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
-
+            
             OCMExpect([mockCleverTap onUserLogin:[OCMArg any]]);
             
             NSDictionary *niceTraits = @{   @"address": @{ @"city": @"Mumbai", @"country": @"India" },
@@ -127,7 +127,7 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
                                             @"stringInt": @1,
                                             @"birthday": @"01-Mar-1990",
                                             @"testArr": @[ @1, @2, @3 ]
-                                        };
+            };
             
             SEGIdentifyPayload *nicePayload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
                                                                              anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
@@ -145,7 +145,7 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
             
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
-
+            
             OCMExpect([mockCleverTap onUserLogin:[OCMArg any]]);
             
             NSDictionary *niceTraits = @{   @"address": @{ @"city": @"Mumbai", @"country": @"India" },
@@ -163,7 +163,7 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
                                             @"stringInt": @1,
                                             @"birthday": @"01-Mar-1990",
                                             @"testArr": @[ @1, @2, @3 ]
-                                        };
+            };
             
             SEGIdentifyPayload *nicePayload = [[SEGIdentifyPayload alloc] initWithUserId:@"userID"
                                                                              anonymousId:@"C790B642-DC43-4345-AA40-82D6074BEF94"
@@ -176,7 +176,7 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
             OCMVerifyAll(mockIntegration);
             OCMVerifyAll(mockCleverTap);
         });
-
+        
         
         it(@"does not performs user login if no traits object in payload", ^{
             
@@ -192,59 +192,15 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
         });
     });
     
-    context(@"when a screen is tracked", ^{
-        
-        it(@"should fire recordScreenView on CleverTap SDK", ^{
-            
-            id mockIntegration = OCMPartialMock(integration);
-            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
-            
-            OCMExpect([mockCleverTap recordScreenView:@"root_screen"]);
-            
-            SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:@"root_screen"
-                                                                    properties:nil
-                                                                       context:@{ @"key": @"value" }
-                                                                  integrations:@{ @"key": @"value" }];
-            
-            [mockIntegration screen:payload];
-            
-            OCMVerifyAll(mockIntegration);
-            OCMVerifyAll(mockCleverTap);
-        });
-        
-        it(@"if screen name is empty, should not fire recordScreenView", ^{
-            
-            id mockIntegration = OCMPartialMock(integration);
-            id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
-            
-            OCMReject([mockCleverTap recordScreenView:[OCMArg any]]);
-            
-            #pragma clang diagnostic push
-            #pragma clang diagnostic ignored "-Wnonnull"
-            
-            SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:nil
-                                                                    properties:nil
-                                                                       context:@{ @"key": @"value" }
-                                                                  integrations:@{ @"key": @"value" }];
-
-            #pragma clang diagnostic pop
-            
-            [mockIntegration screen:payload];
-            
-            OCMVerifyAll(mockIntegration);
-            OCMVerifyAll(mockCleverTap);
-        });
-    });
-    
     context(@"when an event is tracked", ^{
         
         it(@"should fire recordEvent on CleverTap SDK", ^{
-
+            
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
             
             OCMExpect([mockCleverTap recordEvent:[OCMArg any] withProps:[OCMArg any]]);
-
+            
             id mockPayload = OCMClassMock([SEGTrackPayload class]);
             [mockIntegration track:mockPayload];
             
@@ -260,32 +216,32 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
             OCMExpect([mockCleverTap recordChargedEventWithDetails:[OCMArg any] andItems:[OCMArg any]]);
             
             NSDictionary *payloadProperties =  @{
-                                                    @"affiliation": @"Google Store",
-                                                    @"checkout_id": @"fksdjfsdjfisjf9sdfjsd9f",
-                                                    @"currency": @"USD",
-                                                    @"order_id": @"50314b8e9bcf000000000000",
-                                                    @"products": @[
-                                                                    @{
-                                                                        @"category": @"Games",
-                                                                        @"name": @"Monopoly: 3rd Edition",
-                                                                        @"price": @19,
-                                                                        @"product_id": @"507f1f77bcf86cd799439011",
-                                                                        @"quantity": @1,
-                                                                        @"sku": @"45790-32"
-                                                                    },
-                                                                    @{
-                                                                        @"category": @"Games",
-                                                                        @"name": @"Uno Card Game",
-                                                                        @"price": @3,
-                                                                        @"product_id": @"505bd76785ebb509fc183733",
-                                                                        @"quantity": @2,
-                                                                        @"sku": @"46493-32"
-                                                                    }
-                                                                ],
-                                                    @"revenue": @25,
-                                                    @"total": @30,
-                                                    @"someKey": @{ @"key": @"value" }
-                                                };
+                @"affiliation": @"Google Store",
+                @"checkout_id": @"fksdjfsdjfisjf9sdfjsd9f",
+                @"currency": @"USD",
+                @"order_id": @"50314b8e9bcf000000000000",
+                @"products": @[
+                        @{
+                            @"category": @"Games",
+                            @"name": @"Monopoly: 3rd Edition",
+                            @"price": @19,
+                            @"product_id": @"507f1f77bcf86cd799439011",
+                            @"quantity": @1,
+                            @"sku": @"45790-32"
+                        },
+                        @{
+                            @"category": @"Games",
+                            @"name": @"Uno Card Game",
+                            @"price": @3,
+                            @"product_id": @"505bd76785ebb509fc183733",
+                            @"quantity": @2,
+                            @"sku": @"46493-32"
+                        }
+                ],
+                @"revenue": @25,
+                @"total": @30,
+                @"someKey": @{ @"key": @"value" }
+            };
             
             SEGTrackPayload *nicePayload = [[SEGTrackPayload alloc] initWithEvent:@"Order Completed"
                                                                        properties:payloadProperties
@@ -299,7 +255,7 @@ describe(@"a Segment CleverTap integration which conforms to SEGIntegration prot
         });
         
         it(@"should ONLY fire Charged event for 'Order Completed' event", ^{
-           
+            
             id mockIntegration = OCMPartialMock(integration);
             id mockCleverTap = OCMPartialMock([CleverTap sharedInstance]);
             
