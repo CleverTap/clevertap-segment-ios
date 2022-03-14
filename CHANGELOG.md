@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 1.2.2 *(10th March, 2022)*
+-------------------------------------------
+*(Supports analytics-ios 4.x and [CleverTap 4.0.0](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/4.0.0))*
+
 Version 1.2.1 *(30th November, 2021)*
 -------------------------------------------
 *Adds support for installation via Swift Package Manager*
