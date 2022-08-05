@@ -1,13 +1,13 @@
 PODS:
   - Analytics (4.1.6)
-  - CleverTap-iOS-SDK (4.0.0):
+  - CleverTap-iOS-SDK (4.1.1):
     - SDWebImage (~> 5.1)
-  - SDWebImage (5.12.3):
-    - SDWebImage/Core (= 5.12.3)
-  - SDWebImage/Core (5.12.3)
-  - Segment-CleverTap (1.2.1):
+  - SDWebImage (5.13.2):
+    - SDWebImage/Core (= 5.13.2)
+  - SDWebImage/Core (5.13.2)
+  - Segment-CleverTap (1.2.3):
     - Analytics
-    - CleverTap-iOS-SDK (= 4.0.0)
+    - CleverTap-iOS-SDK (= 4.1.1)
 
 DEPENDENCIES:
   - Segment-CleverTap (from `../`)
@@ -24,9 +24,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Analytics: eefe524436f904b8bb3f8c8c3425280e43b34efc
-  CleverTap-iOS-SDK: fa4737b7cede85e55d49354ce79ef8d08762ddca
-  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
-  Segment-CleverTap: 8430b765e9e25ef2ad77e6c28686c4e47d447d39
+  CleverTap-iOS-SDK: b7f1e914ce99e24df606995a465b39ef90528d58
+  SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
+  Segment-CleverTap: 123e98edc5b9077d644dfea22c99faee60354422
 
 PODFILE CHECKSUM: 0a1abfabb7e7fdc960fdb5449f9d1e46ce3f81b1
 
