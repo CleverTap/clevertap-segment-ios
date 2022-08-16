@@ -39,6 +39,7 @@ static NSString *_timeZone;
 static NSString *_radio;
 static NSString *_deviceWidth;
 static NSString *_deviceHeight;
+static NSString *_directCallSDKVersion;
 
 #if !CLEVERTAP_NO_REACHABILITY_SUPPORT
 SCNetworkReachabilityRef _reachability;
@@ -120,7 +121,7 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
 }
 
 - (NSString *)deviceId {
-    return _deviceId ? _deviceId : self.fallbackDeviceId;
+    return [self getDeviceID] ? [self getDeviceID] : self.fallbackDeviceId;
 }
 
 - (void)setDeviceId:(NSString *)deviceId {
@@ -144,7 +145,10 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
 + (NSString *)getPlatformName {
     struct utsname systemInfo;
     uname(&systemInfo);
-    return @(systemInfo.machine);
+    if (uname(&systemInfo) == EXIT_SUCCESS) {
+        return @(systemInfo.machine);
+    }
+    return @"";
 }
 
 - (void)initDeviceID:(NSString *)cleverTapID {
@@ -384,7 +388,7 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
 - (NSString *)deviceWidth {
     if (!_deviceWidth) {
         float scale = [[UIScreen mainScreen] scale];
-        float ppi = scale * ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 132 : 163);
+        float ppi = scale * ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 132 : 163);
         float width = ([[UIScreen mainScreen] bounds].size.width * scale);
         float rWidth = width / ppi;
         _deviceWidth = [NSString stringWithFormat:@"%.2f", [CTUtils toTwoPlaces:rWidth]];
@@ -395,32 +399,12 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
 - (NSString *)deviceHeight {
     if (!_deviceHeight) {
         float scale = [[UIScreen mainScreen] scale];
-        float ppi = scale * ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 132 : 163);
+        float ppi = scale * ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 132 : 163);
         float height = ([[UIScreen mainScreen] bounds].size.height * scale);
         float rHeight = height / ppi;
         _deviceHeight = [NSString stringWithFormat:@"%.2f", [CTUtils toTwoPlaces:rHeight]];
     }
     return _deviceHeight;
-}
-
-- (NSString *)carrier {
-#if !CLEVERTAP_NO_REACHABILITY_SUPPORT
-    if (!_carrier) {
-        CTCarrier *carrier = _networkInfo.subscriberCellularProvider;
-        _carrier = carrier.carrierName ?: @"";
-    }
-#endif
-    return _carrier;
-}
-
-- (NSString *)countryCode {
-#if !CLEVERTAP_NO_REACHABILITY_SUPPORT
-    if (!_countryCode) {
-        CTCarrier *carrier = _networkInfo.subscriberCellularProvider;
-        _countryCode =  carrier.isoCountryCode ?: @"";
-    }
-#endif
-    return _countryCode;
 }
 
 - (NSString *)timeZone {
@@ -430,32 +414,68 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
     return _timeZone;
 }
 
-- (NSString *)radio {
+- (BOOL)wifi {
+    return _wifi;
+}
+
 #if !CLEVERTAP_NO_REACHABILITY_SUPPORT
+
+- (NSString *)carrier {
+    if (!_carrier) {
+        _carrier = [self getCarrier].carrierName ?: @"";
+    }
+    return _carrier;
+}
+
+- (NSString *)countryCode {
+    if (!_countryCode) {
+        _countryCode =  [self getCarrier].isoCountryCode ?: @"";
+    }
+    return _countryCode;
+}
+
+- (NSString *)radio {
     if (!_radio) {
-        __block NSString *radioValue;
-        if (@available(iOS 12, *)) {
-            NSDictionary *radioDict = _networkInfo.serviceCurrentRadioAccessTechnology;
-            [radioDict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL * _Nonnull stop) {
-                if (value && [value hasPrefix:@"CTRadioAccessTechnology"]) {
-                    radioValue = [NSString stringWithString:[value substringFromIndex:23]];
-                }
-            }];
-        } else {
-            NSString *radio = _networkInfo.currentRadioAccessTechnology;
-            if (radio && [radio hasPrefix:@"CTRadioAccessTechnology"]) {
-                radioValue = [radio substringFromIndex:23];
-            }
-        }
-        _radio =  radioValue ?: @"";
+        _radio =  [self getCurrentRadioAccessTechnology] ?: @"";
         CleverTapLogStaticInternal(@"Updated radio to %@", _radio);
     }
-#endif
     return _radio;
 }
 
-- (BOOL)wifi {
-    return _wifi;
+- (CTCarrier *)getCarrier {
+    if (@available(iOS 12.0, *)) {
+        NSString *providerKey = _networkInfo.serviceSubscriberCellularProviders.allKeys.lastObject;
+        return _networkInfo.serviceSubscriberCellularProviders[providerKey];
+    } else {
+        return _networkInfo.subscriberCellularProvider;
+    }
+}
+
+- (NSString *)getCurrentRadioAccessTechnology {
+    __block NSString *radioValue;
+    if (@available(iOS 12, *)) {
+        NSDictionary *radioDict = _networkInfo.serviceCurrentRadioAccessTechnology;
+        [radioDict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL * _Nonnull stop) {
+            if (value && [value hasPrefix:@"CTRadioAccessTechnology"]) {
+                radioValue = [NSString stringWithString:[value substringFromIndex:23]];
+            }
+        }];
+    } else {
+        NSString *radio = _networkInfo.currentRadioAccessTechnology;
+        if (radio && [radio hasPrefix:@"CTRadioAccessTechnology"]) {
+            radioValue = [radio substringFromIndex:23];
+        }
+    }
+    return radioValue;
+}
+#endif
+
+- (void)setDirectCallSDKVersion: (NSString *)version {
+    _directCallSDKVersion = version;
+}
+
+- (NSString *)directCallSDKVersion {
+    return _directCallSDKVersion;
 }
 
 @end
