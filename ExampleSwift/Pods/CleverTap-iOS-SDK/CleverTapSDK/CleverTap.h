@@ -173,6 +173,19 @@ typedef NS_ENUM(int, CTSignedCallEvent) {
  @method
  
  @abstract
+ Returns the CleverTap instance corresponding to the CleverTap accountId param.
+ 
+ @discussion
+ Returns the instance if such is already created, otherwise loads it from cache.
+ 
+ @param accountId  the CleverTap account id
+ */
++ (CleverTap *_Nullable)getGlobalInstance:(NSString *_Nonnull)accountId;
+
+/*!
+ @method
+ 
+ @abstract
  Set the CleverTap AccountID and Token
  
  @discussion
@@ -341,6 +354,17 @@ typedef NS_ENUM(int, CTSignedCallEvent) {
  */
 extern NSString * _Nonnull const CleverTapGeofencesDidUpdateNotification;
 
+/*!
+ @method
+ 
+ @abstract
+ Enables the location API
+ 
+ @discussion
+ Call this method (typically once at app launch) to enable the location API.
+ 
+ */
++ (void)enableLocation:(BOOL)enabled;
 
 /*!
  @method
@@ -1250,7 +1274,7 @@ extern NSString * _Nonnull const CleverTapProfileDidInitializeNotification;
 #if defined(CLEVERTAP_HOST_WATCHOS)
 /** HostWatchOS
  */
-- (BOOL)handleMessage:(NSDictionary<NSString *, id> *)message forWatchSession:(WCSession *)session API_AVAILABLE(ios(9.0));
+- (BOOL)handleMessage:(NSDictionary<NSString *, id> *_Nonnull)message forWatchSession:(WCSession *_Nonnull)session API_AVAILABLE(ios(9.0));
 #endif
 
 /*!
