@@ -371,7 +371,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CleverTap/clevertap-segment-ios.git";
 			requirement = {
-				branch = "support-spm";
+				branch = "SDK-2862-xcode-14.3-fixes";
 				kind = branch;
 			};
 		};
