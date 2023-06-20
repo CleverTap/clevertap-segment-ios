@@ -19,6 +19,9 @@
 
 #import "SEGCleverTapIntegrationFactory.h"
 
+const int libVersion = 10206;
+NSString * const libName = @"Segment-iOS";
+
 @implementation SEGCleverTapIntegration
 
 
@@ -164,7 +167,8 @@
 - (void)launchWithAccountId:(NSString *)accountID token:(NSString *)accountToken region:(NSString *)region
 {
     [CleverTap setCredentialsWithAccountID:accountID token:accountToken region:region];
-    [[CleverTap sharedInstance] setLibrary:@"Segment-iOS"];
+    [[CleverTap sharedInstance] setLibrary:libName];
+    [[CleverTap sharedInstance] setCustomSdkVersion:libName version:libVersion];
     [[CleverTap sharedInstance] notifyApplicationLaunchedWithOptions:nil];
 }
 
