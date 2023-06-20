@@ -14,7 +14,7 @@ let package = Package(
         .package(name: "Segment",
                  url: "https://github.com/segmentio/analytics-ios.git", from: "4.1.4"),
         .package(name: "CleverTapSDK",
-                 url: "https://github.com/CleverTap/clevertap-ios-sdk.git", from: "4.2.2"),
+                 url: "https://github.com/CleverTap/clevertap-ios-sdk.git", from: "5.0.0"),
     ],
     targets: [
         .target(
