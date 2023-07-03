@@ -1,9 +1,9 @@
 Change Log
 ==========
 
-Version 1.2.6 *(22 June, 2023)*
+Version 1.2.6 *(3 July, 2023)*
 -------------------------------------------
-*(Supports analytics-ios 4.x and [CleverTap 5.0.1](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/5.0.1))*
+*(Supports analytics-ios 4.x and [CleverTap 5.1.0](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/5.1.0))*
 
 Version 1.2.5 *(3 April, 2023)*
 -------------------------------------------
