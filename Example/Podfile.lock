@@ -1,6 +1,6 @@
 PODS:
   - Analytics (4.1.8)
-  - CleverTap-iOS-SDK (5.0.1):
+  - CleverTap-iOS-SDK (5.1.0):
     - SDWebImage (~> 5.11)
   - Nimble (10.0.0)
   - OCMock (3.9.1)
@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Analytics: 9655e0e1c71ea98107cfcb2b14891168acc6c6c9
-  CleverTap-iOS-SDK: 9f6ac59f7f69fffd105201fe82b9068d0baa4d1b
+  CleverTap-iOS-SDK: da6e2a954488264d0431167243200ff21d52512a
   Nimble: 5316ef81a170ce87baf72dd961f22f89a602ff84
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   Quick: 749aa754fd1e7d984f2000fe051e18a3a9809179
