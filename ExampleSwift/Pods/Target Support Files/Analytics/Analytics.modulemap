@@ -1,6 +1,0 @@
-framework module Segment {
-  umbrella header "Analytics-umbrella.h"
-
-  export *
-  module * { export * }
-}
