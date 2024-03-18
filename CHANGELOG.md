@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.3.0 *(18 March, 2024)*
+-------------------------------------------
+* (Supports analytics-ios 4.x and [CleverTap 6.1.0](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/6.1.0))*
+* Adds Privacy Manifests file
+
 Version 1.2.6 *(3 July, 2023)*
 -------------------------------------------
 *(Supports analytics-ios 4.x and [CleverTap 5.1.0](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/5.1.0))*
