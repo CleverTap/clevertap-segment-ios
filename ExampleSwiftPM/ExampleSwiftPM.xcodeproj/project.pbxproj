@@ -3,16 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B83A89B2BA84F2300D35208 /* Segment-CleverTap in Frameworks */ = {isa = PBXBuildFile; productRef = 0B83A89A2BA84F2300D35208 /* Segment-CleverTap */; };
 		49326028273CFB0200AD023E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49326027273CFB0200AD023E /* AppDelegate.swift */; };
 		4932602C273CFB0200AD023E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932602B273CFB0200AD023E /* ViewController.swift */; };
 		4932602F273CFB0200AD023E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4932602D273CFB0200AD023E /* Main.storyboard */; };
 		49326031273CFB0400AD023E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49326030273CFB0400AD023E /* Assets.xcassets */; };
 		49326034273CFB0400AD023E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49326032273CFB0400AD023E /* LaunchScreen.storyboard */; };
-		4932603D273CFBAE00AD023E /* Segment-CleverTap in Frameworks */ = {isa = PBXBuildFile; productRef = 4932603C273CFBAE00AD023E /* Segment-CleverTap */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4932603D273CFBAE00AD023E /* Segment-CleverTap in Frameworks */,
+				0B83A89B2BA84F2300D35208 /* Segment-CleverTap in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			);
 			name = ExampleSwiftPM;
 			packageProductDependencies = (
-				4932603C273CFBAE00AD023E /* Segment-CleverTap */,
+				0B83A89A2BA84F2300D35208 /* Segment-CleverTap */,
 			);
 			productName = ExampleSwiftPM;
 			productReference = 49326024273CFB0200AD023E /* ExampleSwiftPM.app */;
@@ -115,7 +115,7 @@
 			);
 			mainGroup = 4932601B273CFB0200AD023E;
 			packageReferences = (
-				4932603B273CFBAE00AD023E /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */,
+				0B83A8992BA84F2300D35208 /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */,
 			);
 			productRefGroup = 49326025273CFB0200AD023E /* Products */;
 			projectDirPath = "";
@@ -367,20 +367,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4932603B273CFBAE00AD023E /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */ = {
+		0B83A8992BA84F2300D35208 /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CleverTap/clevertap-segment-ios.git";
+			repositoryURL = "https://github.com/CleverTap/clevertap-segment-ios";
 			requirement = {
-				branch = "SDK-3036_Update_clevertap-ios-sdk_to-5.0.1";
+				branch = "task/SDK-3682/Segment-CT-SDK-with-iOS-6.1.0";
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4932603C273CFBAE00AD023E /* Segment-CleverTap */ = {
+		0B83A89A2BA84F2300D35208 /* Segment-CleverTap */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4932603B273CFBAE00AD023E /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */;
+			package = 0B83A8992BA84F2300D35208 /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */;
 			productName = "Segment-CleverTap";
 		};
 /* End XCSwiftPackageProductDependency section */
