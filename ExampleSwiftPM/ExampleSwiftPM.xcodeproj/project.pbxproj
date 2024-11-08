@@ -371,7 +371,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CleverTap/clevertap-segment-ios";
 			requirement = {
-				branch = "task/SDK-3682/Segment-CT-SDK-with-iOS-6.1.0";
+				branch = "task/SDK-4132-Update-Segment-iOS-SDK-to-support-CT-iOS-SDK-v7.0.2";
 				kind = branch;
 			};
 		};
