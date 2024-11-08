@@ -3,6 +3,12 @@
 extern NSString *const kCTApiDomain;
 extern NSString *const kCTNotifViewedApiDomain;
 extern NSString *const kHANDSHAKE_URL;
+extern NSString *const kHANDSHAKE_DOMAIN_HEADER;
+extern NSString *const ACCOUNT_ID_HEADER;
+extern NSString *const ACCOUNT_TOKEN_HEADER;
+
+extern NSString *const REDIRECT_DOMAIN_KEY;
+extern NSString *const REDIRECT_NOTIF_VIEWED_DOMAIN_KEY;
 
 extern NSString *const kLastSessionPing;
 extern NSString *const kLastSessionTime;
@@ -10,15 +16,17 @@ extern NSString *const kSessionId;
 
 #define CleverTapLogInfo(level, fmt, ...)  if(level >= 0) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
 #define CleverTapLogDebug(level, fmt, ...) if(level > 0) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
-#define CleverTapLogInternal(level, fmt, ...) if (level > 1) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
+#define CleverTapLogInternal(level, fmt, ...) if (level >= 1) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
 #define CleverTapLogStaticInfo(fmt, ...)  if([CTLogger getDebugLevel] >= 0) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
 #define CleverTapLogStaticDebug(fmt, ...) if([CTLogger getDebugLevel] > 0) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
-#define CleverTapLogStaticInternal(fmt, ...) if([CTLogger getDebugLevel] > 1) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
+#define CleverTapLogStaticInternal(fmt, ...) if([CTLogger getDebugLevel] >= 1) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
 
 #define CT_TRY @try {
 #define CT_END_TRY }\
 @catch (NSException *e) {\
 [CTLogger logInternalError:e]; }
+
+#define CLTAP_CUSTOM_TEMPLATE_EXCEPTION @"CleverTapCustomTemplateException"
 
 #pragma mark Constants for General data
 #define CLTAP_REQUEST_TIME_OUT_INTERVAL 10
@@ -31,6 +39,7 @@ extern NSString *const kSessionId;
 #define CLTAP_USE_CUSTOM_CLEVERTAP_ID_LABEL @"CleverTapUseCustomId"
 #define CLTAP_DISABLE_IDFV_LABEL @"CleverTapDisableIDFV"
 #define CLTAP_ENABLE_FILE_PROTECTION @"CleverTapEnableFileProtection"
+#define CLTAP_HANDSHAKE_DOMAIN @"CleverTapHandshakeDomain"
 #define CLTAP_BETA_LABEL @"CleverTapBeta"
 #define CLTAP_SESSION_LENGTH_MINS 20
 #define CLTAP_SESSION_LAST_VC_TRAIL @"last_session_vc_trail"
@@ -50,6 +59,11 @@ extern NSString *const kSessionId;
 #define CLTAP_SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define CLTAP_APP_LAUNCHED_EVENT @"App Launched"
 #define CLTAP_CHARGED_EVENT @"Charged"
+#define CLTAP_PROFILE @"profile"
+#define CLTAP_USER_ATTRIBUTE_CHANGE @"_change"
+#define CLTAP_KEY_NEW_VALUE @"newValue"
+#define CLTAP_KEY_OLD_VALUE @"oldValue"
+#define CLTAP_KEY_PROFILE_ATTR_NAME @"profileAttrName"
 #define CLTAP_EVENT_NAME @"evtName"
 #define CLTAP_EVENT_DATA @"evtData"
 #define CLTAP_CHARGED_EVENT_ITEMS @"Items"
@@ -75,6 +89,25 @@ extern NSString *const kSessionId;
 #define CLTAP_NOTIFICATION_CLICKED_TAG @"wzrk_cts"
 #define CLTAP_NOTIFICATION_TAG @"W$"
 #define CLTAP_DATE_FORMAT @"yyyyMMdd"
+#define CLTAP_DATE_PREFIX @"$D_"
+
+// profile commands
+static NSString *const kCLTAP_COMMAND_SET = @"$set";
+static NSString *const kCLTAP_COMMAND_ADD = @"$add";
+static NSString *const kCLTAP_COMMAND_REMOVE = @"$remove";
+static NSString *const kCLTAP_COMMAND_INCREMENT = @"$incr";
+static NSString *const kCLTAP_COMMAND_DECREMENT = @"$decr";
+static NSString *const kCLTAP_COMMAND_DELETE = @"$delete";
+
+#define CLTAP_MULTIVAL_COMMANDS @[kCLTAP_COMMAND_SET, kCLTAP_COMMAND_ADD, kCLTAP_COMMAND_REMOVE]
+
+#pragma mark Constants for File Assets
+#define CLTAP_FILE_URLS_EXPIRY_DICT @"file_urls_expiry_dict"
+#define CLTAP_FILE_ASSETS_LAST_DELETED_TS @"cs_file_assets_last_deleted_timestamp"
+#define CLTAP_FILE_EXPIRY_OFFSET (60 * 60 * 24 * 7 * 2) // 2 weeks
+#define CLTAP_FILE_RESOURCE_TIME_OUT_INTERVAL 25
+#define CLTAP_FILE_MAX_CONCURRENCY_COUNT 10
+#define CLTAP_FILES_DIRECTORY_NAME @"CleverTap_Files"
 
 #pragma mark Constants for App fields
 #define CLTAP_APP_VERSION @"Version"
@@ -94,10 +127,10 @@ extern NSString *CT_KIND_FLOAT;
 extern NSString *CT_KIND_STRING;
 extern NSString *CT_KIND_BOOLEAN;
 extern NSString *CT_KIND_DICTIONARY;
+extern NSString *CT_KIND_FILE;
 extern NSString *CLEVERTAP_DEFAULTS_VARIABLES_KEY;
 extern NSString *CLEVERTAP_DEFAULTS_VARS_JSON_KEY;
 
-extern NSString *CT_PE_DEFINE_VARS_ENDPOINT;
 extern NSString *CT_PE_VARS_PAYLOAD_TYPE;
 extern NSString *CT_PE_VARS_PAYLOAD_KEY;
 extern NSString *CT_PE_VAR_TYPE;
@@ -106,7 +139,6 @@ extern NSString *CT_PE_BOOL_TYPE;
 extern NSString *CT_PE_DEFAULT_VALUE;
 
 extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
-#define CLTAP_DEFINE_VARS_URL @"/defineVars"
 
 #pragma mark Constants for In-App Notifications
 #define CLTAP_INAPP_JSON_RESPONSE_KEY @"inapp_notifs"
@@ -124,6 +156,8 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_INAPP_SUPPRESSED_META_KEY @"inapps_suppressed"
 #define CLTAP_INAPP_SS_EVAL_STORAGE_KEY @"inapps_eval"
 #define CLTAP_INAPP_SUPPRESSED_STORAGE_KEY @"inapps_suppressed"
+#define CLTAP_INAPP_SS_EVAL_STORAGE_KEY_PROFILE @"inapps_eval_profile"
+#define CLTAP_INAPP_SUPPRESSED_STORAGE_KEY_PROFILE @"inapps_suppressed_profile"
 
 #define CLTAP_PREFS_INAPP_SESSION_MAX_KEY @"imc_max"
 #define CLTAP_PREFS_INAPP_LAST_DATE_KEY @"ict_date"
@@ -144,6 +178,7 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_PROP_WZRK_ID @"wzrk_id"
 #define CLTAP_PROP_VARIANT @"Variant"
 #define CLTAP_PROP_WZRK_PIVOT @"wzrk_pivot"
+#define CLTAP_PROP_WZRK_CTA @"wzrk_c2a"
 
 #define CLTAP_INAPP_ID @"ti"
 #define CLTAP_INAPP_TTL @"wzrk_ttl"
@@ -155,6 +190,10 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_INAPP_TOTAL_LIFETIME_COUNT @"tlc"
 #define CLTAP_INAPP_EXCLUDE_FROM_CAPS @"efc"
 #define CLTAP_INAPP_EXCLUDE_GLOBAL_CAPS @"excludeGlobalFCaps"
+#define CLTAP_INAPP_MEDIA @"media"
+#define CLTAP_INAPP_MEDIA_LANDSCAPE @"mediaLandscape"
+#define CLTAP_INAPP_MEDIA_CONTENT_TYPE @"content_type"
+#define CLTAP_INAPP_MEDIA_URL @"url"
 
 #define CLTAP_TRIGGER_BOOL_STRING_YES @"true"
 #define CLTAP_TRIGGER_BOOL_STRING_NO @"false"
@@ -183,46 +222,34 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 
 #define CLTAP_INAPP_HTML_TYPE @"custom-html"
 
+#define CLTAP_INAPP_TYPE @"type"
+#define CLTAP_INAPP_TEMPLATE_NAME @"templateName"
+#define CLTAP_INAPP_TEMPLATE_ID @"templateId"
+#define CLTAP_INAPP_TEMPLATE_DESCRIPTION @"templateDescription"
+#define CLTAP_INAPP_VARS @"vars"
+#define CLTAP_INAPP_ACTIONS @"actions"
+
 #define CLTAP_INAPP_PREVIEW_TYPE @"wzrk_inapp_type"
 #define CLTAP_INAPP_IMAGE_INTERSTITIAL_TYPE @"image-interstitial"
 #define CLTAP_INAPP_IMAGE_INTERSTITIAL_CONFIG @"imageInterstitialConfig"
 #define CLTAP_INAPP_HTML_SPLIT @"\"##Vars##\""
 #define CLTAP_INAPP_IMAGE_INTERSTITIAL_HTML_NAME @"image_interstitial"
 
-#pragma mark Constants for persisting Facebook data
-#define CLTAP_FB_NAME @"fbName"
-#define CLTAP_FB_ID @"fbId"
-#define CLTAP_FB_EMAIL @"fbEmail"
-#define CLTAP_FB_GENDER @"fbGender"
-#define CLTAP_FB_EDUCATION @"fbEducation"
-#define CLTAP_FB_EMPLOYED @"fbEmployed"
-#define CLTAP_FB_DOB @"fbDOB"
-#define CLTAP_FB_MARRIED @"fbMarried"
-
-#pragma mark Constants for persisting G+ data
-#define CLTAP_GP_NAME @"gpName"
-#define CLTAP_GP_ID @"gpId"
-#define CLTAP_GP_EMAIL @"gpEmail"
-#define CLTAP_GP_GENDER @"gpGender"
-#define CLTAP_GP_EMPLOYED @"gpEmployed"
-#define CLTAP_GP_DOB @"gpDOB"
-#define CLTAP_GP_MARRIED @"gpMarried"
-
 #pragma mark Constants for persisting system data
 #define CLTAP_SYS_CARRIER @"sysCarrier"
 #define CLTAP_SYS_CC @"sysCountryCode"
 #define CLTAP_SYS_TZ @"sysTZ"
 
-#define CLTAP_USER_NAME @"userName"
-#define CLTAP_USER_EMAIL @"userEmail"
-#define CLTAP_USER_EDUCATION @"userEducation"
-#define CLTAP_USER_MARRIED @"userMarried"
-#define CLTAP_USER_DOB @"userDOB"
-#define CLTAP_USER_BIRTHDAY @"userBirthday"
-#define CLTAP_USER_EMPLOYED @"userEmployed"
-#define CLTAP_USER_GENDER @"userGender"
-#define CLTAP_USER_PHONE @"userPhone"
-#define CLTAP_USER_AGE @"userAge"
+#define CLTAP_USER_NAME @"Name"
+#define CLTAP_USER_EMAIL @"Email"
+#define CLTAP_USER_EDUCATION @"Education"
+#define CLTAP_USER_MARRIED @"Married"
+#define CLTAP_USER_DOB @"DOB"
+#define CLTAP_USER_BIRTHDAY @"Birthday"
+#define CLTAP_USER_EMPLOYED @"Employed"
+#define CLTAP_USER_GENDER @"Gender"
+#define CLTAP_USER_PHONE @"Phone"
+#define CLTAP_USER_AGE @"Age"
 
 #define CLTAP_OPTOUT @"ct_optout"
 
@@ -241,10 +268,9 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #pragma mark Constants for Profile identifier keys
 #define CLTAP_PROFILE_IDENTIFIER_KEYS @[@"Identity", @"Email"] // LEGACY KEYS
 #define CLTAP_ALL_PROFILE_IDENTIFIER_KEYS @[@"Identity", @"Email", @"Phone"]
+#define CLTAP_SKIP_KEYS_USER_ATTRIBUTE_EVALUATION @[@"cc", @"tz", @"Carrier"]
 
 #pragma mark Constants for Encryption
 #define CLTAP_ENCRYPTION_LEVEL @"CleverTapEncryptionLevel"
 #define CLTAP_ENCRYPTION_IV @"__CL3>3Rt#P__1V_"
-#define CLTAP_ENCRYPTION_PII_DATA (@[@"Identity", @"userEmail", @"userPhone", @"userName"]);
-
-
+#define CLTAP_ENCRYPTION_PII_DATA (@[@"Identity", @"Email", @"Phone", @"Name"]);
