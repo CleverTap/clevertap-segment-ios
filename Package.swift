@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "Segment-CleverTap",
-    platforms: [.iOS(.v10)],
+    platforms: [.iOS("15.0")],
     products: [
         .library(name: "Segment-CleverTap",
                  targets: ["Segment-CleverTap"]),
