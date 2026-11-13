@@ -3,6 +3,8 @@
 
 #if defined(__has_include) && __has_include(<CleverTap-iOS-SDK/CleverTap.h>)
 #import <CleverTap-iOS-SDK/CleverTap.h>
+#elif defined(__has_include) && __has_include(<CleverTapSDK/CleverTap.h>)
+#import <CleverTapSDK/CleverTap.h>
 #elif SWIFT_PACKAGE
 #import "CleverTap.h"
 #else
