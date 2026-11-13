@@ -5,7 +5,7 @@ import Segment
 import CleverTapSDK
 import Segment_CleverTap
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
