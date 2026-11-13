@@ -44,8 +44,10 @@
 @property (nullable, nonatomic, copy, readonly) NSString *messageColor;
 @property (nullable, nonatomic, copy, readonly) NSString *backgroundColor;
 @property (nullable, nonatomic, copy, readonly) NSString *mediaUrl;
+@property (nullable, nonatomic, copy, readonly) NSString *mediaDescription;
 @property (nullable, nonatomic, copy, readonly) NSString *videoPosterUrl;
 @property (nullable, nonatomic, copy, readonly) NSString *iconUrl;
+@property (nullable, nonatomic, copy, readonly) NSString *iconDescription;
 @property (nullable, nonatomic, copy, readonly) NSString *actionUrl;
 @property (nullable, nonatomic, copy, readonly) NSArray *links;
 @property (nonatomic, readonly, assign) BOOL mediaIsAudio;
@@ -251,9 +253,21 @@ typedef void (^CleverTapInboxUpdatedBlock)(void);
  */
 - (void)recordInboxNotificationClickedEventForID:(NSString * _Nonnull)messageId;
 
+
 /*!
  @method
- 
+
+ @abstract
+ Manually trigger an inbox refresh via /inbox/v2/getMessages.
+ callback(YES) — fetch was dispatched; new messages may arrive via registered update blocks.
+ callback(NO)  — throttled (< 5 min since last fetch) or inbox not initialised.
+ Pass nil if you do not need the completion signal.
+ */
+- (void)fetchInboxWithCallback:(CleverTapInboxSuccessBlock _Nullable)callback;
+
+/*!
+ @method
+
  @abstract
  This method dismisses the inbox controller
  */

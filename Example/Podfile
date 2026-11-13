@@ -24,4 +24,14 @@ post_install do |installer|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
     end
   end
+
+  # SEGReachability.m imports <netinet6/in6.h>, which netinet/in.h has already pulled
+  # in and which errors out when included directly. Xcode 27's explicit clang modules
+  # surface it as a hard error. analytics-ios is archived at 4.1.8, so patch it here.
+  reachability = File.join(installer.sandbox.root, 'Analytics/Segment/Classes/SEGReachability.m')
+  if File.exist?(reachability)
+    source = File.read(reachability)
+    patched = source.sub(/^#import <netinet6\/in6\.h>\n/, '')
+    File.write(reachability, patched) unless patched == source
+  end
 end

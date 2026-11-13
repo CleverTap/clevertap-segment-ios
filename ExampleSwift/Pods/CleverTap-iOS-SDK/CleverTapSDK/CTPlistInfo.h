@@ -15,11 +15,12 @@
 @property (nonatomic, assign, readonly) BOOL disableIDFV;
 @property (nonatomic, assign) BOOL enableFileProtection;
 @property (nonatomic, strong, readonly, nullable) NSString *handshakeDomain;
+@property (nonatomic, assign) BOOL encryptionInTransitEnabled;
 @property (nonatomic, readonly) CleverTapEncryptionLevel encryptionLevel;
 
 + (instancetype _Nullable)sharedInstance;
 - (void)setCredentialsWithAccountID:(NSString * _Nonnull)accountID token:(NSString * _Nonnull)token region:(NSString * _Nullable)region;
 - (void)setCredentialsWithAccountID:(NSString * _Nonnull)accountID token:(NSString * _Nonnull)token proxyDomain:(NSString * _Nonnull)proxyDomain;
 - (void)setCredentialsWithAccountID:(NSString * _Nonnull)accountID token:(NSString * _Nonnull)token proxyDomain:(NSString * _Nonnull)proxyDomain spikyProxyDomain:(NSString * _Nullable)spikyProxyDomain;
-
+- (void)setCredentialsWithAccountID:(NSString * _Nonnull)accountID token:(NSString * _Nonnull)token proxyDomain:(NSString * _Nonnull)proxyDomain spikyProxyDomain:(NSString * _Nullable)spikyProxyDomain handshakeDomain:(NSString* _Nonnull)handshakeDomain;
 @end

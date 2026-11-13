@@ -44,14 +44,14 @@ static CGFloat SDImageScaleFromPath(NSString *string) {
 
 #pragma mark - UIImage override method
 + (instancetype)imageNamed:(NSString *)name {
-#if __has_include(<UIKit/UITraitCollection.h>)
+#if __has_include(<UIKit/UITraitCollection.h>) && !SD_WATCH
     return [self imageNamed:name inBundle:nil compatibleWithTraitCollection:nil];
 #else
     return [self imageNamed:name inBundle:nil];
 #endif
 }
 
-#if __has_include(<UIKit/UITraitCollection.h>)
+#if __has_include(<UIKit/UITraitCollection.h>) && !SD_WATCH
 + (instancetype)imageNamed:(NSString *)name inBundle:(NSBundle *)bundle compatibleWithTraitCollection:(UITraitCollection *)traitCollection {
 #if SD_VISION
     if (!traitCollection) {
@@ -182,6 +182,8 @@ static CGFloat SDImageScaleFromPath(NSString *string) {
 #else
         self = [super initWithCGImage:image.CGImage scale:MAX(scale, 1) orientation:image.imageOrientation];
 #endif
+        // Defines the associated object that holds the format for static images
+        super.sd_imageFormat = format;
         return self;
     }
 }
@@ -372,10 +374,6 @@ static CGFloat SDImageScaleFromPath(NSString *string) {
     } else {
         return [super sd_imageFormat];
     }
-}
-
-- (void)setSd_imageFormat:(SDImageFormat)sd_imageFormat {
-    return;
 }
 
 - (BOOL)sd_isVector {

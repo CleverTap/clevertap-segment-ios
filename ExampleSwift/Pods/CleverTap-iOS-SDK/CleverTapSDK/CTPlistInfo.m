@@ -96,6 +96,9 @@ static NSArray *registeredURLSchemes;
         
         _handshakeDomain = [CTPlistInfo getMetaDataForAttribute:CLTAP_HANDSHAKE_DOMAIN];
         
+        NSString *encryptionInTransitEnabled = [CTPlistInfo getMetaDataForAttribute:CLTAP_ENCRYPTION_IN_TRANSIT_ENABLED];
+        _encryptionInTransitEnabled = (encryptionInTransitEnabled && [encryptionInTransitEnabled isEqualToString:@"1"]);
+        
         NSString *encryptionLevel = [CTPlistInfo getMetaDataForAttribute:CLTAP_ENCRYPTION_LEVEL];
         [self setEncryption:encryptionLevel];
     }
@@ -121,14 +124,26 @@ static NSArray *registeredURLSchemes;
     _spikyProxyDomain = spikyProxyDomain;
 }
 
+- (void)setCredentialsWithAccountID:(NSString * _Nonnull)accountID token:(NSString * _Nonnull)token proxyDomain:(NSString * _Nonnull)proxyDomain spikyProxyDomain:(NSString * _Nullable)spikyProxyDomain handshakeDomain:(NSString*)handshakeDomain {
+    _accountId = accountID;
+    _accountToken = token;
+    _proxyDomain = proxyDomain;
+    _spikyProxyDomain = spikyProxyDomain;
+    _handshakeDomain = handshakeDomain;
+}
+
 - (void)setEncryption:(NSString *)encryptionLevel {
     if (encryptionLevel && [encryptionLevel isEqualToString:@"0"]) {
         _encryptionLevel = CleverTapEncryptionNone;
     } else if (encryptionLevel && [encryptionLevel isEqualToString:@"1"]) {
         _encryptionLevel = CleverTapEncryptionMedium;
-    } else {
+    }
+    else if (encryptionLevel && [encryptionLevel isEqualToString:@"2"]) {
+        _encryptionLevel = CleverTapEncryptionHigh;
+    }
+    else {
         _encryptionLevel = CleverTapEncryptionNone;
-        CleverTapLogStaticInternal(@"Supported encryption levels are only 0 and 1. Setting it to 0 by default");
+        CleverTapLogStaticInternal(@"Supported encryption levels are only 0, 1 and 2. Setting it to 0 by default");
     }
 }
 

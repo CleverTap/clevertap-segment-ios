@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "CleverTap.h"
-@class CTAES;
+@class CTEncryptionManager;
 
 @interface CleverTapInstanceConfig : NSObject
 
@@ -17,11 +17,12 @@
 @property (nonatomic, assign) BOOL disableIDFV;
 @property (nonatomic, assign) BOOL enableFileProtection;
 @property (nonatomic, strong, nullable) NSString *handshakeDomain;
+@property (nonatomic, assign) BOOL encryptionInTransitEnabled;
 
 @property (nonatomic, assign) CleverTapLogLevel logLevel;
 @property (nonatomic, strong, nullable) NSArray *identityKeys;
 @property (nonatomic, assign) CleverTapEncryptionLevel encryptionLevel;
-@property (nonatomic, strong, nullable) CTAES *aesCrypt;
+@property (nonatomic, strong, nullable) CTEncryptionManager *cryptManager;
 
 
 - (instancetype _Nonnull) init __unavailable;
@@ -59,4 +60,5 @@
 - (void)setEncryptionLevel:(CleverTapEncryptionLevel)encryptionLevel;
 - (void)setEnableFileProtection:(BOOL)enableFileProtection;
 - (void)setHandshakeDomain:(NSString * _Nonnull)handshakeDomain;
+- (void)setEncryptionInTransitEnabled:(BOOL)encryptionInTransitEnabled;
 @end

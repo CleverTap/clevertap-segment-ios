@@ -1,4 +1,6 @@
 #import <Foundation/Foundation.h>
+#import "CleverTap.h"
+#import "CTEncryptionManager.h"
 
 @protocol CTInboxDelegate <NSObject>
 @required
@@ -22,14 +24,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 // blocking, call off main thread
 - (instancetype _Nullable)initWithAccountId:(NSString *)accountId
-                                       guid:(NSString *)guid;
+                                       guid:(NSString *)guid
+                            encryptionLevel:(CleverTapEncryptionLevel)encryptionLevel
+                    previousEncryptionLevel:(CleverTapEncryptionLevel)previousEncryptionLevel
+                          encryptionManager:(CTEncryptionManager*)encryptionManager;
 
 - (void)updateMessages:(NSArray<NSDictionary*> *)messages;
+- (void)updateMessages:(NSArray<NSDictionary*> *)messages
+            completion:(void (^ _Nullable)(void))completion;
 - (NSDictionary * _Nullable )messageForId:(NSString *)messageId;
 - (void)deleteMessageWithId:(NSString *)messageId;
 - (void)deleteMessagesWithId:(NSArray *_Nonnull)messageIds;
 - (void)markReadMessageWithId:(NSString *)messageId;
 - (void)markReadMessagesWithId:(NSArray *_Nonnull)messageIds;
+- (void)performExpiryPurge;
+
+- (BOOL)isV2MessageId:(NSString *)messageId;
+- (void)addV2MessageIds:(NSArray<NSString *> *)messageIds;
+- (void)removeV2MessageId:(NSString *)messageId;
+- (void)deleteAbsentPersistentV2MessagesFromResponseIds:(NSSet<NSString *> *)responseIds;
 
 @end
 

@@ -1,5 +1,9 @@
 #import <Foundation/Foundation.h>
+#if __has_include(<CleverTapSDK/CleverTapInstanceConfig.h>)
+#import <CleverTapSDK/CleverTapInstanceConfig.h>
+#else
 #import "CleverTapInstanceConfig.h"
+#endif
 
 @interface CTPreferences : NSObject
 
@@ -11,7 +15,8 @@
 
 + (void)putString:(NSString *_Nonnull)resetValue forKey:(NSString *_Nonnull)key;
 
-+ (id _Nonnull)getObjectForKey:(NSString *_Nonnull)key;
+// Returns nil when the key was never written. NSUserDefaults is read straight through.
++ (id _Nullable)getObjectForKey:(NSString *_Nonnull)key;
 
 + (void)putObject:(id _Nonnull)object forKey:(NSString *_Nonnull)key;
 

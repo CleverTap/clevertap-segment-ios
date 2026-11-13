@@ -1,4 +1,8 @@
-#import "CTLogger.h"
+#if __has_include(<CleverTapSDK/CleverTapSDK-Swift.h>)
+#import <CleverTapSDK/CleverTapSDK-Swift.h>
+#elif __has_include("CleverTapSDK-Swift.h")
+#import "CleverTapSDK-Swift.h"
+#endif
 
 extern NSString *const kCTApiDomain;
 extern NSString *const kCTNotifViewedApiDomain;
@@ -6,20 +10,68 @@ extern NSString *const kHANDSHAKE_URL;
 extern NSString *const kHANDSHAKE_DOMAIN_HEADER;
 extern NSString *const ACCOUNT_ID_HEADER;
 extern NSString *const ACCOUNT_TOKEN_HEADER;
+extern NSString *const ENCRYPTION_HEADER;
 
 extern NSString *const REDIRECT_DOMAIN_KEY;
 extern NSString *const REDIRECT_NOTIF_VIEWED_DOMAIN_KEY;
+
+extern NSString *const LAST_TS_KEY;
+extern NSString *const FIRST_TS_KEY;
 
 extern NSString *const kLastSessionPing;
 extern NSString *const kLastSessionTime;
 extern NSString *const kSessionId;
 
-#define CleverTapLogInfo(level, fmt, ...)  if(level >= 0) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
-#define CleverTapLogDebug(level, fmt, ...) if(level > 0) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
-#define CleverTapLogInternal(level, fmt, ...) if (level >= 1) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
-#define CleverTapLogStaticInfo(fmt, ...)  if([CTLogger getDebugLevel] >= 0) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
-#define CleverTapLogStaticDebug(fmt, ...) if([CTLogger getDebugLevel] > 0) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
-#define CleverTapLogStaticInternal(fmt, ...) if([CTLogger getDebugLevel] >= 1) { NSLog((@"%@" fmt), @"[CleverTap]: ", ##__VA_ARGS__); }
+#define CleverTapLogInfo(level, fmt, ...) \
+    do { \
+        if (level >= 0) { \
+            NSString *_logMsg = [NSString stringWithFormat:fmt, ##__VA_ARGS__]; \
+            [CTLogger logWithLevel:level type:CTLogTypeInfo message:_logMsg]; \
+        } \
+    } while(0)
+
+#define CleverTapLogDebug(level, fmt, ...) \
+    do { \
+        if (level > 0) { \
+            NSString *_logMsg = [NSString stringWithFormat:fmt, ##__VA_ARGS__]; \
+            [CTLogger logWithLevel:level type:CTLogTypeDebug message:_logMsg]; \
+        } \
+    } while(0)
+
+#define CleverTapLogInternal(level, fmt, ...) \
+    do { \
+        if (level >= 1) { \
+            NSString *_logMsg = [NSString stringWithFormat:fmt, ##__VA_ARGS__]; \
+            [CTLogger logWithLevel:level type:CTLogTypeDebug message:_logMsg]; \
+        } \
+    } while(0)
+
+#define CleverTapLogStaticInfo(fmt, ...) \
+    do { \
+        int _lvl = [CTLogger getDebugLevel]; \
+        if (_lvl >= 0) { \
+            NSString *_logMsg = [NSString stringWithFormat:fmt, ##__VA_ARGS__]; \
+            [CTLogger logWithLevel:_lvl type:CTLogTypeInfo message:_logMsg]; \
+        } \
+    } while(0)
+
+#define CleverTapLogStaticDebug(fmt, ...) \
+    do { \
+        int _lvl = [CTLogger getDebugLevel]; \
+        if (_lvl > 0) { \
+            NSString *_logMsg = [NSString stringWithFormat:fmt, ##__VA_ARGS__]; \
+            [CTLogger logWithLevel:_lvl type:CTLogTypeDebug message:_logMsg]; \
+        } \
+    } while(0)
+
+#define CleverTapLogStaticInternal(fmt, ...) \
+    do { \
+        int _lvl = [CTLogger getDebugLevel]; \
+        if (_lvl >= 1) { \
+            NSString *_logMsg = [NSString stringWithFormat:fmt, ##__VA_ARGS__]; \
+            [CTLogger logWithLevel:_lvl type:CTLogTypeDebug message:_logMsg]; \
+        } \
+    } while(0)
 
 #define CT_TRY @try {
 #define CT_END_TRY }\
@@ -27,6 +79,7 @@ extern NSString *const kSessionId;
 [CTLogger logInternalError:e]; }
 
 #define CLTAP_CUSTOM_TEMPLATE_EXCEPTION @"CleverTapCustomTemplateException"
+#define CLTAP_SYSTEM_APP_FUNCTION_EXCEPTION @"CleverTapSystemAppFunctionException"
 
 #pragma mark Constants for General data
 #define CLTAP_REQUEST_TIME_OUT_INTERVAL 10
@@ -40,6 +93,7 @@ extern NSString *const kSessionId;
 #define CLTAP_DISABLE_IDFV_LABEL @"CleverTapDisableIDFV"
 #define CLTAP_ENABLE_FILE_PROTECTION @"CleverTapEnableFileProtection"
 #define CLTAP_HANDSHAKE_DOMAIN @"CleverTapHandshakeDomain"
+#define CLTAP_ENCRYPTION_IN_TRANSIT_ENABLED @"CleverTapEncryptionInTransitEnabled"
 #define CLTAP_BETA_LABEL @"CleverTapBeta"
 #define CLTAP_SESSION_LENGTH_MINS 20
 #define CLTAP_SESSION_LAST_VC_TRAIL @"last_session_vc_trail"
@@ -59,6 +113,7 @@ extern NSString *const kSessionId;
 #define CLTAP_SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define CLTAP_APP_LAUNCHED_EVENT @"App Launched"
 #define CLTAP_CHARGED_EVENT @"Charged"
+#define CLTAP_CONTENT_FETCH_EVENT @"content_fetch"
 #define CLTAP_PROFILE @"profile"
 #define CLTAP_USER_ATTRIBUTE_CHANGE @"_change"
 #define CLTAP_KEY_NEW_VALUE @"newValue"
@@ -72,32 +127,68 @@ extern NSString *const kSessionId;
 #define CLTAP_PUSH_DELAY_SECONDS 1
 #define CLTAP_PING_TICK_INTERVAL 1
 #define CLTAP_LOCATION_PING_INTERVAL_SECONDS 10
+#define CLTAP_CONTENT_FETCH_JSON_RESPONSE_KEY @"content_fetch"
+// Keys within a single `content_fetch` array item
+#define CLTAP_CONTENT_FETCH_ITEM_EVENT_NAME @"eventName"
+#define CLTAP_CONTENT_FETCH_ITEM_RESPONSE_KEY @"responseKey"
+#define CLTAP_CONTENT_FETCH_ITEM_TGT_ID @"tgtId"
+// SDK-internal marker, never sent or received. Tags a payload built from a content_fetch item's
+// selection rules, which can be evaluated and sorted but must never be displayed — it carries
+// only the rules that decide a winner, no content.
+#define CLTAP_INAPP_SYNTHETIC_CANDIDATE @"__ct_synthetic_candidate"
+// How long an app-launch in-app is held waiting for the content fetch to return a competing
+// candidate. A UX bound, not a correctness one — deliberately far below the content fetch's own
+// limits (CLTAP_REQUEST_TIME_OUT_INTERVAL, plus 5s if it waits for a concurrency slot), since
+// matching those would delay the in-app by up to 15s. A response arriving after this has fired
+// is dropped instead of shown, so a slow fetch cannot produce a second in-app.
+//
+// 3.0 clears the observed ~2s round trip with margin. The value only trades off how often the
+// personalized in-app wins versus the app-launch one — shorter falls back more often, longer
+// delays display more often — and cannot cause a double in-app either way. Override
+// appLaunchedArbitrationTimeout on CTInAppEvaluationManager to vary it.
+#define CLTAP_INAPP_ARBITRATION_TIMEOUT_SECONDS 3.0
 #define CLTAP_INBOX_MSG_JSON_RESPONSE_KEY @"inbox_notifs"
+#define CLTAP_INBOX_V2_RESPONSE_KEY @"inbox_notifs_v2"
+#define CLTAP_NOTIFICATION_DELETED_EVENT_NAME @"Notification Deleted"
+#define CLTAP_INBOX_PENDING_READS_KEY_PREFIX @"CLTAP_inbox_pending_reads_"
+#define CLTAP_INBOX_V2_IDS_KEY_PREFIX @"CLTAP_inbox_v2_ids_"
+#define CLTAP_INBOX_CONFIRMED_DELETES_KEY_PREFIX @"CLTAP_inbox_confirmed_deletes_"
+#define CLTAP_INBOX_RETRY_DELETES_KEY_PREFIX @"CLTAP_inbox_retry_deletes_"
+static const NSTimeInterval kCTInboxConfirmedDeleteFallbackTTL = 86400.0; // 24 hours
+static const NSInteger kCTInboxFetchTypeInboxV2 = 7;
+static const NSTimeInterval kCTInboxRefreshMinInterval = 300.0;
 #define CLTAP_DISPLAY_UNIT_JSON_RESPONSE_KEY @"adUnit_notifs"
 #define CLTAP_FEATURE_FLAGS_JSON_RESPONSE_KEY @"ff_notifs"
 #define CLTAP_PRODUCT_CONFIG_JSON_RESPONSE_KEY @"pc_notifs"
 #define CLTAP_GEOFENCES_JSON_RESPONSE_KEY @"geofences"
 #define CLTAP_PE_VARS_RESPONSE_KEY @"vars"
+#define CLTAP_PE_VARIANTS_RESPONSE_KEY @"abVariantInfo"
 #define CLTAP_DISCARDED_EVENT_JSON_KEY @"d_e"
 #define CLTAP_INAPP_CLOSE_IV_WIDTH 40
 #define CLTAP_NOTIFICATION_ID_TAG @"wzrk_id"
+#define CLTAP_WZRK_ACCT_ID @"wzrk_acct_id"
 #define CLTAP_NOTIFICATION_PIVOT @"wzrk_pivot"
 #define CLTAP_NOTIFICATION_PIVOT_DEFAULT @"wzrk_default"
 #define CLTAP_NOTIFICATION_CONTROL_GROUP_ID @"wzrk_cgId"
 #define CLTAP_WZRK_PREFIX @"wzrk_"
 #define CLTAP_NOTIFICATION_TAG_SECONDARY @"wzrk_"
 #define CLTAP_NOTIFICATION_CLICKED_TAG @"wzrk_cts"
+#define CLTAP_NOTIFICATION_SILENT_IN_FOREGROUND @"wzrk_sif"
 #define CLTAP_NOTIFICATION_TAG @"W$"
 #define CLTAP_DATE_FORMAT @"yyyyMMdd"
 #define CLTAP_DATE_PREFIX @"$D_"
+#define CLTAP_CachedGUIDSKey @"CachedGUIDS"
 
-// profile commands
+#pragma mark Profile Commands
 static NSString *const kCLTAP_COMMAND_SET = @"$set";
 static NSString *const kCLTAP_COMMAND_ADD = @"$add";
 static NSString *const kCLTAP_COMMAND_REMOVE = @"$remove";
 static NSString *const kCLTAP_COMMAND_INCREMENT = @"$incr";
 static NSString *const kCLTAP_COMMAND_DECREMENT = @"$decr";
 static NSString *const kCLTAP_COMMAND_DELETE = @"$delete";
+static NSString *const kCLTAP_DELETE_MARKER = @"__DELETE__";
+static NSString *const kCLTAP_GET_MARKER = @"__GET_MARKER__";
+
 
 #define CLTAP_MULTIVAL_COMMANDS @[kCLTAP_COMMAND_SET, kCLTAP_COMMAND_ADD, kCLTAP_COMMAND_REMOVE]
 
@@ -129,6 +220,7 @@ extern NSString *CT_KIND_BOOLEAN;
 extern NSString *CT_KIND_DICTIONARY;
 extern NSString *CT_KIND_FILE;
 extern NSString *CLEVERTAP_DEFAULTS_VARIABLES_KEY;
+extern NSString *CLEVERTAP_DEFAULTS_VARIANTS_KEY;
 extern NSString *CLEVERTAP_DEFAULTS_VARS_JSON_KEY;
 
 extern NSString *CT_PE_VARS_PAYLOAD_TYPE;
@@ -149,6 +241,8 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_INAPP_SS_JSON_RESPONSE_KEY @"inapp_notifs_ss"
 #define CLTAP_INAPP_SS_APP_LAUNCHED_JSON_RESPONSE_KEY @"inapp_notifs_applaunched"
 #define CLTAP_INAPP_MODE_JSON_RESPONSE_KEY @"inapp_delivery_mode"
+#define CLTAP_INAPP_META_KEY @"inapp_notifs_meta"
+#define CLTAP_INAPP_SS_APP_LAUNCHED_META_KEY @"inapp_notifs_applaunched_meta"
 
 #define CLTAP_INAPP_SHOWN_TODAY_META_KEY @"imp"
 #define CLTAP_INAPP_COUNTS_META_KEY @"tlc"
@@ -165,10 +259,67 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_PREFS_INAPP_COUNTS_SHOWN_TODAY_KEY @"istc_inapp"
 #define CLTAP_PREFS_INAPP_MAX_PER_DAY_KEY @"istmcd_inapp"
 #define CLTAP_PREFS_INAPP_LOCAL_INAPP_COUNT_KEY @"local_in_app_count"
+#define CLTAP_INAPP_EVAL_DEDUPED_FLAG @"ss_evals_deduped"
+
+// Storage names for CTImpressionManager and CTInAppTriggerManager. These words go inside the
+// preference key. Change a value and every impression and trigger count already saved on a device
+// can no longer be found. They are constants to make that clear. Treat the values as frozen.
+#define CLTAP_PREFS_INAPP_IMPRESSIONS_NAMESPACE @"impressions"
+#define CLTAP_PREFS_INAPP_TRIGGERS_NAMESPACE @"triggers"
+
+#pragma mark Native Display frequency caps
+
+// Every Native Display log line starts with this prefix
+#define CLTAP_ND_LOG_PREFIX @"[Display Unit]"
+
+// Response, server to SDK. CLTAP_DISPLAY_UNIT_JSON_RESPONSE_KEY carries the content and is already
+// handled. These carry the caps.
+#define CLTAP_ND_SS_JSON_RESPONSE_KEY @"adUnit_notifs_ss"
+#define CLTAP_ND_STALE_JSON_RESPONSE_KEY @"adUnit_stale"
+// Campaigns that fired on App Launched. These carry real content, except the entries marked
+// suppressed. Those mean the user is in the control group and there is nothing to show.
+#define CLTAP_ND_APP_LAUNCHED_JSON_RESPONSE_KEY @"adUnit_notifs_applaunched"
+// Watch the direction. From the server, ndmc and ndmp are the limits. To the server, ndmp is how
+// many we showed today. In-app does the same thing with imp.
+#define CLTAP_ND_SESSION_MAX_META_KEY @"ndmc"
+#define CLTAP_ND_DAILY_MAX_META_KEY @"ndmp"
+// Says whether this campaign takes part in Native Display frequency caps. The server puts it on
+// every campaign it sends, on the content and on the rule. A missing flag means no. A campaign that
+// says no is still shown. Its views are not added to the counts the SDK sends back.
+#define CLTAP_ND_IS_FCAP_ENABLED @"isNdFcapEnabled"
+
+// Request, SDK to server.
+#define CLTAP_ND_SHOWN_TODAY_META_KEY @"ndmp"
+#define CLTAP_ND_COUNTS_META_KEY @"ndtlc"
+#define CLTAP_ND_SS_EVAL_META_KEY @"adUnit_eval"
+#define CLTAP_ND_SUPPRESSED_META_KEY @"adUnit_suppressed"
+
+// The t value on the wzrk_fetch event that asks for a fresh Native Display rule bundle. The server
+// answers with adUnit_notifs_ss.
+//
+static const NSInteger kCTNdFetchTypeMeta = 8;
+
+// On disk. Every name here is new, so Native Display never reads or writes a key that is already
+// saved on a device.
+#define CLTAP_PREFS_ND_KEY_SS @"adUnit_notifs_ss"
+#define CLTAP_ND_SS_EVAL_STORAGE_KEY @"adUnit_eval"
+#define CLTAP_ND_SUPPRESSED_STORAGE_KEY @"adUnit_suppressed"
+#define CLTAP_PREFS_ND_COUNTS_PER_CAMPAIGN_KEY @"nd_counts_per_campaign"
+#define CLTAP_PREFS_ND_COUNTS_SHOWN_TODAY_KEY @"ndstc"
+#define CLTAP_PREFS_ND_MAX_PER_DAY_KEY @"ndstmcd"
+#define CLTAP_PREFS_ND_SESSION_MAX_KEY @"ndmc_max"
+#define CLTAP_PREFS_ND_LAST_DATE_KEY @"nd_ict_date"
+#define CLTAP_PREFS_ND_IMPRESSIONS_NAMESPACE @"nd_impressions"
+#define CLTAP_PREFS_ND_TRIGGERS_NAMESPACE @"nd_triggers"
+
+#define CLTAP_PREFS_PREFIX @"WizRocket"
 
 #define CLTAP_PREFS_INAPP_KEY @"inapp_notifs"
 #define CLTAP_PREFS_INAPP_KEY_CS @"inapp_notifs_cs"
 #define CLTAP_PREFS_INAPP_KEY_SS @"inapp_notifs_ss"
+#define CLTAP_PREFS_DELAYED_INAPP_KEY @"delayed_inapp_notifs"
+#define CLTAP_PREFS_DELAYED_INAPP_KEY_CS @"delayed_inapp_notifs_cs"
+#define CLTAP_PREFS_INACTION_INAPP_KEY_SS @"inaction_inapp_notifs_ss"
 
 #define CLTAP_PREFS_CS_INAPP_ACTIVE_ASSETS @"cs_inapp_active_assets"
 #define CLTAP_PREFS_CS_INAPP_INACTIVE_ASSETS @"cs_inapp_inactive_assets"
@@ -179,6 +330,33 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_PROP_VARIANT @"Variant"
 #define CLTAP_PROP_WZRK_PIVOT @"wzrk_pivot"
 #define CLTAP_PROP_WZRK_CTA @"wzrk_c2a"
+#define CLTAP_PROP_WZRK_DL @"wzrk_dl"
+#define CLTAP_CTA_SWIPE_DISMISS @"Swipe to Dismiss"
+#define CLTAP_CTA_TAP_OUTSIDE_DISMISS @"Tap Outside to Dismiss"
+#define CLTAP_CTA_DISMISS_BUTTON @"Dismiss Button"
+#define CLTAP_CTA_DISMISS_PIP_API @"Dismiss PiP API"
+
+// Split of Clicks: per-element identity and action descriptors added to the
+// Notification Clicked event for basic (native) and custom HTML in-apps.
+#define CLTAP_PROP_WZRK_ELEMENT_ID @"wzrk_element_id"
+#define CLTAP_PROP_WZRK_ACTION @"wzrk_action"
+#define CLTAP_PROP_WZRK_DATA @"wzrk_data"
+#define CLTAP_INAPP_ELEMENT_CLOSE_BUTTON @"closeButton"
+#define CLTAP_INAPP_ELEMENT_IMAGE @"image-1"
+#define CLTAP_INAPP_ELEMENT_DISMISS_API @"dismissApi"
+#define CLTAP_INAPP_DATA_CLOSE @"close"
+
+// Advanced-builder media preload failures. The HTML template (image_interstitial.html)
+// signals these as a synthetic close with wzrk_c2a set to the reason string. The SDK
+// reports them as a structured wzrk_error (no click event is raised); the error rides
+// along on the next queued event.
+#define CLTAP_INAPP_ERROR_IMAGE_DISMISS @"image-error-dismiss"
+#define CLTAP_INAPP_ERROR_VIDEO_DISMISS @"video-error-dismiss"
+// wzrk_error codes. The backend decoder reads these numbers. Changing one here would break it.
+#define CLTAP_ERROR_CODE_INAPP_IMAGE_LOAD 591
+#define CLTAP_ERROR_CODE_INAPP_VIDEO_LOAD 592
+#define CLTAP_ERROR_MSG_INAPP_IMAGE_LOAD @"InApp image failed to load"
+#define CLTAP_ERROR_MSG_INAPP_VIDEO_LOAD @"InApp video failed to load"
 
 #define CLTAP_INAPP_ID @"ti"
 #define CLTAP_INAPP_TTL @"wzrk_ttl"
@@ -194,12 +372,20 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_INAPP_MEDIA_LANDSCAPE @"mediaLandscape"
 #define CLTAP_INAPP_MEDIA_CONTENT_TYPE @"content_type"
 #define CLTAP_INAPP_MEDIA_URL @"url"
+#define CLTAP_INAPP_MEDIA_CONTENT_DESCRIPTION @"alt_text"
+#define CLTAP_INAPP_TAP_OUTSIDE_DISMISS @"tap_outside_dismiss"
+#define CLTAP_INAPP_SWIPE_TO_DISMISS @"swipe_to_dismiss"
 
 #define CLTAP_TRIGGER_BOOL_STRING_YES @"true"
 #define CLTAP_TRIGGER_BOOL_STRING_NO @"false"
 
 // whenTriggers
 #define CLTAP_INAPP_TRIGGERS @"whenTriggers"
+// delayAfterTrigger
+#define CLTAP_DELAY_AFTER_TRIGGER @"delayAfterTrigger"
+#define CLTAP_MAX_DELAY_SECONDS 1200
+#define CLTAP_MIN_DELAY_SECONDS 1
+#define CLTAP_MAX_DELAYED_INAPPS 20 // worst case - we assume 1 in-app per minute, session length 20 mins
 
 // whenLimits
 #define CLTAP_INAPP_FC_LIMITS @"frequencyLimits"
@@ -219,6 +405,7 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_INAPP_POSITION_CENTER 'c'
 #define CLTAP_INAPP_NOTIF_DARKEN_SCREEN @"dk"
 #define CLTAP_INAPP_NOTIF_SHOW_CLOSE @"sc"
+#define CLTAP_INAPP_NOTIF_ASPECT_RATIO @"aspectRatio"
 
 #define CLTAP_INAPP_HTML_TYPE @"custom-html"
 
@@ -231,9 +418,12 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 
 #define CLTAP_INAPP_PREVIEW_TYPE @"wzrk_inapp_type"
 #define CLTAP_INAPP_IMAGE_INTERSTITIAL_TYPE @"image-interstitial"
+#define CLTAP_INAPP_ADVANCED_BUILDER_TYPE @"advanced-builder"
 #define CLTAP_INAPP_IMAGE_INTERSTITIAL_CONFIG @"imageInterstitialConfig"
 #define CLTAP_INAPP_HTML_SPLIT @"\"##Vars##\""
 #define CLTAP_INAPP_IMAGE_INTERSTITIAL_HTML_NAME @"image_interstitial"
+
+#define CLTAP_URL_PARAM_DL_SEPARATOR @"__dl__"
 
 #pragma mark Constants for persisting system data
 #define CLTAP_SYS_CARRIER @"sysCarrier"
@@ -252,6 +442,7 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_USER_AGE @"Age"
 
 #define CLTAP_OPTOUT @"ct_optout"
+#define CLTAP_ALLOW_SYSTEM_EVENTS @"ct_allow_sys_events_and_communication"
 
 #pragma mark Constants for profile init/sync notifications
 #define CLTAP_PROFILE_DID_INITIALIZE_NOTIFICATION @"CleverTapProfileDidInitializeNotification"
@@ -274,3 +465,28 @@ extern NSString *CLTAP_PROFILE_IDENTITY_KEY;
 #define CLTAP_ENCRYPTION_LEVEL @"CleverTapEncryptionLevel"
 #define CLTAP_ENCRYPTION_IV @"__CL3>3Rt#P__1V_"
 #define CLTAP_ENCRYPTION_PII_DATA (@[@"Identity", @"Email", @"Phone", @"Name"]);
+#define CLTAP_ENCRYPTION_MIGRATION_STATUS @"crypt_migration"
+#define CLTAP_ENCRYPTION_AES_GCM @"crypt_aes_gcm"
+#define kENCRYPTION_KEY @"CLTAP_ENCRYPTION_KEY"
+#define ENCRYPTION_KEY_TAG @"EncryptionKey"
+#define AES_GCM_PREFIX @"<ct<"
+#define AES_GCM_SUFFIX @">ct>"
+#define CLTAP_ENCRYPTION_ALGORITHM @"encryption_algo"
+
+#pragma mark Constants for Event Database
+#define CLTAP_DATABASE_VERSION 1
+#define CLTAP_EVENT_DB_MAX_ROW_LIMIT (2048 + 256) * 5;
+#define CLTAP_EVENT_DB_ROWS_TO_CLEANUP 2048 + 256;
+
+#pragma mark Constants for System App Functions
+#define CLTAP_PUSH_PERMISSION_TEMPLATE_NAME @"ctsystem_pushpermission"
+#define CLTAP_OPEN_URL_TEMPLATE_NAME @"ctsystem_openurl"
+#define CLTAP_APP_RATING_TEMPLATE_NAME @"ctsystem_apprating"
+#define CLTAP_FB_SETTINGS_KEY @"fbSettings"
+#define CLTAP_OPEN_URL_ACTION_KEY @"iOS"
+
+#pragma mark HTTP Codes
+#define HTTP_OK 200
+#define HTTP_EXPIRED 419
+#define HTTP_UNAUTHORIZED 401
+#define HTTP_PAYMENT_REQUIRED 402

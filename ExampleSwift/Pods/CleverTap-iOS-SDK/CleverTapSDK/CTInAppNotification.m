@@ -24,6 +24,9 @@
 @property (nonatomic, copy, readwrite) NSString *contentType;
 @property (nonatomic, copy, readwrite) NSString *landscapeContentType;
 @property (nonatomic, copy, readwrite) NSString *mediaUrl;
+@property (nonatomic, copy, readwrite) NSString *mediaUrlLandscape;
+@property (nonatomic, copy, readwrite) NSString *contentDescription;
+@property (nonatomic, copy, readwrite) NSString *landscapeContentDescription;
 
 @property (nonatomic, readwrite) NSString *title;
 @property (nonatomic, readwrite) NSString *titleColor;
@@ -42,26 +45,29 @@
 @property (nonatomic, copy, readwrite) NSString *url;
 @property (nonatomic, readwrite) BOOL showClose;
 @property (nonatomic, readwrite) BOOL darkenScreen;
+@property (nonatomic, readwrite) BOOL tapOutsideDismiss;
+@property (nonatomic, readwrite) BOOL swipeToDismiss;
 @property (nonatomic, readwrite) BOOL excludeFromCaps;
 @property (nonatomic, readwrite) int maxPerSession;
 @property (nonatomic, readwrite) int totalLifetimeCount;
 @property (nonatomic, readwrite) int totalDailyCount;
-@property (nonatomic, readwrite) NSInteger timeToLive;
+@property (nonatomic, readwrite) NSTimeInterval timeToLive;
 @property (nonatomic, assign, readwrite) char position;
 @property (nonatomic, assign, readwrite) float height;
 @property (nonatomic, assign, readwrite) float heightPercent;
 @property (nonatomic, assign, readwrite) float width;
 @property (nonatomic, assign, readwrite) float widthPercent;
+@property (nonatomic, assign, readwrite) float aspectRatio;
 
 @property (nonatomic, readwrite) NSArray<CTNotificationButton *> *buttons;
 
 @property (nonatomic, copy, readwrite) NSDictionary *jsonDescription;
 @property (nonatomic, copy, readwrite) NSDictionary *customExtras;
 
+@property (nonatomic, readwrite) BOOL isRequestForPushPermission;
 @property (nonatomic, readwrite) BOOL isLocalInApp;
 @property (nonatomic, readwrite) BOOL isPushSettingsSoftAlert;
 @property (nonatomic, readwrite) BOOL fallBackToNotificationSettings;
-@property (nonatomic, readwrite) BOOL skipSettingsAlert;
 
 @property (nonatomic, readwrite) CTCustomTemplateInAppData *customTemplateInAppData;
 
@@ -88,10 +94,18 @@
             self.maxPerSession = jsonObject[CLTAP_INAPP_MAX_PER_SESSION] ? [jsonObject[CLTAP_INAPP_MAX_PER_SESSION] intValue] : -1;
             self.totalLifetimeCount = jsonObject[CLTAP_INAPP_TOTAL_LIFETIME_COUNT] ? [jsonObject[CLTAP_INAPP_TOTAL_LIFETIME_COUNT] intValue] : -1;
             self.totalDailyCount = jsonObject[CLTAP_INAPP_TOTAL_DAILY_COUNT] ? [jsonObject[CLTAP_INAPP_TOTAL_DAILY_COUNT] intValue] : -1;
+            self.isRequestForPushPermission = jsonObject[@"rfp"] ? [jsonObject[@"rfp"] boolValue] : NO;
             self.isLocalInApp = jsonObject[@"isLocalInApp"] ? [jsonObject[@"isLocalInApp"] boolValue] : NO;
             self.isPushSettingsSoftAlert = jsonObject[@"isPushSettingsSoftAlert"] ? [jsonObject[@"isPushSettingsSoftAlert"] boolValue] : NO;
             self.fallBackToNotificationSettings = jsonObject[@"fallbackToNotificationSettings"] ? [jsonObject[@"fallbackToNotificationSettings"] boolValue] : NO;
-            self.skipSettingsAlert = jsonObject[@"skipSettingsAlert"] ? [jsonObject[@"skipSettingsAlert"] boolValue] : NO;
+            // Per-campaign dismiss gesture configuration. Default to YES to preserve the
+            // existing behaviour for campaigns that do not send these keys.
+            // Guard against NSNull (explicit JSON null) — only a real NSNumber may
+            // receive boolValue. Missing/null defaults to YES to preserve behaviour.
+            id tapOutside = jsonObject[CLTAP_INAPP_TAP_OUTSIDE_DISMISS];
+            self.tapOutsideDismiss = [tapOutside isKindOfClass:[NSNumber class]] ? [tapOutside boolValue] : YES;
+            id swipeDismiss = jsonObject[CLTAP_INAPP_SWIPE_TO_DISMISS];
+            self.swipeToDismiss = [swipeDismiss isKindOfClass:[NSNumber class]] ? [swipeDismiss boolValue] : YES;
             NSString *inAppId = [CTInAppNotification inAppId:jsonObject];
             if (inAppId) {
                 self.Id = inAppId;
@@ -113,9 +127,7 @@
             } else {
                 NSDate *now = [NSDate date];
                 NSDate *timeToLiveDate = [now dateByAddingTimeInterval:(48 * 60 * 60)];
-                NSTimeInterval timeToLiveEpoch = [timeToLiveDate timeIntervalSince1970];
-                NSInteger defaultTimeToLive = (long)timeToLiveEpoch;
-                _timeToLive = defaultTimeToLive;
+                _timeToLive = [timeToLiveDate timeIntervalSince1970];
             }
         } @catch (NSException *e) {
             self.error = e.debugDescription;
@@ -138,6 +150,7 @@
     NSDictionary *_media = (NSDictionary*) jsonObject[CLTAP_INAPP_MEDIA];
     if (_media) {
         self.contentType = _media[CLTAP_INAPP_MEDIA_CONTENT_TYPE];
+        self.contentDescription = _media[CLTAP_INAPP_MEDIA_CONTENT_DESCRIPTION] ? _media[CLTAP_INAPP_MEDIA_CONTENT_DESCRIPTION] : @"InApp Image";
         NSString *_mediaUrl = _media[CLTAP_INAPP_MEDIA_URL];
         if (_mediaUrl && _mediaUrl.length > 0) {
             if ([self.contentType hasPrefix:@"image"]) {
@@ -162,6 +175,7 @@
     NSDictionary *_mediaLandscape = (NSDictionary*) jsonObject[CLTAP_INAPP_MEDIA_LANDSCAPE];
     if (_mediaLandscape) {
         self.landscapeContentType = _mediaLandscape[CLTAP_INAPP_MEDIA_CONTENT_TYPE];
+        self.landscapeContentDescription = _mediaLandscape[CLTAP_INAPP_MEDIA_CONTENT_DESCRIPTION] ? _mediaLandscape[CLTAP_INAPP_MEDIA_CONTENT_DESCRIPTION] : @"InApp Image";
         NSString *_mediaUrlLandscape = _mediaLandscape[CLTAP_INAPP_MEDIA_URL];
         if (_mediaUrlLandscape && _mediaUrlLandscape.length > 0) {
             if ([self.landscapeContentType hasPrefix:@"image"]) {
@@ -169,6 +183,8 @@
                 if (![self.landscapeContentType isEqualToString:@"image/gif"] ) {
                     _mediaIsImage = YES;
                 }
+            } else if ([self.landscapeContentType hasPrefix:@"video"]) {
+                self.mediaUrlLandscape = _mediaUrlLandscape;
             }
         }
     }
@@ -197,22 +213,11 @@
     }
     self.buttons = _buttons;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.hasPortrait && !self.hasLandscape && [self deviceOrientationIsLandscape]) {
-            self.error = [NSString stringWithFormat:@"The in-app in %@, dismissing %@ InApp Notification.", @"portrait", @"landscape"];
-            return;
-        }
-        
-        if (self.hasLandscape && !self.hasPortrait && ![self deviceOrientationIsLandscape]) {
-            self.error = [NSString stringWithFormat:@"The in-app in %@, dismissing %@ InApp Notification.", @"landscape", @"portrait"];
-            return;
-        }
-    });
-    
     switch (self.inAppType) {
         case CTInAppTypeHeader:
         case CTInAppTypeFooter:
-            if  (_mediaIsGif || _mediaIsAudio || _mediaIsVideo){
+            // GIF support added, video and audio not supported
+            if  (_mediaIsAudio || _mediaIsVideo){
                 self.imageURL = nil;
                 CleverTapLogStaticDebug(@"unable to download media, wrong media type for template");
             }
@@ -220,13 +225,15 @@
         case CTInAppTypeCoverImage:
         case CTInAppTypeInterstitialImage:
         case CTInAppTypeHalfInterstitialImage:
-            if  (_mediaIsGif || _mediaIsAudio || _mediaIsVideo || !_mediaIsImage){
+            // GIF and Video support added for image-only templates
+            if  (_mediaIsAudio){
                 self.error = [NSString stringWithFormat:@"wrong media type for template"];
             }
             break;
         case CTInAppTypeCover:
         case CTInAppTypeHalfInterstitial:
-            if  (_mediaIsGif || _mediaIsAudio || _mediaIsVideo){
+            // GIF support added, video and audio not supported
+            if  (_mediaIsAudio || _mediaIsVideo){
                 self.imageURL = nil;
                 CleverTapLogStaticDebug(@"unable to download media, wrong media type for template");
             }
@@ -274,6 +281,7 @@
         self.height = displayParams[CLTAP_INAPP_Y_DP] ? [displayParams[CLTAP_INAPP_Y_DP] floatValue] : 0.0;
         self.heightPercent = displayParams[CLTAP_INAPP_Y_PERCENT] ? [displayParams[CLTAP_INAPP_Y_PERCENT] floatValue] : 0.0;
         self.maxPerSession = displayParams[CLTAP_INAPP_MAX_PER_SESSION] ? [displayParams[CLTAP_INAPP_MAX_PER_SESSION] intValue] : -1;
+        self.aspectRatio = [displayParams[CLTAP_INAPP_NOTIF_ASPECT_RATIO] floatValue] ?: 0.0;
     }
 }
 
@@ -292,14 +300,6 @@
     return _mediaIsVideo;
 }
 
-- (BOOL)deviceOrientationIsLandscape {
-#if (TARGET_OS_TV)
-    return nil;
-#else
-    return [CTUIUtils isDeviceOrientationLandscape];
-#endif
-}
-
 - (void)setPreparedInAppImage:(UIImage *)inAppImage
                inAppImageData:(NSData *)inAppImageData error:(NSString *)error {
     self.error = error;
@@ -309,7 +309,7 @@
 
 - (void)setPreparedInAppImageLandscape:(UIImage *)inAppImageLandscape
                inAppImageLandscapeData:(NSData *)inAppImageLandscapeData error:(NSString *)error {
-    self.error = error;
+    self.errorLandscape = error;
     self.inAppImageLandscape = inAppImageLandscape;
     self.imageLandscapeData = inAppImageLandscapeData;
 }

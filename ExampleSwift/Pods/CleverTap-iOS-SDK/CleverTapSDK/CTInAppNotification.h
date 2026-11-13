@@ -17,15 +17,18 @@
 @property (nonatomic, readonly) BOOL excludeFromCaps;
 @property (nonatomic, readonly) BOOL showClose;
 @property (nonatomic, readonly) BOOL darkenScreen;
+@property (nonatomic, readonly) BOOL tapOutsideDismiss;
+@property (nonatomic, readonly) BOOL swipeToDismiss;
 @property (nonatomic, readonly) int maxPerSession;
 @property (nonatomic, readonly) int totalLifetimeCount;
 @property (nonatomic, readonly) int totalDailyCount;
-@property (nonatomic, readonly) NSInteger timeToLive;
+@property (nonatomic, readonly) NSTimeInterval timeToLive;
 @property (nonatomic, assign, readonly) char position;
 @property (nonatomic, assign, readonly) float height;
 @property (nonatomic, assign, readonly) float heightPercent;
 @property (nonatomic, assign, readonly) float width;
 @property (nonatomic, assign, readonly) float widthPercent;
+@property (nonatomic, assign, readonly) float aspectRatio;
 
 @property (nonatomic, copy, readonly) NSString *landscapeContentType;
 @property (nonatomic, readonly) UIImage *inAppImage;
@@ -36,6 +39,7 @@
 @property (nonatomic, strong, readonly) NSURL *imageUrlLandscape;
 @property (nonatomic, copy, readonly) NSString *contentType;
 @property (nonatomic, copy, readonly) NSString *mediaUrl;
+@property (nonatomic, copy, readonly) NSString *mediaUrlLandscape;
 @property (nonatomic, readonly, assign) BOOL mediaIsVideo;
 @property (nonatomic, readonly, assign) BOOL mediaIsAudio;
 @property (nonatomic, readonly, assign) BOOL mediaIsImage;
@@ -56,16 +60,20 @@
 
 @property (nonatomic, copy, readonly) NSDictionary *jsonDescription;
 @property (nonatomic) NSString *error;
+@property (nonatomic) NSString *errorLandscape;
 
 @property (nonatomic, copy, readonly) NSDictionary *customExtras;
 @property (nonatomic, copy, readwrite) NSDictionary *actionExtras;
 
+@property (nonatomic, readonly) BOOL isRequestForPushPermission;
 @property (nonatomic, readonly) BOOL isLocalInApp;
 @property (nonatomic, readonly) BOOL isPushSettingsSoftAlert;
 @property (nonatomic, readonly) BOOL fallBackToNotificationSettings;
-@property (nonatomic, readonly) BOOL skipSettingsAlert;
 
 @property (nonatomic, readonly) CTCustomTemplateInAppData *customTemplateInAppData;
+
+@property (nonatomic, copy, readonly) NSString *contentDescription;
+@property (nonatomic, copy, readonly) NSString *landscapeContentDescription;
 
 - (instancetype)init __unavailable;
 #if !CLEVERTAP_NO_INAPP_SUPPORT

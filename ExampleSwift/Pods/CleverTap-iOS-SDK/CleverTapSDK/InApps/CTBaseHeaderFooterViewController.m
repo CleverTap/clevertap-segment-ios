@@ -3,6 +3,7 @@
 #import "CTBaseHeaderFooterViewControllerPrivate.h"
 #import "CTInAppDisplayViewControllerPrivate.h"
 #import "CTUIUtils.h"
+#import <SDWebImage/SDAnimatedImageView+WebCache.h>
 
 typedef enum {
     kWRSlideStatusNormal = 0,
@@ -30,7 +31,7 @@ typedef enum {
 @property (nonatomic, strong) IBOutlet UIView *containerView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *bodyLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet SDAnimatedImageView *imageView;
 @property (nonatomic, strong) IBOutlet UIView *buttonsContainer;
 @property (nonatomic, strong) IBOutlet UIView *secondButtonContainer;
 @property (nonatomic, strong) IBOutlet UIButton *firstButton;
@@ -80,6 +81,9 @@ typedef enum {
     [self setUpImage];
     [self setUpContent];
     [self setUpButtons];
+    
+    // This will make element inside Header/Footer not accessible.
+    self.view.accessibilityViewIsModal = YES;
 }
 
 - (void)setUpImage {
@@ -87,13 +91,22 @@ typedef enum {
     if (self.notification.inAppImage) {
         self.inAppImage = self.notification.inAppImage;
     } else if (self.notification.imageData) {
-        self.inAppImage = [UIImage imageWithData:self.notification.imageData];
+        // Support for GIFs
+        if ([self.notification.contentType isEqualToString:@"image/gif"]) {
+            SDAnimatedImage *gif = [SDAnimatedImage imageWithData:self.notification.imageData];
+            if (gif) {
+                self.inAppImage = gif;
+            }
+        } else {
+            self.inAppImage = [UIImage imageWithData:self.notification.imageData];
+        }
     }
     if (self.inAppImage) {
         self.imageView.clipsToBounds = YES;
         self.imageView.hidden = NO;
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         self.imageView.image = self.inAppImage;
+        self.imageView.accessibilityLabel = self.notification.contentDescription;
     } else {
         self.imageView.hidden = YES;
     }
@@ -112,6 +125,10 @@ typedef enum {
         self.titleLabel.backgroundColor = [UIColor clearColor];
         self.titleLabel.textColor = [CTUIUtils ct_colorWithHexString:self.notification.titleColor];
         self.titleLabel.text = self.notification.title;
+        if (@available(iOS 11.0, *)) {
+            self.titleLabel.font = [[UIFontMetrics metricsForTextStyle:UIFontTextStyleHeadline] scaledFontForFont:self.titleLabel.font];
+            self.titleLabel.adjustsFontForContentSizeCategory = YES;
+        }
     }
     
     if (self.notification.message) {
@@ -120,12 +137,16 @@ typedef enum {
         self.bodyLabel.textColor = [CTUIUtils ct_colorWithHexString:self.notification.messageColor];
         self.bodyLabel.numberOfLines = 0;
         self.bodyLabel.text = self.notification.message;
+        if (@available(iOS 11.0, *)) {
+            self.bodyLabel.font = [[UIFontMetrics defaultMetrics] scaledFontForFont:self.bodyLabel.font];
+            self.bodyLabel.adjustsFontForContentSizeCategory = YES;
+        }
     }
 }
 
 - (void)setUpButtons {
     
-    if (!self.notification.showClose) {
+    if (!self.notification.showClose && self.notification.swipeToDismiss) {
         _panGesture = [[UIPanGestureRecognizer alloc]
                        initWithTarget:self
                        action:@selector(panGestureHandle:)];
@@ -340,6 +361,9 @@ typedef enum {
                 self->_containerView.frame = CGRectOffset(self->_containerView.frame, bounceDistance, 0);
             }
                              completion:^(BOOL finished) {
+                // Trigger before hide: hide:NO dismisses inline and fires the dismiss
+                // delegate before actionExtras is stored (matches triggerInAppAction:).
+                [self triggerCloseActionWithCallToAction:CLTAP_CTA_SWIPE_DISMISS elementId:nil];
                 [self hide:NO];
             }];
         }];
@@ -381,9 +405,8 @@ typedef enum {
     [self.window setHidden:NO];
     
     void (^completionBlock)(void) = ^ {
-        if (self.delegate) {
-            [self.delegate notificationDidShow:self.notification];
-        }
+        [self handleNotificationDidShow];
+        [self announceInAppShown];
     };
     if (animated) {
         [UIView animateWithDuration:0.25 animations:^{
@@ -407,6 +430,5 @@ typedef enum {
 - (void)hide:(BOOL)animated {
     [self hideFromWindow:animated];
 }
-
 
 @end

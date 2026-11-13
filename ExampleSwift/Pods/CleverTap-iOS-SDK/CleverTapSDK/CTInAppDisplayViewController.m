@@ -34,6 +34,31 @@
 
 @implementation CTInAppDisplayViewController
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if ([self isInAppAdvancedBuilder]) {
+        [self updateWindowFrame];
+    }
+}
+
+- (void)updateWindowFrame {
+    if (@available(iOS 13, tvOS 13.0, *)) {
+        NSSet *connectedScenes = [CTUIUtils getSharedApplication].connectedScenes;
+        for (UIScene *scene in connectedScenes) {
+            if (scene.activationState == UISceneActivationStateForegroundActive && [scene isKindOfClass:[UIWindowScene class]]) {
+                UIWindowScene *windowScene = (UIWindowScene *)scene;
+                
+                CGRect windowFrame = [self windowSceneFrame:windowScene];
+                self.window.frame = windowFrame;
+                break;
+            }
+        }
+    } else {
+        CGRect windowFrame = [self windowFrame];
+        self.window.frame = windowFrame;
+    }
+}
+
 - (instancetype)initWithNotification:(CTInAppNotification *)notification {
     self = [super init];
     if (self) {
@@ -128,19 +153,105 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
     NSAssert(false, @"Override in sub-class");
 }
 
+- (CGRect)windowSceneFrame:(UIWindowScene *)windowScene  API_AVAILABLE(ios(13.0), tvos(13.0)) {
+    NSSet *connectedScenes = [CTUIUtils getSharedApplication].connectedScenes;
+    CGRect frame = windowScene.coordinateSpace.bounds;
+    
+    for (UIScene *scene in connectedScenes) {
+        if (scene.activationState == UISceneActivationStateForegroundActive &&
+            [scene isKindOfClass:[UIWindowScene class]]) {
+            
+            UIWindowScene *activeWindowScene = (UIWindowScene *)scene; // Avoid shadowing the parameter
+            
+            float aspectRatio = self.notification.aspectRatio;
+            float percent = self.notification.widthPercent;
+            
+            float safeAreaTop = activeWindowScene.windows.firstObject.safeAreaInsets.top;
+            float inAppWidth = activeWindowScene.coordinateSpace.bounds.size.width;
+            float inAppHeight = activeWindowScene.coordinateSpace.bounds.size.height;
+            
+            inAppWidth = ceil(inAppWidth * (percent / 100.0));
+            
+            if (aspectRatio > 0.0) {
+                inAppHeight = safeAreaTop + (inAppWidth / aspectRatio);
+                float screenHeight = activeWindowScene.coordinateSpace.bounds.size.height;
+                if (inAppHeight > screenHeight) {
+                    inAppHeight = screenHeight;
+                }
+            }
+            CGFloat originY = (activeWindowScene.coordinateSpace.bounds.size.height - inAppHeight);
+            
+            switch (self.notification.position) {
+                case CLTAP_INAPP_POSITION_TOP:
+                    frame = CGRectMake(0, 0, inAppWidth, inAppHeight);
+                    break;
+                case CLTAP_INAPP_POSITION_BOTTOM:
+                    frame = CGRectMake(0, originY, inAppWidth, inAppHeight);
+                    break;
+                default:
+                    frame = activeWindowScene.coordinateSpace.bounds;
+                    break;
+            }
+            break; // Stop looping after finding the first active foreground scene
+        }
+    }
+    return frame;
+}
+
+- (CGRect)windowFrame {
+    float aspectRatio = self.notification.aspectRatio;
+    float percent = self.notification.widthPercent;
+    
+    float inAppWidth = [UIScreen mainScreen].bounds.size.width;
+    float inAppHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    inAppWidth = ceil(inAppWidth * (percent / 100.0));
+    
+    if (aspectRatio > 0.0) {
+        inAppHeight = inAppWidth / aspectRatio;
+    }
+    float originY = ([UIScreen mainScreen].bounds.size.height - inAppHeight);
+    
+    CGRect frame;
+    switch (self.notification.position) {
+        case CLTAP_INAPP_POSITION_TOP:
+            frame = CGRectMake(0, 0, inAppWidth, inAppHeight);
+            break;
+        case CLTAP_INAPP_POSITION_BOTTOM:
+            frame = CGRectMake(0, originY, inAppWidth, inAppHeight);
+            break;
+        default:
+            frame = CGRectMake(0, 0, inAppWidth, inAppHeight);
+            break;
+    }
+    return frame;
+}
+
 - (void)initializeWindowOfClass:(Class)windowClass animated:(BOOL)animated {
     if (@available(iOS 13, tvOS 13.0, *)) {
         NSSet *connectedScenes = [CTUIUtils getSharedApplication].connectedScenes;
         for (UIScene *scene in connectedScenes) {
             if (scene.activationState == UISceneActivationStateForegroundActive && [scene isKindOfClass:[UIWindowScene class]]) {
                 UIWindowScene *windowScene = (UIWindowScene *)scene;
-                self.window = [[windowClass alloc] initWithFrame:
-                               windowScene.coordinateSpace.bounds];
-                self.window.windowScene = windowScene;
+                
+                if ([self isInAppAdvancedBuilder]) {
+                    CGRect windowFrame = [self windowSceneFrame:windowScene];
+                    self.window = [[windowClass alloc] initWithFrame:windowFrame];
+                    self.window.windowScene = windowScene;
+                } else {
+                    self.window = [[windowClass alloc] initWithFrame:
+                                                    windowScene.coordinateSpace.bounds];
+                    self.window.windowScene = windowScene;
+                }
             }
         }
     } else {
-        self.window = [[windowClass alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        if ([self isInAppAdvancedBuilder]) {
+            CGRect windowFrame = [self windowFrame];
+            self.window = [[windowClass alloc] initWithFrame: windowFrame];
+        } else {
+            self.window = [[windowClass alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        }
     }
     
     if (!self.window) {
@@ -156,6 +267,13 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
         }
     } else {
         CleverTapLogStaticInternal(@"%@:%@: Window initialized.", [CTInAppDisplayViewController class], self);
+    }
+}
+
+// Single "did show" hook for every in-app type
+- (void)handleNotificationDidShow {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(notificationDidShow:)]) {
+        [self.delegate notificationDidShow:self.notification];
     }
 }
 
@@ -176,6 +294,7 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
         if (self.delegate) {
             [self.delegate notificationDidShow:self.notification];
         }
+        [self announceInAppShown];
     };
     
     if (animated) {
@@ -196,17 +315,30 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
 }
 
 - (void)hideFromWindow:(BOOL)animated {
+    [self hideFromWindow:animated withCompletion:nil];
+}
+
+- (void)hideFromWindow:(BOOL)animated withCompletion:(void (^)(void))completion {
+    __weak typeof(self) weakSelf = self;
     void (^completionBlock)(void) = ^ {
-        [self.window removeFromSuperview];
-        self.window = nil;
-        if (self.delegate && [self.delegate respondsToSelector:@selector(notificationDidDismiss:fromViewController:)]) {
-            [self.delegate notificationDidDismiss:self.notification fromViewController:self];
+        if (!weakSelf) {
+            return;
+        }
+        if (weakSelf.window) {
+            [weakSelf.window removeFromSuperview];
+            weakSelf.window = nil;
+        }
+        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(notificationDidDismiss:fromViewController:)]) {
+            [weakSelf.delegate notificationDidDismiss:weakSelf.notification fromViewController:weakSelf];
+        }
+        if (completion) {
+            completion();
         }
     };
     
     if (animated) {
         [UIView animateWithDuration:0.25 animations:^{
-            self.window.alpha = 0;
+            weakSelf.window.alpha = 0;
         } completion:^(BOOL finished) {
             completionBlock();
         }];
@@ -216,10 +348,17 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
     }
 }
 
-
 #pragma mark - CTInAppPassThroughViewDelegate
 
 - (void)viewWillPassThroughTouch {
+    if (!self.notification.tapOutsideDismiss) {
+        return;
+    }
+    // Trigger before hide: hideFromWindow: dismisses inline when animated == NO, which
+    // fires notificationDidDismiss: before handleNotificationAction: stores actionExtras.
+    // Triggering first keeps the tap-outside extras on dismissedWithExtras (matches
+    // triggerInAppAction: ordering).
+    [self triggerCloseActionWithCallToAction:CLTAP_CTA_TAP_OUTSIDE_DISMISS elementId:nil];
     [self hide:NO];
 }
 
@@ -229,6 +368,10 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
 - (UIButton*)setupViewForButton:(UIButton *)buttonView withData:(CTNotificationButton *)button withIndex:(NSInteger)index {
     [buttonView setTag: index];
     buttonView.titleLabel.adjustsFontSizeToFitWidth = YES;
+    if (@available(iOS 11.0, *)) {
+        buttonView.titleLabel.font = [[UIFontMetrics defaultMetrics] scaledFontForFont:buttonView.titleLabel.font];
+        buttonView.titleLabel.adjustsFontForContentSizeCategory = YES;
+    }
     buttonView.hidden = NO;
     if (_notification.inAppType != CTInAppTypeHeader && _notification.inAppType != CTInAppTypeFooter) {
         buttonView.layer.borderWidth = 1.0f;
@@ -243,6 +386,8 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
     return buttonView;
 }
 
+#pragma mark - Util functions
+
 - (BOOL)deviceOrientationIsLandscape {
 #if (TARGET_OS_TV)
     return nil;
@@ -251,11 +396,88 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
 #endif
 }
 
+- (BOOL)isInAppAdvancedBuilder {
+    return self.notification.aspectRatio > 0;
+}
 
 #pragma mark - Actions
 
 - (void)tappedDismiss {
+    // Trigger before hide so actionExtras is stored before the dismiss delegate fires
+    // (matches triggerInAppAction: ordering).
+    [self triggerCloseActionWithCallToAction:CLTAP_CTA_DISMISS_BUTTON
+                                   elementId:CLTAP_INAPP_ELEMENT_CLOSE_BUTTON];
     [self hide:YES];
+}
+
+// Raises a Notification Clicked event for a close-type dismissal (close button,
+// swipe-to-dismiss, tap-outside). The caller chooses the CTA descriptor and the
+// element id (nil for gestures that have no associated UI element).
+- (void)triggerCloseActionWithCallToAction:(NSString *)callToAction elementId:(NSString *)elementId {
+    CTNotificationAction *action = [[CTNotificationAction alloc] initWithCloseAction];
+    NSString *campaignId = self.notification.campaignId ?: @"";
+    NSMutableDictionary *extras = [NSMutableDictionary dictionaryWithDictionary:@{
+        CLTAP_NOTIFICATION_ID_TAG: campaignId,
+        CLTAP_PROP_WZRK_CTA: callToAction
+    }];
+    if (elementId) {
+        extras[CLTAP_PROP_WZRK_ELEMENT_ID] = elementId;
+    }
+    [self notifyDelegateActionTriggered:action withExtras:extras];
+}
+
+// Single choke point for raising the Notification Clicked event from any in-app
+// element. Enriches the extras with the Split of Clicks action descriptors and
+// guards against raising more than one clicked event per in-app display.
+- (void)notifyDelegateActionTriggered:(CTNotificationAction *)action withExtras:(NSMutableDictionary *)extras {
+    [self addActionDescriptorsForAction:action toExtras:extras];
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(handleNotificationAction:forNotification:withExtras:)]) {
+        [self.delegate handleNotificationAction:action forNotification:self.notification withExtras:extras];
+    }
+}
+
+// Adds the Split of Clicks action descriptors to the clicked-event extras:
+//   wzrk_action  — the action type string (url / kv / close / custom-code)
+//   wzrk_data — the action payload: the URL for an open-url action, the
+//               key-values dictionary for a kv action, the function name for a
+//               custom-code action, and "close" for a close action.
+- (void)addActionDescriptorsForAction:(CTNotificationAction *)action toExtras:(NSMutableDictionary *)extras {
+    if (!action) {
+        return;
+    }
+    NSString *actType = [CTInAppUtils inAppActionTypeString:action.type];
+    if (actType) {
+        extras[CLTAP_PROP_WZRK_ACTION] = actType;
+    }
+    switch (action.type) {
+        case CTInAppActionTypeOpenURL: {
+            NSString *url = action.actionURL.absoluteString;
+            if (url.length > 0) {
+                extras[CLTAP_PROP_WZRK_DATA] = url;
+            }
+            break;
+        }
+        case CTInAppActionTypeKeyValues: {
+            if (action.keyValues.count > 0) {
+                extras[CLTAP_PROP_WZRK_DATA] = action.keyValues;
+            }
+            break;
+        }
+        case CTInAppActionTypeClose: {
+            extras[CLTAP_PROP_WZRK_DATA] = CLTAP_INAPP_DATA_CLOSE;
+            break;
+        }
+        case CTInAppActionTypeCustom: {
+            NSString *functionName = action.customTemplateInAppData.templateName;
+            if (functionName.length > 0) {
+                extras[CLTAP_PROP_WZRK_DATA] = functionName;
+            }
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)buttonTapped:(UIButton*)button {
@@ -270,8 +492,12 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
     if (campaignId == nil) {
         campaignId = @"";
     }
-    
+    if (buttonText == nil) {
+        buttonText = @"";
+    }
+
     if (self.notification.isLocalInApp) {
+        self.notification.actionExtras = @{CLTAP_NOTIFICATION_ID_TAG: campaignId, CLTAP_PROP_WZRK_CTA: buttonText};
         if  (index == 0) {
             if (self.delegate && [self.delegate respondsToSelector:@selector(handleInAppPushPrimer:fromViewController:withFallbackToSettings:)]) {
                 [self.delegate handleInAppPushPrimer:self.notification
@@ -285,7 +511,7 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
         }
         return;
     }
-    
+
     // For showing Push Permission through InApp Campaign, positive button type is "rfp".
     if (button.type == CTInAppActionTypeRequestForPermission) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(handleInAppPushPrimer:fromViewController:withFallbackToSettings:)]) {
@@ -295,49 +521,118 @@ API_AVAILABLE(ios(13.0), tvos(13.0)) {
         }
         return;
     }
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(handleNotificationAction:forNotification:withExtras:)]) {
-        [self.delegate handleNotificationAction:button.action forNotification:self.notification withExtras:@{CLTAP_NOTIFICATION_ID_TAG:campaignId, CLTAP_PROP_WZRK_CTA: buttonText}];
+
+    // Build extras dictionary with CTA text, element id and deep link (if present).
+    // CTA buttons are identified as "button-1", "button-2", ... (1-based index).
+    NSMutableDictionary *extras = [NSMutableDictionary dictionaryWithDictionary:@{
+        CLTAP_NOTIFICATION_ID_TAG: campaignId,
+        CLTAP_PROP_WZRK_CTA: buttonText,
+        CLTAP_PROP_WZRK_ELEMENT_ID: [NSString stringWithFormat:@"button-%d", index + 1]
+    }];
+
+    // Extract deep link from button action for attribution
+    if (button.action.actionURL != nil) {
+        NSString *deepLink = button.action.actionURL.absoluteString;
+        if (deepLink.length > 0) {
+            extras[CLTAP_PROP_WZRK_DL] = deepLink;
+        }
     }
+
+    [self notifyDelegateActionTriggered:button.action withExtras:extras];
 }
 
 - (void)triggerInAppAction:(CTNotificationAction *)action callToAction:(NSString *)callToAction buttonId:(NSString *)buttonId {
     NSMutableDictionary *extras = [NSMutableDictionary new];
+
+    if (action.type == CTInAppActionTypeOpenURL) {
+        NSString *urlString = [action.actionURL absoluteString];
+        NSMutableDictionary *mutableParams = [CTInAppUtils getParametersFromURL:urlString];
+
+        if ([mutableParams[@"params"] isKindOfClass:[NSDictionary class]]) {
+            extras = [mutableParams[@"params"] mutableCopy];
+        }
+        NSString *callToActionUrlParam = extras[CLTAP_PROP_WZRK_CTA];
+        // getParametersFromURL already resolved the __dl__ convention: the deeplink (if present)
+        // becomes the action URL and callToActionUrlParam holds the decoded label.
+        if (mutableParams[@"deeplink"]) {
+            action = [[CTNotificationAction alloc] initWithOpenURL:mutableParams[@"deeplink"]];
+        }
+        // Use the URL's c2a value only if no explicit callToAction was passed.
+        if (callToAction == nil) {
+            callToAction = callToActionUrlParam;
+        }
+    }
+
+    // callToAction, buttonId and notification id take precedence over
+    // the URL parameters if those have been set in the URL
     if (callToAction) {
         extras[CLTAP_PROP_WZRK_CTA] = callToAction;
     }
     if (buttonId) {
-        extras[@"button_id"] = buttonId;
+        // For HTML in-apps the FE-supplied buttonId is the element identity.
+        // Reported only as wzrk_element_id; button_id is not part of the backend contract.
+        extras[CLTAP_PROP_WZRK_ELEMENT_ID] = buttonId;
     }
     NSString *campaignId = self.notification.campaignId;
     if (campaignId == nil) {
         campaignId = @"";
     }
     extras[CLTAP_NOTIFICATION_ID_TAG] = campaignId;
-    if (self.delegate &&
-        [self.delegate respondsToSelector:@selector(handleNotificationAction:forNotification:withExtras:)]) {
-        [self.delegate handleNotificationAction:action forNotification:self.notification withExtras:extras];
+
+    // Extract deep link for attribution (template-level or action URL)
+    if (action.actionURL != nil) {
+        NSString *deepLink = action.actionURL.absoluteString;
+        if (deepLink.length > 0) {
+            extras[CLTAP_PROP_WZRK_DL] = deepLink;
+        }
     }
-    [self hide:YES];
+
+    [self notifyDelegateActionTriggered:action withExtras:extras];
+    BOOL shouldAnimate = ![callToAction isEqualToString: CLTAP_CTA_SWIPE_DISMISS];
+    [self hide: shouldAnimate];
 }
 
 - (void)handleImageTapGesture {
     CTNotificationButton *button = self.notification.buttons[0];
-    NSString *buttonText = @"";
     NSString *campaignId = self.notification.campaignId;
     if (campaignId == nil) {
         campaignId = @"";
     }
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(handleNotificationAction:forNotification:withExtras:)]) {
-        [self.delegate handleNotificationAction:button.action forNotification:self.notification withExtras:@{CLTAP_NOTIFICATION_ID_TAG:campaignId, CLTAP_PROP_WZRK_CTA: buttonText}];
+
+    // The whole image is the single tappable element, so the image element id
+    // ("image-1") is used for both the element id and the CTA descriptor.
+    NSMutableDictionary *extras = [NSMutableDictionary dictionaryWithDictionary:@{
+        CLTAP_NOTIFICATION_ID_TAG: campaignId,
+        CLTAP_PROP_WZRK_CTA: CLTAP_INAPP_ELEMENT_IMAGE,
+        CLTAP_PROP_WZRK_ELEMENT_ID: CLTAP_INAPP_ELEMENT_IMAGE
+    }];
+
+    // Extract deep link from image tap action for attribution
+    if (button.action.actionURL != nil) {
+        NSString *deepLink = button.action.actionURL.absoluteString;
+        if (deepLink.length > 0) {
+            extras[CLTAP_PROP_WZRK_DL] = deepLink;
+        }
     }
+
+    [self notifyDelegateActionTriggered:button.action withExtras:extras];
 }
 
 - (void)dealloc {
     if (@available(iOS 13.0, tvOS 13.0, *)) {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
+}
+
+#pragma mark - Accessibility
+
+- (UIView *)accessibilityFocusTarget {
+    return self.view;
+}
+
+- (void)announceInAppShown {
+    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, [self accessibilityFocusTarget]);
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, @"Popup shown");
 }
 
 @end

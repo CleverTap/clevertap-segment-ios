@@ -7,7 +7,7 @@
 #import "CleverTapInstanceConfig.h"
 #import "CleverTapInstanceConfigPrivate.h"
 #import "CTLoginInfoProvider.h"
-#import "CTAES.h"
+#import "CTEncryptionManager.h"
 #import "CTPreferences.h"
 #import "CTUtils.h"
 #import "CTUIUtils.h"
@@ -15,6 +15,9 @@
 #import "CTDispatchQueueManager.h"
 #import "CTMultiDelegateManager.h"
 #import "CTProfileBuilder.h"
+#import "CTEventDatabase.h"
+#import "CTProfileChangeTracker.h"
+#import "CTNestedJsonBuilder.h"
 
 static const void *const kProfileBackgroundQueueKey = &kProfileBackgroundQueueKey;
 static const double kProfilePersistenceIntervalSeconds = 30.f;
@@ -34,6 +37,14 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
 @property (nonatomic, strong) CTDeviceInfo *deviceInfo;
 @property (nonatomic, strong) NSArray *piiKeys;
 @property (nonatomic, strong) CTDispatchQueueManager *dispatchQueueManager;
+@property (nonatomic, strong) NSMutableSet *userEventLogs;
+@property (nonatomic, strong) CTEventDatabase *dbHelper;
+@property (nonatomic, strong) NSArray *systemProfileKeys;
+@property (nonatomic, strong) CTArrayOperationHandler *arrayHandler;
+@property (nonatomic, strong) CTProfileChangeTracker *changeTracker;
+@property (nonatomic, strong) CTUpdateOperationHandler *updateHandler;
+@property (nonatomic, strong) CTDeleteOperationHandler *deleteHandler;
+@property (nonatomic, strong) CTNestedJsonBuilder *nestedBuilder;
 
 @end
 
@@ -44,11 +55,14 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
         _config = config;
         _deviceInfo = deviceInfo;
         self.dispatchQueueManager = dispatchQueueManager;
+        self.userEventLogs = [NSMutableSet set];
+        self.dbHelper = [CTEventDatabase sharedInstanceWithDispatchQueueManager:dispatchQueueManager];
         localProfileUpdateExpiryStore = [NSMutableDictionary new];
         _backgroundQueue = dispatch_queue_create([[NSString stringWithFormat:@"com.clevertap.profileBackgroundQueue:%@", _config.accountId] UTF8String], DISPATCH_QUEUE_SERIAL);
         dispatch_queue_set_specific(_backgroundQueue, kProfileBackgroundQueueKey, (__bridge void *)self, NULL);
         lastProfilePersistenceTime = 0;
         _piiKeys = CLTAP_ENCRYPTION_PII_DATA;
+        _systemProfileKeys = @[CLTAP_SYS_CARRIER, CLTAP_SYS_CC, CLTAP_SYS_TZ];
         [self runOnBackgroundQueue:^{
             @synchronized (self->localProfileForSession) {
                 // migrate to new persisted ct-accid-guid-userprofile
@@ -59,10 +73,107 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
                 }
             }
         }];
+        self.changeTracker = [[CTProfileChangeTracker alloc]init];
+        self.arrayHandler = [[CTArrayOperationHandler alloc] initWithChangeTracker:_changeTracker];
+        self.updateHandler = [[CTUpdateOperationHandler alloc]initWithChangeTracker:_changeTracker arrayHandler:_arrayHandler];
+        self.deleteHandler = [[CTDeleteOperationHandler alloc]initWithChangeTracker:_changeTracker];
+        self.nestedBuilder = [[CTNestedJsonBuilder alloc] init];
         [self addObservers];
     }
     return self;
 }
+
+- (NSDictionary<NSString *, NSDictionary *> *)processProfileTree:(NSString *)dotNotationKey value:(id)value command:(CTProfileOperation)operation {
+    @try {
+        NSMutableDictionary *nestedProfile = [self.nestedBuilder buildFromPath:dotNotationKey value:value];
+        return [self processProfileTreeWithJson:nestedProfile operation:operation];
+    } @catch (NSException *e) {
+        CleverTapLogInternal(self.config.logLevel, @"%@: Failed to process profile tree: %@", self, e.debugDescription);
+        return @{};
+    }
+}
+
+- (NSDictionary<NSString *, NSDictionary *> *)processProfileTreeWithJson:(NSDictionary *)newJson operation:(CTProfileOperation)operation {
+    @synchronized (localProfileForSession) {
+        @try {
+            NSDictionary<NSString *, NSDictionary *> *result = [self traverse:localProfileForSession newJson:newJson operation:operation];
+            if (operation != CTProfileOperationGet) {
+                [self updateLocalProfileWithChanges:result];
+            }
+            return result;
+        } @catch (NSException *e) {
+            CleverTapLogInternal(self.config.logLevel, @"%@: Failed to process profile tree with data: %@", self, e.debugDescription);
+            return @{};
+        }
+    }
+}
+
+- (void)traverseRecursive:(NSMutableDictionary *)target
+                   source:(NSDictionary *)source
+                     path:(NSString *)path
+                  changes:(NSMutableDictionary<NSString *, NSDictionary *> *)changes
+                operation:(CTProfileOperation)operation {
+    
+    if (!source) return;
+    
+    for (NSString *key in [source allKeys]) {
+        if ([CLTAP_SKIP_KEYS_USER_ATTRIBUTE_EVALUATION containsObject: key]) {
+            continue;
+        }
+        id newValue = source[key];
+        NSString *currentPath = [self buildPath:path withKey:key];
+        
+        // Recursive block
+        __weak typeof(self) weakSelf = self;
+        void (^recursiveTraverse)(NSMutableDictionary *, NSDictionary *, NSString *, NSMutableDictionary *) =
+        ^(NSMutableDictionary *t, NSDictionary *s, NSString *p, NSMutableDictionary *c) {
+            [weakSelf traverseRecursive:t source:s path:p changes:c operation:operation];
+        };
+        switch (operation) {
+            case CTProfileOperationDelete:
+                [self.deleteHandler handleDelete:target key:key newValue:newValue currentPath:currentPath changes:changes recursiveMerge:recursiveTraverse];
+                break;
+            default:
+                [self.updateHandler handleOperation:target key:key newValue:newValue currentPath:currentPath changes:changes operation:operation recursiveApply:recursiveTraverse];
+                break;
+        }
+    }
+}
+
+- (NSString *)buildPath:(NSString *)path withKey:(NSString *)key {
+    if (!path || [path length] == 0) {
+        return key;
+    }
+    return [NSString stringWithFormat:@"%@.%@", path, key];
+}
+
+- (NSDictionary<NSString *, NSDictionary *> *)traverse:(NSMutableDictionary *)target
+                                               newJson:(NSDictionary *)newJson
+                                             operation:(CTProfileOperation)operation {
+    NSMutableDictionary<NSString *, NSDictionary *> *changes = [NSMutableDictionary dictionary];
+    [self traverseRecursive:target source:newJson path:@"" changes:changes operation:operation];
+    return changes;
+}
+
+- (BOOL)isValue:(id)value1 equalTo:(id)value2 {
+    if (value1 == value2) return YES;
+    if (!value1 || !value2) return NO;
+    
+    if ([value1 isKindOfClass:[NSString class]] && [value2 isKindOfClass:[NSString class]]) {
+        return [(NSString *)value1 isEqualToString:(NSString *)value2];
+    }
+    if ([value1 isKindOfClass:[NSNumber class]] && [value2 isKindOfClass:[NSNumber class]]) {
+        return [(NSNumber *)value1 isEqualToNumber:(NSNumber *)value2];
+    }
+    if ([value1 isKindOfClass:[NSArray class]] && [value2 isKindOfClass:[NSArray class]]) {
+        return [(NSArray *)value1 isEqualToArray:(NSArray *)value2];
+    }
+    if ([value1 isKindOfClass:[NSDictionary class]] && [value2 isKindOfClass:[NSDictionary class]]) {
+        return [(NSDictionary *)value1 isEqualToDictionary:(NSDictionary *)value2];
+    }
+    return [value1 isEqual:value2];
+}
+
 - (void)addObservers {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
@@ -102,6 +213,9 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
             self->localProfileForSession = [self _inflateLocalProfile];
         }
     }];
+    @synchronized (self.userEventLogs) {
+        [self.userEventLogs removeAllObjects];
+    }
     [self clearStoredEvents];
 }
 
@@ -149,7 +263,7 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
 
 # pragma mark - Events
 
-- (NSDictionary *)getStoredEvents {
+- (NSDictionary *)getStoredEvents __attribute__((deprecated("This method is deprecated in favor of the newer CTEventDatabase methods"))) {
     NSDictionary *events = [CTPreferences getObjectForKey:[self storageKeyWithSuffix:kWR_KEY_EVENTS]];
     if (self.config.isDefaultInstance) {
         if (!events) {
@@ -163,11 +277,11 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
     return events;
 }
 
-- (void)setStoredEvents:(NSDictionary *)store {
+- (void)setStoredEvents:(NSDictionary *)store __attribute__((deprecated("This method is deprecated in favor of the newer CTEventDatabase methods"))) {
     [CTPreferences putObject:store forKey:[self storageKeyWithSuffix:kWR_KEY_EVENTS]];
 }
 
-- (void)clearStoredEvents {
+- (void)clearStoredEvents __attribute__((deprecated("This method is deprecated in favor of the newer CTEventDatabase methods"))) {
     [CTPreferences removeObjectForKey:[self storageKeyWithSuffix:kWR_KEY_EVENTS]];
 }
 
@@ -182,27 +296,10 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
  */
 - (void)persistEvent:(NSDictionary *)event  {
     if (!event || !event[CLTAP_EVENT_NAME]) return;
-    [self runOnBackgroundQueue:^{
-        NSString *eventName = event[CLTAP_EVENT_NAME];
-        NSDictionary *s = [self getStoredEvents];
-        if (!s) s = @{};
-        NSTimeInterval now = [[[NSDate alloc] init] timeIntervalSince1970];
-        NSArray *ed = s[eventName];
-        if (!ed || ed.count < 3) {
-            // This event has been recorded for the very first time
-            // Set the count to 0, first and last to now
-            // Count will be incremented soon after this block
-            ed = @[@0.0f, @(now), @(now)];
-        }
-        NSMutableArray *ped = [ed mutableCopy];
-        double currentCount = ((NSNumber *) ped[0]).doubleValue;
-        currentCount++;
-        ped[0] = @(currentCount);
-        ped[2] = @(now);
-        NSMutableDictionary *store = [s mutableCopy];
-        store[eventName] = ped;
-        [self setStoredEvents:store];
-    }];
+    
+    NSString *eventName = event[CLTAP_EVENT_NAME];
+    NSString *normalizedEventName = [CTUtils getNormalizedName:eventName];
+    [self.dbHelper upsertEvent:eventName normalizedEventName:normalizedEventName deviceID:self.deviceInfo.deviceId];
 }
 
 /*!
@@ -522,76 +619,38 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
     }
 }
 
-- (NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)getUserAttributeChangeProperties:(NSDictionary *)event {
-    NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *userAttributesChangeProperties = [NSMutableDictionary dictionary];
-    NSMutableDictionary<NSString *, id> *fieldsToPersistLocally = [NSMutableDictionary dictionary];
-    NSDictionary *profile = event[CLTAP_PROFILE];
-    if (!profile) {
-        return @{};
-    }
-    for (NSString *key in profile) {
-        if ([CLTAP_SKIP_KEYS_USER_ATTRIBUTE_EVALUATION containsObject: key]) {
-            continue;
-        }
-        id oldValue = [self getProfileFieldForKey:key];
-        id newValue = profile[key];
-        NSMutableDictionary *properties = [NSMutableDictionary dictionary];
-        if ([newValue isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *obj = (NSDictionary *)newValue;
-            NSString *commandIdentifier = [[obj allKeys] firstObject];
-            id value = [obj objectForKey:commandIdentifier];
-            if ([commandIdentifier isEqualToString:kCLTAP_COMMAND_INCREMENT] ||
-                [commandIdentifier isEqualToString:kCLTAP_COMMAND_DECREMENT]) {
-                newValue = [CTProfileBuilder _getUpdatedValue:value forKey:key withCommand:commandIdentifier cachedValue:oldValue];
-            } else if ([commandIdentifier isEqualToString:kCLTAP_COMMAND_DELETE]) {
-                newValue = nil;
-                [self removeProfileFieldForKey:key];
+- (void)updateLocalProfileWithChanges:(NSDictionary<NSString *, NSDictionary *> *)changes {
+    if (!changes || changes.count == 0) return;
+    
+    NSMutableDictionary *fieldsToUpdate = [NSMutableDictionary dictionary];
+    for (NSString *path in changes) {
+        NSDictionary *changeInfo = changes[path];
+        id newValue = changeInfo[CLTAP_KEY_NEW_VALUE];
+        // For nested paths, only update the root level key in localProfileForSession
+        // The full nested structure is already in the traverse target
+        NSString *rootKey = [self extractRootKeyFromPath:path];
+        if (newValue != nil) {
+            // Get the full nested value for this root key from localProfileForSession
+            // (which was already modified by traverse operation)
+            id rootValue = localProfileForSession[rootKey];
+            if (rootValue) {
+                fieldsToUpdate[rootKey] = rootValue;
             }
-            else if ([commandIdentifier isEqualToString:kCLTAP_COMMAND_SET] ||
-                     [commandIdentifier isEqualToString:kCLTAP_COMMAND_ADD] ||
-                     [commandIdentifier isEqualToString:kCLTAP_COMMAND_REMOVE]) {
-                newValue = [CTProfileBuilder _constructLocalMultiValueWithOriginalValues:value forKey:key usingCommand:commandIdentifier localDataStore:self];
-            }
-        } else if ([newValue isKindOfClass:[NSString class]]) {
-            // Remove the date prefix before evaluation and persisting
-            NSString *newValueStr = (NSString *)newValue;
-            if ([newValueStr hasPrefix:CLTAP_DATE_PREFIX]) {
-                newValue = @([[newValueStr substringFromIndex:[CLTAP_DATE_PREFIX length]] longLongValue]);
-            }
-        }
-        if (oldValue != nil && ![oldValue isKindOfClass:[NSArray class]]) {
-            [properties setObject:oldValue forKey:CLTAP_KEY_OLD_VALUE];
-        }
-        if (newValue != nil && ![newValue isKindOfClass:[NSArray class]]) {
-            [properties setObject:newValue forKey:CLTAP_KEY_NEW_VALUE];
-        }
-        
-        // Skip evaluation if both newValue or oldValue are null
-        if ([properties count] > 0) {
-            [userAttributesChangeProperties setObject:properties forKey:key];
-        }
-        // Need to persist only if the new profile value is not a null value
-        if (newValue != nil && newValue != oldValue) {
-            [fieldsToPersistLocally setObject:newValue forKey:key];
+        } else if ([changeInfo objectForKey:CLTAP_KEY_OLD_VALUE] != nil && newValue == nil) {
+            // Handle deletion
+            [self removeProfileFieldForKey:rootKey];
         }
     }
-    [self updateProfileFieldsLocally:fieldsToPersistLocally];
-    return userAttributesChangeProperties;
+    // Update the session cache without calling CTProfileBuilder again
+    // since validation/building already happened in traverse
+    if (fieldsToUpdate.count > 0) {
+        [self setProfileFields:fieldsToUpdate fromUpstream:NO];
+    }
 }
 
--(void) updateProfileFieldsLocally: (NSMutableDictionary<NSString *, id> *) fieldsToPersistLocally{
-    [self.dispatchQueueManager runSerialAsync:^{
-        [CTProfileBuilder build:fieldsToPersistLocally completionHandler:^(NSDictionary *customFields, NSDictionary *systemFields, NSArray<CTValidationResult*>*errors) {
-            if (systemFields) {
-                CleverTapLogInternal(self.config.logLevel, @"%@: Constructed system profile: %@", self, systemFields);
-                [self setProfileFields:systemFields];
-            }
-            if (customFields) {
-                CleverTapLogInternal(self.config.logLevel, @"%@: Constructed custom profile: %@", self, customFields);
-                [self setProfileFields:customFields];
-            }
-        }];
-    }];
+- (NSString *)extractRootKeyFromPath:(NSString *)path {
+    NSArray *components = [path componentsSeparatedByString:@"."];
+    return components.firstObject ?: path;
 }
 
 - (void)setProfileFields:(NSDictionary *)fields {
@@ -608,6 +667,43 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
 
 - (void)removeProfileFieldsWithKeys:(NSArray *)keys {
     [self removeProfileFieldsWithKeys:keys fromUpstream:NO];
+}
+
+- (BOOL)isEventLoggedFirstTime:(NSString*)eventName {
+    NSString *normalizedName = [CTUtils getNormalizedName:eventName];
+    @synchronized (self.userEventLogs) {
+        if ([self.userEventLogs containsObject:normalizedName]) {
+            return NO;
+        }
+    }
+    NSInteger count = [self.dbHelper getEventCount:normalizedName deviceID:self.deviceInfo.deviceId];
+    if (count > 1) {
+        @synchronized (self.userEventLogs) {
+            [self.userEventLogs addObject:normalizedName];
+        }
+    }
+    return count == 1;
+}
+
+#pragma mark - Public APIs for Event log
+
+- (int)readUserEventLogCount:(NSString *)eventName {
+    NSString *normalizedEventName = [CTUtils getNormalizedName:eventName];
+    return (int) [self.dbHelper getEventCount:normalizedEventName deviceID:self.deviceInfo.deviceId];
+}
+
+- (CleverTapEventDetail *)readUserEventLog:(NSString *)eventName {
+    NSString *normalizedEventName = [CTUtils getNormalizedName:eventName];
+    return [self.dbHelper getEventDetail:normalizedEventName deviceID:self.deviceInfo.deviceId];
+}
+
+- (NSDictionary *)readUserEventLogs {
+    NSArray<CleverTapEventDetail *> *allEvents = [self.dbHelper getAllEventsForDeviceID:self.deviceInfo.deviceId];
+    NSMutableDictionary *history = [[NSMutableDictionary alloc] init];
+    for (CleverTapEventDetail *event in allEvents) {
+        history[event.eventName] = event;
+    }
+    return history;
 }
 
 
@@ -628,10 +724,8 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
     for (NSString *key in fields) {
         id value = fields[key];
         if (!value) continue;
-        
-        [self _setProfileValue:fields[key] forKey:key fromUpstream:fromUpstream];
+        [self _setProfileValue:value forKey:key fromUpstream:fromUpstream];
     }
-    
     [self persistLocalProfileIfRequired];
 }
 
@@ -642,6 +736,14 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
         }
         if (!fromUpstream) {
             [self updateLocalProfileUpdateExpiryTimeForKey:key];
+        }
+        
+        // PERSIST PROFILE KEY AS EVENT
+        if (![_systemProfileKeys containsObject:key]) {
+            NSDictionary *profileEvent = @{CLTAP_EVENT_NAME: key};
+            [self.dispatchQueueManager runSerialAsync:^{
+                [self persistEvent:profileEvent];
+            }];
         }
     }
     @catch (NSException *exception) {
@@ -695,15 +797,15 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
 - (id)_getProfileFieldFromSessionCacheWithKey:(NSString *)key {
     if (!key || !localProfileForSession) return nil;
     
-    id val = nil;
+    NSDictionary *profileChange = nil;
     
     @synchronized (localProfileForSession) {
         // CACHED VALUES HAVE a "user" PREFIX, SO PREPEND IT BEFORE SEARCHING CACHE
         NSString *keyToSearch = [localProfileForSession.allKeys containsObject:key] ? key : [NSString stringWithFormat:@"user%@",key];
-        val = localProfileForSession[keyToSearch];
+        NSDictionary<NSString *, id> *profileChanges = [self processProfileTree:keyToSearch value:kCLTAP_GET_MARKER command:CTProfileOperationGet];
+        profileChange = profileChanges[keyToSearch];
     }
-    
-    return val;
+    return profileChange == nil ? nil : profileChange[@"oldValue"];
 }
 
 - (NSString *)profileFileName {
@@ -927,18 +1029,90 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
 - (NSMutableDictionary *)decryptPIIDataIfEncrypted:(NSMutableDictionary *)profile {
     long lastEncryptionLevel = [CTPreferences getIntForKey:[CTUtils getKeyWithSuffix:CT_ENCRYPTION_KEY accountID:self.config.accountId] withResetValue:0];
     [CTPreferences putInt:self.config.encryptionLevel forKey:[CTUtils getKeyWithSuffix:CT_ENCRYPTION_KEY accountID:self.config.accountId]];
-    if (lastEncryptionLevel == CleverTapEncryptionMedium && self.config.aesCrypt) {
+    
+    // Check for valid input
+    if (!profile) {
+        CleverTapLogDebug(self.config.logLevel, @"%@: Cannot decrypt nil profile", self);
+        return [NSMutableDictionary new];
+    }
+    
+    if (lastEncryptionLevel == CleverTapEncryptionMedium && self.config.cryptManager) {
         // Always store the local profile data in decrypted values.
         NSMutableDictionary *updatedProfile = [NSMutableDictionary new];
+        
+        // Check if _piiKeys is valid
+        if (!_piiKeys || _piiKeys.count == 0) {
+            CleverTapLogDebug(self.config.logLevel, @"%@: No PII keys defined for decryption", self);
+            return profile;
+        }
+        
         for (NSString *key in profile) {
             if ([_piiKeys containsObject:key]) {
-                NSString *value = [NSString stringWithFormat:@"%@",profile[key]];
-                NSString *decryptedString = [self.config.aesCrypt getDecryptedString:value];
-                updatedProfile[key] = decryptedString;
+                @try {
+                    // Validate the value before attempting to decrypt
+                    id value = profile[key];
+                    if (!value || ![value isKindOfClass:[NSString class]]) {
+                        CleverTapLogDebug(self.config.logLevel, @"%@: Invalid value for PII key: %@, skipping decryption", self, key);
+                        updatedProfile[key] = value ?: [NSNull null];
+                        continue;
+                    }
+                    
+                    NSString *stringValue = [NSString stringWithFormat:@"%@", value];
+                    NSString *decryptedString = [self.config.cryptManager decryptString:stringValue];
+                    
+                    // Validate decryption result
+                    if (!decryptedString) {
+                        CleverTapLogDebug(self.config.logLevel, @"%@: Failed to decrypt PII data for key: %@", self, key);
+                        // Return original value if decryption fails
+                        updatedProfile[key] = stringValue;
+                    } else {
+                        updatedProfile[key] = decryptedString;
+                    }
+                } @catch (NSException *e) {
+                    CleverTapLogDebug(self.config.logLevel, @"%@: Exception during PII decryption for key %@: %@", self, key, e);
+                    // Add original value to avoid data loss
+                    updatedProfile[key] = profile[key];
+                }
             } else {
                 updatedProfile[key] = profile[key];
             }
         }
+        
+        return updatedProfile;
+    }
+    else if (lastEncryptionLevel == CleverTapEncryptionHigh && self.config.cryptManager) {
+        // Always store the local profile data in decrypted values.
+        NSMutableDictionary *updatedProfile = [NSMutableDictionary new];
+        
+        for (NSString *key in profile) {
+            @try {
+                // Validate the value before attempting to decrypt
+                id value = profile[key];
+                if (!value || ![value isKindOfClass:[NSString class]]) {
+                    CleverTapLogDebug(self.config.logLevel, @"%@: Invalid value for key: %@, skipping decryption", self, key);
+                    updatedProfile[key] = value ?: [NSNull null];
+                    continue;
+                }
+                
+                NSString *stringValue = [NSString stringWithFormat:@"%@", value];
+                NSString *decryptedString = [self.config.cryptManager decryptString:stringValue];
+                
+                // Validate decryption result
+                if (!decryptedString) {
+                    CleverTapLogDebug(self.config.logLevel, @"%@: Failed to decrypt data for key: %@", self, key);
+                    // Return original value if decryption fails
+                    updatedProfile[key] = stringValue;
+                } else {
+                    updatedProfile[key] = decryptedString;
+                }
+            } @catch (NSException *e) {
+                CleverTapLogDebug(self.config.logLevel, @"%@: Exception during decryption for key %@: %@", self, key, e);
+                // Add original value to avoid data loss
+                updatedProfile[key] = profile[key];
+            }
+            
+        }
+        
         return updatedProfile;
     }
     
@@ -946,20 +1120,27 @@ NSString *const CT_ENCRYPTION_KEY = @"CLTAP_ENCRYPTION_KEY";
 }
 
 - (NSMutableDictionary *)cryptValuesIfNeeded:(NSMutableDictionary *)profile {
-    if (self.config.encryptionLevel == CleverTapEncryptionMedium && self.config.aesCrypt) {
+    if (self.config.encryptionLevel == CleverTapEncryptionMedium && self.config.cryptManager) {
         NSMutableDictionary *updatedProfile = [NSMutableDictionary new];
         for (NSString *key in profile) {
             if ([_piiKeys containsObject:key]) {
                 NSString *value = [NSString stringWithFormat:@"%@",profile[key]];
-                updatedProfile[key] = [self.config.aesCrypt getEncryptedString:value];
+                updatedProfile[key] = [self.config.cryptManager encryptString:value];
             } else {
                 updatedProfile[key] = profile[key];
             }
         }
         return updatedProfile;
     }
-
+    else if (self.config.encryptionLevel == CleverTapEncryptionHigh && self.config.cryptManager) {
+        NSMutableDictionary *updatedProfile = [NSMutableDictionary new];
+        for (NSString *key in profile) {
+            NSString *value = [NSString stringWithFormat:@"%@",profile[key]];
+            updatedProfile[key] = [self.config.cryptManager encryptString:value];
+        }
+        return updatedProfile;
+    }
+    
     return profile;
 }
-
 @end

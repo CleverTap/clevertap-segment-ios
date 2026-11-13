@@ -10,11 +10,14 @@
 - (void)populateItemViews {
     self.itemViews = [NSMutableArray new];
     int index = 0;
+    int imageNumber = 1;
     for (CleverTapInboxMessageContent *content in (self.message.content)) {
         NSString *imageUrl = content.mediaUrl;
         NSString *actionUrl = content.actionUrl;
+        NSString *imageDescription = content.mediaDescription ? content.mediaDescription : [NSString stringWithFormat:@"Message Image %d", imageNumber];
+        imageNumber = imageNumber + 1;
         
-        if (imageUrl == nil) {
+        if (imageUrl == nil || imageUrl.length == 0) {
             continue;
         }
         CTCarouselImageView *itemView;
@@ -24,7 +27,9 @@
             frame.size.width = frame.size.width;
             itemView = [[CTCarouselImageView alloc] initWithFrame:frame
                                                          imageUrl:imageUrl actionUrl:actionUrl
-                                              orientationPortrait: [self orientationIsPortrait]];
+                                                 orientationKnown:![self shouldUseDefaultMediaLayout]
+                                              orientationPortrait:[self orientationIsPortrait]
+                                                 imageDescription:imageDescription];
         }
         
         UITapGestureRecognizer *itemViewTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleItemViewTapGesture:)];
@@ -46,12 +51,19 @@
         CGFloat viewWidth = (CGFloat)[[UIScreen mainScreen] bounds].size.width - margins*2;
         CGFloat viewHeight = viewWidth / 3.5;
         self.carouselViewHeight.constant  = viewHeight;
-        self.carouselLandRatioConstraint.priority = [self orientationIsPortrait] ? 750 : 999;
-        self.carouselPortRatioConstraint.priority = [self orientationIsPortrait] ? 999 : 750;
+        if ([self shouldUseDefaultMediaLayout]) {
+            self.carouselLandRatioConstraint.priority = 250;
+            self.carouselPortRatioConstraint.priority = 250;
+        } else {
+            self.carouselLandRatioConstraint.priority = [self orientationIsPortrait] ? 750 : 999;
+            self.carouselPortRatioConstraint.priority = [self orientationIsPortrait] ? 999 : 750;
+        }
     } else {
         CGFloat viewWidth = (CGFloat)  [[UIScreen mainScreen] bounds].size.width;
         CGFloat viewHeight = viewWidth;
-        if (![self orientationIsPortrait]) {
+        if ([self shouldUseDefaultMediaLayout]) {
+            viewHeight = (viewWidth * [self getLandscapeMultiplier]);
+        } else if (![self orientationIsPortrait]) {
             viewHeight = (viewWidth*[self getLandscapeMultiplier]);
         }
         CGRect frame = CGRectMake(0, 0, viewWidth, viewHeight);

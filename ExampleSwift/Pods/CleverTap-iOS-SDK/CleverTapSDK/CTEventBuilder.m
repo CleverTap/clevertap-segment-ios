@@ -1,7 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "CTEventBuilder.h"
 #import "CTValidationResult.h"
-#import "CTValidator.h"
 #import "CTConstants.h"
 #import "CTPreferences.h"
 #import "CTUtils.h"
@@ -10,8 +9,25 @@
 #if !CLEVERTAP_NO_INAPP_SUPPORT
 #import "CTInAppNotification.h"
 #endif
+#import "CTDataValidator.h"
+#import "CTValidationConfig.h"
+#import "CTEventNameValidator.h"
+#import "CTPropertyKeyValidator.h"
+#import "CTValidationResultStack.h"
 
 @implementation CTEventBuilder
+static CTEventNameValidator *_eventKeyValidator;
+static CTDataValidator *_eventDataValidator;
+
++ (void)initializeWithValidationConfig:(CTValidationConfig *)validationConfig {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (self == [CTEventBuilder class]) {
+            _eventKeyValidator = [[CTEventNameValidator alloc] initWithConfig:validationConfig];
+            _eventDataValidator = [[CTDataValidator alloc] initWithConfig:validationConfig];
+        }
+    });
+}
 
 + (NSMutableDictionary *)getErrorObject:(CTValidationResult *)vr {
     NSMutableDictionary *error = [[NSMutableDictionary alloc] init];
@@ -40,102 +56,46 @@
 + (void)build:(NSString *)eventName withEventActions:(NSDictionary *)eventActions completionHandler:(void(^)(NSDictionary* event, NSArray<CTValidationResult*> *errors))completion {
     NSMutableArray<CTValidationResult*> *errors = [NSMutableArray new];
     
-    if (eventName == nil || [eventName isEqualToString:@""]) {
+    CTValidationResult *nameResult = [_eventKeyValidator validateEventName:eventName];
+    if (nameResult.shouldDrop) {
+        // Log error and push to stack
+        CleverTapLogStaticDebug(@"%@: Event dropped - %@", self, nameResult.errorDesc);
+        [errors addObject:nameResult];
         completion(nil, errors);
         return;
     }
-    // Check for a restricted event name
-    if ([CTValidator isRestrictedEventName:eventName]) {
-        [errors addObject:[CTValidationResult resultWithErrorCode:512 andMessage:[NSString stringWithFormat:@"Restricted event name - %@", eventName]]];
-        CleverTapLogStaticDebug(@"Restricted event name: %@", eventName);
-        completion(nil, errors);
-        return;
-    }
-    
-    // Check for a discarded event name
-    if ([CTValidator isDiscaredEventName:eventName]) {
-        [errors addObject:[CTValidationResult resultWithErrorCode:512 andMessage:[NSString stringWithFormat:@"Discarded event name - %@", eventName]]];
-        CleverTapLogStaticDebug(@"%@%@%@", eventName, @" is a discarded event, dropping event: ", eventName);
-        completion(nil, errors);
-        return;
+    NSString *cleanedEventName = nameResult.cleanedData;
+    if (nameResult.outcome == CTValidationOutcomeWarning) {
+        for (CTValidationResult *warning in nameResult.subResults) {
+            CleverTapLogStaticDebug(@"%@: Event name modified - %@", self, warning.errorDesc);
+        }
+        [errors addObjectsFromArray:nameResult.subResults];
     }
     
     NSMutableDictionary *event = [[NSMutableDictionary alloc] init];
     @try {
-        // Validate
-        CTValidationResult *vr = [CTValidator cleanEventName:eventName];
-        if ([vr object] == nil || [((NSString *) [vr object]) isEqualToString:@""]) {
-            [errors addObject:[CTValidationResult resultWithErrorCode:512 andMessage:[NSString stringWithFormat:@"Invalid event name - %@", eventName]]];
-            CleverTapLogStaticDebug(@"Invalid event name: %@", eventName);
-            // Abort
+        //Validate event properties
+        CTValidationResult *dataResult = [_eventDataValidator validateEventData:eventActions];
+        NSDictionary *cleanedProperties = dataResult.cleanedData;
+        
+        if (dataResult.shouldDrop) {
+            CleverTapLogStaticDebug(@"%@: Property dropped - %@", self, dataResult.errorDesc);
+            [errors addObject:dataResult];
             completion(nil, errors);
             return;
         }
-        // Check for an error
-        if ([vr errorCode] != 0) {
-            event[CLTAP_ERROR_KEY] = [self getErrorObject:vr];
-            if ([vr errorDesc] != nil) {
-                CleverTapLogStaticDebug(@"%@", [vr errorDesc]);
+        if (dataResult.outcome == CTValidationOutcomeWarning && dataResult.subResults.count > 0) {
+            for (CTValidationResult *warning in dataResult.subResults) {
+                CleverTapLogStaticDebug(@"%@: Property validation - %@", self, warning.errorDesc);
             }
+            [errors addObjectsFromArray:dataResult.subResults];
         }
-        eventName = (NSString *) [vr object];
-        
-        NSMutableDictionary *actions = [[NSMutableDictionary alloc] init];
-        NSMutableArray *eventActionsAllKeys;
-        if (eventActions) {
-            eventActionsAllKeys = [NSMutableArray arrayWithArray:[eventActions allKeys]];
-        } else {
-            eventActionsAllKeys = [NSMutableArray new];
-        }
-        for (int i = 0; i < [eventActionsAllKeys count]; i++) {
-            NSString *key = eventActionsAllKeys[(NSUInteger) i];
-            id value = eventActions[key];
-            vr = [CTValidator cleanObjectKey:key];
-            if ([vr object] == nil || [((NSString *) [vr object]) isEqualToString:@""]) {
-                [errors addObject:[CTValidationResult resultWithErrorCode:512 andMessage:[NSString stringWithFormat:@"Invalid event property key: %@", key]]];
-                CleverTapLogStaticDebug(@"Invalid event property key: %@", key);
-                // Skip
-                continue;
-            }
-            key = (NSString *) [vr object];
-            // Check for an error
-            if ([vr errorCode] != 0) {
-                event[CLTAP_ERROR_KEY] = [self getErrorObject:vr];
-                if ([vr errorDesc] != nil) {
-                    CleverTapLogStaticDebug(@"%@", [vr errorDesc]);
-                }
-            }
-            BOOL accepted = false;
-            @try {
-                vr = [CTValidator cleanObjectValue:value context:CTValidatorContextEvent];
-                accepted = [vr object] != nil;
-            } @catch (NSException *e) {
-                accepted = false;
-            }
-            if (!accepted) {
-                NSString *errStr = [NSString stringWithFormat:@"For event \"%@\": Property value for property %@ wasn't a primitive (%@)", eventName, key, value];
-                CleverTapLogStaticDebug(@"%@", errStr);
-                CTValidationResult *error = [[CTValidationResult alloc] init];
-                [error setErrorCode:512];
-                [error setErrorDesc:errStr];
-                [errors addObject:error];
-                // Skip this property
-                continue;
-            }
-            value = [vr object];
-            // Check for an error
-            if ([vr errorCode] != 0) {
-                event[CLTAP_ERROR_KEY] = [self getErrorObject:vr];
-                if ([vr errorDesc] != nil) {
-                    CleverTapLogStaticDebug(@"%@", [vr errorDesc]);
-                }
-            }
-            actions[key] = value;
-        }
-        event[CLTAP_EVENT_NAME] = eventName;
-        event[CLTAP_EVENT_DATA] = actions;
+        event[CLTAP_EVENT_NAME] = cleanedEventName;
+        event[CLTAP_EVENT_DATA] = cleanedProperties;
         completion(event, errors);
-    } @catch (NSException *e) {
+    }
+    @catch (NSException *e) {
+        CleverTapLogStaticDebug(@"%@: Failed to build the event '%@'. The event is not raised. Reason: %@", self, eventName, e.reason);
         completion(nil, errors);
     }
 }
@@ -148,10 +108,10 @@
     NSMutableArray<CTValidationResult*> *errors = [NSMutableArray new];
     
     if (chargeDetails == nil || items == nil) {
+        CleverTapLogStaticDebug(@"%@: The Charged event is not raised because %@ is missing. Both the details and the items are required.", self, chargeDetails == nil ? @"the details" : @"the items");
         completion(nil, errors);
         return;
     }
-    
     if (((int) [items count]) > 50) {
         CTValidationResult *error = [[CTValidationResult alloc] init];
         [error setErrorCode:522];
@@ -161,110 +121,39 @@
     }
     NSMutableDictionary *evtData = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *chargedEvent = [[NSMutableDictionary alloc] init];
-    CTValidationResult *vr;
     @try {
-        NSMutableArray *chargeDetailsAllKeys = [NSMutableArray arrayWithArray:[chargeDetails allKeys]];
-        for (int i = 0; i < [chargeDetailsAllKeys count]; i++) {
-            NSString *key = chargeDetailsAllKeys[(NSUInteger) i];
-            id value = chargeDetails[key];
-            vr = [CTValidator cleanObjectKey:key];
-            if ([vr object] == nil || [((NSString *) [vr object]) isEqualToString:@""]) {
-                // Skip
-                continue;
-            }
-            key = (NSString *) [vr object];
-            // Check for an error
-            if ([vr errorCode] != 0) {
-                chargedEvent[CLTAP_ERROR_KEY] = [self getErrorObject:vr];
-                if ([vr errorDesc] != nil) {
-                    CleverTapLogStaticDebug(@"%@", [vr errorDesc]);
-                }
-            }
-            BOOL accepted = false;
-            @try {
-                vr = [CTValidator cleanObjectValue:value context:CTValidatorContextEvent];
-                accepted = [vr object] != nil;
-            } @catch (NSException *e) {
-                accepted = false;
-            }
-            if (!accepted) {
-                NSString *errStr = [NSString stringWithFormat:@"For event Charged: Property value for property %@ wasn't a primitive (%@)", key, value];
-                CleverTapLogStaticDebug(@"%@", errStr);
-                CTValidationResult *error = [[CTValidationResult alloc] init];
-                [error setErrorCode:511];
-                [error setErrorDesc:errStr];
-                [errors addObject:error];
-                // Skip
-                continue;
-            }
-            value = [vr object];
-            // Check for an error
-            if ([vr errorCode] != 0) {
-                chargedEvent[CLTAP_ERROR_KEY] = [self getErrorObject:vr];
-                if ([vr errorDesc] != nil) {
-                    CleverTapLogStaticDebug(@"%@", [vr errorDesc]);
-                }
-            }
-            evtData[key] = value;
+        CTValidationResult *dataResult = [_eventDataValidator validateEventData:chargeDetails];
+        evtData = dataResult.cleanedData;
+        
+        if (dataResult.shouldDrop) {
+            CleverTapLogStaticDebug(@"%@: Charged Event Property dropped - %@", self, dataResult.errorDesc);
+            [errors addObject:dataResult];
+            completion(nil, errors);
+            return;
         }
-        NSMutableArray *jsonItemsArray = [[NSMutableArray alloc] init];
+        if (dataResult.outcome == CTValidationOutcomeWarning && dataResult.subResults.count > 0) {
+            for (CTValidationResult *warning in dataResult.subResults) {
+                CleverTapLogStaticDebug(@"%@: Charged Event Property validation - %@", self, warning.errorDesc);
+            }
+            [errors addObjectsFromArray:dataResult.subResults];
+        }
+        NSMutableArray *jsonItemsArray = [NSMutableArray array];
         for (id map in items) {
-            if ([map isKindOfClass:[NSDictionary class]]) {
-                NSMutableDictionary *itemDetails = [[NSMutableDictionary alloc] init];
-                NSMutableArray *mapAllKeys = [NSMutableArray arrayWithArray:[map allKeys]];
-                for (int i = 0; i < [mapAllKeys count]; i++) {
-                    NSString *key = mapAllKeys[(NSUInteger) i];
-                    id value = [map objectForKey:key];
-                    vr = [CTValidator cleanObjectKey:key];
-                    if ([vr object] == nil || [((NSString *) [vr object]) isEqualToString:@""]) {
-                        // Abort
-                        completion(nil, errors);
-                        return;
-                    }
-                    key = (NSString *) [vr object];
-                    // Check for an error
-                    if ([vr errorCode] != 0) {
-                        chargedEvent[CLTAP_ERROR_KEY] = [self getErrorObject:vr];
-                        if ([vr errorDesc] != nil) {
-                            CleverTapLogStaticDebug(@"%@", [vr errorDesc]);
-                        }
-                    }
-                    BOOL accepted = false;
-                    @try {
-                        vr = [CTValidator cleanObjectValue:value context:CTValidatorContextEvent];
-                        accepted = [vr object] != nil;
-                    } @catch (NSException *e) {
-                        accepted = false;
-                    }
-                    if (!accepted) {
-                        NSString *errStr = [NSString stringWithFormat:@"An item's object value for key %@ wasn't a primitive (%@)", key, value];
-                        CleverTapLogStaticDebug(@"%@", errStr);
-                        CTValidationResult *error = [[CTValidationResult alloc] init];
-                        [error setErrorCode:511];
-                        [error setErrorDesc:errStr];
-                        [errors addObject:error];
-                        // Skip
-                        continue;
-                    }
-                    value = [vr object];
-                    // Check for an error
-                    if ([vr errorCode] != 0) {
-                        chargedEvent[CLTAP_ERROR_KEY] = [self getErrorObject:vr];
-                        if ([vr errorDesc] != nil) {
-                            CleverTapLogStaticDebug(@"%@", [vr errorDesc]);
-                        }
-                    }
-                    itemDetails[key] = value;
-                }
+            CTValidationResult *itemResult = [_eventDataValidator validateEventData:map];
+            
+            if (![itemResult shouldDrop]) {
+                NSDictionary *itemDetails = itemResult.cleanedData;
                 [jsonItemsArray addObject:itemDetails];
+            } else {
+                CleverTapLogStaticDebug(@"%@: One item of the Charged event is not included. Reason: %@", self, itemResult.errorDesc);
             }
         }
         evtData[CLTAP_CHARGED_EVENT_ITEMS] = jsonItemsArray;
-        
         chargedEvent[CLTAP_EVENT_NAME] = CLTAP_CHARGED_EVENT;
         chargedEvent[CLTAP_EVENT_DATA] = evtData;
         completion(chargedEvent, errors);
     } @catch (NSException *e) {
+        CleverTapLogStaticDebug(@"%@: Failed to build the Charged event. The event is not raised. Reason: %@", self, e.reason);
         completion(nil, errors);
     }
 }
@@ -316,12 +205,14 @@
     NSMutableDictionary *notif = [[NSMutableDictionary alloc] init];
     @try {
         NSDictionary *data = notification.jsonDescription;
+        // Extract all wzrk_* properties from notification JSON
         for (NSString *x in [data allKeys]) {
             if (![CTUtils doesString:x startWith:@"wzrk_"])
                 continue;
             id value = data[x];
             notif[x] = value;
         }
+        // Merge query parameters including wzrk_c2a (CTA text) and wzrk_dl (deep link)
         if (params) {
             [notif addEntriesFromDictionary:params];
         }
@@ -346,6 +237,7 @@
  */
 + (void)buildInboxMessageStateEvent:(BOOL)clicked
                          forMessage:(CleverTapInboxMessage *)message
+                        isV2Message:(BOOL)isV2Message
                  andQueryParameters:(NSDictionary *)params
                   completionHandler:(void(^)(NSDictionary* event, NSArray<CTValidationResult*> *errors))completion {
     NSMutableDictionary *event = [[NSMutableDictionary alloc] init];
@@ -357,6 +249,9 @@
                 continue;
             id value = data[x];
             notif[x] = value;
+        }
+        if (isV2Message && message.messageId) {
+            notif[@"wzrk_mid"] = message.messageId;
         }
         if (params) {
             [notif addEntriesFromDictionary:params];
@@ -384,6 +279,16 @@
     @try {
         NSMutableDictionary *event = [NSMutableDictionary new];
         NSMutableDictionary *notif = [NSMutableDictionary new];
+        // 1. Caller-supplied params first (`additionalProperties` + `wzrk_element_id`
+        //    from the element-aware click selector). Existing callers pass nil for
+        //    `params` so they are unaffected.
+        if (params) {
+            [notif addEntriesFromDictionary:params];
+        }
+        // 2. Cached unit `wzrk_*` fields layered on top — server-controlled
+        //    attribution always wins over same-named caller-supplied keys (e.g. a
+        //    client cannot spoof `wzrk_id`). Caller-supplied `wzrk_*` keys that
+        //    are NOT in the cached unit pass through unchanged.
         NSDictionary *data = displayUnit.json;
         for (NSString *x in [data allKeys]) {
             if (!([CTUtils doesString:x startWith:CLTAP_NOTIFICATION_TAG] || [CTUtils doesString:x startWith:CLTAP_NOTIFICATION_TAG_SECONDARY]))
@@ -397,6 +302,7 @@
         event[CLTAP_EVENT_DATA] = notif;
         completion(event, nil);
     } @catch (NSException *e) {
+        CleverTapLogStaticDebug(CLTAP_ND_LOG_PREFIX @" Failed to build the Native Display %@ event. The event is not raised. Reason: %@", clicked ? @"Clicked" : @"Viewed", e.reason);
         completion(nil, nil);
     }
 }
