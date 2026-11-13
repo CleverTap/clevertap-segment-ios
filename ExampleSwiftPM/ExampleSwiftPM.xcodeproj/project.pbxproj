@@ -115,7 +115,7 @@
 			);
 			mainGroup = 4932601B273CFB0200AD023E;
 			packageReferences = (
-				0B83A8992BA84F2300D35208 /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */,
+				0B83A8992BA84F2300D35208 /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = 49326025273CFB0200AD023E /* Products */;
 			projectDirPath = "";
@@ -298,7 +298,6 @@
 				INFOPLIST_FILE = ExampleSwiftPM/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -326,7 +325,6 @@
 				INFOPLIST_FILE = ExampleSwiftPM/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -366,21 +364,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		0B83A8992BA84F2300D35208 /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CleverTap/clevertap-segment-ios";
-			requirement = {
-				branch = "task/SDK-4132-Update-Segment-iOS-SDK-to-support-CT-iOS-SDK-v7.0.2";
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		0B83A8992BA84F2300D35208 /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		0B83A89A2BA84F2300D35208 /* Segment-CleverTap */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0B83A8992BA84F2300D35208 /* XCRemoteSwiftPackageReference "clevertap-segment-ios" */;
 			productName = "Segment-CleverTap";
 		};
 /* End XCSwiftPackageProductDependency section */
