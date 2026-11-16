@@ -51,26 +51,27 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    application.applicationIconBadgeNumber = 0;
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self clearBadgeCount];
+}
+
+- (void)clearBadgeCount {
+    // -[UIApplication applicationIconBadgeNumber] is deprecated as of iOS 17.
+    if (@available(iOS 16.0, *)) {
+        [[UNUserNotificationCenter currentNotificationCenter] setBadgeCount:0 withCompletionHandler:nil];
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+#pragma clang diagnostic pop
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    NSLog(@"open url %@", [url absoluteString]);
-    [self handleUrl:url];
-    return YES;
-}
-
-- (void)handleUrl:(NSURL *)url {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Deep Link" message:[url absoluteString] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:nil];
-    [alert addAction:cancelAction];
-    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
-}
+// Deep links arrive through SceneDelegate scene:openURLContexts: under the UIScene lifecycle.
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [[SEGAnalytics sharedAnalytics] registeredForRemoteNotificationsWithDeviceToken:deviceToken];

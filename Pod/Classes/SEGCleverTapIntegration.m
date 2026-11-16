@@ -21,7 +21,7 @@
 
 #import "SEGCleverTapIntegrationFactory.h"
 
-const int libVersion = 10400;
+const int libVersion = 20000;
 NSString * const libName = @"Segment-iOS";
 
 @implementation SEGCleverTapIntegration
