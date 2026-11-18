@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.0.0 *(16th November, 2026)*
+-------------------------------------------
+* (Supports analytics-ios 4.x and [CleverTap 7.9.1](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/7.9.1))*
+* Adds iOS 27 and Xcode 27 support
+* Raises the minimum iOS deployment target to 15.0
+* Adopts the UIScene lifecycle in the example apps
+
 Version 1.4.0 *(8th November, 2024)*
 -------------------------------------------
 * (Supports analytics-ios 4.x and [CleverTap 7.0.2](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/7.0.2))*

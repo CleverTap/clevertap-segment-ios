@@ -1,9 +1,10 @@
 XCPRETTY := xcpretty -c && exit ${PIPESTATUS[0]}
 
 SDK ?= "iphonesimulator"
-DESTINATION ?= "platform=iOS Simulator,name=iPhone 5"
+DESTINATION ?= "platform=iOS Simulator,OS=27.0,name=iPhone 17"
 PROJECT := Segment-CleverTap
-XC_ARGS := -scheme $(PROJECT)-Example -workspace Example/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO
+SCHEME ?= $(PROJECT)_Example
+XC_ARGS := -scheme $(SCHEME) -workspace Example/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO
 
 install: Example/Podfile Segment-CleverTap.podspec
 	pod install --project-directory=Example

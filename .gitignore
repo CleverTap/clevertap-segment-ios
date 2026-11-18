@@ -31,3 +31,4 @@ Pods/
 
 # Swift Package Manager
 Package.resolved
+.build/

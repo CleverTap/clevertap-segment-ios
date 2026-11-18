@@ -51,26 +51,27 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    application.applicationIconBadgeNumber = 0;
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self clearBadgeCount];
+}
+
+- (void)clearBadgeCount {
+    // -[UIApplication applicationIconBadgeNumber] is deprecated as of iOS 17.
+    if (@available(iOS 16.0, *)) {
+        [[UNUserNotificationCenter currentNotificationCenter] setBadgeCount:0 withCompletionHandler:nil];
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+#pragma clang diagnostic pop
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    NSLog(@"open url %@", [url absoluteString]);
-    [self handleUrl:url];
-    return YES;
-}
-
-- (void)handleUrl:(NSURL *)url {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Deep Link" message:[url absoluteString] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:nil];
-    [alert addAction:cancelAction];
-    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
-}
+// Deep links arrive through SceneDelegate scene:openURLContexts: under the UIScene lifecycle.
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [[SEGAnalytics sharedAnalytics] registeredForRemoteNotificationsWithDeviceToken:deviceToken];
@@ -87,6 +88,45 @@
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
     [[SEGAnalytics sharedAnalytics] receivedRemoteNotification:response.notification.request.content.userInfo];
+}
+
+@end
+
+#pragma mark - UIScene lifecycle
+
+@interface SceneDelegate : UIResponder <UIWindowSceneDelegate>
+@property (strong, nonatomic) UIWindow *window;
+@end
+
+@implementation SceneDelegate
+
+- (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
+    if (![scene isKindOfClass:[UIWindowScene class]]) {
+        return;
+    }
+    UIWindowScene *windowScene = (UIWindowScene *)scene;
+    self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.window.rootViewController = [storyboard instantiateInitialViewController];
+    [self.window makeKeyAndVisible];
+
+    for (UIOpenURLContext *context in connectionOptions.URLContexts) {
+        [self handleURL:context.URL];
+    }
+}
+
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    for (UIOpenURLContext *context in URLContexts) {
+        [self handleURL:context.URL];
+    }
+}
+
+- (void)handleURL:(NSURL *)url {
+    NSLog(@"SCENEDELEGATE: open url %@", [url absoluteString]);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Deep Link" message:[url absoluteString] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:nil];
+    [alert addAction:cancelAction];
+    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 @end
