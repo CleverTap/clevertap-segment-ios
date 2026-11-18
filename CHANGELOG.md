@@ -7,6 +7,7 @@ Version 2.0.0 *(16th November, 2026)*
 * Adds iOS 27 and Xcode 27 support
 * Raises the minimum iOS deployment target to 15.0
 * Adopts the UIScene lifecycle in the example apps
+* Adds a CocoaPods sunset notice to the README and podspec. CocoaPods trunk becomes read-only on December 2, 2026. Add `source 'https://github.com/CleverTap/podspecs.git'` and `source 'https://cdn.cocoapods.org/'` to the top of your Podfile to keep receiving updates. Existing installs are unaffected.
 
 Version 1.4.0 *(8th November, 2024)*
 -------------------------------------------
