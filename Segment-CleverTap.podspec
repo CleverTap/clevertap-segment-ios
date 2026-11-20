@@ -7,6 +7,12 @@ Pod::Spec.new do |s|
                        Analytics for iOS provides a single API that lets you
                        integrate with over 100s of tools.
                        This is the CleverTap integration for the iOS library.
+
+                       NOTICE: CocoaPods trunk becomes read-only on December 2, 2026. To keep
+                       receiving Segment-CleverTap updates through CocoaPods, add these lines to your Podfile:
+                         source 'https://github.com/CleverTap/podspecs.git'
+                         source 'https://cdn.cocoapods.org/'
+                       Existing installs are unaffected. See the README.
                        DESC
 
   s.homepage         = "https://github.com/CleverTap/clevertap-segment-ios"
