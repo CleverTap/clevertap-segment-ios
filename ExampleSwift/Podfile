@@ -1,8 +1,30 @@
 
-platform :ios, '10.0'
+source 'https://github.com/CleverTap/podspecs.git'
+source 'https://cdn.cocoapods.org/'
+
+platform :ios, '15.0'
 
 use_frameworks!
 
 target 'ExampleSwift' do
   pod "Segment-CleverTap", :path => '../'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      # Xcode 27 rejects deployment targets below iOS 15; some pods still declare 9.0/10.0.
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+    end
+  end
+
+  # SEGReachability.m imports <netinet6/in6.h>, which netinet/in.h has already pulled
+  # in and which errors out when included directly. Xcode 27's explicit clang modules
+  # surface it as a hard error. analytics-ios is archived at 4.1.8, so patch it here.
+  reachability = File.join(installer.sandbox.root, 'Analytics/Segment/Classes/SEGReachability.m')
+  if File.exist?(reachability)
+    source = File.read(reachability)
+    patched = source.sub(/^#import <netinet6\/in6\.h>\n/, '')
+    File.write(reachability, patched) unless patched == source
+  end
 end

@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 2.0.0 *(20th November, 2026)*
+-------------------------------------------
+*(Supports analytics-ios 4.x and [CleverTap 7.9.1](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/7.9.1))*
+
+#### Added
+- **Xcode 27 and iOS 27 support:** The integration builds with Xcode 27 and runs on iOS 27.
+    * Minimum deployment target is now **iOS 15.0** (previously iOS 10.0). Xcode 27 does not build targets below this range.
+    * CocoaPods users also need a `post_install` hook in their Podfile. It raises every pod target to iOS 15, because some dependencies still declare lower minimums. It also removes the `#import <netinet6/in6.h>` line from analytics-ios's `SEGReachability.m`, which Xcode 27 rejects. See the example Podfiles for the hook.
+    * The example apps now use the UIScene lifecycle.
+
+#### Changed
+- Podspec and README now carry a CocoaPods sunset notice. CocoaPods trunk becomes read-only on December 2, 2026. Add `source 'https://github.com/CleverTap/podspecs.git'` and `source 'https://cdn.cocoapods.org/'` to the top of your Podfile to keep receiving updates. Existing installs are unaffected.
+
 Version 1.4.0 *(8th November, 2024)*
 -------------------------------------------
 * (Supports analytics-ios 4.x and [CleverTap 7.0.2](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/7.0.2))*

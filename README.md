@@ -19,12 +19,24 @@ CleverTap integration for analytics-ios.
 Analytics is available through [CocoaPods](http://cocoapods.org) and [Swift Package Manager](https://www.swift.org/package-manager/).
 
 ### CocoaPods
- 
-To install CleverTap Segment integration through Cocoapods, simply add the following line to your Podfile:
+
+> **NOTICE: CocoaPods trunk becomes read-only on December 2, 2026.** After that date new
+> Segment-CleverTap versions are published to CleverTap's own specs repo, not to trunk. Add both
+> source lines below to the top of your Podfile to keep receiving updates. The `cdn.cocoapods.org`
+> line is still needed so other pods, such as Analytics, resolve. Existing installs are unaffected.
+
+To install CleverTap Segment integration through Cocoapods, add the following to your Podfile:
 
 ```ruby
-pod "Segment-CleverTap"
+source 'https://github.com/CleverTap/podspecs.git'
+source 'https://cdn.cocoapods.org/'
+
+target 'YOUR_TARGET_NAME' do
+  pod "Segment-CleverTap"
+end
 ```
+
+Then run `pod install --repo-update`.
 
 ### Swift Package Manager
 
