@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.0.0 *(16th November, 2026)*
+Version 2.0.0 *(20th November, 2026)*
 -------------------------------------------
 *(Supports analytics-ios 4.x and [CleverTap 7.9.1](https://github.com/CleverTap/clevertap-ios-sdk/releases/tag/7.9.1))*
 
